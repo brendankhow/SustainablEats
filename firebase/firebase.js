@@ -9,15 +9,13 @@ import { getFirestore, serverTimestamp } from "firebase/firestore"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAaToR21BWFxk_H1kE4QK_0WiMyKylH30k",
-  authDomain: "wad2-sustainableats.firebaseapp.com",
-  databaseURL: "https://wad2-sustainableats-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "wad2-sustainableats",
-  storageBucket: "wad2-sustainableats.appspot.com",
-  messagingSenderId: "426212590564",
-  appId: "1:426212590564:web:6ec0973226002ae8dd7df1",
-  measurementId: "G-9NB3QFRE4X"
-};
+    apiKey: "AIzaSyARABgaDbrTWu4DhgEn4qebLmADMttcyvM",
+    authDomain: "sustainableats-11dde.firebaseapp.com",
+    projectId: "sustainableats-11dde",
+    storageBucket: "sustainableats-11dde.appspot.com",
+    messagingSenderId: "514630260415",
+    appId: "1:514630260415:web:2aa18b23aa30a83a2bd80a"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
