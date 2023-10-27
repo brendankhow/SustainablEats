@@ -1,15 +1,21 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
+
+    <!-- <router-link to="/home">Home</router-link> |
     <router-link to="/explore">Explore</router-link> |
     <router-link to="/register">Register</router-link> |
     <router-link to="/sign-in">Sign In</router-link> |
-    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
-</nav>
+    <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button> -->
+    <div id="app">
+      <!-- {{ isLoggedIn }} -->
+      <Navbar :isLoggedIn="isLoggedIn" :handleSignOut="handleSignOut" v-if="isLoggedIn" />
+  </div>
   <router-view/>
 </template>
 
 <script setup>
+  import Navbar from './views/NavBar.vue'; // Import the Navbar component
+  import 'bootstrap/dist/css/bootstrap.min.css';
+  import 'bootstrap/dist/js/bootstrap.min.js';
   import { onMounted, ref } from "vue";
   import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
@@ -38,6 +44,7 @@
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

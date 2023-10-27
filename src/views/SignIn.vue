@@ -1,10 +1,11 @@
 <template>
-  <h1>Create an Account</h1>
+  <h1>Sign In</h1>
     <p><input type="text" placeholder="Email" v-model="email" /></p>
     <p><input type="password" placeholder="Password" v-model="password" /></p>
     <p v-if="errMsg">{{ errMsg }}</p>
-    <p><button @click="register">Submit</button></p>
+    <p><button @click="register">Login</button></p>
     <p><button @click="signInWithGoogle">Sign In With Google</button></p>
+    <p><button><router-link to="/register">Register</router-link></button></p>
 </template>
 
 <script setup>
@@ -23,7 +24,7 @@
         .then((data) => {
             console.log("Successfully signed!");
             console. log(auth. currentUser);
-            router.push("/explore"); //redirect to the explore page
+            router.push("/home"); //redirect to the explore page
         })
         .catch((error) => {
             console.log(error.code);

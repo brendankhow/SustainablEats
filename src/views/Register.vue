@@ -11,6 +11,7 @@
     "firebase/auth";
     import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
     import { useRouter } from 'vue-router' // import router
+
     const email = ref("");
     const password = ref("");
     const router = useRouter() // get a reference to our vue router
@@ -21,7 +22,7 @@
             .then ((data) => {
                 console.log("Successfully registered!");
                 console. log (auth. currentUser)
-                router.push('/feed') // redirect to the feed
+                router.push('/home') // redirect to the feed
             })
             .catch( (error) => {
                 console.log(error.code);
@@ -34,7 +35,7 @@
         signInWithPopup(getAuth(), provider)
             .then((result) => {
                 console. log (result.user);
-                router. push("/explore");
+                router. push("/home");
             })
             .catch((error) => {
 
