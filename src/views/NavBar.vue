@@ -41,7 +41,8 @@
       <li class="nav-item text-white d-flex align-items-center">
         <router-link to="/Profile" class="nav-link text-white">
           <img src="../assets/sustainablEats.png" class="rounded-5" alt="" width="30" height="30">
-          <span class="text-white align-middle ps-1">Math_Cat</span>
+          <!-- Display user info when currentUser exists -->
+          <span v-if="currentUser" class="text-white align-middle ps-1">{{ currentUser.displayName }}</span>
         </router-link>
       </li>
       <button @click="handleSignOut" class="btn btn-outline-light" v-if="isLoggedIn">Log Out</button>
@@ -60,6 +61,7 @@
   props: {
     isLoggedIn: Boolean, // Define the isLoggedIn prop as a Boolean
     handleSignOut: Function, // Define the handleSignOut prop as a Function
+    currentUser: Object, // Define the currentUser prop as an Object
   },
   methods: {
     // This component uses the passed handleSignOut function to trigger log out
