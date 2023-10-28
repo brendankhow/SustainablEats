@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 
 import { initializeApp } from "firebase/app";
+import { getDatabase, ref, push } from 'firebase/database';
 
 const firebaseConfig = {
     apiKey: "AIzaSyARABgaDbrTWu4DhgEn4qebLmADMttcyvM",

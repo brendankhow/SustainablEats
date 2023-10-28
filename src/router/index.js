@@ -26,6 +26,8 @@ const router = createRouter({
     { path: "/home", component: () => import("../views/Home.vue") },
     { path: "/register", component: () => import("../views/Register.vue") },
     { path: "/sign-in", component: () => import("../views/SignIn.vue") },
+    { path: "/createRecipe", component: () => import("../views/createRecipe.vue") },
+    { path: "/generateRecipe", component: () => import("../views/generateRecipe.vue") },
     { 
       path: "/explore", 
       component: () => import("../views/Explore.vue"),

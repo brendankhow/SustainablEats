@@ -15,13 +15,10 @@
         <router-link to="/explore" class="nav-link text-white">Explore</router-link>
       </li>
       <li class="nav-item pe-3">
-        <a class="nav-link text-white" href="community.html">Explore HTML</a>
+        <router-link to="/generateRecipe" class="nav-link text-white">Generate Receipe</router-link>
       </li>
       <li class="nav-item pe-3">
-        <a class="nav-link text-white" href="generate_receipe.html">Generate Recipe</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="#">Create Post</a>
+        <router-link to="/createRecipe" class="nav-link text-white">Create Receipe</router-link>
       </li>
     </ul>
     <ul class="navbar-nav me-5 mb-2 mb-lg-0" >
