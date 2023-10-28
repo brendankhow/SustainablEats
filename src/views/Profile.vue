@@ -1,90 +1,251 @@
 <template>
-  <h1>what nonsense is this</h1>
+  <div class="container-fluid p-0">
+    <div class="profile-banner">
+        <img src="../assets/banner.jpg" class="img-fluid">
+    </div>    
+</div>
+<div class="container-fluid">
+    <div class="row ms-4 me-4 user_details pt-3 pb-2">
+
+        <div class="col-lg-3 col-md-12 d-flex justify-content-center">
+            <img class="p-0 rounded-circle profile_picture" src="../assets/math_cat.jpg" width="250" height="250">
+        </div>
+
+        <div class="col">
+            <div class="row pt-5">
+                <div class="col" id="user_content">
+                    <h1 id="username" style="text-align:left">Math Cat</h1>
+                <p id="userdescription" style="text-align:left">
+                    this is a cry for help for wad2 pls this is a cry for help for wad2 pls this is a cry for help for wad2 pls
+                </p>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12 user_settings_button">
+                    <button class="user_settings p-3 rounded-4 border-0 fw-bold"><span><img src="../assets/gear-fill.png" width="25"> User Settings</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container-fluid mt-2">
+    <div class="row ms-4 me-4 pb-2 user_internal_navbar">
+        <ul class="nav justify-content-center ">
+            <li class="nav-item active">
+                <button class="nav-link active text-black" href="#" >
+                    <img src="">
+                    Posts
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link text-black" href="#">
+                    <img src="">
+                    Bookmarked
+                </button>
+            </li>
+        </ul>
+    </div>
+</div> -->
+
+<!-- <div class="user_chosen_content">
+    <div class="album py-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title">PokeBowl</h5>
+                                </div>
+                                <div class="col" style="text-align: right;">
+                                    <img src="" width="20px">
+                                    <small class="text-muted">4.5 ratings </small>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                
+                                <small class="text-muted">100+ reviews</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const recipeName = ref('');
-const creator = ref('');
-const mealType = ref('');
-const cuisineType = ref('');
-const description = ref('');
-const ingredients = ref([{ name: '', quantity: '' }]);
-const steps = ref([{ description: '' }]);
-const selectedImage = ref(null);
-const imageUploadProgress = ref(0);
-const recipeImageURLs = ref([]);
-const db = getFirestore();
-const storage = getStorage();
+console.log(getAuth);
 
-const addIngredient = () => {
-  ingredients.value.push({ name: '', quantity: '' });
-};
-
-const removeIngredient = (index) => {
-  ingredients.value.splice(index, 1);
-};
-
-const addStep = () => {
-  steps.value.push({ description: '' });
-};
-
-const removeStep = (index) => {
-  steps.value.splice(index, 1);
-};
-
-const onImageSelected = (event) => {
-  selectedImage.value = event.target.files[0];
-};
-
-const uploadImageAndCreateRecipe = async () => {
-  if (selectedImage.value) {
-    const timestamp = new Date().getTime();
-    const randomString = Math.random().toString(36).substring(2, 8);
-    const uniqueID = `${timestamp}_${randomString}`;
-
-    const fileName = `${recipeName.value}_${creator.value}_${uniqueID}`;
-    const storageReference = storageRef(storage, `recipeImages/${fileName}`);
-
-    const snapshot = await uploadBytes(storageReference, selectedImage.value);
-    imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    
-    const downloadURL = await getDownloadURL(storageReference);
-    recipeImageURLs.value.push(downloadURL);
-    
-    const recipesRef = collection(db, 'recipes');
-    
-    try {
-      const recipeData = {
-        name: recipeName.value,
-        creator: creator.value,
-        mealType: mealType.value,
-        cuisineType: cuisineType.value,
-        description: description.value,
-        ingredients: ingredients.value,
-        steps: steps.value,
-        recipeImageURLs: recipeImageURLs.value,
-        recipeID: uniqueID,
-      };
-
-      await addDoc(recipesRef, recipeData);
-
-      // Reset form fields and progress
-      recipeName.value = '';
-      creator.value = '';
-      mealType.value = '';
-      cuisineType.value = '';
-      description.value = '';
-      ingredients.value = [{ name: '', quantity: '' }];
-      steps.value = [{ description: '' }];
-      recipeImageURLs.value = [];
-      imageUploadProgress.value = 0;
-    } catch (error) {
-      console.error('Error adding recipe:', error);
-    }
-  }
-};
 </script>
+
+<style>
+.container-fluid {
+  position: relative;
+  padding: 0;
+}
+
+.profile-banner {
+  width: 100%;
+  height: 300px; /* Set the desired height for your banner */
+  overflow: hidden;
+}
+
+.profile-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter:brightness(50%)
+}
+
+.profile_picture{
+  border: 7px solid #D8F6EF;
+  width: 250px;
+}
+
+.user_settings{
+  background-color: #AEDDB3;
+}
+
+.user_settings_button{
+  text-align: center;
+}
+.user_internal_navbar{
+  border-top: 2px solid black;
+  color:black
+}
+
+.nav-item .active{
+  background-color: #AEDDB3;
+}
+</style>
