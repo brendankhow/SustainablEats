@@ -1,11 +1,12 @@
 <template>
     <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #00563D;">
 <div class="container-fluid ms-2">
-  <a class="navbar-brand" href="./Home.vue">
-    <img src="../assets/sustainablEats.png" alt="" width="50" height="50">
-    <span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span>
-  </a>
-  <!-- <a class="navbar-brand ms-2 text-white" href="index.html">SustainablEats</a> -->
+  <router-link to="/home">
+    <span class="navbar-brand">
+      <img src="../assets/sustainablEats.png" alt="" width="50" height="50">
+      <span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span>
+    </span>
+  </router-link>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -38,10 +39,10 @@
         </a>
       </li>
       <li class="nav-item text-white d-flex align-items-center">
-        <a class="nav-link text-white" href="Profile.vue">
-          <img src="../assets/logo.png" class="rounded-5" width="30px">
+        <router-link to="/Profile" class="nav-link text-white">
+          <img src="../assets/sustainablEats.png" class="rounded-5" alt="" width="30" height="30">
           <span class="text-white align-middle ps-1">Math_Cat</span>
-        </a>
+        </router-link>
       </li>
       <button @click="handleSignOut" class="btn btn-outline-light" v-if="isLoggedIn">Log Out</button>
     </ul>
