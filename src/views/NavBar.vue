@@ -19,10 +19,10 @@
         <router-link to="/explore" class="nav-link text-white">Explore</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/generateRecipe" class="nav-link text-white">Generate Receipe</router-link>
+        <router-link to="/generateRecipe" class="nav-link text-white">Generate Recipe</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/createRecipe" class="nav-link text-white">Create Receipe</router-link>
+        <router-link to="/createRecipe" class="nav-link text-white">Create Recipe</router-link>
       </li>
     </ul>
     <ul class="navbar-nav me-5 mb-2 mb-lg-0" >
