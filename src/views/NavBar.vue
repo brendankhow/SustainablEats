@@ -1,8 +1,11 @@
 <template>
-    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #002e23;">
+    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #00563D;">
 <div class="container-fluid ms-2">
-  <img src="" width="50px">
-  <a class="navbar-brand ms-2 text-white" href="index.html">SustainablEats</a>
+  <a class="navbar-brand" href="./Home.vue">
+    <img src="../assets/sustainablEats.png" alt="" width="50" height="50">
+    <span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span>
+  </a>
+  <!-- <a class="navbar-brand ms-2 text-white" href="index.html">SustainablEats</a> -->
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,24 +30,22 @@
     <ul class="navbar-nav me-5 mb-2 mb-lg-0" >
       <li class="nav-item text-white d-flex align-items-center pe-3 ">
         <a class="nav-link text-white" href="#">
-          <img src="" width="30px">
+          <img src="../assets/earned.png" width="30px">
           <span class="text-white align-middle ps-1">50</span>
         </a>
       </li>
       <li class="nav-item text-white d-flex align-items-center pe-3">
         <a class="nav-link text-white" href="#">
-          <img src="" width="30px">
+          <img src="../assets/coin.png" width="30px">
           <span class="text-white align-middle ps-1">50</span>
         </a>
       </li>
       <li class="nav-item text-white d-flex align-items-center">
-        <a class="nav-link text-white" href="#">
-          <img src="" class="rounded-5" width="50px">
+        <a class="nav-link text-white" href="Profile.vue">
+          <img src="../assets/logo.png" class="rounded-5" width="30px">
           <span class="text-white align-middle ps-1">Math_Cat</span>
         </a>
       </li>
-      
-      
       <button @click="handleSignOut" class="btn btn-outline-light" v-if="isLoggedIn">Log Out</button>
     </ul>
   </div>
