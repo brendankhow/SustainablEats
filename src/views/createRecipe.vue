@@ -25,11 +25,23 @@
             </div>
             <div class="form-group">
               <label for="mealType" class="form-label">Meal Type:</label>
-              <input type="text" id="mealType" v-model="mealType" class="form-control">
+              <select id="mealType" v-model="mealType" class="form-select">
+                <option value="Breakfast">Breakfast</option>
+                <option value="Brunch">Brunch</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Supper">Supper</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="cuisineType" class="form-label">Cuisine Type:</label>
-              <input type="text" id="cuisineType" v-model="cuisineType" class="form-control">
+              <select id="cuisineType" v-model="cuisineType" class="form-select">
+                <option value="Chinese">Chinese</option>
+                <option value="Western">Western</option>
+                <option value="Italian">Italian</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Korean">Korean</option>
+              </select>
             </div>
             <div class="form-group">
               <label for="description" class="form-label">Description:</label>

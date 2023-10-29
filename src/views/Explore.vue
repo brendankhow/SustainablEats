@@ -4,29 +4,19 @@
       <!-- Side Navbar -->
       <nav class="side-navbar">
         <h3 class="sidebar-header">Meal Type</h3>
-        <label class="form-check-label" style="display: block;">
-          <input type="checkbox" class="form-check-input" v-model="breakfast" @change="filterItems" /> Breakfast
+        <label class="form-check-label" style="display: block;" v-for="mealType in mealTypes" :key="mealType">
+          <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
         </label>
-        <label class="form-check-label" style="display: block;">
-          <input type="checkbox" class="form-check-input" v-model="brunch" @change="filterItems" /> Brunch
-        </label>
-        <label class="form-check-label" style="display: block;">
-          <input type="checkbox" class="form-check-input" v-model="lunch" @change="filterItems" /> Lunch
-        </label>
-        <label class="form-check-label" style="display: block;">
-          <input type="checkbox" class="form-check-input" v-model="dinner" @change="filterItems" /> Dinner
-        </label>
-        <label class="form-check-label" style="display: block;">
-          <input type="checkbox" class="form-check-input" v-model="supper" @change="filterItems" /> Supper
-        </label>
+        <button class="btn btn-primary" @click="applyFilters">Apply</button>
       </nav>
 
       <!-- Album Content -->
       <div class="album-container">
         <h1>Explore Recipes</h1>
+        <br>
         <div class="row">
           <RecipeCard
-            v-for="recipe in recipes"
+            v-for="recipe in filteredRecipes"
             :key="recipe.id"
             :recipe="recipe"
             class="col-md-4"
@@ -37,17 +27,17 @@
   </div>
 </template>
 
-
-
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 
 const db = getFirestore();
-const recipes = ref([]);
+const recipes = ref([]); // Store all recipes
 const storage = getStorage();
 const recipeImages = ref({});
+const selectedMealTypes = ref([]);
+const mealTypes = ['Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Supper'];
 
 onMounted(async () => {
   const recipesRef = collection(db, 'recipes');
@@ -58,6 +48,8 @@ onMounted(async () => {
     image: getImageURL(doc.data().imageId), // Assign the image URL
     ...doc.data(),
   }));
+  // Initialize filteredRecipes with all recipes on page load
+  filteredRecipes.value = recipes.value;
 });
 
 const getImageURL = async (imageId) => {
@@ -69,6 +61,16 @@ const getImageURL = async (imageId) => {
     return null;
   }
 };
+
+const applyFilters = () => {
+  // This method is called when you click the "Apply" button.
+  // Filter recipes based on selected meal types.
+  filteredRecipes.value = recipes.value.filter((recipe) => {
+    return selectedMealTypes.value.length === 0 || selectedMealTypes.value.includes(recipe.mealType);
+  });
+};
+
+const filteredRecipes = ref([]);
 </script>
 
 <script>
