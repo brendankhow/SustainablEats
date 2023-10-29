@@ -1,14 +1,14 @@
 <template>
   <div class="container-fluid p-0">
     <div class="banner">
-      <img src="../assets/banner.jpg" class="img-fluid">
+      <img src="@/assets/banner.jpg" class="img-fluid" alt="Banner Image">
       <div class="content-box">
         <div class="text-content">
           <h2>Building a<font style="color: #25D366;"> GREENER </font>and<font style="color:#FF3D00"> wholesome </font>community though recipes </h2>
           <button class="generateButton">Try our AI Recipe Generator >>></button>
         </div>
         <div class="image-content">
-          <img src="../assets/pokebowl(1).jpg" alt="Your Image">
+          <img src="@/assets/pokebowl(1).jpg" alt="Your Image">
         </div>
       </div>
     </div>
@@ -16,19 +16,18 @@
   <!-- Album Content -->
   <div class="album-container">
     <br>
-        <h1>Top Recipes</h1>
-        <br>
-        <div class="row">
-          <RecipeCard
-            v-for="recipe in filteredRecipes"
-            :key="recipe.id"
-            :recipe="recipe"
-            class="col-md-3"
-          />
-        </div>
-      </div>
+    <h1>Top Recipes</h1>
+    <br>
+    <div class="row">
+      <RecipeCard
+        v-for="recipe in filteredRecipes"
+        :key="recipe.id"
+        :recipe="recipe"
+        class="col-md-3"
+      />
+    </div>
+  </div>
 </template>
-
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
@@ -86,7 +85,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container-fluid {
   position: relative;
   padding: 0;
@@ -96,6 +95,7 @@ export default {
   width: 100%;
   height: 600px; /* Set the desired height for your banner */
   overflow: hidden;
+  position: relative; /* Add relative positioning to the banner */
 }
 
 .banner img {
@@ -124,21 +124,21 @@ export default {
   background-color: #00563D;
   color: white;
   margin-top: 30px;
-  border-radius: 20px; /* Adjust the value to control the roundness of corners */
+  border-radius: 20px;
   border: none;
-  padding: 10px 20px; /* You can adjust the padding as needed */
+  padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
   width: 80%;
 }
 
 .generateButton:hover {
-  background-color: #003824; /* Change the background color on hover */
+  background-color: #003824;
 }
 
 .text-content {
-  width: 70%; /* Adjust the width for text content */
-  text-align: left; /* Align text to the left */
+  width: 70%;
+  text-align: left;
   margin-left: 3%;
 }
 
@@ -153,24 +153,38 @@ p {
 }
 
 .image-content {
-  width: 30%; /* Adjust the width for image content */
-  text-align: right; /* Align image to the right */
-  margin-right: 3%;
+  width: 30%;
+  text-align: right;
+  /* margin-right: 3%; */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
 }
 
 .image-content img {
-  width: 100%;
+  width: 75%;
   height: auto;
 }
 
+/* Media queries for responsiveness */
 @media (max-width: 768px) {
   .content-box {
-    flex-direction: column; /* Stack elements in a column on smaller screens */
-    text-align: center; /* Center-align content on smaller screens */
+    flex-direction: column;
+    text-align: center;
   }
   .text-content, .image-content {
-    width: 100%; /* Full width for text and image on smaller screens */
-    text-align: center; /* Center-align text and image on smaller screens */
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+  .generateButton {
+    width: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 32px;
   }
 }
 </style>
