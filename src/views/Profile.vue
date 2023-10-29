@@ -14,7 +14,7 @@
         <div class="col">
             <div class="row pt-5">
                 <div class="col" id="user_content">
-                    <h1 id="username" style="text-align:left">{{username}}</h1>
+                    <h1 id="username" style="text-align:left">{{ message }}</h1>
                 <p id="userdescription" style="text-align:left">
                     this is a cry for help for wad2 pls this is a cry for help for wad2 pls this is a cry for help for wad2 pls
                 </p>
