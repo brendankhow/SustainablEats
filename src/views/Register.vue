@@ -20,6 +20,8 @@
         const auth = getAuth()
         createUserWithEmailAndPassword (getAuth(), email.value, password.value)
             .then ((data) => {
+                const user = data.user;
+                const uid = user.uid;
                 console.log("Successfully registered!");
                 console. log (auth. currentUser)
                 router.push('/home') // redirect to the feed

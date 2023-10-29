@@ -14,7 +14,7 @@
         <div class="col">
             <div class="row pt-5">
                 <div class="col" id="user_content">
-                    <h1 id="username" style="text-align:left">Math Cat</h1>
+                    <h1 id="username" style="text-align:left">{{username}}</h1>
                 <p id="userdescription" style="text-align:left">
                     this is a cry for help for wad2 pls this is a cry for help for wad2 pls this is a cry for help for wad2 pls
                 </p>
@@ -200,12 +200,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-console.log(getAuth);
+import { onMounted, ref } from 'vue';
+import { getAuth } from 'firebase/auth';
+
+const auth = getAuth();
+const user = ref(null);
+
+onMounted(async () => {
+  // Wait for Firebase to initialize user state
+  await new Promise((resolve) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user.uid);
+        user.value = user;
+        resolve();
+      }
+      unsubscribe(); // Stop listening after user state is obtained
+    });
+  });
+});
 
 </script>
 

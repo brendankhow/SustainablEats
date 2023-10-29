@@ -22,6 +22,9 @@
         const auth = getAuth() // from firebase/auth
         signInWithEmailAndPassword (auth, email.value, password.value)
         .then((data) => {
+            const user = data.user;
+            const uid = user.uid;
+
             console.log("Successfully signed!");
             console. log(auth. currentUser);
             router.push("/home"); //redirect to the explore page
