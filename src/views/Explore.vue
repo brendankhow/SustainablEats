@@ -21,7 +21,8 @@
         </label>
       </nav>
 
-      <div class="container">
+      <!-- Album Content -->
+      <div class="album-container">
         <h1>Explore Recipes</h1>
         <div class="row">
           <RecipeCard
@@ -32,11 +33,10 @@
           />
         </div>
       </div>
-  
-
     </div>
   </div>
 </template>
+
 
 
 <script setup>
@@ -55,13 +55,13 @@ onMounted(async () => {
 
   recipes.value = querySnapshot.docs.map((doc) => ({
     id: doc.id,
-    image: getImageURL(doc.data().uniqueID), // Assign the image URL
+    image: getImageURL(doc.data().imageId), // Assign the image URL
     ...doc.data(),
   }));
 });
 
-const getImageURL = async (uniqueID) => {
-  const imagesRef = storageRef(storage, `recipeImages/${uniqueID}`);
+const getImageURL = async (imageId) => {
+  const imagesRef = storageRef(storage, `recipeImages/${imageId}`);
   try {
     return await getDownloadURL(imagesRef);
   } catch (error) {
@@ -81,12 +81,11 @@ export default {
 };
 </script>
 
-<!-- <style>
+<style>
 .community-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding: 20px;
 }
 
@@ -97,15 +96,26 @@ export default {
 
 .side-navbar {
   width: 250px; /* Adjust the width as needed */
-  background-color: #f3f3f3;
+  background-color: #EAFAFF;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-right: 20px; /* Margin between navbar and album */
 }
 
-/* Your existing styles for the album */
+/* Updated styles to align checkboxes */
+.form-check-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Adjust the spacing between checkboxes */
+}
+
+.form-check-input {
+  margin-right: 10px; /* Adjust the spacing between the checkbox and label text */
+}
+
 .album-container {
+  flex: 1; /* Allow the album content to take up available space */
   margin-left: 20px;
 }
 
@@ -117,4 +127,5 @@ export default {
 .card:hover {
   transform: scale(1.02);
 }
-</style> -->
+
+</style>

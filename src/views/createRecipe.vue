@@ -1,91 +1,96 @@
 <template>
-  <h1>Create Recipe</h1>
-            <div id="app" class="container mt-5">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">Photos</h2>
-                  <div class="form-group">
-                    <label for="imageUpload">Recipe Image:</label>
-                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Create Recipe</h1>
+
+        <div class="row">
+          <!-- Column for Photo Upload -->
+          <div class="col-md-6">
+            <div class="form-group mt-4">
+              <label for="imageUpload" class="form-label">Recipe Image:</label>
+              <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
+            </div>
+          </div>
+
+          <!-- Column for Recipe Details -->
+          <div class="col-md-6">
+            <div class="form-group mt-4">
+              <label for="recipeName" class="form-label">Recipe Name:</label>
+              <input type="text" id="recipeName" v-model="recipeName" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="creator" class="form-label">Creator:</label>
+              <input type="text" id="creator" v-model="creator" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="mealType" class="form-label">Meal Type:</label>
+              <input type="text" id="mealType" v-model="mealType" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="cuisineType" class="form-label">Cuisine Type:</label>
+              <input type="text" id="cuisineType" v-model="cuisineType" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="description" class="form-label">Description:</label>
+              <textarea id="description" v-model="description" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Ingredients Form -->
+        <div class="form-group mt-4">
+          <h3>Ingredients</h3>
+          <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-item">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="ingredientName" class="form-label">Ingredient Name:</label>
+                  <input type="text" v-model="ingredient.name" class="form-control">
+                </div>
               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="ingredientQuantity" class="form-label">Ingredient Quantity:</label>
+                  <input type="text" v-model="ingredient.quantity" class="form-control">
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <button type="button" @click="removeIngredient(index)" class="btn btn-danger mt-3">Remove Ingredient</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" @click="addIngredient" class="btn btn-primary mt-3">Add Ingredient</button>
+        </div>
 
-              <!-- <div class="form-group">
-                <progress v-if="imageUploadProgress > 0" :value="imageUploadProgress" max="100"></progress>
-              </div> -->
-              <!-- <button type="button" @click="uploadImage" class="btn btn-primary">Upload Image</button> -->
-          
-            <div id="app" class="container mt-5">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="card-title">Details</h2>
-                  <form>
-                    <!-- Recipe information fields -->
-                    <div class="form-group">
-                      <label for="recipeName">Recipe Name:</label>
-                      <input type="text" id="recipeName" v-model="recipeName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label for="creator">Creator:</label>
-                      <input type="text" id="creator" v-model="creator" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label for="mealType">Meal Type:</label>
-                      <input type="text" id="mealType" v-model="mealType" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label for="cuisineType">Cuisine Type:</label>
-                      <input type="text" id="cuisineType" v-model="cuisineType" class="form-control">
-                    </div>
-                    <div class="form-group">
-                      <label for="description">Description:</label>
-                      <textarea id="description" v-model="description" class="form-control"></textarea>
-                    </div>
-            
-                    <hr>
-            
-                    <!-- Ingredients form -->
-                    <div class="ingredient-form">
-                      <h3>Ingredients</h3>
-                      <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-item">
-                        <div class="form-group">
-                          <label for="ingredientName">Ingredient Name:</label>
-                          <input type="text" v-model="ingredient.name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                          <label for="ingredientQuantity">Ingredient Quantity:</label>
-                          <input type="text" v-model="ingredient.quantity" class="form-control">
-                        </div>
-                        <button type="button" @click="removeIngredient(index)" class="btn btn-danger">Remove Ingredient</button>
-                      </div>
-                      <button type="button" @click="addIngredient" class="btn btn-primary">Add Ingredient</button>
-                    </div>
-            
-                    <hr>
-            
-                    <!-- Steps form -->
-                    <div class="steps-form">
-                      <h3>Steps</h3>
-                      <div v-for="(step, index) in steps" :key="index" class="step-item">
-                        <div class="form-group">
-                          <label for="stepDescription">Step Description:</label>
-                          <textarea v-model="step.description" class="form-control"></textarea>
-                        </div>
-                        <button type="button" @click="removeStep(index)" class="btn btn-danger">Remove Step</button>
-                      </div>
-                      <button type="button" @click="addStep" class="btn btn-primary">Add Step</button>
-                    </div>
-            
-                    <hr>
-            
-                    <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success">Create Recipe!</button>
-                  </form>
+        <!-- Steps Form -->
+        <div class="form-group mt-4">
+          <h3>Steps</h3>
+          <div v-for="(step, index) in steps" :key="index" class="step-item">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="stepDescription" class="form-label">Step Description:</label>
+                  <textarea v-model="step.description" class="form-control"></textarea>
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <button type="button" @click="removeStep(index)" class="btn btn-danger mt-3">Remove Step</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" @click="addStep" class="btn btn-primary mt-3">Add Step</button>
+        </div>
 
+        <!-- Create Recipe Button -->
+        <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success mt-4">Create Recipe</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -131,19 +136,20 @@ const uploadImageAndCreateRecipe = async () => {
     const timestamp = new Date().getTime();
     const randomString = Math.random().toString(36).substring(2, 8);
     const uniqueID = `${timestamp}_${randomString}`;
+    // console.log('Generated uniqueID:', uniqueID); // Log the uniqueID
 
-    const fileName = `${recipeName.value}_${creator.value}_${uniqueID}`;
+    const fileName = `${uniqueID}`;
     const storageReference = storageRef(storage, `recipeImages/${fileName}`);
 
     const snapshot = await uploadBytes(storageReference, selectedImage.value);
     imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     
-    const downloadURL = await getDownloadURL(storageReference);
-    recipeImageURLs.value.push(downloadURL);
-    
-    const recipesRef = collection(db, 'recipes');
     
     try {
+      const downloadURL = await getDownloadURL(storageReference);
+      recipeImageURLs.value.push(downloadURL);
+      
+      const recipesRef = collection(db, 'recipes');
       const recipeData = {
         name: recipeName.value,
         creator: creator.value,
@@ -189,3 +195,79 @@ const uploadImageAndCreateRecipe = async () => {
   }
 };
 </script>
+
+<style scoped>
+  /* Card styles */
+  .card {
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  /* Form styles */
+  .form-label {
+    font-weight: bold;
+    color: #333; /* Text color */
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: #333; /* Text color */
+  }
+
+  /* Ingredient and Step items styles */
+  .ingredient-item,
+  .step-item {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Background color */
+  }
+
+  /* Button styles */
+  .btn-success {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-danger {
+    background-color: #D9534F;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Additional Styles */
+  /* Adjust styles as needed for your specific design */
+  .row {
+    margin-bottom: 20px;
+  }
+</style>
