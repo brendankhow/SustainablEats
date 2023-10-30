@@ -1,26 +1,28 @@
 <template>
-  <div class="community-page">
-    <div class="community-content">
-      <!-- Side Navbar -->
-      <nav class="side-navbar">
-        <h3 class="sidebar-header">Meal Type</h3>
-        <label class="form-check-label" style="display: block;" v-for="mealType in mealTypes" :key="mealType">
-          <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
-        </label>
-        <button class="btn btn-primary" @click="applyFilters">Apply</button>
-      </nav>
+  <div class="outer-container"> <!-- New container for positioning -->
+    <div class="community-page">
+      <div class="community-content">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <h3 class="sidebar-header">Meal Type</h3>
+          <label class="form-check-label" style="display: block;" v-for="mealType in mealTypes" :key="mealType">
+            <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
+          </label>
+          <button class="btn btn-primary" @click="applyFilters">Apply</button>
+        </nav>
 
-      <!-- Album Content -->
-      <div class="album-container">
-        <h1>Explore Recipes</h1>
-        <br>
-        <div class="row">
-          <RecipeCard
-            v-for="recipe in filteredRecipes"
-            :key="recipe.id"
-            :recipe="recipe"
-            class="col-md-4"
-          />
+        <!-- Album Content -->
+        <div class="album-container">
+          <h1>Explore Recipes</h1>
+          <br>
+          <div class="row">
+            <RecipeCard
+              v-for="recipe in filteredRecipes"
+              :key="recipe.id"
+              :recipe="recipe"
+              class="col-md-3"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -84,6 +86,10 @@ export default {
 </script>
 
 <style>
+.outer-container {
+  position: relative; /* Apply relative positioning to the new container */
+}
+
 .community-page {
   display: flex;
   justify-content: center;
@@ -97,13 +103,19 @@ export default {
 }
 
 .side-navbar {
+  position: absolute; /* Fixed positioning */
+  top: 0; /* Position it at the top */
+  left: 0; /* Position it at the left */
   width: 250px; /* Adjust the width as needed */
   background-color: #EAFAFF;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-right: 20px; /* Margin between navbar and album */
+  height: 100vh; /* 100% of the viewport height */
+  overflow-y: auto; /* Allow scrolling within the sidebar */
 }
+
 
 /* Updated styles to align checkboxes */
 .form-check-label {
@@ -117,8 +129,10 @@ export default {
 }
 
 .album-container {
-  flex: 1; /* Allow the album content to take up available space */
+  flex: 1; /* Allow the album content to take up all available space */
   margin-left: 20px;
+  max-height: 100vh; /* Set a maximum height to prevent it from overflowing */
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds the viewport height */
 }
 
 .card {
@@ -128,6 +142,18 @@ export default {
 
 .card:hover {
   transform: scale(1.02);
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Improved spacing between recipe cards */
 }
 
 </style>
