@@ -17,62 +17,62 @@
      </section>
  
      <!-- Trending Recipes Section -->
-     <section id = "trending">
-       <div class = "container">
-         <div><h1 style = "text-align:center; color:black;">Trending Recipes</h1></div>
-         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-           <div class="carousel-indicators">
-             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-           </div>
-           <div class="carousel-inner">
-             <div class="carousel-item active">
-               <img src="../assets/pokebowl.jpg" class="d-block w-100 carousel-image" alt="...">
-               <div class="carousel-caption d-none d-md-block">
-                 <h5>First slide label</h5>
-                 <p>Some representative placeholder content for the first slide.</p>
-               </div>
-             </div>
-             <div class="carousel-item">
-               <img src="../assets/pokebowl.jpg" class="d-block w-100 carousel-image" alt="...">
-               <div class="carousel-caption d-none d-md-block">
-                 <h5>Second slide label</h5>
-                 <p>Some representative placeholder content for the second slide.</p>
-               </div>
-             </div>
-             <div class="carousel-item">
-               <img src="../assets/pokebowl.jpg" class="d-block w-100 carousel-image" alt="...">
-               <div class="carousel-caption d-none d-md-block">
-                 <h5>Third slide label</h5>
-                 <p>Some representative placeholder content for the third slide.</p>
-               </div>
-             </div>
-           </div>
-           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Previous</span>
-           </button>
-           <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-             <span class="visually-hidden">Next</span>
-           </button>
-         </div>
-       </div>
-     </section>
+     <section id="trending">
+    <div class="container">
+      <div>
+        <h1 style="text-align:center; color:black;">Trending Recipes</h1>
+      </div>
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-inner">
+          <div
+            v-for="(recipe, index) in recipes"
+            :key="recipe.id"
+            :class="['carousel-item', { active: index === 0 }]">
+            <img
+              :src="recipe.recipeImageURLs"
+              class="d-block w-100 carousel-image"
+              alt="Recipe Image"
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ recipe.creator }}</h5>
+              <p>{{ recipe.description }}</p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" ariahidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
  
-     <!-- Leaderboard Ranking Pange-->
-     <section id="leaderboard">
+    <!-- Leaderboard Ranking Pange-->
+    <section id="leaderboard">
     <div class="container">
       <div>
         <h1 style="text-align: center; color: black;">Leaderboard Ranking</h1>
         <h5 class="mt-3" style="text-align: center; color: grey;">Top 3 users of the month:</h5>
       </div>
 
-      <div class="row mt-5 justify-content-center">
+      <div class = "row mt-5 justify-content-center">
         <!-- Use v-for to loop through top3UsersCoins array -->
-        <div class="col-md-4" v-for="(user, index) in top3UsersCoins" :key="index">
-          <div class="card ms-5 box-shadow bg-light">
+        <div class ="col-lg-4" v-for="(user, index) in top3UsersCoins" :key="index">
+          <div class ="card ms-5 box-shadow bg-light">
             <!-- Use user.name and user.coin to display dynamic data -->
             <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
              style="height: 300px; width: 100%; display: block">
@@ -95,13 +95,17 @@
    import 'bootstrap/dist/js/bootstrap.min.js';
    import { useRouter } from "vue-router";
    import { getFirestore, collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
+   import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
    import { onMounted, ref} from 'vue';
 
    const db = getFirestore();
+   const storage = getStorage();
 
    var top3UsersCoins = ref([]);
+   const recipes = ref([]); // Store all recipes
 
    onMounted(async () =>{
+    // Codes for Leaderboard Ranking => Retrieving from db
       const usersCollection = collection(db, "Users");
       const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
 
@@ -113,8 +117,32 @@
         coin: doc.data().Coin,
         });
       });
-      console.log(top3UsersCoins);
+  
+    // const recipeQuery = query(recipeSnapshot, orderBy("Likes", "desc"), limit(3)); // Can order in "likes" if implemented in future
+    // Codes for Trending Recipes => Retrieving from Db + Image from Storage 
+      const recipesRef = collection(db, 'recipes');
+      const recipeSnapshot = await getDocs(recipesRef);
+
+      recipes.value = recipeSnapshot.docs.map((doc) => ({
+        creator: doc.creator,
+        description: doc.description,
+        image: getImageURL(doc.data().imageId), // Assign the image URL
+        ...doc.data(),
+      }));
+      
   })
+  
+  // Get download url of images 
+  const getImageURL = async (imageId) => {
+    const imagesRef = storageRef(storage, `recipeImages/${imageId}`);
+    try {
+      return await getDownloadURL(imagesRef);
+    } catch (error) {
+      console.error('Error fetching image:', error);
+      return null;
+    }
+  };
+
  </script>
  
  <style>
