@@ -12,7 +12,7 @@
        <div class = "container text-center">
          <h1> Building a greener and wholesome community through recipes </h1>
            <h2> Your culinary journey to a greener future starts here! </h2>
-             <a class = "btn_get_started"> <router-link to="/generateRecipe">Get Started</router-link></a>
+             <a class = "btn_get_started"> <router-link to="/generateRecipe" class = "link-white">Get Started</router-link></a>
        </div>
      </section>
  
@@ -22,7 +22,7 @@
       <div>
         <h1 style="text-align:center; color:black;">Trending Recipes</h1>
       </div>
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+      <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
         <div class="carousel-inner">
           <div
             v-for="(recipe, index) in recipes"
@@ -197,7 +197,7 @@
  #hero{
      width: 100%;
      height: 100vh; /* vertical height */
-     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../assets/dog_toast.jpg);
+     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../assets/green.jpg);
      background-position: center;
      background-size: cover;
      background-repeat: no-repeat;
@@ -257,21 +257,29 @@
      padding-top: 80px;
  }
  
- .carousel-image{
-     height: 100vh;
- }
- 
- /* Adjusts all carousel images in the carousel id #carouselExampleCaptions
- #carouselExampleCaptions{
-     width: 80%;
- }
- 
- 
- #carouselExampleCaptions .carousel-image img{
-     display: block;
-     margin: 0 auto;
- }
- */
+
+.carousel-image {
+  max-height: 650px; /* Adjust the max-height as needed */
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+  /* Adjust the position of the carousel controls */
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: absolute;
+    top: 50%; /* Vertically center controls */
+    transform: translateY(-50%);
+    width: 10%; /* Adjust the control width as needed */
+    background: rgba(0, 0, 0, 0.5); /* Control background color */
+  }
+
+  /* Style for the carousel control icons (optional) */
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: white; /* Control icon color */
+  }
  
  .card {
      width: 18rem;
@@ -280,5 +288,9 @@
  #leaderboard{
      justify-content: center;
  }
+
+ .link-white {
+  color: white;
+}
  </style>
  
