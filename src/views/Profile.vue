@@ -200,23 +200,65 @@
 </template>
 
 <script setup>
-
+import { useRouter } from "vue-router";
+import { getFirestore, collection, getDoc, doc, setDoc } from 'firebase/firestore';
+import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import { onMounted, ref } from 'vue';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged  } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
 
+const db = getFirestore();
+const storage = getStorage();
 const auth = getAuth();
-const user = ref(null);
+//const recipes = ref([]);
+
+// onMounted(async () => {
+//     onAuthStateChanged(auth, async (user) => {
+//         if (user) {
+//             const uid = user.uid;
+//             console.log(uid);
+//             var usersCollection = collection(db, "Users");
+
+//             // Specify the document's path
+//             const docRef = doc(usersCollection, "rdODNft9pNiv7637ZQqj");
+
+//             // Retrieve the document
+//             const docSnap = await getDoc(docRef);
+
+//             if (docSnap.exists()) {
+//                 console.log("Document data:", docSnap.data());
+//             } else {
+//                 console.log("No such document!");
+//             }
+//         } else {
+//             // User is signed out
+//             // ...
+//         }
+//     });
+// });
 
 onMounted(async () => {
-// Wait for Firebase to initialize user state
-await new Promise((resolve) => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-    if (user) {
-        console.log(user.uid);
-        user.value = user;
-        resolve();
-    }
-    unsubscribe(); // Stop listening after user state is obtained
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const uid = user.uid;
+            console.log(uid);
+            var usersCollection = collection(db, "Users");
+
+            // Specify the document's path using the user's UID
+            const docRef = doc(usersCollection, "rdODNft9pNiv7637ZQqj");
+
+            // Retrieve the document
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                console.log("Document data:", docSnap.data());
+            } else {
+                console.log("No such document!");
+            }
+        } else {
+            // User is signed out
+            // ...
+        }
     });
 });
 
@@ -232,7 +274,7 @@ await new Promise((resolve) => {
 //             coin: doc.data().Coin,
 //             });
 //         });
-});
+// });
 
 </script>
 

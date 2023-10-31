@@ -73,26 +73,31 @@
     const provider = new GoogleAuthProvider();
 
     const insertUser = async () => {
-        try {
-            const { user } = await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
-            const uid = user.uid;
-            await addDoc(collection(db, "Users"), {
-                username: email.value.split("@")[0],
-                bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
-                uid: uid,
-                email: email.value,
-                coins: 30,
-                earned: 0,
-                profilepic: "./assets/profilepic.png",
-                profilebanner: "./assets/profilebanner.png"
-            });
-            console.log(user);
-            console.log("Successfully registered!");
-            await router.push('/home'); // redirect to the feed
+    try {
+        const { user } = await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
+        const uid = user.uid;
+
+        // Specify the document ID as the user's UID
+        const userDoc = doc(db, "Users", uid);
+
+        await setDoc(userDoc, {
+            username: email.value.split("@")[0],
+            bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
+            uid: uid,
+            email: email.value,
+            coins: 30,
+            earned: 0,
+            profilepic: "./assets/profilepic.png",
+            profilebanner: "./assets/profilebanner.png"
+        });
+
+        console.log(user);
+        console.log("Successfully registered!");
+        await router.push('/home'); // redirect to the feed
     } catch (error) {
         router.push('/Register');
     }
-    };
+};
 
     const signInWithGoogle = () => {
         signInWithPopup(getAuth(), provider)
