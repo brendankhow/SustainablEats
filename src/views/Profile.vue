@@ -14,9 +14,9 @@
         <div class="col">
             <div class="row pt-5">
                 <div class="col" id="user_content">
-                    <h1 id="username" style="text-align:left">{{ message }}</h1>
+                    <h1 id="username" style="text-align:left">{{ }}</h1>
                 <p id="userdescription" style="text-align:left">
-                    this is a cry for help for wad2 pls this is a cry for help for wad2 pls this is a cry for help for wad2 pls
+                    {{}}
                 </p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 user_settings_button">
@@ -210,32 +210,6 @@ import { initializeApp } from "firebase/app";
 const db = getFirestore();
 const storage = getStorage();
 const auth = getAuth();
-//const recipes = ref([]);
-
-// onMounted(async () => {
-//     onAuthStateChanged(auth, async (user) => {
-//         if (user) {
-//             const uid = user.uid;
-//             console.log(uid);
-//             var usersCollection = collection(db, "Users");
-
-//             // Specify the document's path
-//             const docRef = doc(usersCollection, "rdODNft9pNiv7637ZQqj");
-
-//             // Retrieve the document
-//             const docSnap = await getDoc(docRef);
-
-//             if (docSnap.exists()) {
-//                 console.log("Document data:", docSnap.data());
-//             } else {
-//                 console.log("No such document!");
-//             }
-//         } else {
-//             // User is signed out
-//             // ...
-//         }
-//     });
-// });
 
 onMounted(async () => {
     onAuthStateChanged(auth, async (user) => {
@@ -245,12 +219,13 @@ onMounted(async () => {
             var usersCollection = collection(db, "Users");
 
             // Specify the document's path using the user's UID
-            const docRef = doc(usersCollection, "rdODNft9pNiv7637ZQqj");
+            const docRef = doc(usersCollection, uid);
 
             // Retrieve the document
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
+                var user_data = docSnap.data();
                 console.log("Document data:", docSnap.data());
             } else {
                 console.log("No such document!");
