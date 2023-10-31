@@ -280,10 +280,6 @@
   .carousel-control-next-icon {
     background-color: white; /* Control icon color */
   }
- 
- .card {
-     width: 18rem;
- }
   
  #leaderboard{
      justify-content: center;
