@@ -44,15 +44,14 @@
                     <div class = "login-via">
                         <hr><p>Login Via</p>
                     </div>
-
-                    <div class = "social-icons">
-                        <div class = "social-icon">
-                            <a href = "#" class = "fa fa-facebook"></a>
-                            <span class = "fa fa-twitter"></span>
-                            <span class = "fa fa-google"></span>
-                        </div>
-                    </div>
             </form>
+            <div class = "social-icons">
+                <div class = "social-icon">
+                    <a href = "#" class = "fa fa-facebook"></a>
+                    <span class = "fa fa-twitter"></span>
+                    <span class = "fa fa-google" @click="signInWithGoogle"></span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -61,29 +60,41 @@
     import { ref } from "vue";
     import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
     import { useRouter } from 'vue-router' // import router
+    import { doc, getFirestore, setDoc } from "firebase/firestore"; 
+    import { collection, addDoc } from "firebase/firestore"; 
 
+    
     const email = ref("");
     const password = ref("");
     const router = useRouter() // get a reference to our vue router
+    const auth = getAuth();
+    const db = getFirestore();
+    
+    const provider = new GoogleAuthProvider();
 
-    const insertUser = () => {
-        const auth = getAuth()
-        createUserWithEmailAndPassword (getAuth(), email.value, password.value)
-            .then ((data) => {
-                const user = data.user;
-                const uid = user.uid;
-                console.log("Successfully registered!");
-                console.log (auth.currentUser)
-                router.push('/home') // redirect to the feed
-            })
-            .catch( (error) => {
-                console.log(error.code);
-                alert(error.message);
+    const insertUser = async () => {
+        try {
+            const { user } = await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
+            const uid = user.uid;
+            await addDoc(collection(db, "Users"), {
+                username: email.value.split("@")[0],
+                bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
+                uid: uid,
+                email: email.value,
+                coins: 30,
+                earned: 0,
+                profilepic: "./assets/profilepic.png",
+                profilebanner: "./assets/profilebanner.png"
             });
+            console.log(user);
+            console.log("Successfully registered!");
+            await router.push('/home'); // redirect to the feed
+    } catch (error) {
+        router.push('/Register');
+    }
     };
 
     const signInWithGoogle = () => {
-        const provider = new GoogleAuthProvider();
         signInWithPopup(getAuth(), provider)
             .then((result) => {
                 console. log (result.user);

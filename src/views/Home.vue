@@ -91,20 +91,20 @@
  </template>
  
  <script setup>
-   import 'bootstrap/dist/css/bootstrap.min.css';
-   import 'bootstrap/dist/js/bootstrap.min.js';
-   import { useRouter } from "vue-router";
-   import { getFirestore, collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-   import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
-   import { onMounted, ref} from 'vue';
+  import 'bootstrap/dist/css/bootstrap.min.css';
+  import 'bootstrap/dist/js/bootstrap.min.js';
+  import { useRouter } from "vue-router";
+  import { getFirestore, collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
+  import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
+  import { onMounted, ref} from 'vue';
 
-   const db = getFirestore();
-   const storage = getStorage();
+  const db = getFirestore();
+  const storage = getStorage();
 
-   var top3UsersCoins = ref([]);
-   const recipes = ref([]); // Store all recipes
+  var top3UsersCoins = ref([]);
+  const recipes = ref([]); // Store all recipes
 
-   onMounted(async () =>{
+  onMounted(async () =>{
     // Codes for Leaderboard Ranking => Retrieving from db
       const usersCollection = collection(db, "Users");
       const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
