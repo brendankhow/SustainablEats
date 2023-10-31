@@ -88,7 +88,9 @@
             coins: 30,
             earned: 0,
             profilepic: "./assets/profilepic.png",
-            profilebanner: "./assets/profilebanner.png"
+            profilebanner: "./assets/profilebanner.png",
+            posts: [],
+            bookmarks: []
         });
 
         console.log(user);

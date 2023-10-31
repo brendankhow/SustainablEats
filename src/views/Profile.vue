@@ -226,6 +226,13 @@ onMounted(async () => {
 
             if (docSnap.exists()) {
                 var user_data = docSnap.data();
+                var username = user_data.username;
+                var bio = user_data.bio;
+                var profile_picture = user_data.profile_picture;
+                var profile_banner = user_data.profile_banner;
+                var email = user_data.email;
+                var posts = user_data.posts;
+                var bookmarks = user_data.bookmarks;
                 console.log("Document data:", docSnap.data());
             } else {
                 console.log("No such document!");
