@@ -155,5 +155,4 @@ export default {
   flex-wrap: wrap;
   gap: 20px; /* Improved spacing between recipe cards */
 }
-
 </style>
