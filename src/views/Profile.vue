@@ -208,7 +208,6 @@ onMounted(()=>{
                 var bookmarks = user_data.bookmarks;
                 var profilepic = user_data.profilepic;
                 var profilebanner = user_data.profilebanner;
-                
                 //DISPLAY DATA
                 try{
                     document.getElementById("username").innerText = username;
