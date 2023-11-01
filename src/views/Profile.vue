@@ -69,6 +69,7 @@ const username = ref('');
 const bio = ref('');
 const profilepic = ref('');
 const profilebanner = ref('');
+// Define a ref to hold the image URL
 
 var dcontent = 'post';
 function display(content){
@@ -90,7 +91,7 @@ function showcontent(dcontent){
     onAuthStateChanged(auth, async (user) => {
         if (user) {
             try{
-                const uid = user.uid;
+            const uid = user.uid;
             var usersCollection = collection(db, "Users");
 
             // Specify the document's path using the user's UID
@@ -126,30 +127,39 @@ function showcontent(dcontent){
                             //I NEED HELP TO PUT THE IMAGE HERE AND ROUTE THE THING TO THE SPECIFIC RECIPE
                             var recipeName = recipe_data.name;
                             content_to_add += `
-                            <div class="col">
-                            <div class="card" style='height: 350px; width:300px; overflow: auto;'>
-                                <img src="${imageUrl}" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                                <div class="card-body">
-                                    <div class="row pb-2">
-                                        <div class="col">
-                                            <h5 class="card-title" style='text-align:left;overflow:auto;'>${recipeName}</h5>
-                                        </div>
-                                        <div class="col" style="text-align: right;">
-                                            <img src="" width="20px">
-                                            <small class="text-muted">4.5 ratings </small>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                                            View
-                                        </button>
+                                                <div class="album py-5">
+                                <div class="container" id="chosencontent">
+                                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
+                                        <!-- Modify the width and height of the card -->
+                                        <div class="col" style="max-width: 300px;">
+                                            <div class="card">
+                                                <!-- Set the max-height for the image container -->
+                                                <div style="max-height: 250px; overflow: hidden;">
+                                                    <img src="${imageUrl}" class="card-img-top" alt="Image">
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row pb-2">
+                                                        <div class="col">
+                                                            <h5 class="card-title" style='text-align:left;overflow:auto;'>${recipeName}</h5>
+                                                        </div>
+                                                        <div class="col" style="text-align: right;">
+                                                            <img src="" width="20px">
+                                                            <small class="text-muted">4.5 ratings </small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="btn-group">
+                                                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                                                                View
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                             `;
                         }
                     }
@@ -166,7 +176,7 @@ function showcontent(dcontent){
 }
 async function getImageUrl(imageId) {
     const storage = getStorage();
-    const imageRef = ref(storage, `recipeImages/${imageId}`);
+    const imageRef = storageRef(storage, `recipeImages/${imageId}`);
 
     try {
         const url = await getDownloadURL(imageRef);
