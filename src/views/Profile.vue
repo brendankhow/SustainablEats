@@ -24,101 +24,28 @@
         </div>
     </div>
 </div>
-<!-- <div class="container-fluid mt-2">
+<div class="container-fluid mt-2">
     <div class="row ms-4 me-4 pb-2 user_internal_navbar">
         <ul class="nav justify-content-center ">
-            <li class="nav-item active">
-                <button class="nav-link active text-black" href="#" >
+            <li class="nav-item">
+                <button id="post_button" class="nav-link text-black" v-on:click="display('posts')">
                     <img src="">
                     Posts
                 </button>
             </li>
             <li class="nav-item">
-                <button class="nav-link text-black" href="#">
+                <button id="bookmark_button" class="nav-link text-black" v-on:click="display('bookmark')">
                     <img src="">
                     Bookmarked
                 </button>
             </li>
         </ul>
     </div>
-</div> -->
-
-<!-- <div class="user_chosen_content">
+</div>
+<!-- <div class="user_chosen_content" v-if="dcontent === 'post'">
     <div class="album py-5">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col">
                     <div class="card">
                         <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
@@ -211,6 +138,20 @@ const auth = getAuth();
 const router = useRouter() // get a reference to our vue router
 const user_data = ref(null);
 
+var dcontent = 'post';
+function display(content){
+    if (content == "posts"){
+        document.getElementById("bookmark_button").classList.remove("active");
+        document.getElementById("post_button").classList.add("active")
+        this.dcontent = 'post';
+        // console.log('yay');
+    }else{
+        document.getElementById("bookmark_button").classList.add("active");
+        document.getElementById("post_button").classList.remove("active")
+        this.dcontent = 'bookmark';
+        // console.log('nuuuu');
+    }
+}
 onAuthStateChanged(auth, async (user) => {
         if (user) {
             const uid = user.uid;
@@ -224,7 +165,8 @@ onAuthStateChanged(auth, async (user) => {
 
             if (docSnap.exists()) {
                 const user_data = docSnap.data();
-                console.log(user_data);
+                
+                
                 var username = user_data.username;
                 var bio = user_data.bio;
                 var email = user_data.email;
@@ -232,8 +174,7 @@ onAuthStateChanged(auth, async (user) => {
                 var bookmarks = user_data.bookmarks;
                 var profilepic = user_data.profilepic;
                 var profilebanner = user_data.profilebanner;
-
-                console.log(profilepic);
+                
                 //DISPLAY DATA
                 document.getElementById("username").innerText = username;
                 document.getElementById("userdescription").innerText = bio;
@@ -241,7 +182,7 @@ onAuthStateChanged(auth, async (user) => {
                 // document.getElementById("profile_banner_img").src = profilebanner;
                 document.getElementById("profile_picture").setAttribute("src", profilepic);
                 document.getElementById("profile_banner_img").setAttribute("src",profilebanner);
-                
+            
             } else {
                 
                 // router.push('/Home');
@@ -253,6 +194,7 @@ onAuthStateChanged(auth, async (user) => {
         }
     });
 
+    
 //   // Codes for Leaderboard Ranking => Retrieving from db
 //   const usersCollection = collection(db, "Users");
 //         const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
@@ -271,41 +213,41 @@ onAuthStateChanged(auth, async (user) => {
 
 <style>
 .container-fluid {
-  position: relative;
-  padding: 0;
+    position: relative;
+    padding: 0;
 }
 
 .profile-banner {
-  width: 100%;
-  height: 300px; /* Set the desired height for your banner */
-  overflow: hidden;
+    width: 100%;
+    height: 300px; /* Set the desired height for your banner */
+    overflow: hidden;
 }
 
 .profile-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter:brightness(50%)
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter:brightness(50%)
 }
 
 .profile_picture{
-  border: 7px solid #D8F6EF;
-  width: 250px;
+    border: 7px solid #D8F6EF;
+    width: 250px;
 }
 
 .user_settings{
-  background-color: #AEDDB3;
+    background-color: #AEDDB3;
 }
 
 .user_settings_button{
-  text-align: center;
+    text-align: center;
 }
 .user_internal_navbar{
-  border-top: 2px solid black;
-  color:black
+    border-top: 2px solid black;
+    color:black
 }
 
 .nav-item .active{
-  background-color: #AEDDB3;
+    background-color: #AEDDB3;
 }
 </style>
