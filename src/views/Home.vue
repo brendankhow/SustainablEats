@@ -145,10 +145,11 @@
 
  </script>
  
- <style>
+ <style> /* cannot put <style scoped>, otherwise elements in home page will not be center-aligned 
  /* CSS template */
  
  /* Reset default margin and padding for all elements */
+
  * {
      margin: 0;
      padding: 0;
@@ -205,8 +206,8 @@
  }
  
  #hero .container{
-     padding-top: 80px;
- }
+     padding-top: 80px; 
+    }
  
  #hero h1{
      font-size: 48px;
