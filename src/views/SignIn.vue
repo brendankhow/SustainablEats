@@ -173,11 +173,15 @@ const signInWithGoogle = () => {
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0, .1);
+    box-shadow: 0 0 10px rgba(0,0,0, .2);
     cursor: pointer;
     font-size: 16px;
     color: 333;
     font-weight: 600;
+}
+
+.btn:hover{
+    background: white;
 }
 
 .wrapper .register-link{
