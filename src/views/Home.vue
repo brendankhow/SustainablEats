@@ -107,14 +107,14 @@
   onMounted(async () =>{
     // Codes for Leaderboard Ranking => Retrieving from db
       const usersCollection = collection(db, "Users");
-      const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
+      const q = query(usersCollection, orderBy("coins", "desc"), limit(3));
 
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         top3UsersCoins.value.push({
-        name: doc.data().name,
-        coin: doc.data().Coin,
+        name: doc.data().username,
+        coin: doc.data().coins,
         });
       });
   
