@@ -45,11 +45,9 @@
                         <hr><p>Login Via</p>
                     </div>
             </form>
-            <div class = "social-icons">
-                <div class = "social-icon">
-                    <a href = "#" class = "fa fa-facebook"></a>
-                    <span class = "fa fa-twitter"></span>
-                    <span class = "fa fa-google" @click="signInWithGoogle"></span>
+            <div class="social-icons">
+                <div>
+                    <span v-on:click="signInWithGoogle()" class="fa fa-google" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 50px; text-align: center; width: auto; cursor: pointer;">Sign in with Google</span>
                 </div>
             </div>
         </div>
