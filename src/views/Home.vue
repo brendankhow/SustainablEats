@@ -140,7 +140,7 @@
 
  </script>
  
- <style> /* cannot put <style scoped>, otherwise elements in home page will not be center-aligned 
+ <style>
  /* CSS template */
  
  /* Reset default margin and padding for all elements */
@@ -188,11 +188,11 @@
      text-align: center;
      padding: 10px;
  }
- 
+  
  /** Banner Section CSS **/
  #hero{
      width: 100%;
-     height: 65vh; /* vertical height */
+     height: 100vh; /* vertical height */
      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../assets/green.jpg);
      background-position: center;
      background-size: cover;
