@@ -87,16 +87,15 @@
             email: email.value,
             coins: 30,
             earned: 0,
-            profilepic: "./assets/profilepic.png",
-            profilebanner: "./assets/profilebanner.png",
+            profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepictures%2Fmath_cat.jpg?alt=media&token=89034238-10c7-4da7-aa7f-05d4cfa1f477&_gl=1*5exyos*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyNDIyNS41Ny4wLjA.",
+            profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilebanners%2Fbanner.jpg?alt=media&token=00d33929-b0fc-44b8-ae5c-19778a816e6c&_gl=1*c69kay*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzkxMC40NS4wLjA.",
             posts: [],
             bookmarks: []
         });
-
-        console.log(user);
         console.log("Successfully registered!");
         await router.push('/home'); // redirect to the feed
     } catch (error) {
+        alert("Registration Failed! Please Try Again!");
         router.push('/Register');
     }
 };
@@ -104,8 +103,8 @@
     const signInWithGoogle = () => {
         signInWithPopup(getAuth(), provider)
             .then((result) => {
-                console. log (result.user);
-                router. push("/home");
+                console.log (result.user);
+                router.push("/home");
             })
             .catch((error) => {
 
