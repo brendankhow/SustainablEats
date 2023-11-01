@@ -61,9 +61,10 @@
                   </div>
                 </div>
                 <div class="col-md-6">
+                  <!-- Ingredient Quantity (change input type to "number" and add min attribute) -->
                   <div class="form-group">
                     <label for="ingredientQuantity" class="form-label">Ingredient Quantity:</label>
-                    <input type="text" v-model="ingredient.quantity" class="form-control">
+                    <input type="number" v-model="ingredient.quantity" class="form-control" min="0">
                   </div>
                 </div>
               </div>
@@ -117,7 +118,7 @@ const creator = ref('');
 const mealType = ref('');
 const cuisineType = ref('');
 const description = ref('');
-const ingredients = ref([{ name: '', quantity: '' }]);
+const ingredients = ref([{ name: '', quantity: 0 }]);
 const steps = ref([{ description: '' }]);
 const selectedImage = ref(null);
 const imageUploadProgress = ref(0);
