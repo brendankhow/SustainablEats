@@ -1,10 +1,4 @@
 <template>
-    <!--
-    <h1>Create an Account</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p><button @click="register">Submit</button></p>
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p> -->
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,15 +18,6 @@
                         required>
                         <i class = "bx bxs-lock-alt"></i>
                     </div>
-
-                    <!--
-                    <div class = "input-box">
-                        <input type = "password" v-model = "confirmPassword" v-on:input = "checkUser" placeholder = "Confirm Password" 
-                        required>
-                        <i class = "bx bxs-lock-alt"></i>
-                    </div> 
-
-                    <div class = "match">{{match}}</div> -->
 
                     <button type = "submit" class = "btn">Sign Up</button>
 
@@ -60,9 +45,7 @@
     import { ref } from "vue";
     import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
     import { useRouter } from 'vue-router' // import router
-    import { doc, getFirestore, setDoc } from "firebase/firestore"; 
-    import { collection, addDoc } from "firebase/firestore"; 
-
+    import { doc, getFirestore, setDoc, collection, addDoc } from "firebase/firestore"; 
     
     const email = ref("");
     const password = ref("");
@@ -76,6 +59,7 @@
     try {
         const { user } = await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
         const uid = user.uid;
+        console.log(uid);
 
         // Specify the document ID as the user's UID
         const userDoc = doc(db, "Users", uid);
@@ -95,7 +79,8 @@
 
         console.log(user);
         console.log("Successfully registered!");
-        await router.push('/home'); // redirect to the feed
+        await router.push('/home'); // redirect to the feed 
+    
     } catch (error) {
         router.push('/Register');
     }
@@ -191,11 +176,15 @@
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0, .1);
+    box-shadow: 0 0 10px rgba(0,0,0, .2);
     cursor: pointer;
     font-size: 16px;
     color: 333;
     font-weight: 600;
+}
+
+.btn:hover{
+    background: white;
 }
 
 .wrapper .register-link{

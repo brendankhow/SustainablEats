@@ -12,7 +12,6 @@
                 <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
               </div>
 
-
             <!-- Column for Recipe Details -->
 
               <div class="form-group mt-4">
@@ -178,6 +177,7 @@ const uploadImageAndCreateRecipe = async () => {
         recipeImageURLs: recipeImageURLs.value,
         imageId: uniqueID,
         uid: userUID,
+        likes: 0 /* Addded likes in here to pre-load 0 likes for all new recipes */
       };
 
       const docRef = await addDoc(recipesRef, recipeData);
