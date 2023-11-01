@@ -29,9 +29,9 @@
     auth = getAuth();
     onAuthStateChanged (auth, (user) => {
       if (user) {
-        isLoggedIn. value = true;
+        isLoggedIn.value = true;
       } else {
-        isLoggedIn. value = false;
+        isLoggedIn.value = false;
       }
       });
   });

@@ -253,19 +253,6 @@ onAuthStateChanged(auth, async (user) => {
         }
     });
 
-    // Get download url of images 
-    const getImageURL = async (imageId) => {
-        console.log(imageId);
-        const imagesRef = storageRef(storage, `profilepictures/${imageId}`);
-        try {
-            return await getDownloadURL(imagesRef);
-        } 
-        catch (error) {
-            console.error('Error fetching image:', error);
-            return null;
-        }
-    };
-
 //   // Codes for Leaderboard Ranking => Retrieving from db
 //   const usersCollection = collection(db, "Users");
 //         const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
