@@ -87,8 +87,8 @@
             email: email.value,
             coins: 30,
             earned: 0,
-            profilepic: "./assets/profilepic.png",
-            profilebanner: "./assets/profilebanner.png",
+            profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepictures%2Fmath_cat.jpg?alt=media&token=89034238-10c7-4da7-aa7f-05d4cfa1f477&_gl=1*u5eey6*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzcyOS41MS4wLjA.",
+            profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilebanners%2Fbanner.jpg?alt=media&token=00d33929-b0fc-44b8-ae5c-19778a816e6c&_gl=1*123nu6x*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzc1Mi4yOC4wLjA.",
             posts: [],
             bookmarks: []
         });
