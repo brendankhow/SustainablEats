@@ -15,6 +15,7 @@
              <a class = "btn_get_started"> <router-link to="/generateRecipe" class = "link-white">Get Started</router-link></a>
        </div>
      </section>
+<<<<<<< Updated upstream
  
 <!-- Trending Recipes Section -->
 <section id="trending">
@@ -31,9 +32,52 @@
             <div class="carousel-caption d-none d-md-block">
               <h5>{{ recipe.creator }}</h5>
               <p>{{ recipe.description }}</p>
+=======
+     
+     <!-- Trending Recipes Section -->
+    <section id="trending">
+      <div class="container">
+        <div>
+          <h1 style="text-align:center; color:white;">Trending Recipes</h1>
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
+          <div class="carousel-inner">
+            <div
+              v-for="(recipe, index) in recipes"
+              :key="recipe.id"
+              :class="['carousel-item', { active: index === 0 }]">
+              <img
+                :src="recipe.recipeImageURLs"
+                class="d-block w-100 carousel-image"
+                alt="Recipe Image"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>{{ recipe.creator }}</h5>
+                <p>{{ recipe.description }}</p>
+              </div>
+>>>>>>> Stashed changes
             </div>
           </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" ariahidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
+<<<<<<< Updated upstream
         <button
           class="carousel-control-prev"
           type="button"
@@ -52,10 +96,11 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
+=======
+>>>>>>> Stashed changes
       </div>
-    </div>
   </section>
- 
+  <hr>
     <!-- Leaderboard Ranking Pange-->
     <section id="leaderboard">
     <div class="container">
@@ -248,6 +293,12 @@
  #trending{
      width: 100%;
      height: 130vh;
+     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../assets/green.jpg);
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     
  }
  #trending .container{
      padding-top: 10px;
@@ -259,6 +310,7 @@
   margin: 0 auto;
 }
 
+<<<<<<< Updated upstream
 /* Style for the carousel images */
 .carousel-image {
   max-height: 550px; /* Adjust the maximum image height as needed */
@@ -306,9 +358,21 @@
   transform: scale(1.05);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
 }
+=======
+  /* Adjust the position of the carousel controls */
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: absolute;
+    top: 50%; /* Vertically center controls */
+    transform: translateY(-50%);
+    width: 10%; /* Adjust the control width as needed */
+    background: rgba(255,255,255, 0.5); /* Control background color */
+  }
+>>>>>>> Stashed changes
 
  #leaderboard{
      justify-content: center;
+     
  }
 
  .link-white {

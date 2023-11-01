@@ -111,7 +111,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(../assets/dog_toast.jpg) no-repeat; 
+    background: url(../assets/emerald.jpg) no-repeat; 
     background-size: cover;
     background-position: center;
 }
@@ -119,9 +119,9 @@
 .wrapper{
     width: 420px;
     background:transparent;
-    /*border: 2px solid rgba(255,255,255,.2); */
+    border: 2px solid rgba(255,255,255,.3); 
     backdrop-filter: blur(15px); 
-    color: fff;
+    color: white;
     border-radius: 10px;
     padding: 30px 40px;
 }
@@ -147,16 +147,16 @@
     border: 2px solid rgba(255,255,255, .2);
     border-radius: 40px;
     font-size: 16px;
-    color: black;
+    color: white;
     padding: 20px 45px 20px 20px;
 }
 
 .input-box input:hover{
-    background: white;
-}
+    background: black;
+} 
 
 .input-box input::placeholder{
-    color: black;
+    color: white;
 }
 
 .input-box i {
@@ -174,15 +174,15 @@
     border: none;
     outline: none;
     border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0, .2);
+    box-shadow: 0 0 10px rgba(0,0,0, .3);
     cursor: pointer;
     font-size: 16px;
-    color: 333;
+    color: white;
     font-weight: 600;
 }
 
 .btn:hover{
-    background: white;
+    background: black;
 }
 
 .wrapper .register-link{
@@ -192,7 +192,7 @@
 }
 
 .register-link p a {
-    color: fff;
+    color: lightskyblue;
     text-decoration: none;
     font-weight: 600;
 }
