@@ -28,100 +28,29 @@
     <div class="row ms-4 me-4 pb-2 user_internal_navbar">
         <ul class="nav justify-content-center ">
             <li class="nav-item">
-                <button id="post_button" class="nav-link text-black" v-on:click="display('posts')">
-                    <img src="">
+                <button id="post_button" class="nav-link text-black active" v-on:click="display('posts')">
+                    <img src="../assets/bxs-grid.png">
                     Posts
                 </button>
             </li>
             <li class="nav-item">
                 <button id="bookmark_button" class="nav-link text-black" v-on:click="display('bookmark')">
-                    <img src="">
+                    <img src="../assets/bookmarks.png">
                     Bookmarked
                 </button>
             </li>
         </ul>
     </div>
 </div>
-<!-- <div class="user_chosen_content" v-if="dcontent === 'post'">
+<div class="user_chosen_content">
     <div class="album py-5">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
-                        <div class="card-body">
-                            <div class="row pb-2">
-                                <div class="col">
-                                    <h5 class="card-title">PokeBowl</h5>
-                                </div>
-                                <div class="col" style="text-align: right;">
-                                    <img src="" width="20px">
-                                    <small class="text-muted">4.5 ratings </small>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                
-                                <small class="text-muted">100+ reviews</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="container" id="chosencontent">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
+                
             </div>
         </div>
     </div>
-</div> -->
+</div>
 </template>
 <script setup>
 
@@ -133,10 +62,13 @@ import { getAuth, onAuthStateChanged  } from 'firebase/auth';
 import { initializeApp } from "firebase/app";
 
 const db = getFirestore();
-
 const auth = getAuth();
 const router = useRouter() // get a reference to our vue router
 const user_data = ref(null);
+const username = ref('');
+const bio = ref('');
+const profilepic = ref('');
+const profilebanner = ref('');
 
 var dcontent = 'post';
 function display(content){
@@ -144,15 +76,106 @@ function display(content){
         document.getElementById("bookmark_button").classList.remove("active");
         document.getElementById("post_button").classList.add("active")
         this.dcontent = 'post';
-        // console.log('yay');
+        showcontent(dcontent);
+        console.log('yay');
     }else{
         document.getElementById("bookmark_button").classList.add("active");
         document.getElementById("post_button").classList.remove("active")
         this.dcontent = 'bookmark';
+        showcontent(dcontent);
         // console.log('nuuuu');
     }
 }
-onAuthStateChanged(auth, async (user) => {
+
+showcontent('post');
+function showcontent(dcontent){
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            try{
+                const uid = user.uid;
+            var usersCollection = collection(db, "Users");
+
+            // Specify the document's path using the user's UID
+            const docRef = doc(usersCollection, uid);
+
+            // Retrieve the document
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const user_data = docSnap.data();
+                var display_ele = document.getElementById("chosencontent");
+
+                if(dcontent == 'post'){
+                    var content_data = user_data.posts;
+                }else{
+                    var content_data = user_data.bookmarks;
+                }
+                console.log(content_data);
+                if(content_data.length == 0){
+                    // console.log(content_data);
+                    display_ele.innerHTML = "<h1>No content to display. Start exploring!</h1>";
+                }else{
+                    // console.log(content_data);
+                    const recipecollection = collection(db, 'recipes');
+                    var content_to_add = '';
+                    for(let recipeID of content_data){
+                        const reciperef = doc(recipecollection, recipeID);
+                        const recipeDoc = await getDoc(reciperef);
+                        if(recipeDoc.exists()){
+                            const recipe_data = recipeDoc.data();
+                            // console.log(recipe_data);
+                            var recipeImg = recipe_data.imageId;
+                            var recipeLink = "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/recipeImages%"+recipeImg
+                            
+
+                            //I NEED HELP TO PUT THE IMAGE HERE AND ROUTE THE THING TO THE SPECIFIC RECIPE
+                            var recipeName = recipe_data.name;
+                            content_to_add += `
+                            <div class="col">
+                            <div class="card" height="100px">
+                                <img src="${recipeLink}" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="row pb-2">
+                                        <div class="col">
+                                            <h5 class="card-title">${recipeName}</h5>
+                                        </div>
+                                        <div class="col" style="text-align: right;">
+                                            <img src="" width="20px">
+                                            <small class="text-muted">4.5 ratings </small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">
+                                            View
+                                        </button>
+                                        </div>
+                                        
+                                        <small class="text-muted">100+ reviews</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            `;
+                        }
+                    }
+                    document.getElementById('albumCards').innerHTML = content_to_add;
+                }
+            }
+            else{console.log("No such document!");}
+            }
+            catch{
+                console.log('');
+            }
+        }
+    });
+}
+
+
+onMounted(()=>{
+    onAuthStateChanged(auth, async (user) => {
+    try{
         if (user) {
             const uid = user.uid;
             var usersCollection = collection(db, "Users");
@@ -165,8 +188,6 @@ onAuthStateChanged(auth, async (user) => {
 
             if (docSnap.exists()) {
                 const user_data = docSnap.data();
-                
-                
                 var username = user_data.username;
                 var bio = user_data.bio;
                 var email = user_data.email;
@@ -176,13 +197,16 @@ onAuthStateChanged(auth, async (user) => {
                 var profilebanner = user_data.profilebanner;
                 
                 //DISPLAY DATA
-                document.getElementById("username").innerText = username;
-                document.getElementById("userdescription").innerText = bio;
-                // document.getElementById("profile_picture").src = profilepic
-                // document.getElementById("profile_banner_img").src = profilebanner;
-                document.getElementById("profile_picture").setAttribute("src", profilepic);
-                document.getElementById("profile_banner_img").setAttribute("src",profilebanner);
-            
+                try{
+                    document.getElementById("username").innerText = username;
+                    document.getElementById("userdescription").innerText = bio;
+                    document.getElementById("profile_picture").setAttribute("src", profilepic);
+                    document.getElementById("profile_banner_img").setAttribute("src",profilebanner);    
+                }
+                catch{
+                    console.log("");
+                }
+                
             } else {
                 
                 // router.push('/Home');
@@ -192,7 +216,13 @@ onAuthStateChanged(auth, async (user) => {
             // User is signed out
             router.push('/Register');
         }
+    }
+    catch{
+        console.log("");
+    }
+        
     });
+});
 
     
 //   // Codes for Leaderboard Ranking => Retrieving from db
