@@ -1,13 +1,4 @@
 <template>
-    <!--
-  <h1>Sign In</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Password" v-model="password" /></p>
-    <p v-if="errMsg">{{ errMsg }}</p>
-    <p><button @click="register">Login</button></p>
-    <p><button @click="signInWithGoogle">Sign In With Google</button></p>
-    <p><button><router-link to="/register">Register</router-link></button></p> -->
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> <!-- CDN to get box icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--CDN to get social media buttons-->
 
@@ -40,11 +31,9 @@
                         <hr><p>Login Via</p>
                     </div>
 
-                    <div class = "social-icons">
-                        <div class = "social-icon">
-                            <span v-on:click ="fbSignIn()" class = "fa fa-facebook"></span>
-                            <span v-on:click = "twitterSignIn()" class = "fa fa-twitter"></span>
-                            <span v-on:click = "googleSignIn()" class = "fa fa-google"></span>
+                    <div class="social-icons">
+                        <div>
+                            <span v-on:click="signInWithGoogle()" class="fa fa-google" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 50px; text-align: center; width: auto; cursor: pointer;">Sign in with Google</span>
                         </div>
                     </div>
             </form>
@@ -55,11 +44,13 @@
 <script setup>
     import { ref } from "vue";
     import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+    import { GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
     import { useRouter } from 'vue-router' // import router
     const email = ref("");
     const password = ref("");
     const errMsg = ref() // ERROR MESSAGE
     const router = useRouter() // get a reference to our vue router
+    const provider = new GoogleAuthProvider();
 
     const validateUser = () => {
         // need value because ref()
@@ -93,7 +84,16 @@
         });
     };
 
-const signInWithGoogle = () =>{};
+const signInWithGoogle = () => {
+    signInWithPopup(getAuth(), provider)
+        .then((result) => {
+            console. log (result.user);
+            router. push("/home");
+        })
+        .catch((error) => {
+
+        });
+};
 </script>
 
 <style scoped>

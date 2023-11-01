@@ -131,8 +131,8 @@ function showcontent(dcontent){
                                 <img src="${imageUrl}" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
                                 <div class="card-body">
                                     <div class="row pb-2">
-                                        <div class="col">
-                                            <h5 class="card-title" style='text-align:left;overflow:auto;'>${recipeName}</h5>
+                                        <div class="col" style="overflow:hidden;">
+                                            <p class="card-title" style='text-align:left;font-size:20px;'>${recipeName}</p>
                                         </div>
                                         <div class="col" style="text-align: right;">
                                             <img src="" width="20px">
@@ -198,7 +198,6 @@ onMounted(()=>{
                 var bookmarks = user_data.bookmarks;
                 var profilepic = user_data.profilepic;
                 var profilebanner = user_data.profilebanner;
-                
                 //DISPLAY DATA
                 try{
                     document.getElementById("username").innerText = username;
