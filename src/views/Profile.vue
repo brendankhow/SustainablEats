@@ -77,13 +77,11 @@ function display(content){
         document.getElementById("post_button").classList.add("active")
         this.dcontent = 'post';
         showcontent(dcontent);
-        console.log('yay');
     }else{
         document.getElementById("bookmark_button").classList.add("active");
         document.getElementById("post_button").classList.remove("active")
         this.dcontent = 'bookmark';
         showcontent(dcontent);
-        // console.log('nuuuu');
     }
 }
 
@@ -110,12 +108,9 @@ function showcontent(dcontent){
                 }else{
                     var content_data = user_data.bookmarks;
                 }
-                console.log(content_data);
                 if(content_data.length == 0){
-                    // console.log(content_data);
                     display_ele.innerHTML = "<h1>No content to display. Start exploring!</h1>";
                 }else{
-                    // console.log(content_data);
                     const recipecollection = collection(db, 'recipes');
                     var content_to_add = '';
                     for(let recipeID of content_data){
@@ -123,21 +118,21 @@ function showcontent(dcontent){
                         const recipeDoc = await getDoc(reciperef);
                         if(recipeDoc.exists()){
                             const recipe_data = recipeDoc.data();
-                            // console.log(recipe_data);
                             var recipeImg = recipe_data.imageId;
-                            var recipeLink = "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/recipeImages%"+recipeImg
+                            const imageUrl = await getImageUrl(recipeImg);
+                            
                             
 
                             //I NEED HELP TO PUT THE IMAGE HERE AND ROUTE THE THING TO THE SPECIFIC RECIPE
                             var recipeName = recipe_data.name;
                             content_to_add += `
                             <div class="col">
-                            <div class="card" height="100px">
-                                <img src="${recipeLink}" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
+                            <div class="card" style='height: 350px; width:300px; overflow: auto;'>
+                                <img src="${imageUrl}" class="card-img-top" alt="Image" style="height: 250px; object-fit: cover;">
                                 <div class="card-body">
                                     <div class="row pb-2">
                                         <div class="col">
-                                            <h5 class="card-title">${recipeName}</h5>
+                                            <h5 class="card-title" style='text-align:left;overflow:auto;'>${recipeName}</h5>
                                         </div>
                                         <div class="col" style="text-align: right;">
                                             <img src="" width="20px">
@@ -151,8 +146,6 @@ function showcontent(dcontent){
                                             View
                                         </button>
                                         </div>
-                                        
-                                        <small class="text-muted">100+ reviews</small>
                                     </div>
                                 </div>
                             </div>
@@ -166,12 +159,22 @@ function showcontent(dcontent){
             else{console.log("No such document!");}
             }
             catch{
-                console.log('');
+                console.error();
             }
         }
     });
 }
+async function getImageUrl(imageId) {
+    const storage = getStorage();
+    const imageRef = ref(storage, `recipeImages/${imageId}`);
 
+    try {
+        const url = await getDownloadURL(imageRef);
+        return url;
+    } catch (error) {
+        console.error(`Failed to get download URL for imageId: ${imageId}`, error);
+    }
+}
 
 onMounted(()=>{
     onAuthStateChanged(auth, async (user) => {
