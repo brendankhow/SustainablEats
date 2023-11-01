@@ -85,8 +85,8 @@ export default {
           console.log("Likes updated successfully")
 
           // Everytime recipe likes increases by 5, user gets 5 additional coins
-          if (recipeLikes != 0 && recipeLikes === 2){
-             userCoins += 5;
+          if (recipeLikes != 0 && recipeLikes % 5 === 0){
+             userCoins += 1;
              await updateDoc(userRef, {
                 coins: userCoins
              })
