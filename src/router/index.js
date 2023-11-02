@@ -41,9 +41,9 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
-    { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
-    { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")}, //remember to change the file name later
+    { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
+    { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
   ],
 });
 
