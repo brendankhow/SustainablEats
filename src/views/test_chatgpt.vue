@@ -9,7 +9,7 @@ export default {
 data() {
   return {
     //no naughty take my api key ok: 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
-    OPENAI_API_KEY: "",
+    OPENAI_API_KEY: "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",
   };
 },
 methods: {
@@ -39,7 +39,7 @@ methods: {
         console.log(response.data.choices[0].message.content.trim()); 
     })
     .catch(error => { 
-        console.error(error); 
+        console.error(""); 
     }); 
   }
 },
