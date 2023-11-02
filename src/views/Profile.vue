@@ -122,9 +122,6 @@ function showcontent(dcontent){
                             var recipeImg = recipe_data.imageId;
                             const imageUrl = await getImageUrl(recipeImg);
                             
-                            
-
-                            //I NEED HELP TO PUT THE IMAGE HERE AND ROUTE THE THING TO THE SPECIFIC RECIPE
                             var recipeName = recipe_data.name;
                             content_to_add += `
                                                 <div class="album py-5">
