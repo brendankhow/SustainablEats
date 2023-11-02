@@ -16,6 +16,7 @@
   import Navbar from './views/NavBar.vue'; // Import the Navbar component
   import 'bootstrap/dist/css/bootstrap.min.css';
   import 'bootstrap/dist/js/bootstrap.min.js';
+  import axios from 'axios';
   import { onMounted, ref } from "vue";
   import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 

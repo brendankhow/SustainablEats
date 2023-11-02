@@ -42,6 +42,7 @@ const router = createRouter({
       },
     },
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
+    { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
   ],
 });
 
