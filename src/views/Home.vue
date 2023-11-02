@@ -8,13 +8,22 @@
  
  
    <!-- Banner Section-->
-   <section id = "hero" class = "d-flex align-item-center">
-       <div class = "container text-center">
-         <h1> Building a greener and wholesome community through recipes </h1>
-           <h2> Your culinary journey to a greener future starts here! </h2>
-             <a class = "btn_get_started"> <router-link to="/generateRecipe" class = "link-white">Get Started</router-link></a>
-       </div>
-     </section>
+   <section id="hero" class="d-flex align-item-center">
+    <div class="video-container">
+    <video autoplay muted loop>
+      <source src="../assets/background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+  </div>
+  <div class="container text-center">
+    <h1>Building a greener and wholesome community through recipes</h1>
+    <h2>Your culinary journey to a greener future starts here!</h2>
+    <a class="btn_get_started">
+      <router-link to="/generateRecipe" class="link-white">Get Started</router-link>
+    </a>
+  </div>
+</section>
      
      <!-- Trending Recipes Section -->
     <section id="trending">
@@ -154,103 +163,127 @@
  
  /* Reset default margin and padding for all elements */
 
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
- }
- 
- a {
-     text-decoration: none;
- }
- 
- a:hover{
-     text-decoration: none;
- }
- 
- h1,h2,h3,h4,h5,h6 {
-     font-family: "Raleway", sans-serif;
- } 
- 
- section{
-     padding: 60px 0;
-     overflow: hidden;
- }
- /* Set a background color for the entire page */
- 
- /* Style the header section */
- header {
-     background-color: #333;
-     color: #fff;
-     padding: 10px;
-     text-align: center;
- }
- 
- main {
-     padding: 20px;
- }
- 
- /* Style footer section */
- footer {
-     background-color: #333;
-     color: #fff;
-     text-align: center;
-     padding: 10px;
- }
-  
- /** Banner Section CSS **/
- #hero{
-     width: 100%;
-     height: 100vh; /* vertical height */
-     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../assets/green.jpg);
-     background-position: center;
-     background-size: cover;
-     background-repeat: no-repeat;
-     background-attachment: fixed;
- }
- 
- #hero .container{
-     padding-top: 80px; 
-    }
- 
- #hero h1{
-     font-size: 48px;
-     font-weight: 700;
-     line-height: 56px;
-     color: #fff;
-     margin: 0 0 10px 0;
- }
- 
- #hero h2{
-     color: #eee;
-     margin-bottom: 40px;
-     font-size: 15px;
-     font-weight: 400;
-     font-family: "Open-Sans", sans-serif;
-     letter-spacing: 0.5px;
-     text-transform: uppercase;
- }
- 
- #hero .btn_get_started{
-     font-family: "Poppins", sans-serif;
-     text-transform: uppercase;
-     font-weight: 500;
-     font-size: 14px;
-     letter-spacing: 1px;
-     display: inline-block;
-     padding: 8px 28px;
-     border-radius: 50px;
-     margin: 10px;
-     border: 2px solid #fff;
-     background-color: transparent;
-     color: #fff;
-     transition: 0.6s all;
- }
- 
- #hero .btn_get_started:hover{
-     background-color: #009970;
-     border: 2px solid #009970;
- }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Raleway", sans-serif;
+} 
+
+section{
+  padding: 60px 0;
+  overflow: hidden;
+}
+/* Set a background color for the entire page */
+
+/* Style the header section */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Style footer section */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+#hero .video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#hero .video-container video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Adjust the opacity (0.4) to your preference */
+  z-index: 0;
+}
+
+#hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 80px;
+}
+
+#hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  margin: 0 0 10px 0;
+}
+
+#hero h2 {
+  color: #eee;
+  margin-bottom: 40px;
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Open-Sans", sans-serif;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+#hero .btn_get_started {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 50px;
+  margin: 10px;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  transition: 0.6s all;
+}
+
+#hero .btn_get_started:hover {
+  background-color: #009970;
+  border: 2px solid #009970;
+}
  
  /* Adjusts height of carousel container */
  
