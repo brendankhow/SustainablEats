@@ -39,14 +39,14 @@
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list">
-                          <li v-for="ingredient in ingredientsArray">{{ ingredient }}</li>
+                          <li v-for="ingredient in recipe.ingredientsArray">{{ ingredient }}</li>
                         </ul>
                     </div>
                     
                     <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
                         <h3 class="instruction-header text-center">Steps</h3>
                         <ol class="instruction-list">
-                          <li v-for="instruction in instructionsArray">{{ instruction }}</li>
+                          <li v-for="instruction in recipe.instructionsArray">{{ instruction }}</li>
                         </ol>
                     </div>
                 </div>
@@ -191,6 +191,7 @@
             
             // Now, you have the ingredients and instructions in arrays
             console.log('Ingredients:', ingredientsArray);
+            console.log(ingredientsArray[3]);
             console.log('Instructions:', instructionsArray);
           } else {
             console.log('No ingredients and instructions found.');
