@@ -33,6 +33,7 @@
         </div>
         <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
           <div class="carousel-inner">
+            <!-- recipe is an object that has the attributes as the one we created in database-->
             <div
               v-for="(recipe, index) in recipes"
               :key="recipe.id"
@@ -45,6 +46,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <h5>{{ recipe.creator }}</h5>
                 <p>{{ recipe.description }}</p>
+                <p>Likes: {{ recipe.likes }}</p>
               </div>
             </div>
           </div>
@@ -115,7 +117,7 @@
   const storage = getStorage();
 
   var top3UsersCoins = ref([]);
-  const recipes = ref([]); // Store all recipes
+  var recipes = ref([]); // Store all recipes
 
   onMounted(async () =>{
     // Codes for Leaderboard Ranking => Retrieving from db
@@ -131,9 +133,26 @@
         });
       });
   
-    // const recipeQuery = query(recipeSnapshot, orderBy("Likes", "desc"), limit(3)); // Can order in "likes" if implemented in future
-    // Codes for Trending Recipes => Retrieving from Db + Image from Storage 
+    
+    // Codes for Trending Recipes => Retrieving Top 5 Highest Liked Recipes from Db + Image from Storage 
       const recipesRef = collection(db, 'recipes');
+      const qRecipe = query(recipesRef, orderBy("likes", "desc"), limit(5));
+
+      const recipeSnapshot = await getDocs(qRecipe);
+      recipeSnapshot.forEach((doc) => {
+        recipes.value.push({
+          ...doc.data()
+        /*
+          creator: doc.creator,
+          description: doc.description,
+          likes: doc.likes,
+          image: getImageURL(doc.data().imageId), // Assign the image URL
+        ...doc.data(),
+        */
+        })
+      })
+      console.log(recipes);
+      /*
       const recipeSnapshot = await getDocs(recipesRef);
 
       recipes.value = recipeSnapshot.docs.map((doc) => ({
@@ -141,7 +160,7 @@
         description: doc.description,
         image: getImageURL(doc.data().imageId), // Assign the image URL
         ...doc.data(),
-      }));
+      }));*/
       
   })
   
