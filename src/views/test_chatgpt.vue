@@ -10,17 +10,17 @@ axios.post('https://api.openai.com/v1/engines/davinci/completions',
 { 
     'prompt': `You are a friendly AI that is meant to help provide recipes for people based on their 
     ingredients and preference from the list below. 
-     ${ingredients} and ${preferences}
+        ${ingredients} and ${preferences}
      
-     You are to send the response back in the following format: 
-     <ul id="ingredients">
-        <li>Ingredients</li>
-    </ul>
+        You are to send the response back in the following format: 
+        <ul id="ingredients">
+            <li>Ingredients</li>
+        </ul>
 
-    <ul id="steps">
-        <li>Steps/ Instructions</li>
-    </ul>
-     `,
+        <ul id="steps">
+            <li>Steps/ Instructions</li>
+        </ul>
+        `,
     'max_tokens': 60 
 }, 
 { 

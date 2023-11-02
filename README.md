@@ -3,6 +3,12 @@
 ## Project setup
 ```
 npm install
+npm install axios
+
+In case the AI does not work, it could be due to the lack of credits for the AI. <br>
+Please go to the chatgpt.vue file and change the const OPENAI_API_KEY and replaced it as yours. <br>
+Else, contact one of the team members. 
+
 ```
 
 ### Compiles and hot-reloads for development
