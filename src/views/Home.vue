@@ -210,7 +210,7 @@ footer {
 #hero {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
 }
 
 #hero .video-container {
@@ -248,32 +248,32 @@ footer {
 
 #hero h1 {
   font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
+  font-weight: 900; /* Increased font weight for a bolder look */
+  line-height: 1.2; /* Adjusted line height for better readability */
   color: #fff;
-  margin: 0 0 10px 0;
+  margin: 50px 0 10px 0;
 }
 
 #hero h2 {
   color: #eee;
-  margin-bottom: 40px;
-  font-size: 15px;
+  font-size: 18px; /* Larger font size for emphasis */
   font-weight: 400;
-  font-family: "Open-Sans", sans-serif;
-  letter-spacing: 0.5px;
+  font-family: "Raleway", sans-serif; /* Consistent font with the heading */
+  letter-spacing: 1px; /* Increased letter-spacing for a professional touch */
   text-transform: uppercase;
+  margin-top: 20px;
 }
 
 #hero .btn_get_started {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-weight: 600; /* Bolder font weight for buttons */
+  font-size: 14px; /* Larger font size for buttons */
+  letter-spacing: 2px; /* Increased letter-spacing for buttons */
   display: inline-block;
-  padding: 8px 28px;
+  padding: 12px 32px; /* Increased padding for buttons */
   border-radius: 50px;
-  margin: 10px;
+  margin: 20px 10px; /* Adjusted margin for spacing */
   border: 2px solid #fff;
   background-color: transparent;
   color: #fff;
@@ -283,6 +283,7 @@ footer {
 #hero .btn_get_started:hover {
   background-color: #009970;
   border: 2px solid #009970;
+  color: #fff;
 }
  
  /* Adjusts height of carousel container */
