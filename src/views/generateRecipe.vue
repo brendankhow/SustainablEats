@@ -15,11 +15,11 @@
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
                     <div class="col-md-12 mb-2">
-                        <input class="gen-form-ingredients-field" type="text" placeholder="Type Here">
+                        <input class="gen-form-ingredients-field" type="text" placeholder="Type Here" :value="userInput">
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="submit" value="Generate" onclick="init()">
+                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="submit" value="Generate" @click="fetchRecipe">
                     </div>
                 </div>
             </form>
@@ -28,30 +28,30 @@
             <div class="gen-out box py-5 mx-0 container" >
 
                 <div class="gen-out-header row">
-                    <h1 class="recipe-title">Recipe Title</h1>
+                    <h1 class="recipe-title">{{ recipe.title }}</h1>
                     <div>
-                        <img class="recipe-img img-fluid" src="../assets/foodItem.jpg" id="recipe_image">
+                        <img class="recipe-img img-fluid" :src="recipe.img" id="recipe_image">
                     </div>
-                    <p class="recipe-desc">Recipe Description</p>
+                    <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
                 
                 <div class="recipe-box mx-2 row">
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list">
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
+                          <li v-for="ingredient in recipe.ingredients" :key="ingredient">{{ ingredient }}</li>
                         </ul>
                     </div>
                     
                     <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
                         <h3 class="instruction-header text-center">Steps</h3>
                         <ol class="instruction-list">
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
-                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
+                          <li v-for="instruction in recipe.instructions" :key="instruction">{{ instruction }}</li>
                         </ol>
                     </div>
                 </div>
 
+                <!-- Appears only after submit button has been pressed -->
                 <div class="text-center p-0 my-0 mx-0">
                     <div class="disclaimer-divider"></div>
                         <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
@@ -106,6 +106,102 @@
   import 'bootstrap/dist/css/bootstrap.min.css';
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
+  import axios from 'axios';
+</script>
+
+<script>
+  import axios from 'axios';
+
+  function translateRecipeContent(content) {
+  // Split the content into ingredients and instructions based on LINE BREAKS
+  const parts = content.split('\n\n');
+
+  if (parts.length >= 2) {
+    const ingredients = parts[0].replace('Ingredients:', '').trim().split('\n');
+    const instructions = parts[1].replace('Instructions:', '').trim().split('\n');
+
+    return {
+      ingredients,
+      instructions,
+    };
+  } else {
+    return {
+      ingredients: [],
+      instructions: [],
+    };
+  }
+}
+
+  export default {
+
+    data() {
+      return {
+        //no naughty take my api key ok: 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
+        OPENAI_API_KEY: "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",
+
+        userInput:'',
+
+        recipe: {
+          title: '',
+          image: '',
+          description: '',
+          ingredients: [],
+          instructions: [],
+        },
+      };
+    },
+
+    methods: {
+      fetchRecipe() {
+        console.log(this.userInput);
+        axios.post('https://api.openai.com/v1/chat/completions', 
+        { 
+          'model': 'gpt-3.5-turbo',
+          'messages': 
+            [
+              {
+                  'role': 'system',
+                  'content': 'You are a helpful assistant.'
+              },
+              {
+                  'role': 'user',
+                  'content': this.userInput
+                  // 'content': 'create a pasta recipe'
+              }
+            ]
+        },
+        { 
+          headers: 
+            { 
+              'Authorization': `Bearer ${this.OPENAI_API_KEY}`, 
+              'Content-Type': 'application/json' 
+            } 
+        }
+        )
+        .then(response => {
+          // placeholders
+          // this.recipe.title = response.data.title;
+          // this.recipe.image = response.data.image;
+          // this.recipe.description = response.data.description;
+
+          const translatedContent = translateRecipeContent(response.data.choices[0].message.content); 
+          this.recipe.ingredients = translatedContent.ingredients;
+          this.recipe.instructions = translatedContent.instructions;
+
+          console.log(response.data.choices[0].message.content.trim());
+          // console.log(JSON.stringify(response.data.choices[0].message))
+          // console.log(this.recipe.ingredients);
+          // console.log(this.recipe.instructions);
+        })
+        .catch(error => {
+          console.error('Error fetching recipe:', error);
+        });
+      },
+    },
+    created() {
+      this.fetchRecipe();
+    }
+  };
 </script>
 
 <style>

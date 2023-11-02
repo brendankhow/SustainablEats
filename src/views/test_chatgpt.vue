@@ -25,7 +25,7 @@ methods: {
             },
             {
                 'role': 'user',
-                'content': 'create a recipe using eggs and flour only'
+                'content': 'create a recipe using eggs and bananas only'
             }
         ]
     }, 
