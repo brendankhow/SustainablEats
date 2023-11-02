@@ -15,52 +15,56 @@
              <a class = "btn_get_started"> <router-link to="/generateRecipe" class = "link-white">Get Started</router-link></a>
        </div>
      </section>
- 
+     
      <!-- Trending Recipes Section -->
-     <section id="trending">
-    <div class="container">
-      <div>
-        <h1 style="text-align:center; color:black;">Trending Recipes</h1>
-      </div>
-      <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
-        <div class="carousel-inner">
-          <div
-            v-for="(recipe, index) in recipes"
-            :key="recipe.id"
-            :class="['carousel-item', { active: index === 0 }]">
-            <img
-              :src="recipe.recipeImageURLs"
-              class="d-block w-100 carousel-image"
-              alt="Recipe Image"
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>{{ recipe.creator }}</h5>
-              <p>{{ recipe.description }}</p>
+    <section id="trending">
+      <div class="container">
+        <div>
+          <h1 style="text-align:center; color:black;">Trending Recipes</h1>
+        </div>
+        <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
+          <div class="carousel-inner">
+            <div
+              v-for="(recipe, index) in recipes"
+              :key="recipe.id"
+              :class="['carousel-item', { active: index === 0 }]">
+              <img
+                :src="recipe.recipeImageURLs"
+                class="d-block w-100 carousel-image"
+                alt="Recipe Image"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>{{ recipe.creator }}</h5>
+                <p>{{ recipe.description }}</p>
+              </div>
             </div>
           </div>
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" ariahidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" ariahidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
-    </div>
   </section>
- 
+
+  <hr>
+  
     <!-- Leaderboard Ranking Pange-->
     <section id="leaderboard">
     <div class="container">
@@ -145,7 +149,7 @@
 
  </script>
  
- <style> /* cannot put <style scoped>, otherwise elements in home page will not be center-aligned 
+ <style>
  /* CSS template */
  
  /* Reset default margin and padding for all elements */
@@ -193,7 +197,7 @@
      text-align: center;
      padding: 10px;
  }
- 
+  
  /** Banner Section CSS **/
  #hero{
      width: 100%;
@@ -252,38 +256,69 @@
  
  #trending{
      width: 100%;
-     height: 130vh;
+     height: 100vh;     
  }
  #trending .container{
-     padding-top: 80px;
+     padding-top: 10px;
  }
  
-
-.carousel-image {
-  max-height: 650px; /* Adjust the max-height as needed */
-  max-width: 900px;
-  margin: auto;
-  position: relative;
+/* Style for the carousel container */
+#carouselExampleCaptions {
+  max-width: 1200px; /* Set the maximum width as needed */
+  margin: 0 auto;
 }
 
-  /* Adjust the position of the carousel controls */
-  .carousel-control-prev,
-  .carousel-control-next {
-    position: absolute;
-    top: 50%; /* Vertically center controls */
-    transform: translateY(-50%);
-    width: 10%; /* Adjust the control width as needed */
-    background: rgba(0, 0, 0, 0.5); /* Control background color */
-  }
+/* Style for the carousel images */
+.carousel-image {
+  max-height: 550px; /* Adjust the maximum image height as needed */
+  width: auto;
+  margin: 0 auto;
+  object-fit: cover; /* Maintain aspect ratio without distortion */
+}
 
-  /* Style for the carousel control icons (optional) */
-  .carousel-control-prev-icon,
-  .carousel-control-next-icon {
-    background-color: white; /* Control icon color */
-  }
-  
+/* Center the carousel controls horizontally and vertically */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px; /* Adjust the control width as needed */
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center; /* Center the control content horizontally */
+  line-height: 50px; /* Center the control content vertically */
+}
+
+/* Style for the carousel control icons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 24px;
+  color: white;
+}
+/* Style for the carousel items */
+.carousel-item {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Add a background to the captions for readability */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+}
+
+/* Apply hover effect on carousel items */
+.carousel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
  #leaderboard{
      justify-content: center;
+     
  }
 
  .link-white {

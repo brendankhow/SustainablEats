@@ -26,7 +26,7 @@ const router = createRouter({
     { path: "/home", component: () => import("../views/Home.vue") },
     { path: "/register", component: () => import("../views/Register.vue") },
     { path: "/sign-in", component: () => import("../views/SignIn.vue") },
-    { path: "/createRecipe", component: () => import("../views/createRecipe.vue") },
+    { path: "/createRecipe", component: () => import("../views/CreateRecipe.vue") },
     { path: "/generateRecipe", component: () => import("../views/GenerateRecipe.vue") },
     // { path: "/post", component: () => import("../views/Post.vue") },
     {

@@ -1,28 +1,26 @@
 <template>
-  <div class="outer-container"> <!-- New container for positioning -->
+  <div class="outer-container">
     <div class="community-page">
-      <div class="community-content">
-        <!-- Side Navbar -->
-        <nav class="side-navbar">
-          <h3 class="sidebar-header">Meal Type</h3>
-          <label class="form-check-label" style="display: block;" v-for="mealType in mealTypes" :key="mealType">
-            <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
-          </label>
-          <button class="btn btn-primary" @click="applyFilters">Apply</button>
-        </nav>
+      <!-- Side Navbar -->
+      <nav class="side-navbar">
+        <h3 class="sidebar-header">Meal Type</h3>
+        <label class="form-check-label" style="display: block;" v-for="mealType in mealTypes" :key="mealType">
+          <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
+        </label>
+        <button class="btn btn-primary" @click="applyFilters">Apply</button>
+      </nav>
 
-        <!-- Album Content -->
-        <div class="album-container">
-          <h1>Explore Recipes</h1>
-          <br>
-          <div class="row">
-            <RecipeCard
-              v-for="recipe in filteredRecipes"
-              :key="recipe.id"
-              :recipe="recipe"
-              class="col-md-3"
-            />
-          </div>
+      <!-- Album Content -->
+      <div class="album-container">
+        <h1>Explore Recipes</h1>
+        <br>
+        <div class="recipe-grid">
+          <RecipeCard
+            v-for="recipe in filteredRecipes"
+            :key="recipe.id"
+            :recipe="recipe"
+            class="recipe-card"
+          />
         </div>
       </div>
     </div>
@@ -87,72 +85,66 @@ export default {
 
 <style>
 .outer-container {
-  position: relative; /* Apply relative positioning to the new container */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+  overflow: auto; /* Allow the entire page to scroll when needed */
 }
 
 .community-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.community-content {
-  display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .side-navbar {
-  position: absolute; /* Fixed positioning */
-  top: 0; /* Position it at the top */
-  left: 0; /* Position it at the left */
-  width: 250px; /* Adjust the width as needed */
+  width: 250px;
   background-color: #EAFAFF;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 20px; /* Margin between navbar and album */
-  height: 100vh; /* 100% of the viewport height */
-  overflow-y: auto; /* Allow scrolling within the sidebar */
+  margin-right: 20px;
+  height: 100vh; /* Side navbar height remains fixed */
+  overflow-y: auto; /* Allow scrolling within the side navbar */
 }
-
 
 /* Updated styles to align checkboxes */
 .form-check-label {
   display: flex;
   align-items: center;
-  margin-bottom: 10px; /* Adjust the spacing between checkboxes */
+  margin-bottom: 10px;
 }
 
 .form-check-input {
-  margin-right: 10px; /* Adjust the spacing between the checkbox and label text */
+  margin-right: 10px;
 }
 
 .album-container {
-  flex: 1; /* Allow the album content to take up all available space */
-  margin-left: 20px;
-  max-height: 100vh; /* Set a maximum height to prevent it from overflowing */
-  overflow-y: auto; /* Allow vertical scrolling if content exceeds the viewport height */
+  flex: 1;
+  padding: 20px;
 }
 
-.card {
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Create a grid layout with 3 columns per row */
+  gap: 20px;
+}
+
+.recipe-card {
   border: none;
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
-.card:hover {
+.recipe-card:hover {
   transform: scale(1.02);
 }
 
 .page-title {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333; /* Dark text color */
+  color: #333;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Improved spacing between recipe cards */
-}
 </style>
