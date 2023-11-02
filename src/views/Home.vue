@@ -17,14 +17,44 @@
     <div class="overlay"></div>
   </div>
   <div class="container text-center">
-    <h1>Building a greener and wholesome community through recipes</h1>
-    <h2>Your culinary journey to a greener future starts here!</h2>
+    <h1>Building a <font style="color:#25D366">greener</font> and <font style="color:#FF3D00">wholesome</font> community through recipes</h1>
+    <h2>Your culinary journey to a <font style="color:#25D366">greener</font> future starts here!</h2>
     <a class="btn_get_started">
       <router-link to="/generateRecipe" class="link-white">Get Started</router-link>
     </a>
   </div>
 </section>
-     
+
+   <!-- About Us-->
+<!-- About Us Section -->
+<section id="about" class="about">
+  <div class="container aos-init aos-animate" data-aos="fade-up">
+    <div class="section-header">
+      <h2>About Us</h2>
+    </div>
+
+    <div class="row gy-4">
+      <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+        <div class="content ps-0 ps-lg-5">
+          <h3 class="about-heading">Our Story</h3>
+          <p class="about-description">
+            With Singapore’s rising focus on tackling sustainability problems, the primary goal of SustainablEats is to empower individuals and build a positive community to make sustainable food choices and reduce wastage.
+          </p>
+          <ul class="about-list">
+            <li>This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up">
+        <div class="position-relative">
+          <img src="../assets/aboutUs.jpg" class="img-fluid about-image" alt="About Us Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
      <!-- Trending Recipes Section -->
     <section id="trending">
       <div class="container">
@@ -33,6 +63,7 @@
         </div>
         <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
           <div class="carousel-inner">
+            <!-- recipe is an object that has the attributes as the one we created in database-->
             <div
               v-for="(recipe, index) in recipes"
               :key="recipe.id"
@@ -45,6 +76,7 @@
               <div class="carousel-caption d-none d-md-block">
                 <h5>{{ recipe.creator }}</h5>
                 <p>{{ recipe.description }}</p>
+                <p>Likes: {{ recipe.likes }}</p>
               </div>
             </div>
           </div>
@@ -101,6 +133,112 @@
     </div>
   </section>
 
+  <!-- ======= Events Section ======= -->
+<section id="events" class="events">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Events</h2>
+          <p>Share <span>Your Moments</span> In Our Restaurant</p>
+        </div>
+
+        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
+              <h3>Custom Parties</h3>
+              <div class="price align-self-start">$99</div>
+              <p class="description">
+                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+              <h3>Private Parties</h3>
+              <div class="price align-self-start">$289</div>
+              <p class="description">
+                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut dolores ea assumenda et. Delectus saepe accusamus aspernatur.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+              <h3>Birthday Parties</h3>
+              <div class="price align-self-start">$499</div>
+              <p class="description">
+                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
+              </p>
+            </div><!-- End Event item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Events Section -->
+
+    <footer id="footer" class="footer">
+
+<div class="container">
+  <div class="row gy-3">
+    <div class="col-lg-3 col-md-6 d-flex">
+      <i class="bi bi-geo-alt icon"></i>
+      <div>
+        <h4>Address</h4>
+        <p>
+          A108 Adam Street <br>
+          New York, NY 535022 - US<br>
+        </p>
+      </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links d-flex">
+      <i class="bi bi-telephone icon"></i>
+      <div>
+        <h4>Reservations</h4>
+        <p>
+          <strong>Phone:</strong> +1 5589 55488 55<br>
+          <strong>Email:</strong> info@example.com<br>
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links d-flex">
+      <i class="bi bi-clock icon"></i>
+      <div>
+        <h4>Opening Hours</h4>
+        <p>
+          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
+          Sunday: Closed
+        </p>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 footer-links">
+      <h4>Follow Us</h4>
+      <div class="social-links d-flex">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="copyright">
+    &copy; Copyright <strong><span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span></strong>. All Rights Reserved
+  </div>
+  <div class="credits">
+  </div>
+</div>
+
+</footer><!-- End Footer -->
+<!-- End Footer -->
+
+
  </template>
  
  <script setup>
@@ -115,7 +253,7 @@
   const storage = getStorage();
 
   var top3UsersCoins = ref([]);
-  const recipes = ref([]); // Store all recipes
+  var recipes = ref([]); // Store all recipes
 
   onMounted(async () =>{
     // Codes for Leaderboard Ranking => Retrieving from db
@@ -131,9 +269,26 @@
         });
       });
   
-    // const recipeQuery = query(recipeSnapshot, orderBy("Likes", "desc"), limit(3)); // Can order in "likes" if implemented in future
-    // Codes for Trending Recipes => Retrieving from Db + Image from Storage 
+    
+    // Codes for Trending Recipes => Retrieving Top 5 Highest Liked Recipes from Db + Image from Storage 
       const recipesRef = collection(db, 'recipes');
+      const qRecipe = query(recipesRef, orderBy("likes", "desc"), limit(5));
+
+      const recipeSnapshot = await getDocs(qRecipe);
+      recipeSnapshot.forEach((doc) => {
+        recipes.value.push({
+          ...doc.data()
+        /*
+          creator: doc.creator,
+          description: doc.description,
+          likes: doc.likes,
+          image: getImageURL(doc.data().imageId), // Assign the image URL
+        ...doc.data(),
+        */
+        })
+      })
+      console.log(recipes);
+      /*
       const recipeSnapshot = await getDocs(recipesRef);
 
       recipes.value = recipeSnapshot.docs.map((doc) => ({
@@ -141,7 +296,7 @@
         description: doc.description,
         image: getImageURL(doc.data().imageId), // Assign the image URL
         ...doc.data(),
-      }));
+      }));*/
       
   })
   
@@ -210,7 +365,7 @@ footer {
 #hero {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 70vh;
 }
 
 #hero .video-container {
@@ -357,6 +512,302 @@ footer {
 
  .link-white {
   color: white;
+}
+
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+  /* About Us Section */
+  .about {
+    background-color: #f9f9f9; /* Set a background color for the section */
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .about h2 {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .about .call-us {
+    position: relative;
+    background-color: #fff;
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .about .call-us h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .about .call-us p {
+    font-size: 28px;
+    font-weight: 700;
+    color: #25D366; /* Green color for emphasis */
+  }
+
+  .about .content ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .about .content ul li {
+    padding: 0 0 8px 26px;
+    position: relative;
+  }
+
+  .about .content ul i {
+    position: absolute;
+    font-size: 20px;
+    left: 0;
+    top: -3px;
+    color: #FF3D00; /* Red color for icons */
+  }
+
+  .about .content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about .position-relative {
+    position: relative;
+  }
+
+  .about .position-relative img {
+    max-height: 400px;
+    width: 100%;
+    margin-left: 20px;
+    display: block;
+    object-fit: cover; /* Maintain image aspect ratio */
+  }
+
+  .about-heading {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333; /* Change the text color */
+}
+
+.about-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #555; /* Change the text color */
+  max-width: 600px; /* Set a maximum width as needed */
+  margin-left: auto; /* Center the container horizontally */
+  margin-right: auto; /* Center the container horizontally */
+}
+.about-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.about-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+
+.about-list i {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  font-size: 20px;
+  color: #25D366; /* Green color for icons */
+}
+
+.about-image {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+/* Style for the Events Section */
+#events {
+  background-color: #f9f9f9; /* Set a background color for the section */
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+#events .container-fluid {
+  text-align: center;
+}
+
+#events h2 {
+  font-weight: 700;
+  font-size: 36px;
+  margin-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  color: #333; /* Change the text color */
+}
+
+#events p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #555; /* Change the text color */
+  margin-top: 20px;
+}
+
+.events .slides-3 {
+  max-width: 1200px; /* Set the maximum width as needed */
+  margin: 0 auto;
+  margin-top: 30px;
+  position: relative;
+}
+
+.events .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.events .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 300px; /* Adjust the maximum width as needed */
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  text-align: center;
+  padding: 20px;
+}
+
+.events .swiper-slide h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333; /* Change the text color */
+}
+
+.events .swiper-slide .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #25D366; /* Green color for emphasis */
+}
+
+.events .swiper-slide .description {
+  font-size: 16px;
+  color: #555; /* Change the text color */
+  margin-top: 10px;
+}
+
+/* Style for the swiper pagination dots */
+.events .swiper-pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.events .swiper-pagination .swiper-pagination-bullet {
+  background: #333; /* Color of the pagination dots */
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%; /* Make the pagination dots circular */
+  cursor: pointer;
+}
+
+.events .swiper-pagination .swiper-pagination-bullet-active {
+  background: #25D366; /* Color of the active pagination dot */
+}
+
+/* Apply hover effect on event items */
+.events .swiper-slide:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+.footer {
+  font-size: 14px;
+  background-color: #1f1f24;
+  padding: 50px 0;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .icon {
+  margin-right: 15px;
+  font-size: 24px;
+  line-height: 0;
+}
+
+.footer h4 {
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 5px;
+  color: #fff;
+}
+
+.footer .footer-links {
+  margin-bottom: 30px;
+}
+
+.footer .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-links ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.footer .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+.footer .footer-links ul a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: 0.3s;
+  display: inline-block;
+  line-height: 1;
+}
+
+.footer .footer-links ul a:hover {
+  color: #fff;
+}
+
+.footer .social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.footer .social-links a:hover {
+  color: #fff;
+  border-color: #fff;
+}
+
+.footer .copyright {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .credits {
+  padding-top: 4px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.footer .credits a {
+  color: #fff;
 }
  </style>
  
