@@ -1,5 +1,6 @@
 <template>
   <!-- You can use your data and methods in your template -->
+  <h1></h1>
 </template>
 
 <script>

@@ -1,5 +1,105 @@
 <template>
-      <h1>Generate Recipe</h1>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <main>
+    <!-- Generator -->
+    <div class="gen-page text-center">
+        <!-- header -->
+        <h1 class="input-header mt-5">Generate New Recipe</h1>
+
+        <!-- interface -->
+        <div class="gen-interface mb-5 container">
+
+            <!-- Input -->
+            <form class="gen-form w-100 mt-5 mx-auto p-0" >
+                <div class="gen-form-row w-100 mx-auto px-0 row">
+                    <!-- Input field -->
+                    <div class="col-md-12 mb-2">
+                        <input class="gen-form-ingredients-field" type="text" placeholder="Type Here">
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="col-md-12">
+                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="submit" value="Generate" onclick="init()">
+                    </div>
+                </div>
+            </form>
+
+            <!-- Output Interface (Initially Hidden) style="display: none;"-->
+            <div class="gen-out box py-5 mx-0 container" >
+
+                <div class="gen-out-header row">
+                    <h1 class="recipe-title">Recipe Title</h1>
+                    <div>
+                        <img class="recipe-img img-fluid" src="../assets/foodItem.jpg" id="recipe_image">
+                    </div>
+                    <p class="recipe-desc">Recipe Description</p>
+                </div>
+                
+                <div class="recipe-box mx-2 row">
+                    <div class="ingredient-col col-md-6 col-sm-12 col-12">
+                        <h3 class="ingredient-header text-center">Ingredients</h3>
+                        <ul class="ingredient-list">
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
+                        <h3 class="instruction-header text-center">Steps</h3>
+                        <ol class="instruction-list">
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
+                            <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="text-center p-0 my-0 mx-0">
+                    <div class="disclaimer-divider"></div>
+                        <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
+                    <div class="disclaimer-divider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guide -->
+    <div class="guide-container mt-0 pt-5 pb-5 b-10 mx-auto container-fluid">
+
+        <div class="guide-section mt-0 pb-3 px-2 px-md-5 container">
+                <!-- Header -->
+                <div class="py-5 d-flex align-items-center row">
+                    <div class="col-md-3">
+                        <div class="py-3 container">
+                            <div class="guide-divider"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center container">
+                            <h1 class="guide-heading">Recipe Generation Guide</h1>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="py-3 container">
+                            <div class="guide-divider"></div>
+                        </div>
+                    </div>
+                </div>
+            <div class="guide-main mx-auto">
+
+                <!-- Content -->
+                <!-- Insert more here -->
+                <div class="guide-content mx-auto">
+                    <p>
+                        <strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</strong>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+  </main>
+          
 </template>
 
 <script setup>
@@ -7,3 +107,180 @@
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
 </script>
+
+<style>
+/* Generation */
+.gen-page{
+  background: url("../assets/background.png");
+  background-repeat: repeat;
+  background-size: 400px;
+  padding: 40px;
+
+  /* !important: https://www.w3schools.com/css/css_important.asp */
+  color:#002E23!important;
+}
+/*
+.input-header{}
+.gen-interface{}
+.gen-form{}
+.gen-form-row{}
+*/
+.gen-form-ingredients-field{
+  background-color: #AEDDB3!important;
+  padding: 12px 30px!important;
+  margin: 8px 0;
+  font-size: 18px!important;
+  border-radius: 25px!important;
+  border: 2px solid !important;
+  text-align: center!important;
+  width: 100%;
+}
+.gen-form-submit-btn{
+  padding: 10px 0!important;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 32px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/*
+.gen-out{}
+.recipe-title{}
+.recipe-img{}
+.recipe-desc{}
+*/
+.recipe-box{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.ingredient-col{
+  background-color: lightgray;
+  border: 3px solid #a8a8a8;
+
+}
+.ingredient-header{
+  padding: 15px;
+}
+/*
+.ingredient-list{}
+*/
+.instruction-col{
+  background-color: #AEDDB3;
+  border: 3px solid #002E23;
+
+}
+.instruction-header{
+  padding: 15px;
+}
+
+/* Guide */
+.guide-container{
+  background-color: #002e23;
+}
+.guide-section{
+  background-color: #AEDDB3;
+  border-radius: 15px;
+}
+.guide-main{
+  padding: 20px 30px;
+  background-color: #FFFBF4;
+  border-radius: 15px;
+}
+.guide-content{
+  padding: 0px 15px 15px 15px;
+}
+.guide-divider {
+  border-bottom: 2px solid black;
+  width: 100%;
+}
+/*
+.guide-header{}
+.guide-content{}
+*/
+/* Footer */
+.logo-link{
+  text-decoration: none;
+}
+.logo-a{
+  color: white; 
+  font-size: 48px; 
+  font-family: Poppins; 
+  font-weight: 700; 
+  word-wrap: break-word;
+}
+.logo-b{
+  color: #00FF47; 
+  font-size: 48px; 
+  font-family: Poppins; 
+  font-weight: 700; 
+  word-wrap: break-word;
+}
+.disclaimer-divider {
+  border-bottom: 5px solid black;
+  width: 100%;
+}
+.footer{
+  background-color: #242424;
+}
+/*
+.footer-container{}
+*/
+.footer-text{
+  font-size: 14px;
+  color: #fff;
+}
+/*
+.footer-contact{}
+.contact-card{}
+.contact-card-header{}
+.contact-card-label{}
+*/
+.header-text{
+  color: #fff;
+}
+.contact-card-content{
+  transition: color 150ms;
+}
+
+.footer-socials{
+  padding-top: 15px;
+}
+.socials-list-item{
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 0;
+
+}
+/* misc classes */
+/* div{
+  border: 1px dotted;
+} */
+a{
+  text-decoration: none;
+}
+p{
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.text-center {
+  justify-content: center;
+  text-align: center!important;
+}
+.text-start {
+  text-align: left!important;
+}
+/* 
+color scheme:
+- cream
+FFFBF4
+- light green
+AEDDB3
+- dark green
+002E23
+- black
+002E23
+*/
+</style>
