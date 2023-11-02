@@ -39,14 +39,14 @@
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list">
-                          <li v-for="ingredient in recipe.ingredients" :key="ingredient">{{ ingredient }}</li>
+                          <li v-for="ingredient in ingredientsArray">{{ ingredient }}</li>
                         </ul>
                     </div>
                     
                     <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
                         <h3 class="instruction-header text-center">Steps</h3>
                         <ol class="instruction-list">
-                          <li v-for="instruction in recipe.instructions" :key="instruction">{{ instruction }}</li>
+                          <li v-for="instruction in instructionsArray">{{ instruction }}</li>
                         </ol>
                     </div>
                 </div>
@@ -112,32 +112,33 @@
 <script>
   import axios from 'axios';
 
-  function translateRecipeContent(content) {
-  // Split the content into ingredients and instructions based on LINE BREAKS
-  const parts = content.split('\n\n');
+//   function translateRecipeContent(content) {
+//   // Split the content into ingredients and instructions based on LINE BREAKS
+//   const parts = content.split('\n\n');
+//   console.log(parts);
 
-  if (parts.length >= 2) {
-    const ingredients = parts[0].replace('Ingredients:', '').trim().split('\n');
-    const instructions = parts[1].replace('Instructions:', '').trim().split('\n');
+//   if (parts.length >= 2) {
+//     const ingredients = parts[0].replace('Ingredients:', '').trim().split('\n');
+//     const instructions = parts[1].replace('Instructions:', '').trim().split('\n');
 
-    return {
-      ingredients,
-      instructions,
-    };
-  } else {
-    return {
-      ingredients: [],
-      instructions: [],
-    };
-  }
-}
+//     return {
+//       ingredients,
+//       instructions,
+//     };
+//   } else {
+//     return {
+//       ingredients: [],
+//       instructions: [],
+//     };
+//   }
+// }
 
   export default {
 
     data() {
       return {
         //no naughty take my api key ok: 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
-        OPENAI_API_KEY: "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",
+        OPENAI_API_KEY: "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", // will key
 
         userInput:'',
 
@@ -145,8 +146,8 @@
           title: '',
           image: '',
           description: '',
-          ingredients: [],
-          instructions: [],
+          ingredientsArray: [],
+          instructionsArray: [],
         },
       };
     },
@@ -165,8 +166,8 @@
               },
               {
                   'role': 'user',
-                  'content': this.userInput
-                  // 'content': 'create a pasta recipe'
+                  // 'content': this.userInput
+                  'content': 'create a pasta recipe'
               }
             ]
         },
@@ -179,19 +180,25 @@
         }
         )
         .then(response => {
-          // placeholders
-          // this.recipe.title = response.data.title;
-          // this.recipe.image = response.data.image;
-          // this.recipe.description = response.data.description;
+          const recipeData = response.data.choices[0].message.content.split('Ingredients:\n');
+          if (recipeData.length > 1) {
+            const ingredientsPart = recipeData[1];
+            const [ingredients, instructions] = ingredientsPart.split('Instructions:\n');
+            
+            // Format ingredients and instructions as arrays
+            const ingredientsArray = ingredients.split('\n- ').map(item => item.trim());
+            const instructionsArray = instructions.split('\n').filter(item => item.trim() !== '');
+            
+            // Now, you have the ingredients and instructions in arrays
+            console.log('Ingredients:', ingredientsArray);
+            console.log('Instructions:', instructionsArray);
+          } else {
+            console.log('No ingredients and instructions found.');
+          }
 
-          const translatedContent = translateRecipeContent(response.data.choices[0].message.content); 
-          this.recipe.ingredients = translatedContent.ingredients;
-          this.recipe.instructions = translatedContent.instructions;
+          // console.log(response.data.choices[0].message); // relevant JSON data
+          // console.log(response.data.choices[0].message.content.trim()); // intended output format
 
-          console.log(response.data.choices[0].message.content.trim());
-          // console.log(JSON.stringify(response.data.choices[0].message))
-          // console.log(this.recipe.ingredients);
-          // console.log(this.recipe.instructions);
         })
         .catch(error => {
           console.error('Error fetching recipe:', error);
