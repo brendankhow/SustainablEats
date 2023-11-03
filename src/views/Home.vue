@@ -139,7 +139,7 @@
 
         <div class="section-header">
           <h2>United Nations Sustainable Development Goals(s)</h2>
-          <p>Explore <span>Your Moments</span> In Our Restaurant</p>
+          <p>Savor Sustainability at SustainablEats</p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
@@ -187,10 +187,10 @@
     <div class="col-lg-3 col-md-6 d-flex">
       <i class="bi bi-geo-alt icon"></i>
       <div>
-        <h4>Address</h4>
+        <h4>About Us</h4>
         <p>
-          A108 Adam Street <br>
-          New York, NY 535022 - US<br>
+          Subscribe<br>
+          Advertise With Us<br>
         </p>
       </div>
 
@@ -199,10 +199,10 @@
     <div class="col-lg-3 col-md-6 footer-links d-flex">
       <i class="bi bi-telephone icon"></i>
       <div>
-        <h4>Reservations</h4>
+        <h4>Contact Us</h4>
         <p>
           <strong>Phone:</strong> +1 5589 55488 55<br>
-          <strong>Email:</strong> info@example.com<br>
+          <strong>Email:</strong> SustainablEats@gmail.com<br>
         </p>
       </div>
     </div>
@@ -210,10 +210,10 @@
     <div class="col-lg-3 col-md-6 footer-links d-flex">
       <i class="bi bi-clock icon"></i>
       <div>
-        <h4>Opening Hours</h4>
+        <h4>Terms & Conditions</h4>
         <p>
-          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-          Sunday: Closed
+          Community Guidelines<br>
+          Privacy Notice<br>
         </p>
       </div>
     </div>
