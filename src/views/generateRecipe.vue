@@ -24,8 +24,11 @@
                 </div>
             </form>
 
+            <!-- Loading animation -->
+            <div class="spinner-border" v-if="loading">{{loading}}</div>
+
             <!-- Output Interface (Initially Hidden) style="display: none;"-->
-            <div class="gen-out box py-5 mx-0 container" >
+            <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
                 <div class="gen-out-header row">
                     <h1 class="recipe-title">{{ recipe.title }}</h1>
@@ -123,6 +126,8 @@
         OPENAI_API_KEY: "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", // will key
 
         userInput:'',
+        inputSubmitted: false,
+        loading: false,
 
         recipe: {
           title: '',
@@ -137,6 +142,8 @@
     methods: {
       fetchRecipe() {
         console.log(this.userInput);
+        this.loading = true;
+
         axios.post('https://api.openai.com/v1/chat/completions', 
         { 
           'model': 'gpt-3.5-turbo',
@@ -161,8 +168,9 @@
         }
         )
         .then(response => {
-          const recipeData = response.data.choices[0].message.content.split('Ingredients:\n');
-          console.log('Recipe Data:', recipeData)
+            this.loading = false;
+            const recipeData = response.data.choices[0].message.content.split('Ingredients:\n');
+            console.log('Recipe Data:', recipeData)
           // Extract the recipe title
           // console.log('unproc_title:', recipeData[0].split('\n\n'));
           // const recipeTitle = recipeData[0].split('\n\n')[1];
@@ -179,6 +187,8 @@
             // IMPORTANT
             this.recipe.ingredientsArray = ingredientsArray;
             this.recipe.instructionsArray = instructionsArray;
+            this.inputSubmitted = true;
+            this.loading = false;
 
             // Now, you have the ingredients and instructions in arrays
             console.log('Ingredients:', ingredientsArray);
@@ -240,7 +250,10 @@
   cursor: pointer;
   font-weight: 600;
 }
-
+.gen-form-submit-btn:hover{
+    opacity: 0.7;
+    background-color: #003e30;
+}
 /*
 .gen-out{}
 .recipe-title{}
