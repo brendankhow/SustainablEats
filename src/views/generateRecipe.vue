@@ -1,7 +1,6 @@
 <template>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <main>
     <!-- Generator -->
     <div class="gen-page text-center">
         <!-- header -->
@@ -68,43 +67,41 @@
     </div>
 
     <!-- Guide -->
-    <div class="guide-container mt-0 pt-5 pb-5 b-10 mx-auto container-fluid">
+  <div class="guide-container mt-0 pt-5 pb-5 b-10 mx-auto container-fluid">
 
-        <div class="guide-section mt-0 pb-3 px-2 px-md-5 container">
-                <!-- Header -->
-                <div class="py-5 d-flex align-items-center row">
-                    <div class="col-md-3">
-                        <div class="py-3 container">
-                            <div class="guide-divider"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="text-center container">
-                            <h1 class="guide-heading">Recipe Generation Guide</h1>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="py-3 container">
-                            <div class="guide-divider"></div>
-                        </div>
-                    </div>
-                </div>
-            <div class="guide-main mx-auto">
+    <div class="guide-section mt-0 pb-3 px-2 px-md-5 container">
+      <!-- Header -->
+      <div class="py-5 d-flex align-items-center row">
+          <div class="col-md-3">
+              <div class="py-3 container">
+                  <div class="guide-divider"></div>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="text-center container">
+                  <h1 class="guide-heading">Recipe Generation Guide</h1>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="py-3 container">
+                  <div class="guide-divider"></div>
+              </div>
+          </div>
+      </div>
+  <div class="guide-main mx-auto">
 
-                <!-- Content -->
-                <!-- Insert more here -->
-                <div class="guide-content mx-auto">
-                    <p>
-                        <strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</strong>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.
-                    </p>
-                </div>
-            </div>
+        <!-- Content -->
+        <!-- Insert more here -->
+        <div class="guide-content mx-auto">
+            <p>
+                <strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</strong>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.
+            </p>
         </div>
-
     </div>
+  </div>
+</div>
 
-  </main>
           
 </template>
 
@@ -385,4 +382,5 @@ AEDDB3
 - black
 002E23
 */
+
 </style>
