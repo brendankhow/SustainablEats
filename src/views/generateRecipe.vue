@@ -10,15 +10,16 @@
         <div class="gen-interface mb-5 container">
 
             <!-- Input -->
-            <form class="gen-form w-100 mt-5 mx-auto p-0" >
+            <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
+            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent>
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
                     <div class="col-md-12 mb-2">
-                        <input class="gen-form-ingredients-field" type="text" placeholder="Type Here" :value="userInput">
+                        <input class="gen-form-ingredients-field" type="text" placeholder="Type Here" v-model="userInput">
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="submit" value="Generate" @click="fetchRecipe">
+                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe">
                     </div>
                 </div>
             </form>
@@ -29,7 +30,7 @@
                 <div class="gen-out-header row">
                     <h1 class="recipe-title">{{ recipe.title }}</h1>
                     <div>
-                        <img class="recipe-img img-fluid" :src="recipe.img" id="recipe_image">
+                        <img class="recipe-img img-fluid" id="recipe_image">
                     </div>
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
@@ -37,15 +38,20 @@
                 <div class="recipe-box mx-2 row">
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
-                        <ul class="ingredient-list">
-                          <li v-for="ingredient in recipe.ingredientsArray">{{ ingredient }}</li>
+                        <ul class="ingredient-list left-aligned">
+                          <li v-for="(ingredient, index) in recipe.ingredientsArray" :key="index">
+                            <span v-if="index === 0">{{ ingredient.replace('- ', '') }}</span>
+                            <span v-else>{{ ingredient }}</span>
+                          </li>
                         </ul>
                     </div>
                     
                     <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
                         <h3 class="instruction-header text-center">Steps</h3>
-                        <ol class="instruction-list">
-                          <li v-for="instruction in recipe.instructionsArray">{{ instruction }}</li>
+                        <ol class="instruction-list left-aligned">
+                          <li v-for="instruction in recipe.instructionsArray">{{ instruction.split('. ').slice(1).join('. ') }}
+                            <span v-if="instruction === ''"></span>
+                          </li>
                         </ol>
                     </div>
                 </div>
@@ -109,27 +115,6 @@
 <script>
   import axios from 'axios';
 
-//   function translateRecipeContent(content) {
-//   // Split the content into ingredients and instructions based on LINE BREAKS
-//   const parts = content.split('\n\n');
-//   console.log(parts);
-
-//   if (parts.length >= 2) {
-//     const ingredients = parts[0].replace('Ingredients:', '').trim().split('\n');
-//     const instructions = parts[1].replace('Instructions:', '').trim().split('\n');
-
-//     return {
-//       ingredients,
-//       instructions,
-//     };
-//   } else {
-//     return {
-//       ingredients: [],
-//       instructions: [],
-//     };
-//   }
-// }
-
   export default {
 
     data() {
@@ -163,8 +148,7 @@
               },
               {
                   'role': 'user',
-                  // 'content': this.userInput
-                  'content': 'create a pasta recipe'
+                  'content': this.userInput
               }
             ]
         },
@@ -178,6 +162,12 @@
         )
         .then(response => {
           const recipeData = response.data.choices[0].message.content.split('Ingredients:\n');
+          console.log('Recipe Data:', recipeData)
+          // Extract the recipe title
+          // console.log('unproc_title:', recipeData[0].split('\n\n'));
+          // const recipeTitle = recipeData[0].split('\n\n')[1];
+          // console.log('Title:', recipeTitle);
+
           if (recipeData.length > 1) {
             const ingredientsPart = recipeData[1];
             const [ingredients, instructions] = ingredientsPart.split('Instructions:\n');
@@ -185,7 +175,11 @@
             // Format ingredients and instructions as arrays
             const ingredientsArray = ingredients.split('\n- ').map(item => item.trim());
             const instructionsArray = instructions.split('\n').filter(item => item.trim() !== '');
-            
+
+            // IMPORTANT
+            this.recipe.ingredientsArray = ingredientsArray;
+            this.recipe.instructionsArray = instructionsArray;
+
             // Now, you have the ingredients and instructions in arrays
             console.log('Ingredients:', ingredientsArray);
             console.log(ingredientsArray[3]);
@@ -373,6 +367,10 @@ p{
 .text-start {
   text-align: left!important;
 }
+.left-aligned {
+  text-align: left;
+}
+
 /* 
 color scheme:
 - cream
@@ -384,4 +382,5 @@ AEDDB3
 - black
 002E23
 */
+
 </style>

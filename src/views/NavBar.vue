@@ -61,7 +61,7 @@
   <script >
   import 'bootstrap/dist/css/bootstrap.min.css';
   import 'bootstrap/dist/js/bootstrap.min.js';
-  import { getFirestore, collection, addDoc, updateDoc, doc, getDoc } from 'firebase/firestore';
+  import { getFirestore, collection, addDoc, updateDoc, doc, getDoc, onSnapshot } from 'firebase/firestore';
   import { getAuth } from "firebase/auth";
 
   export default {
@@ -85,8 +85,12 @@
       if (user){
         const userID = user.uid;
         const userRef = doc(db, "Users", userID);
+        /*
         const getUser = await getDoc(userRef);
-        this.userCoins = getUser.data().coins;
+        this.userCoins = getUser.data().coins; */
+        onSnapshot(userRef, (doc) =>{
+          this.userCoins = doc.data().coins;
+        });
       }
   },
 
