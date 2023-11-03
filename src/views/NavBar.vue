@@ -35,7 +35,7 @@
       </li>
 
       <li class="nav-item text-white d-flex align-items-center pe-3 ms-5"> <!-- Once the moustache comes in, image disappear-->
-          <img src="../assets/coin.png" width="30px" height="30"><span class="text-white align-middle ps-1">Coins: {{ userCoins }}</span>
+          <img src="../assets/coin.png" width="30" height="30"><span class="text-white align-middle ps-1">Coins: {{ userCoins }}</span>
       </li>
 
       <!-- Still can put image, just that there will be a distance between the coin and number
