@@ -106,10 +106,12 @@
   import { getFirestore, collection, addDoc, getDoc, setDoc, updateDoc, doc } from 'firebase/firestore';
   import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
   import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication methods
+  import { useRouter } from 'vue-router' // import router
   const storage = getStorage();
   const imageUploadProgress = ref(0);
   const auth = getAuth();
   const db = getFirestore();
+  const router = useRouter() // get a reference to our vue router
 
   export default {
   data() {
@@ -117,7 +119,6 @@
       creator: '',
       user: null,
       recipeName: '',
-      creator: '',
       mealType: '',
       cuisineType: '',
       description: '',
