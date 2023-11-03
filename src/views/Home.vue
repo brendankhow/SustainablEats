@@ -180,7 +180,7 @@
       </div>
     </section><!-- End Events Section -->
 
-    <footer id="footer" class="footer">
+<footer id="footer" class="footer">
 
 <div class="container">
   <div class="row gy-3">
