@@ -10,10 +10,15 @@
       <Navbar :isLoggedIn="isLoggedIn" :handleSignOut="handleSignOut" v-if="isLoggedIn" />
   </div>
   <router-view/>
+  <div id="app">
+      <!-- {{ isLoggedIn }} -->
+      <Footer :isLoggedIn="isLoggedIn" :handleSignOut="handleSignOut" v-if="isLoggedIn" />
+  </div>
 </template>
 
 <script setup>
   import Navbar from './views/NavBar.vue'; // Import the Navbar component
+  import Footer from './views/Footer.vue';
   import 'bootstrap/dist/css/bootstrap.min.css';
   import 'bootstrap/dist/js/bootstrap.min.js';
   import axios from 'axios';
