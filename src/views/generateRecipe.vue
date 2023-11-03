@@ -373,6 +373,7 @@ p{
 .text-start {
   text-align: left!important;
 }
+
 /* 
 color scheme:
 - cream
@@ -384,4 +385,5 @@ AEDDB3
 - black
 002E23
 */
+
 </style>
