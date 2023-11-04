@@ -19,7 +19,7 @@
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe">
+                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
                     </div>
                 </div>
             </form>
@@ -31,9 +31,9 @@
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
                 <div class="gen-out-header row">
-                    <h1 class="recipe-title">{{ recipe.title }}</h1>
+                    <h1 class="recipe-title"><strong>{{ recipe.title }}</strong></h1>
                     <div>
-                        <img class="recipe-img img-fluid" id="recipe_image">
+                      <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image" />
                     </div>
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <!-- Appears only after submit button has been pressed -->
+                <!-- DISCLAIMER -->
                 <div class="text-center p-0 my-0 mx-0">
                     <div class="disclaimer-divider"></div>
                         <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
@@ -113,24 +113,26 @@
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
   import axios from 'axios';
+  import OpenAI from 'openai';
 </script>
 
 <script>
   import axios from 'axios';
+  import OpenAI from 'openai';
 
   export default {
 
     data() {
       return {
         //no naughty take my api key ok: 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
-        OPENAI_API_KEY: "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", // will key
+        OPENAI_API_KEY: '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', // will key
 
         userInput:'',
         inputSubmitted: false,
         loading: false,
 
         recipe: {
-          title: '',
+          title: '', // PLACEHOLDER
           image: '',
           description: '',
           ingredientsArray: [],
@@ -184,7 +186,9 @@
             const ingredientsArray = ingredients.split('\n- ').map(item => item.trim());
             const instructionsArray = instructions.split('\n').filter(item => item.trim() !== '');
 
-            // IMPORTANT
+            // IMPORTANT *****************************************
+            this.recipe.title = this.userInput;
+            this.recipe.description = recipeData[0];
             this.recipe.ingredientsArray = ingredientsArray;
             this.recipe.instructionsArray = instructionsArray;
             this.inputSubmitted = true;
@@ -206,6 +210,34 @@
           console.error('Error fetching recipe:', error);
         });
       },
+
+      // fetch image
+      async fetchImg() {
+
+        try {
+          const response = await axios.post('https://api.openai.com/v1/images/generations',
+           {
+            "prompt": this.userInput,
+           }, 
+           {
+            headers: {
+              'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+          });
+          if (response && response.data && response.data.url) {
+            console.log(response.data.url);
+            this.recipe.image = response.data.url;
+          } 
+          else {
+            console.error('No image URL found in the response.');
+          }
+        } 
+        catch (error) {
+          console.error('Error fetching image:', error);
+        }
+      }
+
     },
     created() {
       this.fetchRecipe();
@@ -214,6 +246,10 @@
 </script>
 
 <style>
+/* Global */
+html * {
+  font-family: "Raleway", sans-serif;
+}
 /* Generation */
 .gen-page{
   background: url("../assets/background.png");
