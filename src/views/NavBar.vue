@@ -45,9 +45,9 @@
 
       <li class="nav-item text-white d-flex align-items-center">
         <router-link to="/Profile" class="nav-link text-white">
-          <img src="../assets/sustainablEats.png" class="rounded-5" alt="" width="30" height="30">
+          <img :src="profilepic" class="rounded-5" alt="" width="50" height="50">
           <!-- Display user info when currentUser exists -->
-          <span v-if="currentUser" class="text-white align-middle ps-1">{{ currentUser.displayName }}</span>
+          <span class="text-white align-middle ps-2 ">{{ username }}</span>
         </router-link>
       </li>
       <button @click="handleSignOut" class="btn btn-outline-light" v-if="isLoggedIn">Log Out</button>
@@ -74,7 +74,10 @@
   
   data(){
     return{
-      userCoins: 0
+      userCoins: 0,
+      username: '',
+      profilepic: null,
+
     }
   },
 
@@ -90,6 +93,8 @@
         this.userCoins = getUser.data().coins; */
         onSnapshot(userRef, (doc) =>{
           this.userCoins = doc.data().coins;
+          this.username = doc.data().username;
+          this.profilepic = doc.data().profilepic;
         });
       }
   },
