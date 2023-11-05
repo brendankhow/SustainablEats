@@ -239,7 +239,6 @@
             const docSnap = await getDoc(docRef); // Use await here
     
             if (docSnap.exists) { // Correct usage
-              
               this.creator = docSnap.data().username;
             } else {
               console.log("No such document!");
