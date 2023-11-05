@@ -113,12 +113,12 @@
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
   import axios from 'axios';
-  import OpenAI from 'openai';
+  // import OpenAI from 'openai';
 </script>
 
 <script>
   import axios from 'axios';
-  import OpenAI from 'openai';
+  // import OpenAI from 'openai';
 
   export default {
 
