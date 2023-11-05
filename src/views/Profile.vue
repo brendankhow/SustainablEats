@@ -17,7 +17,14 @@
                 <p id="userdescription" style="text-align:left">{{bio}}</p>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 user_settings_button">
-                    <button class="user_settings p-3 rounded-4 border-0 fw-bold"><span><img src="../assets/gear-fill.png" width="25"> User Settings</span></button>
+                    <router-link to="/profilesettings">
+                        <button class="user_settings p-3 rounded-4 border-0 fw-bold">
+                            <span>
+                                <img src="../assets/gear-fill.png" width="25">
+                                User Settings
+                            </span>
+                        </button>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -119,29 +126,6 @@ export default {
             this.card = ''; //reset the card
             this.showcontent(type);
         },
-        // getProfilePic: async function (imageId) {
-        //     const storage = getStorage();
-        //     const imagesRef = storageRef(storage, `profilePictures/${imageId}`);
-        //     try {
-        //         this.profilepic = await getDownloadURL(imagesRef); // Use this.profilepic here
-        //         console.log(this.profilepic);
-        //     } catch (error) {
-        //         console.error('Error fetching image:', error);
-        //         return null;
-        //     }
-        // },
-
-
-        // getBannerPic: function(imageId){
-        //     const storage = getStorage();
-        //     const imagesRef = storageRef(storage, `profileBanners/${imageId}`);
-        //     try {
-        //         this.profilebanner = getDownloadURL(imagesRef);
-        //     } catch (error) {
-        //         console.error('Error fetching image:', error);
-        //         return null;
-        //     }
-        // },
         showcontent: async function(content){
             if (this.user_data) {
                 if(content == 'post'){
