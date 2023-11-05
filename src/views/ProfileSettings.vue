@@ -6,11 +6,11 @@
                 <h1 class="d-inline-block"><b>SETTINGS</b></h1>
             </div>
             <div class="col d-flex flex-row-reverse pb-2">
-                <button class="btn btn-danger text-white fw-bold">DELETE ACCOUNT</button>
+                <button class="btn btn-danger text-white fw-bold" @click="deleteaccount">DELETE ACCOUNT</button>
             </div>
             <hr>
         </div>
-        <form>
+        
             <div class="row customization">
                 <div class="container-fluid">
                     <div class="row">
@@ -78,8 +78,7 @@
                 </div>
                 <hr>
             </div>
-            </form>
-            <form>
+
             <div class="row">
                 <div class="container-fluid">
                     <img src="../assets/lock.png" height="30px" class="d-inline-block ">
@@ -128,15 +127,15 @@
                 </div>
                 <hr class="mt-2">
             </div>
-        </form>
     </div>
 </template>
 <script>
 import { useRouter } from "vue-router";
-import { getFirestore, collection, getDoc, doc, setDoc } from 'firebase/firestore';
-import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
-import { onMounted, ref } from 'vue';
+import { getFirestore, collection, getDoc, doc, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
+import { onMounted } from 'vue';
 import { getAuth, onAuthStateChanged  } from 'firebase/auth';
+const storage = getStorage();
 
 export default{
     data(){
@@ -156,47 +155,70 @@ export default{
         }
     },
     methods: {
-        previewImage(event) {
+        async previewImage(event) {
             const file = event.target.files[0];
             if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                this.profilepic = e.target.result;
-            };
-            reader.readAsDataURL(file);
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    // upload to Firebase Storage
+                    
+                    const timestamp = new Date().getTime();
+                    const randomString = Math.random().toString(36).substring(2, 8);
+                    const uniqueID = `${timestamp}_${randomString}`;
+                    const fileName = file.name + `${uniqueID}`;
+                    const storageRef = ref(storage, 'profilepictures/' + fileName);
+                    await uploadBytes(storageRef, file);
+                    
+                    // get download URL
+                    const url = await getDownloadURL(storageRef);
+                    console.log(url);
+                    this.profilepic = url;
+                };
+                reader.readAsDataURL(file);
             }
         },
-        previewBanner(event) {
+        async previewBanner(event) {
             const file = event.target.files[0];
             if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                this.bannerpic = e.target.result;
-            };
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const timestamp = new Date().getTime();
+                    const randomString = Math.random().toString(36).substring(2, 8);
+                    const uniqueID = `${timestamp}_${randomString}`;
+                    const fileName = file.name + `${uniqueID}`;
+                    const storageRef = ref(storage, 'profilebanners/' + fileName);
+                    await uploadBytes(storageRef, file);
+                        
+                    // get download URL
+                    const url = await getDownloadURL(storageRef);
+                    console.log(url);
+                    this.bannerpic = url;
+                };
             reader.readAsDataURL(file);
             }
         },
         checkPasswordCriteria() {
-        this.problems = []; // reset problems
-        if (this.new_password.length < 8) {
-            this.isPasswordInvalid = true;
-            this.problems.push('Password must be at least 8 characters long.');
-        }
-        if (!/\d/.test(this.new_password)) {
-            this.isPasswordInvalid = true;
-            this.problems.push('Password must contain at least one digit.');
-        }
-        if (!/[a-z]/.test(this.new_password)) {
-            this.isPasswordInvalid = true;
-            this.problems.push('Password must contain at least one lowercase letter.');
-        }
-        if (!/[A-Z]/.test(this.new_password)) {
-            this.isPasswordInvalid = true;
-            this.problems.push('Password must contain at least one uppercase letter.');
-        }
-        if(this.problems.length == 0 && this.confirm_password == this.new_password && this.confirm_password != "" && this.new_password != ""){
-            this.isPasswordInvalid = false;
-        }
+            this.problems = []; // reset problems
+            if (this.new_password.length < 8) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must be at least 8 characters long.');
+            }
+            if (!/\d/.test(this.new_password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one digit.');
+            }
+            if (!/[a-z]/.test(this.new_password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one lowercase letter.');
+            }
+            if (!/[A-Z]/.test(this.new_password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one uppercase letter.');
+            }
+            if(this.problems.length == 0 && this.confirm_password == this.new_password 
+            && this.confirm_password != "" && this.new_password != ""){
+                this.isPasswordInvalid = false;
+            }
         },
         checkconfirmpassword(){
             this.confirm_problems = []; // reset problems
@@ -205,6 +227,21 @@ export default{
                 this.isPasswordInvalid = true;
             }else{
                 this.isPasswordInvalid = false;
+            }
+        },
+        async updateUserdetails() {
+            const auth = getAuth();
+            const db = getFirestore();
+            const user = auth.currentUser;
+            if (user) {
+            const userRef = doc(db, 'Users', user.uid);
+            await updateDoc(userRef, {
+                username: this.username,    
+                bio: this.bio,
+                profilepic: this.profilepic,
+                profilebanner: this.bannerpic
+            });
+            this.$router.push('/profile');
             }
         },
     },
@@ -223,7 +260,6 @@ export default{
         if (user) {
             const docRef = doc(db, "Users", user.uid);
             const docSnap = await getDoc(docRef);
-            console.log(docSnap.data());
             if (docSnap.exists()) {
                 this.username = docSnap.data().username;
                 this.bio = docSnap.data().bio;
