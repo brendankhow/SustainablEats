@@ -184,7 +184,8 @@
           recipeImageURLs: this.recipeImageURLs,
           imageId: uniqueID,
           uid: userUID,
-          likes: 0
+          likes: 0,
+          reviews: []
         };
 
         const docRef = await addDoc(recipesRef, recipeData);
