@@ -122,7 +122,7 @@
                 </div>
                 <div class="row">
                     <div class="col d-flex flex-row-reverse pb-2">
-                        <button class="btn btn-primary text-white fw-bold" @click="updateUsersecurity">SUBMIT & SAVE</button>
+                        <button class="btn btn-primary text-white fw-bold" @click="updateUsersecurity" :disabled="isPasswordInvalid">SUBMIT & SAVE</button>
                         <button class="btn text-white fw-bold me-2" style="background-color: #B0B0B0;">CANCEL</button>
                     </div>
                 </div>
@@ -149,6 +149,9 @@ export default{
             bio: "",
             old_password: "",
             new_password: "",
+            isPasswordInvalid: true,
+            problems: [],
+            confirm_problems: [],
 
         }
     },
@@ -176,22 +179,32 @@ export default{
         checkPasswordCriteria() {
         this.problems = []; // reset problems
         if (this.new_password.length < 8) {
+            this.isPasswordInvalid = true;
             this.problems.push('Password must be at least 8 characters long.');
         }
         if (!/\d/.test(this.new_password)) {
+            this.isPasswordInvalid = true;
             this.problems.push('Password must contain at least one digit.');
         }
         if (!/[a-z]/.test(this.new_password)) {
+            this.isPasswordInvalid = true;
             this.problems.push('Password must contain at least one lowercase letter.');
         }
         if (!/[A-Z]/.test(this.new_password)) {
+            this.isPasswordInvalid = true;
             this.problems.push('Password must contain at least one uppercase letter.');
+        }
+        if(this.problems.length == 0 && this.confirm_password == this.new_password && this.confirm_password != "" && this.new_password != ""){
+            this.isPasswordInvalid = false;
         }
         },
         checkconfirmpassword(){
             this.confirm_problems = []; // reset problems
             if (this.confirm_password != this.new_password) {
                 this.confirm_problems.push('Password does not match.');
+                this.isPasswordInvalid = true;
+            }else{
+                this.isPasswordInvalid = false;
             }
         },
     },
