@@ -138,34 +138,38 @@
       <div class="container-fluid" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>Events</h2>
-          <p>Share <span>Your Moments</span> In Our Restaurant</p>
+          <h2>United Nations Sustainable Development Goals(s)</h2>
+          <p>Savor Sustainability at SustainablEats</p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-1.jpg)">
-              <h3>Custom Parties</h3>
-              <div class="price align-self-start">$99</div>
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(../assets/background.png)">
+              <h3>SDG 2: Zero Hunger</h3>
               <p class="description">
-                Quo corporis voluptas ea ad. Consectetur inventore sapiente ipsum voluptas eos omnis facere. Enim facilis veritatis id est rem repudiandae nulla expedita quas.
+                SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients.
               </p>
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
-              <h3>Private Parties</h3>
-              <div class="price align-self-start">$289</div>
+              <h3>SDG 11: Sustainable Cities and Communities</h3>
               <p class="description">
-                In delectus sint qui et enim. Et ab repudiandae inventore quaerat doloribus. Facere nemo vero est ut dolores ea assumenda et. Delectus saepe accusamus aspernatur.
+                Sustainable recipes often emphasise using all parts of ingredients and minimising waste.
               </p>
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
-              <h3>Birthday Parties</h3>
-              <div class="price align-self-start">$499</div>
+              <h3>SDG 12: Responsible Consumption and Production</h3>
               <p class="description">
-                Laborum aperiam atque omnis minus omnis est qui assumenda quos. Quis id sit quibusdam. Esse quisquam ducimus officia ipsum ut quibusdam maxime. Non enim perspiciatis.
+                Sustainable recipes promote the use of environmentally friendly ingredients, such as organic and locally sourced produce.
+              </p>
+            </div><!-- End Event item -->
+
+            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+              <h3>SGD 13: Climate Action: </h3>
+              <p class="description">
+                By facilitating and encouraging the sharing of sustainable food recipes, food waste would be reduced which helps lower methane emissions from landfills.              
               </p>
             </div><!-- End Event item -->
 
@@ -176,67 +180,7 @@
       </div>
     </section><!-- End Events Section -->
 
-<footer id="footer" class="footer">
 
-<div class="container">
-  <div class="row gy-3">
-    <div class="col-lg-3 col-md-6 d-flex">
-      <i class="bi bi-geo-alt icon"></i>
-      <div>
-        <h4>Address</h4>
-        <p>
-          A108 Adam Street <br>
-          New York, NY 535022 - US<br>
-        </p>
-      </div>
-
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-telephone icon"></i>
-      <div>
-        <h4>Reservations</h4>
-        <p>
-          <strong>Phone:</strong> +1 5589 55488 55<br>
-          <strong>Email:</strong> info@example.com<br>
-        </p>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
-      <i class="bi bi-clock icon"></i>
-      <div>
-        <h4>Opening Hours</h4>
-        <p>
-          <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-          Sunday: Closed
-        </p>
-      </div>
-    </div>
-
-    <div class="col-lg-3 col-md-6 footer-links">
-      <h4>Follow Us</h4>
-      <div class="social-links d-flex">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="container">
-  <div class="copyright">
-    &copy; Copyright <strong><span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span></strong>. All Rights Reserved
-  </div>
-  <div class="credits">
-  </div>
-</div>
-
-</footer><!-- End Footer -->
-<!-- End Footer -->
 
 
  </template>
@@ -720,94 +664,5 @@ footer {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
 }
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
-.footer {
-  font-size: 14px;
-  background-color: #1f1f24;
-  padding: 50px 0;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.footer .icon {
-  margin-right: 15px;
-  font-size: 24px;
-  line-height: 0;
-}
-
-.footer h4 {
-  font-size: 16px;
-  font-weight: bold;
-  position: relative;
-  padding-bottom: 5px;
-  color: #fff;
-}
-
-.footer .footer-links {
-  margin-bottom: 30px;
-}
-
-.footer .footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer .footer-links ul li {
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-}
-
-.footer .footer-links ul li:first-child {
-  padding-top: 0;
-}
-
-.footer .footer-links ul a {
-  color: rgba(255, 255, 255, 0.6);
-  transition: 0.3s;
-  display: inline-block;
-  line-height: 1;
-}
-
-.footer .footer-links ul a:hover {
-  color: #fff;
-}
-
-.footer .social-links a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
-  margin-right: 10px;
-  transition: 0.3s;
-}
-
-.footer .social-links a:hover {
-  color: #fff;
-  border-color: #fff;
-}
-
-.footer .copyright {
-  text-align: center;
-  padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer .credits {
-  padding-top: 4px;
-  text-align: center;
-  font-size: 13px;
-}
-
-.footer .credits a {
-  color: #fff;
-}
  </style>
  
