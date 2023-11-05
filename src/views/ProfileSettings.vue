@@ -87,7 +87,7 @@
                 <div class="row mb-3 mt-2">
                     <label for="email" class="col-lg-2 col-md-12 col-form-label fw-bold">EMAIL ADDRESS:</label>
                     <div class="col-lg-10 col-md-12 col-sm-12">
-                        <input type="email" class="form-control border-0" id="email" style="background-color:#EDF8FF;" v-model="email">
+                        <input type="email" class="form-control border-0" id="email" style="background-color:#e6edec;" v-model="email" disabled>
                     </div>
                 </div>
                 <div class="row mb-3 mt-2">
@@ -122,7 +122,9 @@
                 <div class="row">
                     <div class="col d-flex flex-row-reverse pb-2">
                         <button class="btn btn-primary text-white fw-bold" @click="updateUsersecurity" :disabled="isPasswordInvalid">SUBMIT & SAVE</button>
-                        <button class="btn text-white fw-bold me-2" style="background-color: #B0B0B0;">CANCEL</button>
+                        <button class="btn text-white fw-bold me-2" style="background-color: #B0B0B0;">
+                            <router-link to="/profile" class="nav-link text-white">CANCEL</router-link>
+                        </button>
                     </div>
                 </div>
                 <hr class="mt-2">
@@ -134,7 +136,7 @@ import { useRouter } from "vue-router";
 import { getFirestore, collection, getDoc, doc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { onMounted } from 'vue';
-import { getAuth, onAuthStateChanged  } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 const storage = getStorage();
 
 export default{
@@ -219,6 +221,7 @@ export default{
             && this.confirm_password != "" && this.new_password != ""){
                 this.isPasswordInvalid = false;
             }
+            return true;
         },
         checkconfirmpassword(){
             this.confirm_problems = []; // reset problems
@@ -228,6 +231,7 @@ export default{
             }else{
                 this.isPasswordInvalid = false;
             }
+            return true;
         },
         async updateUserdetails() {
             const auth = getAuth();
@@ -242,6 +246,39 @@ export default{
                 profilebanner: this.bannerpic
             });
             this.$router.push('/profile');
+            }
+        },
+        async updateUsersecurity(){
+            const auth = getAuth();
+            const db = getFirestore();
+            const user = auth.currentUser;
+            if (user) {
+                if (this.new_password != this.confirm_password){
+                    this.isPasswordInvalid = true;
+                }
+
+                if(this.checkPasswordCriteria() == true && this.checkconfirmpassword() == true && 
+                    this.isPasswordInvalid == false && this.email != "" 
+                    && this.old_password != "" && this.new_password != ""
+                ){
+                    const credential = EmailAuthProvider.credential(user.email,this.old_password);
+                    reauthenticateWithCredential(user, credential)
+                    .then(async (result) => {
+                        console.log(this.email);
+                        //Password entered is correct
+                        console.log(result)
+                        await updatePassword(user, this.new_password).then(() => {
+                            // Update successful.
+                            this.$router.push('/profile');
+                        }).catch((error) => {
+                            console.log(error);
+                        }) 
+                    })
+                    .catch((error) => {
+                        //Incorrect password or some other error
+                        console.log(error)
+                    });
+                }   
             }
         },
     },
@@ -265,6 +302,7 @@ export default{
                 this.bio = docSnap.data().bio;
                 this.profilepic = docSnap.data().profilepic;
                 this.bannerpic = docSnap.data().profilebanner;
+                this.email = docSnap.data().email;
             }
         }
         });
