@@ -53,9 +53,9 @@
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
                 <div class="gen-out-header row">
-                    <h1 class="recipe-title"><strong>{{ recipe.title }}</strong></h1>
+                    <!-- <h1 class="recipe-title"><strong>{{ recipe.title }}</strong></h1> -->
                     <div>
-                      <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image" />
+                      <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
                     </div>
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
@@ -122,8 +122,10 @@
                 <strong>Include your cuisine of choice.</strong>
                 Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
                 American, Mediterranean, Chinese, etc.
+                <br><br>
                 <strong>Prioritize certain ingredients to be used.</strong>
                 Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
+                <br><br>
                 <strong>ALLERGIES</strong>
                 If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
             </p>
@@ -154,7 +156,7 @@
         //no naughty take my api key ok: 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
         OPENAI_API_KEY: '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', // will key
 
-        // userInput:'',
+        // user inputs
         cuisineType:'',
         dietaryRestrictions:'',
         prioritizedIngredients:'',
@@ -163,7 +165,7 @@
         loading: false,
 
         recipe: {
-          title: '', // PLACEHOLDER
+          // title: '',
           image: '',
           description: '',
           ingredientsArray: [],
@@ -172,9 +174,14 @@
       };
     },
 
-    methods: {
-      fetchRecipe() {
+    computed: {
+      userInput() {
+        return `I want a ${this.cuisineType} type recipe. I am allergic to ${this.dietaryRestrictions} and prioritize using ${this.prioritizedIngredients}.`
+      },
+    },
 
+    methods: {
+      async fetchRecipe() {
         this.loading = true;
 
         axios.post('https://api.openai.com/v1/chat/completions', 
@@ -188,7 +195,7 @@
               },
               {
                   'role': 'user',
-                  'content': `I want a ${this.cuisineType} type recipe. I am allergic to ${this.dietaryRestrictions} and prioritize using ${this.prioritizedIngredients}.`
+                  'content': this.userInput,
               }
             ]
         },
@@ -218,7 +225,7 @@
             const instructionsArray = instructions.split('\n').filter(item => item.trim() !== '');
 
             // IMPORTANT *****************************************
-            this.recipe.title = this.userInput;
+            // this.recipe.title = this.userInput;
             this.recipe.description = recipeData[0];
             this.recipe.ingredientsArray = ingredientsArray;
             this.recipe.instructionsArray = instructionsArray;
@@ -244,11 +251,26 @@
 
       // fetch image
       async fetchImg() {
-      }
+            const response = await axios.post(
+            "https://api.openai.com/v1/images/generations",
+            {
+                prompt: this.userInput,
+                n: 1,
+                size: '256x256',
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${this.OPENAI_API_KEY}`,
+                },
+            }
+            );
+            this.recipe.image = response.data.data[0].url;
+        },
 
     },
     created() {
       this.fetchRecipe();
+      this.fetchImg();
     }
   };
 </script>
@@ -296,7 +318,6 @@
 }
 /*
 .gen-out{}
-.recipe-title{}
 .recipe-img{}
 .recipe-desc{}
 */
