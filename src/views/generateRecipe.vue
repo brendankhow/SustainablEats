@@ -14,8 +14,30 @@
             <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent>
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
-                    <div class="col-md-12 mb-2">
+                    <!-- <div class="col-md-12 mb-2">
                         <input class="gen-form-ingredients-field" type="text" placeholder="Type Here" v-model="userInput">
+                    </div> -->
+
+                    <!-- Cuisine Type Dropdown -->
+                    <div class="col-md-12 mb-2">
+                      <label for="cuisineType">Cuisine Type:</label>
+                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType">
+                        <option value="Chinese">Chinese</option>
+                        <option value="Western">Western</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Korean">Korean</option>
+                      </select>
+                    </div>
+                    <!-- Dietary Restriction Text Area -->
+                    <div class="col-md-12 mb-2">
+                      <label for="dietaryRestrictions">Dietary Restrictions:</label>
+                      <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
+                    </div>
+                    <!-- Prioritized Ingredients Text Area -->
+                    <div class="col-md-12 mb-2">
+                      <label for="prioritizedIngredients">Prioritized Ingredients:</label>
+                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" v-model="prioritizedIngredients"></textarea>
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12">
@@ -132,7 +154,11 @@
         //no naughty take my api key ok: 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
         OPENAI_API_KEY: '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', // will key
 
-        userInput:'',
+        // userInput:'',
+        cuisineType:'',
+        dietaryRestrictions:'',
+        prioritizedIngredients:'',
+        
         inputSubmitted: false,
         loading: false,
 
@@ -148,7 +174,7 @@
 
     methods: {
       fetchRecipe() {
-        console.log(this.userInput);
+
         this.loading = true;
 
         axios.post('https://api.openai.com/v1/chat/completions', 
@@ -162,7 +188,7 @@
               },
               {
                   'role': 'user',
-                  'content': this.userInput
+                  'content': `I want a ${this.cuisineType} type recipe. I am allergic to ${this.dietaryRestrictions} and prioritize using ${this.prioritizedIngredients}.`
               }
             ]
         },
@@ -218,33 +244,6 @@
 
       // fetch image
       async fetchImg() {
-        const openai = new OpenAI({apiKey: this.OPENAI_API_KEY, dangerouslyAllowBrowser: true});
-
-        try {
-          const response = await openai.createImage(
-           {
-              prompt: this.userInput,
-              n: 1,
-              size: "1024x1024",
-           }, 
-           {
-            headers: 
-            {
-              'Authorization': `Bearer ${apiKey}`,
-              'Content-Type': 'application/json',
-            },
-          });
-          if (response && response.data && response.data.url) {
-            console.log(response.data.data[0].url);
-            this.recipe.image = response.data.data[0].url;
-          }
-          else {
-            console.error('No image URL found in the response.');
-          }
-        } 
-        catch (error) {
-          console.error('Error fetching image:', error);
-        }
       }
 
     },
@@ -255,10 +254,6 @@
 </script>
 
 <style>
-/* Global */
-html * {
-  font-family: "Raleway", sans-serif;
-}
 /* Generation */
 .gen-page{
   background: url("../assets/background.png");
