@@ -5,52 +5,68 @@
         <h1 class="card-title">Create Recipe</h1>
 
         <div class="table">
-          
+          <!-- Easiest to hardest input -->
+
             <div class="row">
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
-                <label for="imageUpload" class="form-label">Recipe Image:</label>
-                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
-              </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
+              
                 <label for="recipeName" class="form-label">Recipe Name:</label>
-                <input type="text" id="recipeName" v-model="recipeName" class="form-control">
-              </div>
+                <input type="text" id="recipeName" v-model="recipeName" class="form-control" :title="isEmpty ? 'Recipe Name is required' : ''"
+                @focus="isEmpty = false" 
+                @blur="isEmpty = recipeName.trim() === ''"
+                :class="{'is-invalid': !recipeName}">
+                <div v-if="!recipeName" class="text-danger">Recipe Name is required!</div>
+              
             </div>
 
             <div class="row">
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
+              
                 <label for="creator" class="form-label">Creator:</label>
-                <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user">
+                <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
                 <input type="text" id="creator" v-model="creator" class="form-control" v-else>
-              </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
+              
+            </div>
+
+            <div class="row">
+              
                 <label for="mealType" class="form-label">Meal Type:</label>
-                <select id="mealType" v-model="mealType" class="form-select">
+                <select id="mealType" v-model="mealType" class="form-select" :class="{'is-invalid': !mealType}">
                   <option value="Breakfast">Breakfast</option>
                   <option value="Brunch">Brunch</option>
                   <option value="Lunch">Lunch</option>
                   <option value="Dinner">Dinner</option>
                   <option value="Supper">Supper</option>
                 </select>
-              </div>
+                <div v-if="!mealType" class="text-danger">Choose one meal type!</div>
             </div>
               
             <div class="row">
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
+              
                 <label for="cuisineType" class="form-label">Cuisine Type:</label>
-                <select id="cuisineType" v-model="cuisineType" class="form-select">
+                <select id="cuisineType" v-model="cuisineType" class="form-select" :class="{'is-invalid': !cuisineType}">
                   <option value="Chinese">Chinese</option>
                   <option value="Western">Western</option>
                   <option value="Italian">Italian</option>
                   <option value="Japanese">Japanese</option>
                   <option value="Korean">Korean</option>
                 </select>
-              </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12 form-group mt-4">
+                <div v-if="!mealType" class="text-danger">Choose one cuisine type!</div>
+
+            </div>
+
+            <div class="row">
+              
                 <label for="description" class="form-label">Description:</label>
                 <textarea id="description" v-model="description" class="form-control"></textarea>
-              </div>
+                <p class="text-muted text-counter">{{ remainingChar }}</p>
             </div>
+            
+            <div class="row">
+                
+                <label for="imageUpload" class="form-label">Recipe Image:</label>
+                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
+              
+            </div>
+
         </div>
         
 
@@ -143,6 +159,11 @@
       imageUploadProgress: 0,
       recipeImageURLs: [],
     };
+  },
+  computed:{
+    remainingChar(){
+      return 256 - this.description.length;
+    },
   },
   methods: {
     addIngredient: function (){
@@ -296,7 +317,18 @@
       margin-bottom: 20px;
       color: #333; /* Text color */
     }
-  
+
+    .is-invalid{
+      border-color: #D9534F;
+    }
+    .form-control,
+    .form-select{
+      margin-bottom: 5px;
+    }
+    .text-counter{
+      text-align: right;
+    }
+
     /* Ingredient and Step items styles */
     .ingredient-item,
     .step-item {
