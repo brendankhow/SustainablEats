@@ -3,49 +3,58 @@
     <div class="card">
       <div class="card-body">
         <h1 class="card-title">Create Recipe</h1>
-  
-        <div class="row">
-          <div class="form-group mt-4">
-            <label for="imageUpload" class="form-label">Recipe Image:</label>
-            <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
-          </div>
-          <div class="form-group mt-4">
-            <label for="imageUpload" class="form-label">Recipe Name:</label>
-            <input type="text" id="imageUpload" v-model="recipeName" class="form-control">
-          </div>
-          
-          <div class="form-group mt-4">
-            <label for="creator" class="form-label">Creator:</label>
-            <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user">
-            <input type="text" id="creator" v-model="creator" class="form-control" v-else>
-          </div>
-  
-          <div class="form-group">
-            <label for="mealType" class="form-label">Meal Type:</label>
-            <select id="mealType" v-model="mealType" class="form-select">
-              <option value="Breakfast">Breakfast</option>
-              <option value="Brunch">Brunch</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Supper">Supper</option>
-            </select>
-          </div>
-  
-          <div class="form-group">
-            <label for="cuisineType" class="form-label">Cuisine Type:</label>
-            <select id="cuisineType" v-model="cuisineType" class="form-select">
-              <option value="Chinese">Chinese</option>
-              <option value="Western">Western</option>
-              <option value="Italian">Italian</option>
-              <option value="Japanese">Japanese</option>
-              <option value="Korean">Korean</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="description" class="form-label">Description:</label>
-            <textarea id="description" v-model="description" class="form-control"></textarea>
+
+        <!-- Modify into a table with 3 rows so that items are aligned -->
+        <div class="table">
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="row form-group mt-4">
+                <label for="imageUpload" class="form-label">Recipe Image:</label>
+                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
+              </div>
+              <div class="row form-group mt-4">
+                <label for="recipeName" class="form-label">Recipe Name:</label>
+                <input type="text" id="recipeName" v-model="recipeName" class="form-control">
+              </div>
+              
+              <div class="row form-group mt-4">
+                <label for="creator" class="form-label">Creator:</label>
+                <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user">
+                <input type="text" id="creator" v-model="creator" class="form-control" v-else>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <div class="row form-group mt-4">
+                <label for="mealType" class="form-label">Meal Type:</label>
+                <select id="mealType" v-model="mealType" class="form-select">
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Brunch">Brunch</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Supper">Supper</option>
+                </select>
+              </div>
+        
+              <div class="row form-group mt-4">
+                <label for="cuisineType" class="form-label">Cuisine Type:</label>
+                <select id="cuisineType" v-model="cuisineType" class="form-select">
+                  <option value="Chinese">Chinese</option>
+                  <option value="Western">Western</option>
+                  <option value="Italian">Italian</option>
+                  <option value="Japanese">Japanese</option>
+                  <option value="Korean">Korean</option>
+                </select>
+              </div>
+              <div class="row form-group mt-4">
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" v-model="description" class="form-control"></textarea>
+              </div>
+            </div>
           </div>
         </div>
+        
+
+        
         <div class="form-group mt-4">
           <h3>Ingredients</h3>
           <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-item">
