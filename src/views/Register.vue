@@ -30,11 +30,11 @@
                         <hr><p>Login Via</p>
                     </div>
             </form>
-            <div class="social-icons">
+            <!-- <div class="social-icons">
                 <div>
                     <span v-on:click="signInWithGoogle()" class="fa fa-google" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 50px; text-align: center; width: auto; cursor: pointer;">Sign in with Google</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -84,16 +84,16 @@
     }
 };
 
-    const signInWithGoogle = () => {
-        signInWithPopup(getAuth(), provider)
-            .then((result) => {
-                console. log (result.user);
-                router. push("/home");
-            })
-            .catch((error) => {
+    // const signInWithGoogle = () => {
+    //     signInWithPopup(getAuth(), provider)
+    //         .then((result) => {
+    //             console. log (result.user);
+    //             router. push("/home");
+    //         })
+    //         .catch((error) => {
 
-            });
-    };
+    //         });
+    // };
 
 </script>
 
