@@ -97,8 +97,13 @@
         <!-- Insert more here -->
         <div class="guide-content mx-auto">
             <p>
-                <strong>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.</strong>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae animi ad minima veritatis dolore. Architecto facere dignissimos voluptate fugit ratione molestias quis quidem exercitationem voluptas.
+                <strong>Include your cuisine of choice.</strong>
+                Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
+                American, Mediterranean, Chinese, etc.
+                <strong>Prioritize certain ingredients to be used.</strong>
+                Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
+                <strong>ALLERGIES</strong>
+                If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
             </p>
         </div>
     </div>
@@ -118,7 +123,7 @@
 
 <script>
   import axios from 'axios';
-  // import OpenAI from 'openai';
+  import OpenAI from 'openai';
 
   export default {
 
@@ -213,22 +218,26 @@
 
       // fetch image
       async fetchImg() {
+        const openai = new OpenAI({apiKey: this.OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
         try {
-          const response = await axios.post('https://api.openai.com/v1/images/generations',
+          const response = await openai.createImage(
            {
-            "prompt": this.userInput,
+              prompt: this.userInput,
+              n: 1,
+              size: "1024x1024",
            }, 
            {
-            headers: {
-              'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
+            headers: 
+            {
+              'Authorization': `Bearer ${apiKey}`,
               'Content-Type': 'application/json',
             },
           });
           if (response && response.data && response.data.url) {
-            console.log(response.data.url);
-            this.recipe.image = response.data.url;
-          } 
+            console.log(response.data.data[0].url);
+            this.recipe.image = response.data.data[0].url;
+          }
           else {
             console.error('No image URL found in the response.');
           }
