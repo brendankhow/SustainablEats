@@ -1,6 +1,6 @@
 <template>
   <div class="recipe-card">
-    <img :src="recipe.recipeImageURLs" class="card-img-top" alt="Recipe Image">
+    <img :src="recipe.recipeImageURLs + '?timestamp=' + Date.now()" class="card-img-top" alt="Recipe Image">
     <div class="card-body">
       <h5 class="card-title">{{ recipe.name }}</h5>
       <p class="card-creator">{{ recipe.creator }}</p>

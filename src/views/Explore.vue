@@ -55,7 +55,8 @@ onMounted(async () => {
 const getImageURL = async (imageId) => {
   const imagesRef = storageRef(storage, `recipeImages/${imageId}`);
   try {
-    return await getDownloadURL(imagesRef);
+    const url = await getDownloadURL(imagesRef);
+    return `${url}?timestamp=${Date.now()}`; // Add a cache-busting query parameter
   } catch (error) {
     console.error('Error fetching image:', error);
     return null;

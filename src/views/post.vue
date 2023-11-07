@@ -2,7 +2,7 @@
     <div class="recipe-details">
 
       <div class="recipe-image">
-        <img :src="recipe.recipeImageURLs" alt="Recipe Image" />
+        <img :src="imageURL" alt="Recipe Image" />
       </div>
 
       <div class="recipe-info">
@@ -103,27 +103,28 @@
   const recentReviews = ref([]); // To store the four most recent reviews
 
   onMounted(async () => {
-    const storage = getStorage();
-  
-    try {
-      const recipeSnapshot = await getDoc(recipeRef);
-  
-      if (recipeSnapshot.exists()) {
-        recipe.value = recipeSnapshot.data();
-        const imageID = recipe.value.imageId; // Assuming the image ID is stored in the recipe data
-        const fileName = `recipeImages/${imageID}`;
-        const storageReference = storageRef(storage, fileName);
-        imageURL.value = await getDownloadURL(storageReference);
-        const reviews = recipe.value.reviews;
-        recentReviews.value = reviews; 
-      } else {
-        console.error('Recipe not found.');
-      }
-    } 
-    catch (error) {
-      console.error('Error fetching recipe data:', error);
+  const storage = getStorage();
+
+  try {
+    const recipeSnapshot = await getDoc(recipeRef);
+
+    if (recipeSnapshot.exists()) {
+      recipe.value = recipeSnapshot.data();
+      const imageID = recipe.value.imageId; // Assuming the image ID is stored in the recipe data
+      const fileName = `recipeImages/${imageID}`;
+      const storageReference = storageRef(storage, fileName);
+      const url = await getDownloadURL(storageReference);
+      imageURL.value = `${url}?timestamp=${Date.now()}`; // Add a cache-busting query parameter
+      const reviews = recipe.value.reviews;
+      recentReviews.value = reviews; 
+    } else {
+      console.error('Recipe not found.');
     }
-  });
+  } 
+  catch (error) {
+    console.error('Error fetching recipe data:', error);
+  }
+});
 
   async function AddReview(){
     iShowMessage = true;
