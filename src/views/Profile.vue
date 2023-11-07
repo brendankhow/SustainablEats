@@ -52,7 +52,7 @@
     <div class="album py-5">
         <div class="container" id="chosencontent">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
-            <div class="col" style="max-width: 300px;" v-for="recipe_card of recipe_cards" v-if="recipe_cards">
+            <div class="col" style="max-width: 300px;" v-for="recipe_card of recipe_cards" v-if="recipe_cards && recipe_cards.length">
                 <div class="card">
                     <!-- Set the max-height for the image container -->
                     <div style="max-height: 250px; overflow: hidden;">
@@ -72,11 +72,8 @@
                     </div>
                 </div>
             </div>
-            <h1 class="col text-center" v-else>No content to display</h1>
+            <h1 class="container text-center" v-else>No content to display</h1>
         </div>
-        
-        
-        
         </div>
     </div>
 </div>
