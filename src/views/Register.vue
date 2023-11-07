@@ -30,11 +30,6 @@
                         <hr><p>Login Via</p>
                     </div>
             </form>
-            <!-- <div class="social-icons">
-                <div>
-                    <span v-on:click="signInWithGoogle()" class="fa fa-google" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 50px; text-align: center; width: auto; cursor: pointer;">Sign in with Google</span>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -62,6 +57,7 @@
         // Specify the document ID as the user's UID
         const userDoc = doc(db, "Users", uid);
 
+        //https://ui-avatars.com/api/?name=different+Case&background=random -> api
         await setDoc(userDoc, {
             username: email.value.split("@")[0],
             bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
@@ -80,20 +76,12 @@
         await router.push('/home'); // redirect to the feed 
     
     } catch (error) {
+        if(error.code === 'auth/email-already-in-use'){
+            emit('showNotification', 'This email is already registered. Please use a different email.');
+        }
         router.push('/Register');
     }
 };
-
-    // const signInWithGoogle = () => {
-    //     signInWithPopup(getAuth(), provider)
-    //         .then((result) => {
-    //             console. log (result.user);
-    //             router. push("/home");
-    //         })
-    //         .catch((error) => {
-
-    //         });
-    // };
 
 </script>
 
