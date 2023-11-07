@@ -92,9 +92,14 @@
         const getUser = await getDoc(userRef);
         this.userCoins = getUser.data().coins; */
         onSnapshot(userRef, (doc) =>{
-          this.userCoins = doc.data().coins;
-          this.username = doc.data().username;
-          this.profilepic = doc.data().profilepic;
+          try{
+            this.userCoins = doc.data().coins;
+            this.username = doc.data().username;
+            this.profilepic = doc.data().profilepic;
+          }
+          catch{
+            console.log("");
+          }
         });
       }
   },
