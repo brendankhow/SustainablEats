@@ -26,16 +26,6 @@
                         <p>Don't have an account?
                         <a><router-link to="/register">Register</router-link></a></p> <!-- Input sign up page reference -->
                     </div>
-
-                    <div class = "login-via">
-                        <hr><p>Login Via</p>
-                    </div>
-
-                    <div class="social-icons">
-                        <div>
-                            <span v-on:click="signInWithGoogle()" class="fa fa-google" style="display: inline-block; padding: 10px 20px; background-color: #4285F4; color: white; border-radius: 50px; text-align: center; width: auto; cursor: pointer;">Sign in with Google</span>
-                        </div>
-                    </div>
             </form>
         </div>
     </div>
@@ -51,7 +41,7 @@
     const errMsg = ref() // ERROR MESSAGE
     const router = useRouter() // get a reference to our vue router
     const provider = new GoogleAuthProvider();
-
+    
     const validateUser = () => {
         // need value because ref()
         const auth = getAuth() // from firebase/auth
