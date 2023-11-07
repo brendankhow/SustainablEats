@@ -1,17 +1,14 @@
 <template>
-    <!-- ModifyRecipe form with autofilled fields -->
-    <form>
-      <label for="recipeName">Recipe Name</label>
-      <input id="recipeName" v-model="recipeDetails.recipeName" />
-  
-      <!-- Autofill other fields similarly -->
-      <!-- ... -->
-  
-      <!-- Allow further inputs if the user chooses to do so -->
-      <!-- ... -->
-  
-      <button type="submit">Save Changes</button>
-    </form>
+    <!-- intend to autofill with recipe data from GenerateRecipe -->
+<div>
+    <input v-model="recipeDetails.recipeName" />
+    <input v-model="recipeDetails.image" />
+    <input v-model="recipeDetails.cuisineType"/>>
+    <input v-model="recipeDetails.dietaryRestrictions"/>
+    <input v-model="recipeDetails.prioritizedIngredients"/>
+    <input v-model="recipeDetails.ingredientsArray"/>
+    <input v-model="recipeDetails.instructionsArray"/>
+</div>
 </template>
   
 <script setup>
@@ -23,13 +20,32 @@
 </script>
 
 <script>
-  export default {
+export default {
+    setup() { },
+    data() { },
     props: {
+        // from generator, object
+        // const recipeDetails = 
+        // {
+        //   recipeName: this.recipe.recipeName,
+        //   image: this.recipe.image,
+        //   cuisineType: this.recipe.cuisineType,
+        //   dietaryRestrictions: this.recipe.dietaryRestrictions,
+        //   prioritizedIngredients: this.recipe.prioritizedIngredients,
+        //   ingredientsArray: this.recipe.ingredientsArray,
+        //   instructionsArray: this.recipe.instructionsArray,
+        // };
       recipeDetails: {
         type: Object,
         required: true,
       },
     },
+    computed: {
+        
+    },
+    methods: {
+        
+    }
   };
 </script>
   
