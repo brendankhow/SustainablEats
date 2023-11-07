@@ -313,7 +313,7 @@
           instructionsArray: this.recipe.instructionsArray,
         };
         // Navigate to the ModifyRecipe page and pass the recipe details
-        this.$router.push({ path: '/modify-recipe', query: { recipeDetails } });
+        this.$router.push({ path: '/ModifyRecipe', query: { recipeDetails } });
 
     },
   },

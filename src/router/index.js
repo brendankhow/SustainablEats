@@ -28,7 +28,7 @@ const router = createRouter({
     { path: "/register", component: () => import("../views/Register.vue") },
     { path: "/sign-in", component: () => import("../views/SignIn.vue") },
     { path: "/createRecipe", component: () => import("../views/CreateRecipe.vue") },
-    { path: "/generateRecipe", component: () => import("../views/GenerateRecipe.vue") },
+    { path: "/GenerateRecipe", component: () => import("../views/GenerateRecipe.vue") },
     { path: "/generateImg", component: () => import("../views/generateImg_test.vue") },
     // { path: "/post", component: () => import("../views/Post.vue") },
     {
@@ -46,8 +46,7 @@ const router = createRouter({
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
     { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
-    { path: "/modifyrecipe", name: "ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"),
-      props: (route) => ({recipeDetails: route.params.recipeDetails,}),},
+    { path: "/ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"), props: true /* Enables passing route parameters as props */},
   ],  
 });
 
