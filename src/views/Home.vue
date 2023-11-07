@@ -122,7 +122,7 @@
             <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
              style="height: 300px; width: 100%; display: block">
              <hr>
-            <div class="card-body">
+            <div class="card-body ">
               <h3 class="card-title">{{ user.name }}</h3>
               <h3 class="card-text" style="display: inline-block">{{ user.coin }}</h3>
               <img class="mx-2" src="../assets/coin.png" style="height: 75px; width: 25%; display: inline;">
@@ -167,7 +167,7 @@
             </div><!-- End Event item -->
 
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
-              <h3>SGD 13: Climate Action: </h3>
+              <h3>SDG 13: Climate Action: </h3>
               <p class="description">
                 By facilitating and encouraging the sharing of sustainable food recipes, food waste would be reduced which helps lower methane emissions from landfills.              
               </p>
