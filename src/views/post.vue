@@ -161,7 +161,7 @@
           userReview.value = "";
         } 
         catch (error){
-          console.error('Error adding review:', error);
+          console.log('Error adding review:', error);
         }
       }
   }

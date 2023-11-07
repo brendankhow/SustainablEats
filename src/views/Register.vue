@@ -3,86 +3,110 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <div class = "background-container">
-        <div class = "wrapper">
-            <form v-on:submit.prevent = "insertUser">
-                <h1>Sign Up</h1>
-                    <div class = "input-box">
-                        <input type = "text" v-model = "email" placeholder = "Email" 
+    <div class="background-container">
+        <div class="wrapper">
+            
+                <h1>Register</h1>
+                    <div class="input-box">
+                        <input type="text" v-model="email" placeholder="Email" 
                         required>
-                        <i class = "bx bxs-user"></i>
+                        <i class="bx bxs-user"></i>
                     </div>
 
-                    <div class = "input-box">
-                        <input type = "password" v-model = "password" v-on:input= "checkUser" placeholder = "Password" 
+                    <div class="input-box">
+                        <input type="password" v-model="password" v-on:input="checkUser" placeholder="Password"  autocomplete="on" @input="checkPasswordCriteria"
                         required>
-                        <i class = "bx bxs-lock-alt"></i>
                     </div>
 
-                    <button type = "submit" class = "btn">Sign Up</button>
+                    <div>
+                        <ul class="no-bullets text-center mb-3" id="problems" style="font-size: small">
+                            <li v-for="(problem, index) in problems" :key="index">{{ problem }}</li>
+                        </ul>
+                    </div>
 
-                    <div class = "register-link">
+                    <button @click="insertUser" class="btn">Sign Up</button>
+
+                    <div class="register-link">
                         <p>Already have an account?
                             <a><router-link to="/sign-in">Sign In</router-link></a></p> <!-- Input sign up page reference -->
                     </div>
-
-                    <div class = "login-via">
-                        <hr><p>Login Via</p>
-                    </div>
-            </form>
         </div>
     </div>
 </template>
 
-<script setup>
-    import { ref } from "vue";
-    import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
-    import { useRouter } from 'vue-router' // import router
-    import { doc, getFirestore, setDoc, collection, addDoc } from "firebase/firestore"; 
-    
-    const email = ref("");
-    const password = ref("");
-    const router = useRouter() // get a reference to our vue router
-    const auth = getAuth();
-    const db = getFirestore();
-    
-    const provider = new GoogleAuthProvider();
+<script>
+import { ref } from "vue";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
+import { useRouter } from 'vue-router' // import router
+import { doc, getFirestore, setDoc, collection, addDoc } from "firebase/firestore"; 
 
-    const insertUser = async () => {
-    try {
-        const { user } = await createUserWithEmailAndPassword(getAuth(), email.value, password.value);
-        const uid = user.uid;
-        console.log(uid);
 
-        // Specify the document ID as the user's UID
-        const userDoc = doc(db, "Users", uid);
-
-        //https://ui-avatars.com/api/?name=different+Case&background=random -> api
-        await setDoc(userDoc, {
-            username: email.value.split("@")[0],
-            bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
-            uid: uid,
-            email: email.value,
-            coins: 30,
-            earned: 0,
-            profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepictures%2Fmath_cat.jpg?alt=media&token=89034238-10c7-4da7-aa7f-05d4cfa1f477&_gl=1*u5eey6*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzcyOS41MS4wLjA.",
-            profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilebanners%2Fbanner.jpg?alt=media&token=00d33929-b0fc-44b8-ae5c-19778a816e6c&_gl=1*123nu6x*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzc1Mi4yOC4wLjA.",
-            posts: [],
-            bookmarks: []
-        });
-
-        console.log(user);
-        console.log("Successfully registered!");
-        await router.push('/home'); // redirect to the feed 
-    
-    } catch (error) {
-        if(error.code === 'auth/email-already-in-use'){
-            emit('showNotification', 'This email is already registered. Please use a different email.');
+export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+            auth: getAuth(),
+            db: getFirestore(),
+            provider: new GoogleAuthProvider(),
+            router: useRouter(),
+            problems: [],
+            isPasswordInvalid: true
         }
-        router.push('/Register');
-    }
-};
+    },
+    methods: {
+        async insertUser() {
+            if(this.checkPasswordCriteria() && this.isPasswordInvalid == false){
+                try {
+                    const { user } = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+                    const uid = user.uid;
+                    console.log(uid);
 
+                    const userDoc = doc(this.db, "Users", uid);
+                    await setDoc(userDoc, {
+                        username: this.email.split("@")[0],
+                        bio: "Welcome to SustainablEats! This user has not set up a bio yet.",
+                        uid: uid,
+                        email: this.email,
+                        coins: 30,
+                        earned: 0,
+                        profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepictures%2Fmath_cat.jpg?alt=media&token=89034238-10c7-4da7-aa7f-05d4cfa1f477&_gl=1*u5eey6*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzcyOS41MS4wLjA.",
+                        profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilebanners%2Fbanner.jpg?alt=media&token=00d33929-b0fc-44b8-ae5c-19778a816e6c&_gl=1*123nu6x*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5ODgyMzcyMC43LjEuMTY5ODgyMzc1Mi4yOC4wLjA.",
+                        posts: [],
+                        bookmarks: []
+                    });
+                    await this.router.push('/home');
+                } catch (error) {
+                    this.router.push('/Register');
+                }
+            }
+        },
+
+        checkPasswordCriteria() {
+            this.problems = []; // reset problems
+            if (this.password.length < 8) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must be at least 8 characters long.');
+            }
+            if (!/\d/.test(this.password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one digit.');
+            }
+            if (!/[a-z]/.test(this.password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one lowercase letter.');
+            }
+            if (!/[A-Z]/.test(this.password)) {
+                this.isPasswordInvalid = true;
+                this.problems.push('Password must contain at least one uppercase letter.');
+            }
+            if(this.problems.length == 0 && this.password != ""){
+                this.isPasswordInvalid = false;
+            }
+            return true;
+        },
+    }
+}
 </script>
 
 <style scoped>
@@ -92,7 +116,9 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-
+.no-bullets {
+    list-style-type: none;
+}
 
 .background-container {
     display: flex;
