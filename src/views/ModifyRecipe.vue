@@ -1,28 +1,30 @@
 <template>
     <!-- intend to autofill with recipe data from GenerateRecipe -->
 <div>
-    <input v-model="recipeDetails.recipeName" />
-    <input v-model="recipeDetails.image" />
-    <input v-model="recipeDetails.cuisineType"/>>
-    <input v-model="recipeDetails.dietaryRestrictions"/>
-    <input v-model="recipeDetails.prioritizedIngredients"/>
-    <input v-model="recipeDetails.ingredientsArray"/>
-    <input v-model="recipeDetails.instructionsArray"/>
+    <h1>askdnasdnasjdna</h1>
+    <!-- <div>
+      <input v-model="recipeDetails.recipeName" />
+      <input v-model="recipeDetails.image" />
+      <input v-model="recipeDetails.cuisineType"/>>
+      <input v-model="recipeDetails.dietaryRestrictions"/>
+      <input v-model="recipeDetails.prioritizedIngredients"/>
+      <input v-model="recipeDetails.ingredientsArray"/>
+      <input v-model="recipeDetails.instructionsArray"/>
+    </div> -->
 </div>
 </template>
-  
-<script setup>
+
+<script>
   import 'bootstrap/dist/css/bootstrap.min.css';
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
   import axios from 'axios';
   // import OpenAI from 'openai';
-</script>
-
-<script>
 export default {
     setup() { },
-    data() { },
+    data() { 
+      
+    },
     props: {
         // from generator, object
         // const recipeDetails = 
