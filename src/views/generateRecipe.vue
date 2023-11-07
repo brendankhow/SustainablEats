@@ -20,27 +20,30 @@
 
                     <!-- Cuisine Type Dropdown -->
                     <div class="col-md-12 mb-2">
-                      <label for="cuisineType">Cuisine Type:</label>
-                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType">
+                      <label for="cuisineType" class="info-labels">Cuisine Type:</label>
+                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
                         <option value="Chinese">Chinese</option>
                         <option value="Western">Western</option>
                         <option value="Italian">Italian</option>
                         <option value="Japanese">Japanese</option>
                         <option value="Korean">Korean</option>
                       </select>
+                      <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
                     </div>
                     <!-- Dietary Restriction Text Area -->
                     <div class="col-md-12 mb-2">
-                      <label for="dietaryRestrictions">Dietary Restrictions:</label>
+                      <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
                       <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
+                      <div class="text-secondary info-text">commma-separated</div>
                     </div>
                     <!-- Prioritized Ingredients Text Area -->
                     <div class="col-md-12 mb-2">
-                      <label for="prioritizedIngredients">Prioritized Ingredients:</label>
+                      <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
                       <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" v-model="prioritizedIngredients"></textarea>
+                      <div class="text-secondary info-text">commma-separated</div>
                     </div>
                     <!-- Submit Button -->
-                    <div class="col-md-12">
+                    <div class="col-md-12 submit-btn-div">
                         <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
                     </div>
                 </div>
@@ -53,7 +56,7 @@
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
                 <div class="gen-out-header row">
-                    <!-- <h1 class="recipe-title"><strong>{{ recipe.title }}</strong></h1> -->
+                    <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
                     <div>
                       <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
                     </div>
@@ -88,6 +91,11 @@
                     <div class="disclaimer-divider"></div>
                 </div>
             </div>
+
+            <!-- Edit Button -->
+            <!-- display only after output is generated -->
+            <button @click="editRecipe">Edit</button>
+            <!-- v-if="recipe.recipeName" -->
         </div>
     </div>
 
@@ -146,10 +154,15 @@
 </script>
 
 <script>
+  import { useRouter } from "vue-router";
   import axios from 'axios';
   import OpenAI from 'openai';
 
   export default {
+    setup(){
+        const router = useRouter();
+        return {router,}; // make router available to the template and other options
+    },
 
     data() {
       return {
@@ -165,7 +178,6 @@
         loading: false,
 
         recipe: {
-          // title: '',
           recipeName: '',
           image: '',
           description: '',
@@ -284,8 +296,27 @@
           catch{
             console.log("error");
           }
-        }
+      },
+      async editRecipe() {
+  
+        // navigate to the ModifyRecipe page
+        console.log("redirecting to ModifyRecipe.vue");
+        // Pass the recipe details to the ModifyRecipe page
+        const recipeDetails = 
+        {
+          recipeName: this.recipe.recipeName,
+          image: this.recipe.image,
+          cuisineType: this.recipe.cuisineType,
+          dietaryRestrictions: this.recipe.dietaryRestrictions,
+          prioritizedIngredients: this.recipe.prioritizedIngredients,
+          ingredientsArray: this.recipe.ingredientsArray,
+          instructionsArray: this.recipe.instructionsArray,
+        };
+        // Navigate to the ModifyRecipe page and pass the recipe details
+        this.$router.push({ path: '/modify-recipe', query: { recipeDetails } });
+
     },
+  },
   };
 </script>
 
@@ -309,32 +340,40 @@
 .gen-form-ingredients-field{
   background-color: #AEDDB3!important;
   padding: 12px 30px!important;
-  margin: 8px 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
   font-size: 18px!important;
   border-radius: 25px!important;
-  border: 2px solid !important;
+  border: 2px solid;
   text-align: center!important;
   width: 100%;
 }
+.is-invalid{
+    border-color: #D9534F;
+}
+.submit-btn-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
 .gen-form-submit-btn{
-  padding: 10px 0!important;
+
+  height: 69px;
   color: #fff;
   background-color: #000;
   border: none;
   border-radius: 32px;
   text-align: center;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: bolder;
+  
 }
 .gen-form-submit-btn:hover{
     opacity: 0.7;
     background-color: #003e30;
 }
-/*
-.gen-out{}
-.recipe-img{}
-.recipe-desc{}
-*/
+
 .recipe-box{
   padding-top: 15px;
   padding-bottom: 15px;
@@ -347,9 +386,7 @@
 .ingredient-header{
   padding: 15px;
 }
-/*
-.ingredient-list{}
-*/
+
 .instruction-col{
   background-color: #AEDDB3;
   border: 3px solid #002E23;
@@ -379,11 +416,9 @@
   border-bottom: 2px solid black;
   width: 100%;
 }
-/*
-.guide-header{}
-.guide-content{}
-*/
+
 /* Footer */
+/*
 .logo-link{
   text-decoration: none;
 }
@@ -408,19 +443,12 @@
 .footer{
   background-color: #242424;
 }
-/*
-.footer-container{}
-*/
+
 .footer-text{
   font-size: 14px;
   color: #fff;
 }
-/*
-.footer-contact{}
-.contact-card{}
-.contact-card-header{}
-.contact-card-label{}
-*/
+
 .header-text{
   color: #fff;
 }
@@ -437,10 +465,10 @@
   margin-bottom: 0;
 
 }
+*/
+
 /* misc classes */
-/* div{
-  border: 1px dotted;
-} */
+
 a{
   text-decoration: none;
 }
@@ -454,6 +482,18 @@ p{
 }
 .text-start {
   text-align: left!important;
+}
+.info-labels{
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.info-text{
+  font-size: small;
+  text-align:center;
+  margin-top: 0px;
+  padding-top: 0px;
+  margin-left: 10px;
 }
 .left-aligned {
   text-align: left;

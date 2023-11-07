@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import HomeView from '../views/HomeView.vue'
 import Home from "@/views/Home.vue"; // Adjust the import path as needed
+import ModifyRecipe from "@/views/ModifyRecipe.vue";
 
 // const routes = [
 //   {
@@ -20,7 +21,7 @@ import Home from "@/views/Home.vue"; // Adjust the import path as needed
 // ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL), // enables navigation w/out a page refresh 
   routes: [
     { path: "", component: () => import("../views/SignIn.vue") }, // Default route
     { path: "/home", component: () => import("../views/Home.vue") },
@@ -45,7 +46,9 @@ const router = createRouter({
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
     { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
-  ],
+    { path: "/modifyrecipe", name: "ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"),
+      props: (route) => ({recipeDetails: route.params.recipeDetails,}),},
+  ],  
 });
 
 const getCurrentUser = () => {
