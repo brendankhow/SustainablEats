@@ -8,9 +8,9 @@
         <h1>Edit Recipe</h1>
         <form @submit.prevent="updateRecipe">
             <div class="form-group">
-  <label for="image">Image:</label>
-  <input type="file" id="image" @change="handleImageUpload" />
-</div>
+            <label for="image">Image:</label>
+            <input type="file" id="image" @change="handleImageUpload" />
+            </div>
           <div class="form-group">
             <label for="recipeName">Recipe Name:</label>
             <input type="text" id="recipeName" v-model="updatedRecipeName" class="form-control" />
@@ -61,7 +61,10 @@
           </ol>
           <button type="button" @click="addStep">Add Step</button>
 
-          <button type="submit" class="btn btn-primary">Update Recipe</button>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Update Recipe</button>
+          </div>
+
         </form>
       </div>
     </div>
@@ -181,6 +184,105 @@ const handleImageUpload = (event) => {
   </script>
   
   <style scoped>
-  /* Add your CSS styles as needed for the update form */
+  .recipe-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+  }
+  
+  .recipe-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button[type="button"] {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .recipe-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  ul, ol {
+    padding: 0;
+  }
+  
+  li {
+    list-style: none;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  li input[type="text"], li input[type="number"], li textarea {
+    flex: 1;
+  }
+  
+  /* You can add more styles as needed to enhance the appearance of your form */
   </style>
   
