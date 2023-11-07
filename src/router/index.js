@@ -46,15 +46,9 @@ const router = createRouter({
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
     { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
-    {
-      path: "/modify-recipe",
-      name: "ModifyRecipe",
-      component: ModifyRecipe,
-      props: (route) => ({
-        recipeDetails: route.params.recipeDetails,
-      }),
-    },
-  ],
+    { path: "/modifyrecipe", name: "ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"),
+      props: (route) => ({recipeDetails: route.params.recipeDetails,}),},
+  ],  
 });
 
 const getCurrentUser = () => {

@@ -154,10 +154,15 @@
 </script>
 
 <script>
+  import { useRouter } from "vue-router";
   import axios from 'axios';
   import OpenAI from 'openai';
 
   export default {
+    setup(){
+        const router = useRouter();
+        return {router,}; // make router available to the template and other options
+    },
 
     data() {
       return {
@@ -291,33 +296,26 @@
           catch{
             console.log("error");
           }
-      }
+      },
+      async editRecipe() {
+  
+        // navigate to the ModifyRecipe page
+        console.log("redirecting to ModifyRecipe.vue");
+        // Pass the recipe details to the ModifyRecipe page
+        const recipeDetails = 
+        {
+          recipeName: this.recipe.recipeName,
+          image: this.recipe.image,
+          cuisineType: this.recipe.cuisineType,
+          dietaryRestrictions: this.recipe.dietaryRestrictions,
+          prioritizedIngredients: this.recipe.prioritizedIngredients,
+          ingredientsArray: this.recipe.ingredientsArray,
+          instructionsArray: this.recipe.instructionsArray,
+        };
+        // Navigate to the ModifyRecipe page and pass the recipe details
+        this.$router.push({ path: '/modify-recipe', query: { recipeDetails } });
+
     },
-
-    setup() {
-    const router = useRouter();
-
-    // navigate to the ModifyRecipe page
-    const editRecipe = () => {
-      console.log("redirecting to ModifyRecipe.vue")
-      // Pass the recipe details to the ModifyRecipe page
-      const recipeDetails = {
-        recipeName: this.recipe.recipeName,
-        image: this.recipe.image,
-        cuisineType: this.recipe.cuisineType,
-        dietaryRestrictions: this.recipe.dietaryRestrictions,
-        prioritizedIngredients: this.recipe.prioritizedIngredients,
-        ingredientsArray: this.recipe.ingredientsArray,
-        instructionsArray: this.recipe.instructionsArray,
-      };
-
-      // Navigate to the ModifyRecipe page and pass the recipe details
-      router.push({ name: "ModifyRecipe", params: { recipeDetails } });
-    };
-
-    return {
-      editRecipe,
-    };
   },
   };
 </script>
