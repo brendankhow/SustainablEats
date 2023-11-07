@@ -166,6 +166,7 @@
 
         recipe: {
           // title: '',
+          recipeName: '',
           image: '',
           description: '',
           ingredientsArray: [],
@@ -176,12 +177,19 @@
 
     computed: {
       userInput() {
-        return `I want a ${this.cuisineType} type recipe. I am allergic to ${this.dietaryRestrictions} and prioritize using ${this.prioritizedIngredients}.`
+        if(this.dietaryRestrictions != ""){
+          this.dietaryRestrictions = `I am allergic to ${this.dietaryRestrictions}`;
+        }
+        else{
+          this.dietaryRestrictions = "I have no dietary restrictions";
+        }
+        return `I want a ${this.cuisineType} type recipe. ${this.dietaryRestrictions} and prioritize using the following ingredients: ${this.prioritizedIngredients}. Always include a Recipe Name: recipe name \n.`
       },
     },
 
     methods: {
       async fetchRecipe() {
+        console.log(this.userInput);
         this.loading = true;
 
         axios.post('https://api.openai.com/v1/chat/completions', 
@@ -223,9 +231,12 @@
             // Format ingredients and instructions as arrays
             const ingredientsArray = ingredients.split('\n- ').map(item => item.trim());
             const instructionsArray = instructions.split('\n').filter(item => item.trim() !== '');
-
+            const recipeName = recipeData[0].split('Recipe Name:')[1];
             // IMPORTANT *****************************************
             // this.recipe.title = this.userInput;
+            this.recipe.recipeName = recipeName;
+            console.log(recipeName);
+            this.fetchImg(recipeName);
             this.recipe.description = recipeData[0];
             this.recipe.ingredientsArray = ingredientsArray;
             this.recipe.instructionsArray = instructionsArray;
@@ -239,7 +250,6 @@
           } else {
             console.log('No ingredients and instructions found.');
           }
-
           // console.log(response.data.choices[0].message); // relevant JSON data
           // console.log(response.data.choices[0].message.content.trim()); // intended output format
 
@@ -250,11 +260,16 @@
       },
 
       // fetch image
-      async fetchImg() {
-            const response = await axios.post(
+      async fetchImg(recipeName) {
+        if(recipeName == ""){
+          this.recipeName = this.prioritizedIngredients;
+        }
+
+        try{
+          const response = await axios.post(
             "https://api.openai.com/v1/images/generations",
             {
-                prompt: this.userInput,
+                prompt: 'generate an image: ' + recipeName,
                 n: 1,
                 size: '256x256',
             },
@@ -265,13 +280,12 @@
             }
             );
             this.recipe.image = response.data.data[0].url;
-        },
-
+          }
+          catch{
+            console.log("error");
+          }
+        }
     },
-    created() {
-      this.fetchRecipe();
-      this.fetchImg();
-    }
   };
 </script>
 
