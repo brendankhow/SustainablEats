@@ -67,8 +67,8 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button><router-link :to="recipe_card.recipe_link">View more</router-link></button>
-                                
                                 <button><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
+                                <button @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -83,8 +83,8 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { getFirestore, collection, getDoc, doc, setDoc } from 'firebase/firestore';
-import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
+import { getFirestore, collection, getDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { deleteObject, getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import { onMounted, ref } from 'vue';
 import { getAuth, onAuthStateChanged  } from 'firebase/auth';
 
@@ -147,6 +147,38 @@ export default {
             this.recipe_cards = [];
             
         },
+        deleteRecipe: async function (recipeId) {
+        const recipeCollection = collection(db, 'recipes');
+        const recipeRef = doc(recipeCollection, recipeId);
+
+        try {
+            // Get the recipe data to access the image URL
+            const recipeDoc = await getDoc(recipeRef);
+            const recipeData = recipeDoc.data();
+
+            // Delete the recipe image from Firebase Storage
+            const imageRef = storageRef(getStorage(), recipeData.recipeImageURLs[0]);
+            await deleteObject(imageRef);
+
+            // Delete the recipe document
+            await deleteDoc(recipeRef);
+
+            // Update the user's posts array by removing the deleted recipe's ID
+            this.user_data.posts = this.user_data.posts.filter(post => post !== recipeId);
+
+            // Update the user document in the database
+            const usersCollection = collection(db, "Users");
+            const userRef = doc(usersCollection, this.uid);
+            await setDoc(userRef, this.user_data);
+
+            // Update the UI to remove the deleted recipe card
+            this.recipe_cards = this.recipe_cards.filter(card => card.recipe_id !== recipeId);
+
+            console.log('Recipe deleted successfully');
+        } catch (error) {
+            console.error('Error deleting recipe:', error);
+        }
+    },
         showcontent: async function(content){
             
             if (this.user_data) {
