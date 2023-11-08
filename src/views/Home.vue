@@ -114,7 +114,7 @@
     <div class="container" >
       <div>
         <h1 style="text-align: center; color: black;">Leaderboard Ranking</h1>
-        <h3 class="mt-3" style="text-align: center; color: #0e5328;">Top 3 users of the month:</h3>
+        <h3 class="mt-3" style="text-align: center;">Top 3 users of the month:</h3>
       </div>
 
       <div class = "row mt-5 justify-content-center">
