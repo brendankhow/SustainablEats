@@ -125,11 +125,7 @@
             <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
              style="height: 300px; width: 100%; display: block">
              <hr>
-<<<<<<< Updated upstream
-            <div class="card-body">
-=======
             <div class="card-body text-center">
->>>>>>> Stashed changes
               <h3 class="card-title">{{ user.name }}</h3>
               <img class="mx-2" src="../assets/coin.png" style="height: 50px; width: 50px; display: inline;">
               <h3 class="card-text" style="display: inline-block">{{ user.coin }}</h3>
