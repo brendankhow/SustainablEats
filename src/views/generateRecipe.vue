@@ -11,7 +11,7 @@
 
             <!-- Input -->
             <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
-            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent>
+            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
                     <!-- <div class="col-md-12 mb-2">
