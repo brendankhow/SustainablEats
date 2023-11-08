@@ -8,26 +8,26 @@
  
  
    <!-- Banner Section-->
-   <section id="hero" class="d-flex align-item-center">
+   <section id="hero" class="d-flex align-item-center container-fluid">
     <div class="video-container">
-    <video autoplay muted loop>
-      <source src="../assets/background.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="overlay"></div>
-  </div>
-  <div class="container text-center">
-    <h1>Building a <font style="color:#25D366">greener</font> and <font style="color:#FF3D00">wholesome</font> community through recipes</h1>
-    <h2>Your culinary journey to a <font style="color:#25D366">greener</font> future starts here!</h2>
-    <a class="btn_get_started">
-      <router-link to="/generateRecipe" class="link-white">Get Started</router-link>
-    </a>
-  </div>
+      <video autoplay muted loop>
+        <source src="../assets/background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay"></div>
+    </div>
+    <div class="container text-center d-flex justify-content-center align-items-center flex-column">
+      <h1>Building a <font style="color:#25D366">greener</font> and <font style="color:#FF3D00">wholesome</font> community through recipes</h1>
+      <h2>Your culinary journey to a <font style="color:#25D366">greener</font> future starts here!</h2>
+      <a class="btn_get_started">
+        <router-link to="/generateRecipe" class="link-white">Get Started</router-link>
+      </a>
+    </div>
 </section>
 
    <!-- About Us-->
 <!-- About Us Section -->
-<section id="about" class="about">
+<section id="about" class="about animate-on-scroll">
   <div class="container aos-init aos-animate" data-aos="fade-up">
     <div class="section-header">
       <h2>About Us</h2>
@@ -260,8 +260,17 @@
  <style>
  /* CSS template */
  
- /* Reset default margin and padding for all elements */
+ ::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar track */
+}
 
+/* Customize the thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: #5fc496; /* Color of the thumb */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+ /* Reset default margin and padding for all elements */
 * {
   margin: 0;
   padding: 0;
@@ -309,7 +318,7 @@ footer {
 #hero {
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 100vh;
 }
 
 #hero .video-container {
@@ -379,8 +388,40 @@ footer {
   transition: 0.6s all;
 }
 
+/* Animation */
+
+@-webkit-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@-moz-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@-ms-keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
+
+@keyframes pulsing {
+  to {
+    box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+  }
+}
 #hero .btn_get_started:hover {
-  background-color: #009970;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  text-decoration: none !important;
+  transition: all 300ms ease-in-out;
+  background-color: #25d366;
   border: 2px solid #009970;
   color: #fff;
 }

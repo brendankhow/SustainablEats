@@ -63,10 +63,6 @@
   color: #2c3e50;
 }
 
-body{
-  background: #FFFBF4;
-}
-
 nav {
   padding: 30px;
 }

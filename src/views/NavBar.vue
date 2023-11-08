@@ -1,56 +1,50 @@
 <template>
-    <nav class="navbar navbar-expand-xl navbar-dark" style="background-color: #00563D;">
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top" style="background-color: white;">
 <div class="container-fluid ms-2">
   <router-link to="/home">
     <span class="navbar-brand">
       <img src="../assets/sustainablEats.png" alt="" width="50" height="50">
-      <span class="ms-3">Sustainabl<font style="color:lawngreen">Eats</font></span>
+      <span class="ms-2">Sustainabl<font style="color:lawngreen">Eats</font></span>
     </span>
   </router-link>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse p-2" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
       <li class="nav-item pe-3">
-        <router-link to="/home" class="nav-link text-white">Home</router-link>
+        <router-link to="/home" class="nav-link">Home</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/explore" class="nav-link text-white">Explore</router-link>
+        <router-link to="/explore" class="nav-link">Explore</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/generateRecipe" class="nav-link text-white">Generate Recipe</router-link>
+        <router-link to="/generateRecipe" class="nav-link">AI Generation</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/createRecipe" class="nav-link text-white">Create Recipe</router-link>
+        <router-link to="/createRecipe" class="nav-link">Create Recipe</router-link>
       </li>
     </ul>
-    <ul class="navbar-nav me-5 mb-2 mb-lg-0" >
-
-      <li class="nav-item text-white d-flex align-items-center pe-3 ">
-        <a class="nav-link text-white" href="#">
-          <img src="../assets/earned.png" width="30px">
-          <span class="text-white align-middle ps-1"></span>
-        </a>
-      </li>
-
-      <li class="nav-item text-white d-flex align-items-center pe-3 ms-5"> <!-- Once the moustache comes in, image disappear-->
-          <img src="../assets/coin.png" width="30" height="30"><span class="text-white align-middle ps-1">{{ userCoins }}</span>
+    <ul class="navbar-nav mb-2 mb-lg-0" >
+      <li class="nav-item d-flex align-items-center pe-3"> <!-- Once the moustache comes in, image disappear-->
+          <img src="../assets/coin.png" width="40" height="40"><span class=" align-middle ps-1">{{ userCoins }} coins</span>
       </li>
 
       <!-- Still can put image, just that there will be a distance between the coin and number
-      <li class="nav-item text-white d-flex align-items-center mx-3">
-        <span class="text-white align-middle ps-1">{{ userCoins}}</span>
+      <li class="nav-item  d-flex align-items-center mx-3">
+        <span class=" align-middle ps-1">{{ userCoins}}</span>
       </li>-->
 
-      <li class="nav-item text-white d-flex align-items-center">
-        <router-link to="/Profile" class="nav-link text-white">
+      <li class="nav-item d-flex align-items-center">
+        <router-link to="/Profile" class="nav-link ">
           <img :src="profilepic" class="rounded-5" alt="" width="50" height="50">
           <!-- Display user info when currentUser exists -->
-          <span class="text-white align-middle ps-2 ">{{ username }}</span>
+          <span class=" align-middle ps-2 ">{{ username }}</span>
         </router-link>
       </li>
-      <button @click="handleSignOut" class="btn btn-outline-light" v-if="isLoggedIn">Log Out</button>
+      <li class="nav-item d-flex align-items-center">
+        <button @click="handleSignOut" class="btn" style="background-color:#25d366; font-weight: bold" v-if="isLoggedIn">Log Out</button>
+      </li>
     </ul>
   </div>
 </div>
@@ -115,5 +109,6 @@
   
   <style scoped>
   /* Your component-specific styles here */
+
   </style>
   
