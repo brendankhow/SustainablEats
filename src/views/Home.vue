@@ -556,7 +556,7 @@ color: white;
 }
 /* Style for the Events Section */
 #events {
-  background-color: #f9f9f9; /* Set a background color for the section */
+  background-color: #f9f9f9;
   padding: 60px 0;
   overflow: hidden;
 }
@@ -570,18 +570,18 @@ color: white;
   font-size: 36px;
   margin-bottom: 30px;
   font-family: 'Raleway', sans-serif;
-  color: #333; /* Change the text color */
+  color: #333;
 }
 
 #events p {
   font-size: 18px;
   font-weight: 400;
-  color: #555; /* Change the text color */
+  color: #555;
   margin-top: 20px;
 }
 
 .events .slides-3 {
-  max-width: 1200px; /* Set the maximum width as needed */
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 30px;
   position: relative;
@@ -590,61 +590,83 @@ color: white;
 .events .swiper-wrapper {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
 
 .events .swiper-slide {
   flex-shrink: 0;
-  width: 100%;
-  max-width: 300px; /* Adjust the maximum width as needed */
-  background-color: #fff;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 40px); /* 25% width with spacing between items for full-screen */
   margin: 20px;
   text-align: center;
   padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .events .swiper-slide h3 {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #333; /* Change the text color */
+  color: #333;
 }
 
 .events .swiper-slide .price {
   font-size: 20px;
   font-weight: 700;
-  color: #25D366; /* Green color for emphasis */
+  color: #25D366;
 }
 
 .events .swiper-slide .description {
   font-size: 16px;
-  color: #555; /* Change the text color */
+  color: #555;
   margin-top: 10px;
 }
 
-/* Style for the swiper pagination dots */
 .events .swiper-pagination {
   margin-top: 20px;
   text-align: center;
 }
 
 .events .swiper-pagination .swiper-pagination-bullet {
-  background: #333; /* Color of the pagination dots */
+  background: #333;
   width: 10px;
   height: 10px;
   margin: 0 5px;
-  border-radius: 50%; /* Make the pagination dots circular */
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .events .swiper-pagination .swiper-pagination-bullet-active {
-  background: #25D366; /* Color of the active pagination dot */
+  background: #25D366;
 }
 
-/* Apply hover effect on event items */
 .events .swiper-slide:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .events .swiper-slide {
+    width: calc(33.33% - 40px); /* 33.33% width with spacing between items for large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .events .swiper-slide {
+    width: calc(50% - 40px); /* 50% width with spacing between items for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .events .swiper-slide {
+    width: calc(50% - 20px); /* 50% width with reduced spacing between items for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .events .swiper-slide {
+    width: 100%; /* Full width for the smallest screens */
+  }
 }
 
  </style>
