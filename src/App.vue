@@ -1,5 +1,5 @@
 <template>
-
+  <!-- <link rel="icon" href="./assets/sustainablEats.png"> set this in the index.html for public -->
     <!-- <router-link to="/home">Home</router-link> |
     <router-link to="/explore">Explore</router-link> |
     <router-link to="/register">Register</router-link> |
