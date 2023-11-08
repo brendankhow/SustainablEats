@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm install
+npm install openai
 npm install axios
 
 In case the AI does not work, it could be due to the lack of credits for the AI. <br>
