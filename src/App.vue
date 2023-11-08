@@ -26,7 +26,7 @@
   import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
   import { useRouter } from "vue-router"; //•import router
-  
+
   const router = useRouter(); // get a reference to our vue router
 
   const isLoggedIn = ref (false);

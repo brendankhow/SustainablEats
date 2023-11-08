@@ -6,7 +6,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push } from 'firebase/database';
-import {getAuth} from 'firebase/auth'
+import {getAuth} from 'firebase/auth';
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+// import fontawesome icon component
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+// import config so we can set a default style
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+
+import {faHeart} from '@fortawesome/free-regular-svg-icons'
+
+library.add(faUserSecret, faHeart);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAqrLWmdQXxdcNlqFs7Gfc2cz1RiN0ldA8",
@@ -21,6 +35,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth()
 const app = createApp(App);
 app.use(router);
+app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount ("#app");
 
 export {app, auth}
