@@ -349,6 +349,7 @@
   background-repeat: repeat;
   background-size: 400px;
   padding: 40px;
+  margin-top: 40px;
 
   /* !important: https://www.w3schools.com/css/css_important.asp */
   color:#002E23!important;
