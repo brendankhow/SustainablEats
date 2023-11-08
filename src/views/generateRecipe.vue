@@ -39,8 +39,10 @@
                     <!-- Prioritized Ingredients Text Area -->
                     <div class="col-md-12 mb-2">
                       <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
-                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" v-model="prioritizedIngredients"></textarea>
+                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
                       <div class="text-secondary info-text">commma-separated</div>
+                      <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
+                      
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12 submit-btn-div">
@@ -173,7 +175,7 @@
         cuisineType:'',
         dietaryRestrictions:'',
         prioritizedIngredients:'',
-        
+        checkingredients: false,
         inputSubmitted: false,
         loading: false,
 
@@ -200,24 +202,37 @@
     },
 
     methods: {
-      async fetchRecipe() {
-        console.log(this.userInput);
-        this.loading = true;
+      async checking_ingredients(){
+        if (this.prioritizedIngredients.length > 0) {
+            this.checkingredients = true;
+        }
+        else{
+          this.checkingredients = false;
+        }
 
+        return;
+      },
+      async fetchRecipe() {
+        if(this.checkingredients == false || !this.cuisineType || this.cuisineType.trim() === ''){
+          alert("Enter something please");
+          return;
+        }
+        this.loading = true;
+        
         axios.post('https://api.openai.com/v1/chat/completions', 
         { 
           'model': 'gpt-3.5-turbo',
           'messages': 
-            [
-              {
-                  'role': 'system',
-                  'content': 'You are a helpful assistant.'
-              },
-              {
-                  'role': 'user',
-                  'content': this.userInput,
-              }
-            ]
+          [
+            {
+                'role': 'system',
+                'content': 'You are a helpful assistant.'
+            },
+            {
+                'role': 'user',
+                'content': this.userInput,
+            }
+          ]
         },
         { 
           headers: 
@@ -256,18 +271,21 @@
             this.loading = false;
 
             // Now, you have the ingredients and instructions in arrays
-            console.log('Ingredients:', ingredientsArray);
-            console.log(ingredientsArray[3]);
-            console.log('Instructions:', instructionsArray);
+            // console.log('Ingredients:', ingredientsArray);
+            // console.log(ingredientsArray[3]);
+            // console.log('Instructions:', instructionsArray);
           } else {
-            console.log('No ingredients and instructions found.');
+            console.log("");
+            // console.log('No ingredients and instructions found.');
           }
           // console.log(response.data.choices[0].message); // relevant JSON data
           // console.log(response.data.choices[0].message.content.trim()); // intended output format
 
         })
         .catch(error => {
-          console.error('Error fetching recipe:', error);
+          alert("Something Went Wrong");
+          // console.log("");
+          // console.error('Error fetching recipe:', error);
         });
       },
 
@@ -316,6 +334,7 @@
         this.$router.push({ path: '/ModifyRecipe', query: { recipeDetails } });
 
     },
+    
   },
   };
 </script>
