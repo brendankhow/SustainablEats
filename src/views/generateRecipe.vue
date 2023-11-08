@@ -389,8 +389,31 @@ const router = useRouter() // get a reference to our vue router
 
           const recipesRef = collection(db, 'recipes');
 
-          //debugging to check valid data
-          console.log(this.recipe.cuisineType);
+          // reformat data
+          // ingredients
+          const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
+            // Use a regular expression to capture the quantity and the rest of the text as name
+            const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
+
+            if (match) {
+              // Extract the matched quantity and name
+              const quantity = match[1].trim();
+              const name = ingredient.replace(match[0], '').trim();
+
+              return { name, quantity };
+            } else {
+              // If no quantity is found, consider the entire ingredient as the name
+              return { name: ingredient.trim(), quantity: '' };
+            }
+          });
+
+
+          // steps
+          const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
+            const parts = instruction.split(' ');
+            const description = parts.slice(1).join(' ');
+            return { description };
+          });
 
 
           const recipeData = {
@@ -399,8 +422,8 @@ const router = useRouter() // get a reference to our vue router
             // mealType: this.mealType,
             cuisineType: '',
             // description: this.description,
-            ingredients: this.recipe.ingredientsArray,
-            steps: this.recipe.instructionsArray,
+            ingredients: formattedIngredients,
+            steps: formattedInstructions,
             recipeImageURLs: this.recipe.image,
             imageId: uniqueID,
             uid: userUID,
@@ -433,7 +456,7 @@ const router = useRouter() // get a reference to our vue router
           this.mealType = '';
           this.cuisineType = '';
           this.description = '';
-          this.ingredients = [{ name: '', quantity: '' }];
+          this.ingredients = [];
           this.steps = [{ description: '' }];
           this.recipeImageURLs = [];
           imageUploadProgress.value = 0;
