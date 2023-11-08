@@ -66,7 +66,7 @@
             </div>
 
             <form v-on:submit.prevent>
-              <header>Leave A Review!</header>
+              <header style = "color:seagreen;"><strong>Leave a Review!</strong></header>
               <div class = "textarea">
                 <textarea cols = "30" v-model = "userReview" placeholder = "Describe your experience.."></textarea>
               </div>
@@ -380,6 +380,7 @@ form .btn button:hover{
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  margin-top: 80px;
 }
 
 .recipe-image {

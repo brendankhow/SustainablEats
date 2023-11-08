@@ -283,7 +283,7 @@ export default {
     text-align: center;
 }
 .user_internal_navbar{
-    border-top: 2px solid black;
+    border-top: 2px solid #25d366;
     color:black
 }
 
@@ -291,17 +291,3 @@ export default {
     background-color: #AEDDB3;
 }
 </style>
-
-<!-- //   // Codes for Leaderboard Ranking => Retrieving from db
-//   const usersCollection = collection(db, "Users");
-//         const q = query(usersCollection, orderBy("Coin", "desc"), limit(3));
-
-//         const querySnapshot = await getDocs(q);
-//         querySnapshot.forEach((doc) => {
-//             // doc.data() is never undefined for query doc snapshots
-//             top3UsersCoins.value.push({
-//             name: doc.data().name,
-//             coin: doc.data().Coin,
-//             });
-//         });
-// }); -->
