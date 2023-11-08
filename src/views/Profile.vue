@@ -1,4 +1,10 @@
 <template>
+    <!-- Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
 <div class="container-fluid p-0" style="margin-top: 80px">
     <div class="profile-banner">
         <img id="profile_banner_img" :src="profilebanner" class="img-fluid">
@@ -51,32 +57,40 @@
 <div class="user_chosen_content">
     <div class="album py-5">
         <div class="container" id="chosencontent">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
-            <div class="col" style="max-width: 300px;" v-for="recipe_card of recipe_cards" v-if="recipe_cards && recipe_cards.length">
-                <div class="card">
-                    <!-- Set the max-height for the image container -->
-                    <div style="max-height: 250px; overflow: hidden;">
-                        <img :src="recipe_card.recipe_image" class="card-img-top" alt="Image">
-                    </div>
-                    <div class="card-body">
-                        <div class="row pb-2">
-                            <div class="col">
-                                <h5 class="card-title" style="text-align: left; overflow:auto">{{recipe_card.recipe_name}}</h5>
-                            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
+                <div class="col" style="max-width: 300px;" v-for="recipe_card of recipe_cards" v-if="recipe_cards && recipe_cards.length">
+                    <div class="card">
+                        <!-- Set the max-height for the image container -->
+                        <div style="max-height: 250px; overflow: hidden;">
+                            <img :src="recipe_card.recipe_image" class="card-img-top" alt="Image">
                         </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button><router-link :to="recipe_card.recipe_link">View more</router-link></button>
-                                <button v-if="content === 'post'"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
-                                <button v-if="content === 'post'" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
-                                <button v-if="content === 'bookmark'" @click="removeBookmark(recipe_card.recipe_id)">Remove Bookmark</button>
+                        <div class="card-body">
+                            <div class="row pb-2">
+                                <div class="col">
+                                    <h5 class="card-title" style="text-align: left; overflow:auto">{{recipe_card.recipe_name}}</h5>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <div class = "row">
+                                            <button class = "buttonStyle col-lg-11"><router-link :to="recipe_card.recipe_link">View more</router-link></button>
+                                            <div class = "row justify-content-center text-center">
+                                                <button v-if="content === 'post'" class = "buttonStyle col-md-6"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
+                                                <button v-if="content === 'post'" class = "buttonStyle col-md-5" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
+                                            </div>
+                                            
+                                            <div class = "row">
+                                                <button v-if="content === 'bookmark'" class = "buttonStyle col-md-12" @click="removeBookmark(recipe_card.recipe_id)">Remove Bookmark</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+                <h1 class="container text-center" v-else>No content to display</h1>
             </div>
-            <h1 class="container text-center" v-else>No content to display</h1>
-        </div>
         </div>
     </div>
 </div>
@@ -252,6 +266,17 @@ export default {
 }
 </script>
 <style>
+.buttonStyle {
+    font-family: "Poppins", sans-serif;
+    border-radius: 50px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 10px 5px;
+    letter-spacing: 1px;
+    padding: 8px 25px;
+}
+
 .container-fluid {
     position: relative;
     padding: 0;

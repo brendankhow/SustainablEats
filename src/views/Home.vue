@@ -114,72 +114,117 @@
     <div class="container" >
       <div>
         <h1 style="text-align: center; color: black;">Leaderboard Ranking</h1>
-        <h3 class="mt-3" style="text-align: center; color: #0e5328;">Top 3 users of the month:</h3>
+        <h3 class="mt-3" style="text-align: center;">Top 3 users of the month:</h3>
       </div>
 
-      <div class = "row mt-5 justify-content-center">
-        <!-- Use v-for to loop through top3UsersCoins array -->
-        <div class ="col-lg-4" v-for="(user, index) in top3UsersCoins" :key="index">
-          <div class ="card box-shadow mb-4" style="background-color:white">
-            <!-- Use user.name and user.coin to display dynamic data -->
-            <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
-             style="height: 300px; width: 100%; display: block">
-             <hr>
-            <div class="card-body text-center">
-              <h3 class="card-title">{{ user.name }}</h3>
-              <img class="mx-2" src="../assets/coin.png" style="height: 50px; width: 50px; display: inline;">
-              <h3 class="card-text" style="display: inline-block">{{ user.coin }}</h3>
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-4" v-for="(user, index) in top3UsersCoins" :key="index">
+        <div class="card box-shadow mb-4" style="background-color: white; border: none; transition: transform 0.2s ease-in-out;">
+          <div class="position-relative">
+            <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)" alt="User Image" style="height: 300px; width: 100%; display: block; object-fit: cover;">
+          </div>
+          <hr style="border-color: #25d366;">
+          <div class="card-body text-center">
+            <h3 class="card-title" style="font-size: 24px; font-weight: 600; color: #333;">{{ user.name }}</h3>
+            <div class="d-flex justify-content-center align-items-center mt-3">
+              <img src="../assets/coin.png" alt="Coin Icon" style="height: 32px; width: 32px; display: inline-block; margin-right: 10px;">
+              <h3 class="card-text" style="font-size: 24px; color: #25d366; display: inline-block;">{{ user.coin }}</h3>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ======= Events Section ======= -->
+
+<!-- ======= Events Section ======= -->
 <section id="events" class="events">
-      <div class="container-fluid" data-aos="fade-up">
-        <div class="section-header">
-          <h2>United Nations Sustainable Development Goals(s)</h2>
-          <p style="font-size: 25px">Savor Sustainability at SustainablEats</p>
-        </div>
+  <div class="container-fluid" data-aos="fade-up">
+    <div class="section-header">
+      <h2>United Nations Sustainable Development Goals(s)</h2>
+      <p style="font-size: 25px">Savor Sustainability at SustainablEats</p>
+    </div>
 
-        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(../assets/background.png)">
+    <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end flip-card">
+          <div class="flip-card-inner">
+            <!-- Front of the card -->
+            <div class="flip-card-front" style="background-image: url(../assets/background.png)">
+              <h3>SDG 2: Zero Hunger</h3>
+              <p class="description">
+                Learn more about our efforts to combat hunger and food waste.
+              </p>
+            </div>
+            <!-- Back of the card -->
+            <div class="flip-card-back">
               <h3>SDG 2: Zero Hunger</h3>
               <p class="description">
                 SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients.
               </p>
-            </div><!-- End Event item -->
+            </div>
+          </div>
+        </div>
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-2.jpg)">
+        <!-- Repeat the above structure for the remaining cards -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front" style="background-image: url(assets/img/events-2.jpg)">
               <h3>SDG 11: Sustainable Cities and Communities</h3>
               <p class="description">
-                Sustainable recipes often emphasise using all parts of ingredients and minimising waste.
+                Explore our commitment to building sustainable communities.
               </p>
-            </div><!-- End Event item -->
+            </div>
+            <div class="flip-card-back">
+              <h3>SDG 11: Sustainable Cities and Communities</h3>
+              <p class="description">
+                Sustainable recipes often emphasize using all parts of ingredients and minimizing waste.
+              </p>
+            </div>
+          </div>
+        </div>
 
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front" style="background-image: url(assets/img/events-3.jpg)">
+              <h3>SDG 12: Responsible Consumption and Production</h3>
+              <p class="description">
+                Discover how we support responsible consumption and sustainable production.
+              </p>
+            </div>
+            <div class="flip-card-back">
               <h3>SDG 12: Responsible Consumption and Production</h3>
               <p class="description">
                 Sustainable recipes promote the use of environmentally friendly ingredients, such as organic and locally sourced produce.
               </p>
-            </div><!-- End Event item -->
-
-            <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/events-3.jpg)">
-              <h3>SDG 13: Climate Action: </h3>
-              <p class="description">
-                By facilitating and encouraging the sharing of sustainable food recipes, food waste would be reduced which helps lower methane emissions from landfills.              
-              </p>
-            </div><!-- End Event item -->
-
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
         </div>
 
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front" style="background-image: url(assets/img/events-3.jpg)">
+              <h3>SDG 13: Climate Action</h3>
+              <p class="description">
+                Learn how we contribute to climate action and reducing food waste.
+              </p>
+            </div>
+            <div class="flip-card-back">
+              <h3>SDG 13: Climate Action</h3>
+              <p class="description">
+                By facilitating and encouraging the sharing of sustainable food recipes, food waste would be reduced which helps lower methane emissions from landfills.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </section><!-- End Events Section -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
 
 
 
@@ -423,9 +468,79 @@ footer {
     padding-top: 10px;
 }
 
-#leaderboard{
-    justify-content: center;
-    
+/* CSS for Leaderboard Section */
+#leaderboard {
+  background-color: #e0f0e1;
+  padding: 60px 0;
+}
+
+#leaderboard .container {
+  text-align: center;
+}
+
+#leaderboard h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 30px;
+}
+
+#leaderboard h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #25d366;
+  margin-top: 10px;
+}
+
+#leaderboard .row {
+  margin-top: 50px;
+}
+
+#leaderboard .card {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+#leaderboard .card img {
+  height: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#leaderboard .card hr {
+  border-color: #25d366;
+}
+
+#leaderboard .card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+#leaderboard .card-text {
+  font-size: 24px;
+  color: #25d366;
+}
+
+#leaderboard .card:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  #leaderboard .card {
+    margin-bottom: 20px;
+  }
+
+  #leaderboard .card img {
+    height: auto;
+    max-width: 100%;
+  }
 }
 
 .link-white {
@@ -667,6 +782,75 @@ color: white;
   .events .swiper-slide {
     width: 100%; /* Full width for the smallest screens */
   }
+}
+
+/* CSS for card flip effect */
+.flip-card {
+  perspective: 1000px;
+  position: relative;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  width: 100%;
+  height: 400px; /* Set your desired height here */
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  background-size: cover; /* Adjust background size to fill the card */
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.flip-card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background-color: #fff; /* Customize the background color of the back of the card */
+  color: #333; /* Customize the text color of the back of the card */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.flip-card h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.flip-card p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* Style pagination bullets (optional) */
+.swiper-pagination .swiper-pagination-bullet {
+  background: #333;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: #25D366;
 }
 
  </style>

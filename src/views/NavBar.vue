@@ -4,7 +4,7 @@
   <router-link to="/home">
     <span class="navbar-brand">
       <img src="../assets/sustainablEats.png" alt="" width="50" height="50">
-      <span class="ms-2">Sustainabl<font style="color:lawngreen">Eats</font></span>
+      <span class="ms-2">Sustainabl<font style="color:#25d366">Eats</font></span>
     </span>
   </router-link>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
