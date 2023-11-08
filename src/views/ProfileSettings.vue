@@ -290,37 +290,6 @@ export default{
                 const userid = user.uid;
                 const db = getFirestore();
                 const docRef = doc(db, "Users", userid);
-
-                //update user_review and user created recipe
-                // const userDoc = await getDoc(docRef);
-                // const userdata = userDoc.data();
-                // const posts_id = userdata.posts;
-                // const recipecollection = collection(db, 'recipes');
-                
-                // console.log(posts_id);
-                // console.log(typeof(posts_id));
-
-
-                // if (posts_id.length > 0){
-                //     for (let post_id of posts_id){
-                //         const reciperef = doc(recipecollection, post_id);
-                //         const recipeDoc = await getDoc(reciperef);
-                //         var recipe_data = recipeDoc.data();
-                        
-                //         if (recipe_data && recipe_data.reviews) {
-                //             // Loop through each review
-                //             for (let review of recipe_data.reviews) {
-                //                 // Check if the username in the review matches the old username
-                //                 review.username = "deleted_user";
-                //                 review.profilepic = "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepictures%2Fdeleted_user.png?alt=media&token=83893567-2081-4578-a8b7-ea20d94c9240&_gl=1*6uqycw*_ga*MTQ1MjA2NDU4My4xNjk4NzM4NjE0*_ga_CW55HF8NVT*MTY5OTM1NzUyMC4zMy4xLjE2OTkzNjAwMzYuNDQuMC4w";
-                //             }
-
-                //             // Update the recipe_data in the Firestore document
-                //             await updateDoc(reciperef, { reviews: recipe_data.reviews });
-                //         }
-
-                //         }
-                // }
                 
                 // // delete user database
                 deleteDoc(docRef).then(() => {
