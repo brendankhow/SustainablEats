@@ -51,7 +51,10 @@ const router = createRouter({
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
     { path: "/test_chatgpt", component: () => import("../views/test_chatgpt.vue")},
-    { path: "/ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"), props: true /* Enables passing route parameters as props */},
+    {
+      path: "/ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"),
+      props: (route) => ({ formData: route.params.formData }),
+  },
   ],  
 });
 
