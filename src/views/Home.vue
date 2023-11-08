@@ -139,7 +139,6 @@
   <!-- ======= Events Section ======= -->
 <section id="events" class="events">
       <div class="container-fluid" data-aos="fade-up">
-
         <div class="section-header">
           <h2>United Nations Sustainable Development Goals(s)</h2>
           <p style="font-size: 25px">Savor Sustainability at SustainablEats</p>
