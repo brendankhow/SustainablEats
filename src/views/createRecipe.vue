@@ -23,7 +23,7 @@
                 <label for="creator" class="form-label">Creator:</label>
                 <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
                 <input type="text" id="creator" v-model="creator" class="form-control" v-else>
-              
+
             </div>
 
             <div class="row">
