@@ -21,7 +21,7 @@
                     </div>
                     <div class="row">
                         <div class="container-fluid">
-                            <div class="row ms-4 me-4 user_details pt-3 pb-2">
+                            <div class="row ms-4 me-4 pt-3 pb-2">
 
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
                                         <div class="col d-flex justify-content-center" v-if="profilepic">
@@ -50,27 +50,25 @@
             </div>
 
             <!-- ================================USER DETAILS===================================================================================-->
-            <div class="row user_details">
+            <div class="row">
                 <div class="container-fluid">
                     <img src="../assets/user.png" height="30px" class="d-inline-block ">
                     <h4 class="d-inline-block ms-2">User Details</h4>
-
-                    
-                    <div class="row mb-3 mt-2">
+                    <div class="row mb-3 mt-2 ms-1">
                         <label for="username" class="col-lg-2 col-md-12 col-form-label fw-bold">USERNAME:</label>
                         <div class="col-lg-10 col-md-12 col-sm-12">
                             <input type="text" class="form-control border-0" id="username" style="background-color:#EDF8FF;" v-model="username">
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row mb-3 ms-1">
                         <label for="username" class="col-lg-2 col-md-12 col-form-label fw-bold">BIOGRAPHY:</label>
                         <div class="col-lg-10 col-md-12 col-sm-12">
                             <textarea v-model="bio" class="form-control border-0" id="exampleFormControlTextarea1" rows="3" style="background-color:#EDF8FF; resize: none;">
                                 </textarea>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row ms-1">
                         <div class="col d-flex flex-row-reverse pb-2">
                             <button class="btn btn-primary text-white fw-bold" @click="updateUserdetails">SUBMIT & SAVE</button>
                         </div>
