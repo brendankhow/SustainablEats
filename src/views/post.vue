@@ -53,6 +53,7 @@
                 </div>
               </div>
             </div>
+            <p v-if="recentReviews.length === 0" class="no-reviews-message">No reviews currently</p>
         </div>
       </section>
     </div>
@@ -149,7 +150,8 @@
         try{
           await updateDoc(recipeRef, {
             // Use arrayUnion to add the new review to the "reviews" array
-            reviews: arrayUnion({ userID, 
+            reviews: arrayUnion({ 
+              userID, 
               review: userReview.value,
               timestamp: timestamp,
               username: username,
@@ -158,7 +160,17 @@
           })
           console.log("Review added!")
 
+          // Update the local reviews array to reflect the newly added review
+          recentReviews.value.push({
+            userID,
+            review: userReview.value,
+            timestamp: timestamp,
+            username: username,
+            profilepic: profilepic,
+          });          
+          
           userReview.value = "";
+          
         } 
         catch (error){
           console.log('Error adding review:', error);
@@ -295,6 +307,9 @@ form .btn button:hover{
   text-transform: uppercase;
 }
 
+.no-reviews-message {
+  text-transform: uppercase;
+}
 .testimonial-box-container{
   display: flex;
   justify-content: center;
