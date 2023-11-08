@@ -22,18 +22,21 @@
       <a class="btn_get_started">
         <router-link to="/generateRecipe" class="link-white">Get Started</router-link>
       </a>
+      <div class="mt-2">
+        <a href="#about"><span><img src="../assets/chevron-down.png" width="50" height="50"></span></a>
+      </div>
     </div>
+    
 </section>
 
-   <!-- About Us-->
 <!-- About Us Section -->
-<section id="about" class="about animate-on-scroll">
-  <div class="container aos-init aos-animate" data-aos="fade-up">
+<section id="about" class="about animate-on-scroll text-center d-flex align-item-center justify-content-center">
+  <div class="container aos-init aos-animate p-5 rounded-1" style="background-color:white" data-aos="fade-up">
     <div class="section-header">
-      <h2>About Us</h2>
+      <h1>About Us</h1>
     </div>
 
-    <div class="row gy-4">
+    <div class="row gy-4 mt-2">
       <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
         <div class="content ps-0 ps-lg-5">
           <h3 class="about-heading">Our Story</h3>
@@ -43,6 +46,9 @@
           <ul class="about-list">
             <li>This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes.</li>
           </ul>
+          <div class="mt-2">
+            <a href="#trending"><span><button class="btn" style="background-color:#25D366">See Trending</button></span></a>
+          </div>
         </div>
       </div>
 
@@ -55,54 +61,49 @@
   </div>
 </section>
 
-     <!-- Trending Recipes Section -->
-    <section id="trending">
-      <div class="container">
-        <div>
-          <h1 style="text-align:center; color:black;">Trending Recipes</h1>
-        </div>
-        <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
-          <div class="carousel-inner">
-            <!-- recipe is an object that has the attributes as the one we created in database-->
-            <div
-              v-for="(recipe, index) in recipes"
-              :key="recipe.id"
-              :class="['carousel-item', { active: index === 0 }]">
-              <img
-                :src="recipe.recipeImageURLs"
-                class="d-block w-100 carousel-image"
-                alt="Recipe Image"
-              />
-              <div class="carousel-caption d-none d-md-block">
-                <h5>{{ recipe.creator }}</h5>
-                <p>{{ recipe.description }}</p>
-                <p>Likes: {{ recipe.likes }}</p>
-              </div>
+    <!-- Trending Recipes Section -->
+<section id="trending">
+  <div class="container">
+    <div>
+      <h1 style="text-align:center; color:black;">Trending Recipes</h1>
+    </div>
+    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
+      <div class="carousel-inner">
+        <!-- recipe is an object that has the attributes as the one we created in database-->
+        <div v-for="(recipe, index) in recipes" :key="recipe.id" :class="['carousel-item', { active: index === 0 }]">
+          <div class="card">
+            <img
+            :src="recipe.recipeImageURLs"
+            class="d-block carousel-image"
+            alt="Recipe Image" height="500" style="width: 100%; object-fit: cover;"/>
+            <div class="card-body">
+              <h3>Created by: {{ recipe.creator }}</h3>
+              <p >Description: {{ recipe.description }}</p>
+              <p>Likes: {{ recipe.likes }}</p>
             </div>
           </div>
-
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" ariahidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-
         </div>
+
       </div>
-  </section>
+      <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon p-2" aria-hidden="true" style="background-color: black; border-radius: 100px"></span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon p-2" ariahidden="true" style="background-color: black; border-radius: 100px"></span>
+            </button>
+    </div>
+  </div>
+</section>
 
   <hr>
   
@@ -259,6 +260,10 @@
  
  <style>
  /* CSS template */
+
+ html {
+  scroll-behavior: smooth;
+}
  
  ::-webkit-scrollbar {
   width: 10px; /* Width of the scrollbar track */
@@ -294,14 +299,6 @@ section{
   overflow: hidden;
 }
 /* Set a background color for the entire page */
-
-/* Style the header section */
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  text-align: center;
-}
 
 main {
   padding: 20px;
@@ -387,7 +384,6 @@ footer {
   color: #fff;
   transition: 0.6s all;
 }
-
 /* Animation */
 
 @-webkit-keyframes pulsing {
@@ -425,78 +421,24 @@ footer {
   border: 2px solid #009970;
   color: #fff;
 }
- 
- /* Adjusts height of carousel container */
- 
- #trending{
-     width: 100%;
-     height: 100vh;     
- }
- #trending .container{
-     padding-top: 10px;
- }
- 
-/* Style for the carousel container */
-#carouselExampleCaptions {
-  max-width: 1200px; /* Set the maximum width as needed */
-  margin: 0 auto;
+
+/* Adjusts height of carousel container */
+
+#trending{
+    width: 100%;
+    height: 100vh;     
+}
+#trending .container{
+    padding-top: 10px;
 }
 
-/* Style for the carousel images */
-.carousel-image {
-  max-height: 550px; /* Adjust the maximum image height as needed */
-  width: auto;
-  margin: 0 auto;
-  object-fit: cover; /* Maintain aspect ratio without distortion */
+#leaderboard{
+    justify-content: center;
+    
 }
 
-/* Center the carousel controls horizontally and vertically */
-.carousel-control-prev,
-.carousel-control-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px; /* Adjust the control width as needed */
-  background: rgba(0, 0, 0, 0.5);
-  text-align: center; /* Center the control content horizontally */
-  line-height: 50px; /* Center the control content vertically */
-}
-
-/* Style for the carousel control icons */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5);
-  font-size: 24px;
-  color: white;
-}
-/* Style for the carousel items */
-.carousel-item {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-/* Add a background to the captions for readability */
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 10px;
-}
-
-/* Apply hover effect on carousel items */
-.carousel-item:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
-}
-
- #leaderboard{
-     justify-content: center;
-     
- }
-
- .link-white {
-  color: white;
+.link-white {
+color: white;
 }
 
 
@@ -505,9 +447,14 @@ footer {
 --------------------------------------------------------------*/
   /* About Us Section */
   .about {
-    background-color: #f9f9f9; /* Set a background color for the section */
+    background-color: #e0f0e1;
     padding: 60px 0;
     overflow: hidden;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .about h2 {
@@ -567,7 +514,6 @@ footer {
   .about .position-relative img {
     max-height: 400px;
     width: 100%;
-    margin-left: 20px;
     display: block;
     object-fit: cover; /* Maintain image aspect ratio */
   }
@@ -611,6 +557,12 @@ footer {
   max-width: 100%;
   border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 575px){
+  .about-image {
+    max-width: 80%;
+  }
 }
 /* Style for the Events Section */
 #events {
