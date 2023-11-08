@@ -33,6 +33,7 @@
 
   let auth;
   onMounted (() =>{
+    document.title = 'SustainablEats';
     auth = getAuth();
     onAuthStateChanged (auth, (user) => {
       if (user) {
