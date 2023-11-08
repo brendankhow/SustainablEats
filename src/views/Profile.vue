@@ -67,8 +67,8 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button><router-link :to="recipe_card.recipe_link">View more</router-link></button>
-                                <button><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
-                                <button @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
+                                <button v-if="content === 'post'"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
+                                <button v-if="content === 'post'" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
                             </div>
                         </div>
                     </div>
