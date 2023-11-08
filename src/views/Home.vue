@@ -125,7 +125,7 @@
             <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
              style="height: 300px; width: 100%; display: block">
              <hr>
-            <div class="card-body">
+            <div class="card-body text-center">
               <h3 class="card-title">{{ user.name }}</h3>
               <img class="mx-2" src="../assets/coin.png" style="height: 50px; width: 50px; display: inline;">
               <h3 class="card-text" style="display: inline-block">{{ user.coin }}</h3>
@@ -146,7 +146,6 @@
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(../assets/background.png)">
               <h3>SDG 2: Zero Hunger</h3>
               <p class="description">
@@ -224,25 +223,9 @@
       recipeSnapshot.forEach((doc) => {
         recipes.value.push({
           ...doc.data()
-        /*
-          creator: doc.creator,
-          description: doc.description,
-          likes: doc.likes,
-          image: getImageURL(doc.data().imageId), // Assign the image URL
-        ...doc.data(),
-        */
         })
       })
       console.log(recipes);
-      /*
-      const recipeSnapshot = await getDocs(recipesRef);
-
-      recipes.value = recipeSnapshot.docs.map((doc) => ({
-        creator: doc.creator,
-        description: doc.description,
-        image: getImageURL(doc.data().imageId), // Assign the image URL
-        ...doc.data(),
-      }));*/
       
   })
   
