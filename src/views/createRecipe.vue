@@ -63,7 +63,7 @@
             <div class="row">
                 
                 <label for="imageUpload" class="form-label">Recipe Image:</label>
-                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control">
+                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control" required accept="image/*">
               
             </div>
 
@@ -85,7 +85,7 @@
                 <!-- Ingredient Quantity (change input type to "number" and add min attribute) -->
                 <div class="form-group">
                   <label for="ingredientQuantity" class="form-label">Ingredient Quantity:</label>
-                  <input type="number" v-model="ingredient.quantity" class="form-control" min="0">
+                  <input type="number" v-model="ingredient.quantity" class="form-control"  min="1">
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@
       mealType: '',
       cuisineType: '',
       description: '',
-      ingredients: [{ name: '', quantity: 0 }],
+      ingredients: [{ name: '', quantity: 1 }],
       steps: [{ description: '' }],
       selectedImage: null,
       imageUploadProgress: 0,
@@ -164,6 +164,7 @@
     remainingChar(){
       return 256 - this.description.length;
     },
+
   },
   methods: {
     addIngredient: function (){
@@ -183,6 +184,11 @@
       console.log(this.selectedImage);
     },
     uploadImageAndCreateRecipe: async function () {
+
+      if (!this.recipeName || !this.mealType || !this.cuisineType) {
+        alert('Please fill in all required fields!');
+        return;
+      }
     if (this.selectedImage) {
       const timestamp = new Date().getTime();
       const randomString = Math.random().toString(36).substring(2, 8);
