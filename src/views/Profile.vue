@@ -69,6 +69,7 @@
                                 <button><router-link :to="recipe_card.recipe_link">View more</router-link></button>
                                 <button v-if="content === 'post'"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
                                 <button v-if="content === 'post'" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
+                                <button v-if="content === 'bookmark'" @click="removeBookmark(recipe_card.recipe_id)">Remove Bookmark</button>
                             </div>
                         </div>
                     </div>
@@ -83,7 +84,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { getFirestore, collection, getDoc, doc, setDoc, deleteDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDoc, doc, setDoc, deleteDoc, updateDoc, updateRef } from 'firebase/firestore';
 import { deleteObject, getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
 import { onMounted, ref } from 'vue';
 import { getAuth, onAuthStateChanged  } from 'firebase/auth';
@@ -211,6 +212,37 @@ export default {
                 }
             }
             return this.card;
+        },
+
+        removeBookmark: async function (recipeId) {
+            const userRef = doc(db, 'Users', this.uid);
+
+            try {
+                // Get user doc in firebase
+                const userDoc = await getDoc(userRef);
+                const userData = userDoc.data();
+
+                // Update the user's bookmark array by removing the index of the recipe ID
+                const bookmarkList = userData.bookmarks;
+                var index = bookmarkList.indexOf(recipeId);
+                if (index > -1) {
+                    bookmarkList.splice(index, 1);
+                }
+
+                // Update UI 
+                localStorage.setItem(`bookmark_${recipeId}`, false);
+
+                // Update the UI to remove the deleted recipe card
+                this.recipe_cards = this.recipe_cards.filter(card => card.recipe_id !== recipeId);
+
+                await updateDoc(userRef, {
+                    bookmarks: bookmarkList
+                })
+                console.log("Bookmark removed sucessfully");
+
+            } catch (error) {
+                console.error('Error deleting bookmark:', error);
+            }
         }
     },
     navigateToPost: function(recipe_id) {
