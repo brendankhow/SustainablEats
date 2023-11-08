@@ -4,6 +4,7 @@
 ```
 npm install openai
 npm install axios
+npm install bootstrap-icons
 
 In case the AI does not work, it could be due to the lack of credits for the AI. <br>
 Please go to the chatgpt.vue file and change the const OPENAI_API_KEY and replaced it as yours. <br>

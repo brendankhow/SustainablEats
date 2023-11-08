@@ -91,6 +91,7 @@ export default {
   align-items: flex-start;
   padding: 20px;
   overflow: auto; /* Allow the entire page to scroll when needed */
+  margin-top: 80px;
 }
 
 .community-page {

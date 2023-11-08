@@ -30,31 +30,33 @@
 </section>
 
 <!-- About Us Section -->
-<section id="about" class="about animate-on-scroll text-center d-flex align-item-center justify-content-center">
+<section id="about" class="about animate-on-scroll text-center d-flex align-item-center justify-content-center p-5" style="background-color:#e0f0e1;">
   <div class="container aos-init aos-animate p-5 rounded-1" style="background-color:white" data-aos="fade-up">
-    <div class="section-header">
-      <h1>About Us</h1>
-    </div>
-
-    <div class="row gy-4 mt-2">
-      <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-        <div class="content ps-0 ps-lg-5">
-          <h3 class="about-heading">Our Story</h3>
-          <p class="about-description">
-            With Singapore’s rising focus on tackling sustainability problems, the primary goal of SustainablEats is to empower individuals and build a positive community to make sustainable food choices and reduce wastage.
-          </p>
-          <ul class="about-list">
-            <li>This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes.</li>
-          </ul>
-          <div class="mt-2">
-            <a href="#trending"><span><button class="btn" style="background-color:#25D366">See Trending</button></span></a>
-          </div>
-        </div>
+    <div class="row">
+      <div class="section-header">
+        <h1>About Us</h1>
       </div>
 
-      <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up">
-        <div class="position-relative">
-          <img src="../assets/aboutUs.jpg" class="img-fluid about-image" alt="About Us Image">
+      <div class="row gy-4 mt-2">
+        <div class="col-lg-6 d-flex align-items-center aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+          <div class="content ps-0 ps-lg-5">
+            <h3 class="about-heading">Our Story</h3>
+            <p class="about-description">
+              With Singapore’s rising focus on tackling sustainability problems, the primary goal of SustainablEats is to empower individuals and build a positive community to make sustainable food choices and reduce wastage.
+            </p>
+            <ul class="about-list">
+              <li>This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes.</li>
+            </ul>
+            <div class="mt-2">
+              <a href="#trending"><span><button class="btn trending_btn">See Trending</button></span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 aos-init aos-animate" data-aos="fade-up">
+          <div class="position-relative">
+            <img src="../assets/aboutUs.jpg" class="img-fluid about-image" alt="About Us Image">
+          </div>
         </div>
       </div>
     </div>
@@ -71,62 +73,62 @@
       <div class="carousel-inner">
         <!-- recipe is an object that has the attributes as the one we created in database-->
         <div v-for="(recipe, index) in recipes" :key="recipe.id" :class="['carousel-item', { active: index === 0 }]">
-          <div class="card">
+          <div class="card" style="border-left: 25px solid #25d366">
             <img
             :src="recipe.recipeImageURLs"
             class="d-block carousel-image"
             alt="Recipe Image" height="500" style="width: 100%; object-fit: cover;"/>
             <div class="card-body">
-              <h3>Created by: {{ recipe.creator }}</h3>
+              <h3>Recipe Name: {{recipe.name}}</h3>
+              <h5>Created by: {{ recipe.creator }}</h5>
               <p >Description: {{ recipe.description }}</p>
-              <p>Likes: {{ recipe.likes }}</p>
+              <p class="text-muted">Likes: {{ recipe.likes }}</p>
             </div>
           </div>
         </div>
-
       </div>
       <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="prev"
-            >
-              <span class="carousel-control-prev-icon p-2" aria-hidden="true" style="background-color: black; border-radius: 100px"></span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide="next"
-            >
-              <span class="carousel-control-next-icon p-2" ariahidden="true" style="background-color: black; border-radius: 100px"></span>
-            </button>
-    </div>
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon p-2" aria-hidden="true" style="background-color: black; border-radius: 100px"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon p-2" ariahidden="true" style="background-color: black; border-radius: 100px"></span>
+      </button>
+      </div>
   </div>
 </section>
 
-  <hr>
+  <hr style="border: 3px solid #25D366">
   
     <!-- Leaderboard Ranking Pange-->
-    <section id="leaderboard">
-    <div class="container">
+    <section id="leaderboard" style="background-color: #e0f0e1">
+    <div class="container" >
       <div>
         <h1 style="text-align: center; color: black;">Leaderboard Ranking</h1>
-        <h5 class="mt-3" style="text-align: center; color: grey;">Top 3 users of the month:</h5>
+        <h3 class="mt-3" style="text-align: center; color: #0e5328;">Top 3 users of the month:</h3>
       </div>
 
       <div class = "row mt-5 justify-content-center">
         <!-- Use v-for to loop through top3UsersCoins array -->
         <div class ="col-lg-4" v-for="(user, index) in top3UsersCoins" :key="index">
-          <div class ="card ms-5 box-shadow bg-light">
+          <div class ="card box-shadow mb-4" style="background-color:white">
             <!-- Use user.name and user.coin to display dynamic data -->
             <img class="card-img-top" :src="require(`@/assets/number${index}.jpg`)"
              style="height: 300px; width: 100%; display: block">
              <hr>
-            <div class="card-body ">
+            <div class="card-body text-center">
               <h3 class="card-title">{{ user.name }}</h3>
+              <img class="mx-2" src="../assets/coin.png" style="height: 50px; width: 50px; display: inline;">
               <h3 class="card-text" style="display: inline-block">{{ user.coin }}</h3>
-              <img class="mx-2" src="../assets/coin.png" style="height: 75px; width: 25%; display: inline;">
             </div>
           </div>
         </div>
@@ -137,15 +139,13 @@
   <!-- ======= Events Section ======= -->
 <section id="events" class="events">
       <div class="container-fluid" data-aos="fade-up">
-
         <div class="section-header">
           <h2>United Nations Sustainable Development Goals(s)</h2>
-          <p>Savor Sustainability at SustainablEats</p>
+          <p style="font-size: 25px">Savor Sustainability at SustainablEats</p>
         </div>
 
         <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
-
             <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(../assets/background.png)">
               <h3>SDG 2: Zero Hunger</h3>
               <p class="description">
@@ -223,25 +223,9 @@
       recipeSnapshot.forEach((doc) => {
         recipes.value.push({
           ...doc.data()
-        /*
-          creator: doc.creator,
-          description: doc.description,
-          likes: doc.likes,
-          image: getImageURL(doc.data().imageId), // Assign the image URL
-        ...doc.data(),
-        */
         })
       })
       console.log(recipes);
-      /*
-      const recipeSnapshot = await getDocs(recipesRef);
-
-      recipes.value = recipeSnapshot.docs.map((doc) => ({
-        creator: doc.creator,
-        description: doc.description,
-        image: getImageURL(doc.data().imageId), // Assign the image URL
-        ...doc.data(),
-      }));*/
       
   })
   
@@ -260,6 +244,13 @@
  
  <style>
  /* CSS template */
+ .trending_btn:hover {
+  background-color: #24a152;
+  color:white;
+ }
+ .trending_btn {
+  background-color: #25D366;
+ }
 
  html {
   scroll-behavior: smooth;
@@ -450,7 +441,6 @@ color: white;
     background-color: #e0f0e1;
     padding: 60px 0;
     overflow: hidden;
-    height: 100vh;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -566,7 +556,7 @@ color: white;
 }
 /* Style for the Events Section */
 #events {
-  background-color: #f9f9f9; /* Set a background color for the section */
+  background-color: #f9f9f9;
   padding: 60px 0;
   overflow: hidden;
 }
@@ -580,18 +570,18 @@ color: white;
   font-size: 36px;
   margin-bottom: 30px;
   font-family: 'Raleway', sans-serif;
-  color: #333; /* Change the text color */
+  color: #333;
 }
 
 #events p {
   font-size: 18px;
   font-weight: 400;
-  color: #555; /* Change the text color */
+  color: #555;
   margin-top: 20px;
 }
 
 .events .slides-3 {
-  max-width: 1200px; /* Set the maximum width as needed */
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 30px;
   position: relative;
@@ -600,61 +590,83 @@ color: white;
 .events .swiper-wrapper {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
 
 .events .swiper-slide {
   flex-shrink: 0;
-  width: 100%;
-  max-width: 300px; /* Adjust the maximum width as needed */
-  background-color: #fff;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  width: calc(25% - 40px); /* 25% width with spacing between items for full-screen */
   margin: 20px;
   text-align: center;
   padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .events .swiper-slide h3 {
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #333; /* Change the text color */
+  color: #333;
 }
 
 .events .swiper-slide .price {
   font-size: 20px;
   font-weight: 700;
-  color: #25D366; /* Green color for emphasis */
+  color: #25D366;
 }
 
 .events .swiper-slide .description {
   font-size: 16px;
-  color: #555; /* Change the text color */
+  color: #555;
   margin-top: 10px;
 }
 
-/* Style for the swiper pagination dots */
 .events .swiper-pagination {
   margin-top: 20px;
   text-align: center;
 }
 
 .events .swiper-pagination .swiper-pagination-bullet {
-  background: #333; /* Color of the pagination dots */
+  background: #333;
   width: 10px;
   height: 10px;
   margin: 0 5px;
-  border-radius: 50%; /* Make the pagination dots circular */
+  border-radius: 50%;
   cursor: pointer;
 }
 
 .events .swiper-pagination .swiper-pagination-bullet-active {
-  background: #25D366; /* Color of the active pagination dot */
+  background: #25D366;
 }
 
-/* Apply hover effect on event items */
 .events .swiper-slide:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1200px) {
+  .events .swiper-slide {
+    width: calc(33.33% - 40px); /* 33.33% width with spacing between items for large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .events .swiper-slide {
+    width: calc(50% - 40px); /* 50% width with spacing between items for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .events .swiper-slide {
+    width: calc(50% - 20px); /* 50% width with reduced spacing between items for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .events .swiper-slide {
+    width: 100%; /* Full width for the smallest screens */
+  }
 }
 
  </style>

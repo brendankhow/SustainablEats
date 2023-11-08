@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-xl navbar-light fixed-top" style="background-color: white;">
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top" style="background-color: white; border-bottom: 4px solid #25d366">
 <div class="container-fluid ms-2">
   <router-link to="/home">
     <span class="navbar-brand">
@@ -37,7 +37,7 @@
 
       <li class="nav-item d-flex align-items-center">
         <router-link to="/Profile" class="nav-link ">
-          <img :src="profilepic" class="rounded-5" alt="" width="50" height="50">
+          <img :src="profilepic" class="rounded-5" style="border:2px solid #25d366" alt="" width="50" height="50">
           <!-- Display user info when currentUser exists -->
           <span class=" align-middle ps-2 ">{{ username }}</span>
         </router-link>
