@@ -322,20 +322,20 @@ export default{
                 //         }
                 // }
                 
-                // // // delete user database
-                // deleteDoc(docRef).then(() => {
-                //     console.log('Document deleted');
-                // }).catch((error) => {
-                //     console.log(error);
-                // });
+                // // delete user database
+                deleteDoc(docRef).then(() => {
+                    console.log('Document deleted');
+                }).catch((error) => {
+                    console.log(error);
+                });
 
-                // // delete user authentication account
-                // await user.delete().then(() => {
-                //     console.log('User deleted');
-                //     this.$router.push('/sign-in'); // Redirect to login after account deletion
-                // }).catch((error) => {
-                //     console.log(error);
-                // });
+                // delete user authentication account
+                await user.delete().then(() => {
+                    console.log('User deleted');
+                    this.$router.push('/sign-in'); // Redirect to login after account deletion
+                }).catch((error) => {
+                    console.log(error);
+                });
             }
         }
     },
