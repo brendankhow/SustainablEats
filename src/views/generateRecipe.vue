@@ -415,7 +415,6 @@ const router = useRouter() // get a reference to our vue router
             return { description };
           });
 
-
           const recipeData = {
             name: this.recipe.recipeName,
             creator: this.creator,
