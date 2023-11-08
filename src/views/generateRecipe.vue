@@ -48,6 +48,11 @@
                     <div class="col-md-12 submit-btn-div">
                         <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
                     </div>
+
+                    <!-- Edit Button -->
+                    <!-- display only after output is generated -->
+                    <button type="submit" @click="editRecipe">Edit</button>
+                    <!-- v-if="recipe.recipeName" -->
                 </div>
             </form>
 
@@ -94,10 +99,6 @@
                 </div>
             </div>
 
-            <!-- Edit Button -->
-            <!-- display only after output is generated -->
-            <button @click="editRecipe">Edit</button>
-            <!-- v-if="recipe.recipeName" -->
         </div>
     </div>
 
@@ -332,6 +333,8 @@
         };
         // Navigate to the ModifyRecipe page and pass the recipe details
         this.$router.push({ path: '/ModifyRecipe', query: { recipeDetails } });
+
+        console.log(recipeDetails);
 
     },
     
