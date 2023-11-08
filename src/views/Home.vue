@@ -109,13 +109,13 @@
 
   <hr style="border: 3px solid #25D366">
   
-<!-- Leaderboard Ranking Pange-->
-<section id="leaderboard" style="background-color: #e0f0e1;">
-  <div class="container">
-    <div>
-      <h1 style="text-align: center; color: black; font-size: 36px;">Leaderboard Ranking</h1>
-      <h3 class="mt-3" style="text-align: center; color: #0e5328; font-size: 24px;">Top 3 users of the month:</h3>
-    </div>
+    <!-- Leaderboard Ranking Pange-->
+    <section id="leaderboard" style="background-color: #e0f0e1">
+    <div class="container" >
+      <div>
+        <h1 style="text-align: center; color: black;">Leaderboard Ranking</h1>
+        <h3 class="mt-3" style="text-align: center;">Top 3 users of the month:</h3>
+      </div>
 
     <div class="row mt-5 justify-content-center">
       <div class="col-lg-4" v-for="(user, index) in top3UsersCoins" :key="index">

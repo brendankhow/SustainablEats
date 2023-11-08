@@ -8,7 +8,6 @@
           <!-- Easiest to hardest input -->
 
             <div class="row">
-              
                 <label for="recipeName" class="form-label">Recipe Name:</label>
                 <input type="text" id="recipeName" v-model="recipeName" class="form-control" :title="isEmpty ? 'Recipe Name is required' : ''"
                 @focus="isEmpty = false" 
@@ -23,7 +22,7 @@
                 <label for="creator" class="form-label">Creator:</label>
                 <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
                 <input type="text" id="creator" v-model="creator" class="form-control" v-else>
-              
+
             </div>
 
             <div class="row">
@@ -120,7 +119,7 @@
         </div>
   
       <!-- Create Recipe Button -->
-      <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success mt-4">Create Recipe</button>
+      <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn">Create Recipe</button>
       </div>
     </div>
   </div>
@@ -294,6 +293,13 @@
   </script>
   
   <style>
+    .create_btn{
+      background-color: #25d366;
+    }
+    .create_btn:hover{
+      background-color: #00ad40;
+      color:white;
+    }
     /* Card styles */
     .card {
       max-width: 2200px;
@@ -339,11 +345,11 @@
     /* Ingredient and Step items styles */
     .ingredient-item,
     .step-item {
-      border: 1px solid #e0e0e0;
+      border: 1px solid #ffffff;
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 10px;
       margin-bottom: 20px;
-      background-color: #f9f9f9; /* Background color */
+      background-color: #e0f0e1; /* Background color */
     }
   
     /* Button styles */
