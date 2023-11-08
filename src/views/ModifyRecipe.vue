@@ -10,7 +10,7 @@
         <!-- Recipe Name Input -->
           <div class="form-group">
             <label for="recipeName">Recipe Name:</label>
-            <input type="text" id="recipeName" :value="recipeDetails.recipeName"/>
+            <input v-model="editedName" type="text" id="recipeName" :placeholder="recipeDetails.recipeName" @blur="stopEditingName" @input="updateRecipeName" />
           </div>
 
         <!-- Image Upload Field -->
@@ -28,14 +28,16 @@
           <div class="form-group">
             <label for="recipeIngredients">Ingredients:</label><br>
             <div v-for="(ingredient, i) in recipeDetails.ingredientsArray" :key="i">
-              <div v-if="editingIndex !== i">
+              <div v-if="editingIngredientIndex !== i">
                 <span>{{ ingredient }}</span>
-                <button @click="startEditing(i)">Edit</button>
+                <button @click="startEditingIngredient(i)">Edit</button>
+                
               </div>
               <div v-else>
-                <input v-model="editedIngredient" @input="updateIngredient" @blur="stopEditing" />
-                <button @click="confirmEdit(i)">Confirm</button>
+                <input v-model="editedIngredient" @input="updateIngredient" @blur="stopEditingIngredient" />
+                <button @click="confirmEditIngredient(i)">Confirm</button>
               </div>
+              <button @click="deleteIngredient(i)">Delete</button>
             </div>
             <!-- {{ recipeDetails.ingredientsArray }} -->
           </div>
@@ -43,11 +45,20 @@
           <div class="form-group">
             <label for="recipeInstructions">Steps:</label><br>
             <div v-for="(instruction, j) in recipeDetails.instructionsArray" :key="j">
-              <span>{{ instruction }}</span>
+              <div v-if="editingInstructionIndex !== j">
+                <span>{{ instruction }}</span>
+                <button @click="startEditingInstruction(j)">Edit</button>
+                
+              </div>
+              <div v-else>
+                <input v-model="editedInstruction" @input="updateInstruction" @blur="stopEditingInstruction" />
+                <button @click="confirmEditInstruction(j)">Confirm</button>
+              </div>
+              <button @click="deleteInstruction(j)">Delete</button>
             </div>
           </div>
         <!-- Redirect to ? -->
-        <button type="submit">Save Changes</button>
+        <button type="button" @click="showLogs()">Save Changes</button>
       </form>
     </div>
 
@@ -63,66 +74,114 @@
   import axios from 'axios';
   // import OpenAI from 'openai';
 export default {
-    setup() { },
+
   data() {
     return {
       // hardcoded for easier testing (setting up page-page link)
       // recipeDetails represent sample recipe data sent from GenerateRecipe.vue when user presses 'edit'
-      
+
       recipeDetails:
-        {
-          "recipeName": " Classic Spaghetti Carbonara\n\n",
-          "image": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-D12V1pcCP5fIMJP2UaFzZwOD/user-FpsBNmRJpxtxaxY6LCQSuzQd/img-hZW4cDH2ZGPlyrmrQVfnFLWJ.png?st=2023-11-08T03%3A13%3A11Z&se=2023-11-08T05%3A13%3A11Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-11-08T03%3A50%3A03Z&ske=2023-11-09T03%3A50%3A03Z&sks=b&skv=2021-08-06&sig=PzZHyjbf%2Bi1FMBVUPymcZFdpoVbnO8cyYiCbftWwJo0%3D",
+      {
+        "recipeName": " Tamagoyaki (Japanese Rolled Omelette)\n\n",
+        "image": "https://oaidalleapiprodscus.blob.core.windows.net/private/org-D12V1pcCP5fIMJP2UaFzZwOD/user-FpsBNmRJpxtxaxY6LCQSuzQd/img-4TMg5G5DHuZdILvKa48yhTl3.png?st=2023-11-08T05%3A17%3A42Z&se=2023-11-08T07%3A17%3A42Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-11-08T04%3A38%3A07Z&ske=2023-11-09T04%3A38%3A07Z&sks=b&skv=2021-08-06&sig=H4OQzDjKrjORt/uo9AJkIlzsax2HtGKYJ8Vc4qh3ILU%3D",
           "ingredientsArray": [
-              "- 8 ounces spaghetti pasta",
-              "4 slices of bacon, chopped",
-              "2 cloves garlic, minced",
-              "2 large eggs",
-              "1/2 cup grated Parmesan cheese",
-              "Salt and pepper, to taste",
-              "Fresh parsley, chopped (for garnish)"
+            "- 4 large eggs",
+            "1 tablespoon soy sauce",
+            "1 tablespoon mirin (Japanese sweet rice wine)",
+            "1 teaspoon granulated sugar",
+            "1/4 teaspoon salt",
+            "1 tablespoon vegetable oil, for cooking"
           ],
-          "instructionsArray": [
-              "1. Cook the spaghetti pasta according to package instructions until al dente. Drain and set aside.",
-              "2. In a large skillet, cook the bacon over medium heat until crispy. Remove the bacon from the skillet and set aside, leaving the rendered fat in the skillet.",
-              "3. In the same skillet with the bacon fat, add the minced garlic and sauté for about 1 minute until fragrant.",
-              "4. In a medium bowl, whisk together the eggs and grated Parmesan cheese. Add salt and pepper to taste.",
-              "5. Pour the cooked spaghetti into the skillet with the garlic and toss well to coat the pasta with the bacon fat.",
-              "6. Remove the skillet from heat and slowly pour the egg and cheese mixture into the spaghetti, stirring constantly to combine. The residual heat will cook the eggs but be careful not to scramble them.",
-              "7. Add the cooked bacon to the skillet and toss to combine all the ingredients evenly.",
-              "8. Garnish with fresh parsley and serve immediately.",
-              "Note: This classic spaghetti carbonara recipe does not typically contain nuts and is focused on highlighting the flavor of eggs. However, it's always important to double-check the labels of your ingredients to ensure they are nut-free and safe for your allergies."
-          ]
-        },
+            "instructionsArray": [
+              "1. Crack the eggs into a bowl and whisk them well until the yolks and whites are fully mixed.",
+              "2. Add soy sauce, mirin, sugar, and salt to the egg mixture. Whisk everything together until the sugar is dissolved.",
+              "3. Heat a non-stick frying pan over medium heat and add vegetable oil, making sure to distribute it evenly across the pan's surface.",
+              "4. Pour a small amount of the egg mixture to thinly cover the bottom of the pan, tilting the pan to spread it out evenly.",
+              "5. Once the bottom layer of egg has set but is still slightly runny on top, start rolling it from one end of the pan to the other using a spatula or chopsticks.",
+              "6. Push the rolled layer of egg to one end of the pan and then pour another thin layer of the egg mixture to cover the empty side of the pan again. Lift up the rolled layer slightly to let the new mixture flow underneath it.",
+              "7. When the new layer has set but is still slightly runny on top, roll it up towards the other end of the pan again.",
+              "8. Repeat steps 6 and 7 until all the egg mixture is used and you have a log-shaped rolled omelette. Make sure to gently lift the already rolled layers to let the new mixture flow underneath each time.",
+              "9. Remove the rolled omelette from the pan and let it cool for a few minutes before cutting it into slices.",
+              "10. Serve Tamagoyaki slices on a plate and enjoy!",
+              "Note: Tamagoyaki can be served as a side dish, part of a bento box, or as a topping for sushi. It can also be enjoyed on its own or served with a side of steamed rice."
+            ]
+      },
       isChosen: true,
 
-      editingIndex: -1, // Track the index being edited
-      editedIngredient: "", // Store the edited ingredient
+      editingIngredientIndex: -1, // Track the index being edited
+      editingInstructionIndex: -1,
+
+      editedName: '',
+      editedIngredient: "",
+      editedInstruction:'',
 
     }
-    },
+  },
+  // created() {
+  //   // Access the recipeDetails from the route query
+  //   this.recipeDetails = this.$route.query.recipeDetails;
+  // },
+
     props: {
 
     },
     computed: {
         
     },
-    methods: {
+  methods: {
+      updateRecipeName() {
+        this.recipeDetails.recipeName = this.editedName;
+      },
       toggleImageSelection() {
         this.isChosen = !this.isChosen;
       },
-      startEditing(index) {
-        this.editingIndex = index; // Enable editing for the clicked item
+      startEditingIngredient(index) {
+        this.editingIngredientIndex = index; // Enable editing for the clicked item
         this.editedIngredient = this.recipeDetails.ingredientsArray[index];
       },
-      stopEditing() {
-        this.editingIndex = -1; // Disable editing
+      stopEditingIngredient() {
+        this.editingIngredientIndex = -1; // Disable editing
         this.editedIngredient = "";
       },
-      confirmEdit(index) {
+      confirmEditIngredient(index) {
         this.recipeDetails.ingredientsArray[index] = this.editedIngredient; // Update the ingredient
-        this.stopEditing(); // Disable editing
+        this.stopEditingIngredient(); // Disable editing
+
+        console.log(this.recipeDetails.ingredientsArray);
       },
+      updateIngredient() {
+        if (this.editingIngredientIndex !== -1) {
+          // Update the ingredient in the array when input changes
+          this.recipeDetails.ingredientsArray[this.editingIngredientIndex] = this.editedIngredient;
+        }
+      },
+
+      startEditingInstruction(index) {
+        this.editingInstructionIndex = index; // Enable editing for the clicked item
+        this.editedInstruction = this.recipeDetails.instructionsArray[index];
+      },
+      stopEditingInstruction() {
+        this.editingInstructionIndex = -1; // Disable editing
+        this.editedInstruction = "";
+      },
+      confirmEditInstruction(index) {
+        this.recipeDetails.instructionsArray[index] = this.editedInstruction; // Update the instruction
+        this.stopEditingInstruction(); // Disable editing
+
+        console.log(this.recipeDetails.instructionsArray);
+      },
+      updateInstruction() {
+        if (this.editingInstructionIndex !== -1) {
+          // Update the ingredient in the array when input changes
+          this.recipeDetails.instructionsArray[this.editingInstructionIndex] = this.editedInstruction;
+        }
+      },
+
+      // for debugging (check if data changed in console)
+      showLogs() {
+        console.log("Recipe Details", this.recipeDetails);
+      },
+
     }
   };
 </script>
