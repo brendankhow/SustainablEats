@@ -170,6 +170,7 @@ import { ref } from 'vue';
 import { getFirestore, collection, addDoc, getDoc, setDoc, updateDoc, doc } from 'firebase/firestore';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication methods
+import { tSThisType } from '@babel/types';
 
 const storage = getStorage();
 const imageUploadProgress = ref(0);
@@ -293,6 +294,7 @@ const router = useRouter() // get a reference to our vue router
             // this.recipe.title = this.userInput;
             this.recipe.recipeName = recipeName;
             console.log(recipeName);
+
             this.fetchImg(recipeName);
             this.recipe.description = recipeData[0];
             this.recipe.ingredientsArray = ingredientsArray;
@@ -335,7 +337,9 @@ const router = useRouter() // get a reference to our vue router
             },
             {
                 headers: {
-                    Authorization: `Bearer ${this.OPENAI_API_KEY}`,
+                'Authorization': `Bearer ${this.OPENAI_API_KEY}`,
+                // image
+                'Content-Type':'application/json'
                 },
             }
             );
@@ -423,7 +427,7 @@ const router = useRouter() // get a reference to our vue router
             // description: this.description,
             ingredients: formattedIngredients,
             steps: formattedInstructions,
-            recipeImageURLs: this.recipe.image,
+            recipeImageURLs: [this.recipe.image],
             imageId: uniqueID,
             uid: userUID,
             likes: 0,
