@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" style="margin-top: 80px">
     <div class="profile-banner">
         <img id="profile_banner_img" :src="profilebanner" class="img-fluid">
     </div>
