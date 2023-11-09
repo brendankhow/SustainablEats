@@ -286,8 +286,6 @@ export default {
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s;
-  border-radius: 10px;
-  font-weight: bold;
 }
 .likeButton:hover,
 .bookmarkButton:hover {
@@ -299,11 +297,11 @@ export default {
 }
 
 .green-bookmark {
-  color: white;
+  color: green;
 }
 /* Add more styles as needed */
 
-/* .view-more-button {
+.view-more-button {
   background-color: #25d366;
   color: #fff;
   text-decoration: none;
@@ -313,23 +311,5 @@ export default {
 
 .view-more-button:hover {
   background-color: #1aad19;
-} */
-
-.view-more-button:hover {
-  background-color: #24a152;
-  color:white;
-  padding: 10px 20px;
-  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
-  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
- }
- .view-more-button {
-  background-color: #25D366;
-  font-weight: bold;
-  padding: 10px 20px;
-  color: #212529;
-  border-radius: 10px;
- }
+}
 </style>
