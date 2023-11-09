@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import HomeView from '../views/HomeView.vue'
 import Home from "@/views/Home.vue"; // Adjust the import path as needed
-import ModifyRecipe from "@/views/ModifyRecipe.vue";
 
 // const routes = [
 //   {
