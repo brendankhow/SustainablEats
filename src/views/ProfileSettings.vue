@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="margin-top: 140px">
         <div class="row mt-3 header">
             <div class="col d-flex align-items-start">
                 <img src="../assets/angle-left.png" class="d-inline-block d-flex" onclick="history.back()" width="50">
@@ -11,48 +11,48 @@
             <hr>
         </div>
         
-            <div class="row customization">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col" style="display:flex; align-content: flex-start;">
-                            <img src="../assets/pencil.png" height="30px" class="d-inline-block "><h4 class="d-inline-block ms-2">
-                                Customization</h4>
-                        </div>
+        <div class="row customization">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col" style="display:flex; align-content: flex-start;">
+                        <img src="../assets/pencil.png" height="30" class="d-inline-block "><h4 class="d-inline-block ms-2">
+                            Customization</h4>
                     </div>
-                    <div class="row">
-                        <div class="container-fluid">
-                            <div class="row ms-4 me-4 pt-3 pb-2">
+                </div>
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="row ms-4 me-4 pt-3 pb-2">
 
-                                <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
-                                        <div class="col d-flex justify-content-center" v-if="profilepic">
-                                            <img id="user_pic" :src="profilepic" class="rounded-circle border border-5 border-black " width="150" height="150">
-                                        </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
+                                    <div class="col d-flex justify-content-center" v-if="profilepic">
+                                        <img id="user_pic" :src="profilepic" class="rounded-circle border border-5 border-black " width="150" height="150">
+                                    </div>
 
-                                        <div class="d-flex align-items-center mt-3" >
-                                                <input class="form-control" type="file" id="profilefile" @change="previewImage" accept="image/*">
-                                        </div>
-                                </div>
+                                    <div class="d-flex align-items-center mt-3" >
+                                            <input class="form-control" type="file" id="profilefile" @change="previewImage" accept="image/*">
+                                    </div>
+                            </div>
 
-                                <div class="col-lg-6 col-md-12 col-sm-12">
-                                        <div class="col d-flex justify-content-center" v-if="bannerpic">
-                                            <img id="user_banner" :src="bannerpic" class=" border border-5 border-black" width="250" height="150">
-                                        </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                    <div class="col d-flex justify-content-center" v-if="bannerpic">
+                                        <img id="user_banner" :src="bannerpic" class=" border border-5 border-black" width="250" height="150">
+                                    </div>
 
-                                        <div class="col d-flex align-items-center mt-3">
-                                            <input class="form-control" type="file" id="bannerfile" @change="previewBanner" accept="image/*">
-                                        </div>
-                                </div>
+                                    <div class="col d-flex align-items-center mt-3">
+                                        <input class="form-control" type="file" id="bannerfile" @change="previewBanner" accept="image/*">
+                                    </div>
                             </div>
                         </div>
                     </div>
-                    <hr class="mt-2">
                 </div>
+                <hr class="mt-2">
             </div>
+        </div>
 
             <!-- ================================USER DETAILS===================================================================================-->
             <div class="row">
                 <div class="container-fluid">
-                    <img src="../assets/user.png" height="30px" class="d-inline-block ">
+                    <img src="../assets/user.png" height="30" class="d-inline-block ">
                     <h4 class="d-inline-block ms-2">User Details</h4>
                     <div class="row mb-3 mt-2 ms-1">
                         <label for="username" class="col-lg-2 col-md-12 col-form-label fw-bold">USERNAME:</label>
@@ -79,7 +79,7 @@
 
             <div class="row">
                 <div class="container-fluid">
-                    <img src="../assets/lock.png" height="30px" class="d-inline-block ">
+                    <img src="../assets/lock.png" height="30" class="d-inline-block ">
                     <h4 class="d-inline-block ms-2">Security</h4>
                 </div>
                 <div class="row mb-3 mt-2">

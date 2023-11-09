@@ -1,170 +1,179 @@
 <template>
-
-    <!-- Generator -->
-    <div class="gen-page text-center">
-        <!-- header -->
-        <h1 class="gen-header mt-5 container">Generate New Recipe</h1>
-
-        <!-- interface -->
-        <div class="gen-interface mb-5 container">
-
-            <!-- Input -->
-            <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
-            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
-                <div class="gen-form-row w-100 mx-auto px-0 row">
-                    <!-- Input field -->
-
-                    <div class="col">
-                      <label for="creator" class="info-labels">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
-                    </div>
-
-                    <!-- Cuisine Type Dropdown -->
-                    <div class="col-md-12 mb-2">
-                      <label for="cuisineType" class="info-labels">Cuisine Type:</label>
-                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
-                        <option value="Chinese">Chinese</option>
-                        <option value="Western">Western</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Japanese">Japanese</option>
-                        <option value="Korean">Korean</option>
-                      </select>
-                      <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
-                    </div>
-                    <!-- Dietary Restriction Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
-                      <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                    </div>
-                    <!-- Prioritized Ingredients Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
-                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                      <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
-                      
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="col-md-12 submit-btn-div">
-                        <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" role="button" @click="fetchRecipe();fetchImg()">
-                          <span class="info-labels">Generate</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
-
-          <!-- Loading animation -->
-          <div class="row spinner-border" v-if="loading"></div>
-
-            <!-- Output Interface (Initially Hidden) style="display: none;"-->
-            <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
-
-                <div class="gen-out-header row">
-                    <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
-                    <div class="ai-img">
-                      <img id="ai-img" v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
-                    <div>
-                        <p>Like this image? Download it here: </p>
-                      <a v-if="recipe.image" :href="recipe.image" target="_blank">
-                        <button class="download-img-btn">Download Image</button>
-                      </a>
-                      </div>
-
-                    </div>
-                    <p class="recipe-desc">{{ recipe.description }}</p>
-                </div>
-                
-              <div class="row recipe-box mx-2">
-                    <div class="ingredient-col col-md-6 col-sm-12 col-12">
-                        <h3 class="ingredient-header text-center">Ingredients</h3>
-                        <ul class="ingredient-list left-aligned">
-                          <li v-for="(ingredient, index) in recipe.ingredientsArray" :key="index">
-                            <span v-if="index === 0">{{ ingredient.replace('- ', '') }}</span>
-                            <span v-else>{{ ingredient }}</span>
-                          </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="instruction-col col-md-6 col-sm-12 col-12" id="instructions">
-                        <h3 class="instruction-header text-center">Steps</h3>
-                        <ol class="instruction-list left-aligned">
-                          <li v-for="instruction in recipe.instructionsArray">{{ instruction.split('. ').slice(1).join('. ') }}
-                            <span v-if="instruction === ''"></span>
-                          </li>
-                        </ol>
-                    </div>
-
-                    <!-- DISCLAIMER -->
-                    <div class="text-center p-0 my-0 mx-0">
-                      <div class="disclaimer-divider"></div>
-                          <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
-                      <div class="disclaimer-divider"></div>
+  <div class="container" style="margin-top: 140px">
+    <div class="row mt-3 header">
+        <div class="col d-flex align-items-start">
+            <img src="../assets/angle-left.png" class="d-inline-block d-flex" onclick="history.back()" width="50">
+            <h1 class="d-inline-block"><b>Generate New Recipe</b></h1>
+        </div>
+        <hr style="border:3px solid #25d366;">
+    </div>
+      <!-- ================================USER DETAILS===================================================================================-->
+      <div class="row">
+          <div class="container-fluid">
+              <div class="row mb-3 mt-2 ms-1">
+                  <label for="creator" class="col-lg-2 col-md-12 col-form-label fw-bold">Create Recipe</label>
+                  <div class="col-lg-10 col-md-12 col-sm-12">
+                    <input type="text" id="creator" v-model="creator" class="form-control border-0" disabled v-if="user" >
+                    <input type="text" id="creator" v-model="creator" class="form-control border-0"  v-else>
                   </div>
               </div>
 
-              <br><br>
-              <p>Like what you see? Download the image here and upload it with the recipe!</p>
+              <div class="row mb-3 ms-1">
+                  <label for="cusineType" class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine:</label>
+                  <div class="col-lg-10 col-md-12 col-sm-12">
+                    <select id="cuisineType" class="form-control border-0" style="background-color:#EDF8FF;" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
+                      <option value="Chinese">Chinese</option>
+                      <option value="Western">Western</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Korean">Korean</option>
+                    </select>
+                  </div>
+              </div>
 
-              <div class="row-lg-12 row-md-12 row-sm-12 mb-2">
-                <div class="col d-flex justify-content-center" v-if="selectedImage">
-                    <img id="user_pic" :src="selectedImage" class="rounded-circle border border-5 border-black " width="150" height="150">
-                </div>
+              <div v-if="!cuisineType" class="row mb-3 ms-1 text-danger text-center">Choose one cuisine type!</div>
 
-                <div class="col d-flex align-items-center mt-3" >
-                  <input class="row form-control" type="file" id="userimage" @change="previewImage" accept="image/*">
-                  <br><br>
-                  <button type="button" @click="uploadImageAndCreateRecipe" class="row btn btn-success">Upload to Profile</button>
+              <div class="row mb-3 ms-1">
+                <label for="username" class="col-lg-2 col-md-12 col-form-label fw-bold">Dietary Restriction:</label>
+                <div class="col-lg-10 col-md-12">
+                  <textarea id="dietaryRestrictions" class="form-control border-0" style="background-color:#EDF8FF;" v-model="dietaryRestrictions"></textarea>
+                  <div class="text-secondary text-center info-text">comma-separated (leave blank if have non)</div>
                 </div>
-              </div>              
-            </div>  
+              </div>
+              <div class="row mb-3 ms-1">
+                <label for="prioritizedIngredients" class="col-lg-2 col-md-12 col-form-label fw-bold">Ingredients:</label>
+                <div class="col-lg-10 col-md-12">
+                  <textarea id="prioritizedIngredients" class="form-control border-0" style="background-color:#EDF8FF;" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
+                  <div class="text-secondary info-text">comma-separated (leave blank if have non)</div>
+                  <div class="text-danger text-center" v-if="!checkingredients" >Do Not Leave This Blank</div>
+                </div>
+              </div>
+              <div class="col-md-12 submit-btn-div">
+                <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" role="button" @click="fetchRecipe();fetchImg()">
+                  <span class="info-labels">Generate</span>
+                </button>
+            </div>
+          </div>
+          <hr style="border:3px solid #25d366;">
+      </div>
+      <div class="row mx-auto">
+        <div class="spinner-border mx-auto text-center d-flex justify-content-center align-content-center" v-if="loading"></div>
+      </div>
+      <!-- Output Interface (Initially Hidden) style="display: none;"-->
+      <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading"> 
+        <div class="gen-out-header row">
+            <h1 class="recipe-title text-center" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
+            <div class="ai-img">
+              <div class="d-flex justify-content-center align-items-center">
+                <img id="ai-img" v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
+                <p>Like this image? Download it here: </p>
+                <a v-if="recipe.image" :href="recipe.image" target="_blank">
+                  <button class="download-img-btn">Download Image</button>
+                </a>
+              </div>
+            <div>
+          </div>
         </div>
+            <!-- <p class="recipe-desc">{{ recipe.description }}</p> -->
+      </div>
+        
+      <div class="row recipe-box mx-2">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-bottom:4px solid #25d366; border-top: 4px solid #35d366">
+            <h3 class="text-center d-flex">Ingredients</h3>
+          </div>
+        
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" id="instructions" style="border-bottom:4px solid #c8f4d8; border-top: 4px solid #c8f4d8">
+            <h3 class="text-center">Steps</h3>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-left:4px solid #25d366; border-bottom:4px solid #25d366">
+            <ul class="ingredient-list left-aligned">
+              <li v-for="(ingredient, index) in recipe.ingredientsArray" :key="index">
+                <span v-if="index === 0">{{ ingredient.replace('- ', '') }}</span>
+                <span v-else>{{ ingredient }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-right:4px solid #c8f4d8; border-bottom:4px solid #c8f4d8">
+            <ol class="instruction-list left-aligned">
+              <li v-for="instruction in recipe.instructionsArray">{{ instruction.split('. ').slice(1).join('. ') }}
+                <span v-if="instruction === ''"></span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <!-- DISCLAIMER -->
+        <div class="text-center p-0 my-0 mx-0">
+          <div class="disclaimer-divider"></div>
+              <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
+          <div class="disclaimer-divider"></div>
+      </div>
     </div>
 
-    <!-- Guide -->
-  <div class="guide-container mt-0 pt-5 pb-5 b-10 mx-auto container-fluid">
+    <div class="row">
+      <p class="text-center">Like what you see? Download the image here and upload it with the recipe!</p>
+    </div>
 
-    <div class="guide-section mt-0 pb-3 px-2 px-md-5 container">
-      <!-- Header -->
-      <div class="py-5 d-flex align-items-center row">
-          <div class="col-md-3">
-              <div class="py-3 container">
-                  <div class="guide-divider"></div>
-              </div>
-          </div>
-          <div class="col-md-6">
-              <div class="text-center container">
-                  <h1 class="guide-heading">Recipe Generation Guide</h1>
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="py-3 container">
-                  <div class="guide-divider"></div>
-              </div>
-          </div>
+    <div class="row-lg-12 row-md-12 row-sm-12 mb-2">
+      <div class="col d-flex justify-content-center" v-if="selectedImage">
+          <img id="user_pic" :src="selectedImage" class="rounded-circle" style="border: 5px solid #25d366" width="150" height="150">
       </div>
-  <div class="guide-main mx-auto">
 
-        <!-- Content -->
-        <!-- Insert more here -->
-        <div class="guide-content mx-auto">
-            <p>
-                <strong>Include your cuisine of choice.</strong>
-                Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
-                American, Mediterranean, Chinese, etc.
-                <br><br>
-                <strong>Prioritize certain ingredients to be used.</strong>
-                Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
-                <br><br>
-                <strong>ALLERGIES</strong>
-                If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
-            </p>
+      <div class="col d-flex align-items-center mt-3" >
+        <input class="row form-control" type="file" id="userimage" @change="previewImage" accept="image/*">
+        <br><br>
+      </div>
+      <div class="row">
+        <button type="button" @click="uploadImageAndCreateRecipe" class="row text-center upload_btn">Upload to Profile</button>
+      </div>
+    </div>              
+  </div>  
+</div>
+          
+    <!-- Guide -->
+<div class="mt-0 pt-5 pb-5 b-10 mx-auto container-fluid" style="background-color:#e0f0e1">
+  <div class="mt-0 pb-3 px-2 px-md-5 container" style="background-color:white; border-radius: 20px">
+    <!-- Header -->
+    <div class="py-5 d-flex align-items-center row">
+        <div class="col-md-3">
+            <div class="py-3 container">
+                <div class="guide-divider"></div>
+            </div>
         </div>
+        <div class="col-md-6">
+            <div class="text-center container">
+                <h1 class="guide-heading">Recipe Generation Guide</h1>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="py-3 container">
+                <div class="guide-divider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto">
+      <!-- Content -->
+      <!-- Insert more here -->
+      <div class="mx-auto" style="">
+        <p>
+          <strong>Include your cuisine of choice.</strong>
+          Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
+          American, Mediterranean, Chinese, etc.
+          <br><br>
+          <strong>Prioritize certain ingredients to be used.</strong>
+          Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
+          <br><br>
+          <strong>ALLERGIES</strong>
+          If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
+        </p>
+      </div>
     </div>
   </div>
 </div>
-
           
 </template>
 
@@ -197,7 +206,7 @@ const router = useRouter() // get a reference to our vue router
 
     data() {
       return {
-        //no naughty take my api key ok: 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
+        //no naughty take cheryl api key ok: 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
         OPENAI_API_KEY: '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', // will key
 
         // for database
@@ -209,7 +218,7 @@ const router = useRouter() // get a reference to our vue router
         description: '',
         ingredients: [],
         steps: [],
-        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-890e0.appspot.com/o/recipeImages%2Fdefault_large.png?alt=media&token=0138452f-d283-45f9-b32f-86bf0dd9119e",
+        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/recipeImages%2Fdefault.png?alt=media&token=d5472109-56cc-4451-b15b-3316dbdeadc6",
         imageUploadProgress: 0,
         recipeImageURLs: [],
 
@@ -220,10 +229,11 @@ const router = useRouter() // get a reference to our vue router
         checkingredients: false,
         inputSubmitted: false,
         loading: false,
+        imageid: '',
 
         recipe: {
           recipeName: '',
-          image: 'default_large.png',
+          image: 'default.png',
           description: '',
           ingredientsArray: [],
           instructionsArray: [],
@@ -368,7 +378,9 @@ const router = useRouter() // get a reference to our vue router
                     const url = await getDownloadURL(storageRef);
                     console.log(url);
                     this.selectedImage = url;
-                    this.recipe.image = uniqueID;
+                    console.log(uniqueID);
+                    this.imageid = fileName;
+                    this.recipe.image = fileName;
                 };
                 reader.readAsDataURL(file);
             }
@@ -419,6 +431,7 @@ const router = useRouter() // get a reference to our vue router
               likes: 0,
               reviews: []
             };
+            console.log(recipeData.uniqueID);
 
             //sending data into firebase
             const recipesRef = collection(db, 'recipes');
@@ -459,31 +472,6 @@ const router = useRouter() // get a reference to our vue router
       
     
   },
-  async previewImage(event) {
-        const file = event.target.files[0];
-        if (file) {
-          console.log(file);
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                // upload to Firebase Storage
-                const timestamp = new Date().getTime();
-                const randomString = Math.random().toString(36).substring(2, 8);
-                const uniqueID = `${timestamp}_${randomString}`;
-                
-                const fileName = file.name + `${uniqueID}`;
-                console.log(fileName);
-                const storageRef = ref(storage, 'recipeImages/' + fileName);
-                await uploadBytes(storageRef, file);
-                
-                // get download URL
-                const url = await getDownloadURL(storageRef);
-                console.log(url);
-                this.selectedImage = url;
-                this.recipe.image = url;
-            };
-            reader.readAsDataURL(file);
-      }
-    },
   created() {
     const db = getFirestore();
     const auth = getAuth();
@@ -519,6 +507,20 @@ const router = useRouter() // get a reference to our vue router
 </script>
 
 <style>
+.upload_btn{
+  background-color: #25d366;
+  border: 0;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.upload_btn:hover{
+  background-color: #167e3c;
+  color:white;
+  border: 0;
+  border-radius: 25px;
+  padding: 10px;
+}
 /* Tags */
 img[id='ai-img']{
     max-height:500px;
@@ -527,67 +529,13 @@ img[id='ai-img']{
     width:auto;
 }
 /* Generation */
-.gen-page{
-  background: url("../assets/background.png");
-  background-repeat: repeat;
-  background-size: 400px;
-  padding: 40px;
-  margin-top: 40px;
-}
-.gen-header{
-  width: auto;
-  font-family: Raleway;
-  text-align: center;
-  color:#FFFBF4;
-  font-weight: bold;
-
-  background-color: #000;
-
-  margin-bottom: 0px;
-
-  border-radius: 20px 20px 0 0;
-
-  padding: 1rem;
-
-}
-
-.gen-interface{
-  width: auto;
-  background-color:#AEDDB3;
-  border-radius: 0 0 20px 20px;
-  border: #000 2px solid;
-}
-
-.gen-form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.gen-form-ingredients-field{
-  background-color: #e0ffe3!important;
-  padding: 12px 30px!important;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 18px!important;
-  border-radius: 25px!important;
-  border: 2px solid;
-  text-align: center!important;
-  width: 100%;
-}
 .is-invalid{
     border-color: #D9534F;
 }
-.submit-btn-div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
-}
 .download-img-btn{
   height: 69px;
-  color: #fff;
-  background-color: #000;
+  color: #000000;
+  background-color: #c8f4d8;
   border: none;
   border-radius: 25px;
   text-align: center;
@@ -599,16 +547,13 @@ img[id='ai-img']{
 .gen-form-submit-btn{
 
   height: 69px;
-  color: #fff;
-  background-color: #000;
+  color: #000000;
+  background-color: #c8f4d8;
   border: none;
   border-radius: 32px;
   text-align: center;
   cursor: pointer;
   font-weight: bolder;
-
-  background-image: linear-gradient(144deg,#8de997, #002E23 50%,rgb(255, 177, 81));
-  color: #FFFFFF;
   max-width: 100%;
   min-width: 140px;
   padding: 3px;
@@ -620,61 +565,14 @@ img[id='ai-img']{
 }
 
 .gen-form-submit-btn:hover{
-  box-shadow: #075442 0 10px 10px 2px;
+  box-shadow: #bde2d9 0 10px 10px 2px;
   transition-duration: .1s;
   transform: translateY(-2px);
-}
-
-.gen-form-submit-btn:focus {
-  box-shadow: #002e23 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #002e23 0 -3px 0 inset;
-}
-
-.gen-form-submit-btn:active {
-  box-shadow: #002E23 0 3px 7px inset;
-  transform: translateY(2px);
 }
 
 .recipe-box{
   padding-top: 15px;
   padding-bottom: 15px;
-}
-.ingredient-col{
-  background-color:#002E23;
-  border: 3px solid #002E23;
-  color: #FFFBF4;
-}
-.ingredient-header{
-  padding: 15px;
-}
-
-.instruction-col{
-  background-color:#e0fbe3;
-  border: 3px solid #002E23;
-
-}
-.instruction-header{
-  padding: 15px;
-}
-
-/* Guide */
-.guide-container{
-  background-color: #002e23;
-}
-.guide-section{
-  background-color: #AEDDB3;
-  border-radius: 15px;
-}
-.guide-main{
-  padding: 20px 30px;
-  background-color: #FFFBF4;
-  border-radius: 15px;
-}
-.guide-content{
-  padding: 0px 15px 15px 15px;
-}
-.guide-divider {
-  border-bottom: 2px solid black;
-  width: 100%;
 }
 
 /* misc classes */
