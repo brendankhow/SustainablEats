@@ -7,7 +7,7 @@
     
     <!-- Title row -->
     <div class="card-row">
-      <h5 class="card-title">{{ recipe.name }}</h5>
+      <h5 class="card-title multi-row">{{ recipe.name }}</h5>
     </div>
     
     <!-- Creator row -->
@@ -220,6 +220,13 @@ export default {
 </script>
 
 <style scoped>
+.card-title.multi-row {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .recipe-card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -275,11 +282,9 @@ export default {
 .bookmarkButton:hover {
   background-color: #0056b3;
 }
-
 .red-heart {
   color: red;
 }
-
 .green-bookmark {
   color: black;
 }

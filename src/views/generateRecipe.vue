@@ -48,7 +48,9 @@
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12 submit-btn-div">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
+                        <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" role="button" @click="fetchRecipe();fetchImg()">
+                          <span class="info-labels">Generate</span>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -604,11 +606,32 @@ img[id='ai-img']{
   text-align: center;
   cursor: pointer;
   font-weight: bolder;
-  
+
+  background-image: linear-gradient(144deg,#8de997, #002E23 50%,rgb(255, 177, 81));
+  color: #FFFFFF;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
 }
+
 .gen-form-submit-btn:hover{
-    opacity: 0.7;
-    background-color: #003e30;
+  box-shadow: #075442 0 10px 10px 2px;
+  transition-duration: .1s;
+  transform: translateY(-2px);
+}
+
+.gen-form-submit-btn:focus {
+  box-shadow: #002e23 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #002e23 0 -3px 0 inset;
+}
+
+.gen-form-submit-btn:active {
+  box-shadow: #002E23 0 3px 7px inset;
+  transform: translateY(2px);
 }
 
 .recipe-box{
