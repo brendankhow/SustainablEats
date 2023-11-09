@@ -7,60 +7,61 @@
         <h1 class="col gen-header mt-5">Generate New Recipe</h1>
 
         <!-- interface -->
-        <div class="col gen-interface mb-5 container">
+        <div class="gen-interface mb-5 container">
 
-            <!-- Input -->
-            <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
-            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
-                <div class="gen-form-row w-100 mx-auto px-0 row">
-                    <!-- Input field -->
+          <!-- Input -->
+          <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
+          <form class="row gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
+              <div class="gen-form-row w-100 mx-auto px-0 ">
+                  <!-- Input field -->
 
-                    <div class="col-md-12 mb-2">
-                      <label for="creator" class="info-labels">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
-                    </div>
+                  <div class="row-md-12 mb-2">
+                    <label for="creator" class="info-labels">Creator Name:</label>
+                    <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
+                    <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
+                  </div>
 
-                    <!-- Cuisine Type Dropdown -->
-                    <div class="col-md-12 mb-2">
-                      <label for="cuisineType" class="info-labels">Cuisine Type:</label>
-                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
-                        <option value="Chinese">Chinese</option>
-                        <option value="Western">Western</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Japanese">Japanese</option>
-                        <option value="Korean">Korean</option>
-                      </select>
-                      <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
-                    </div>
-                    <!-- Dietary Restriction Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
-                      <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                    </div>
-                    <!-- Prioritized Ingredients Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
-                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                      <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
-                      
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="col-md-12 submit-btn-div">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
-                    </div>
-                </div>
-            </form>
+                  <!-- Cuisine Type Dropdown -->
+                  <div class="row-md-12 mb-2">
+                    <label for="cuisineType" class="info-labels">Cuisine Type:</label>
+                    <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
+                      <option value="Chinese">Chinese</option>
+                      <option value="Western">Western</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Korean">Korean</option>
+                    </select>
+                    <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
+                  </div>
+                  <!-- Dietary Restriction Text Area -->
+                  <div class="row-md-12 mb-2">
+                    <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
+                    <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
+                    <div class="text-secondary info-text">commma-separated</div>
+                  </div>
+                  <!-- Prioritized Ingredients Text Area -->
+                  <div class="row-md-12 mb-2">
+                    <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
+                    <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
+                    <div class="text-secondary info-text">commma-separated</div>
+                    <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
+                    
+                  </div>
+                  <!-- Submit Button -->
+                  <div class="row-md-12 submit-btn-div">
+                      <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
+                  </div>
+              </div>
+          </form>
 
-            <!-- Loading animation -->
-            <div class="spinner-border" v-if="loading"></div>
+          <!-- Loading animation -->
+          <div class="spinner-border" v-if="loading"></div>
 
             <!-- Output Interface (Initially Hidden) style="display: none;"-->
+          <div class="row">
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
-                <div class="gen-out-header row">
+                <div class="gen-out-header">
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
                     <div>
                       <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
@@ -72,7 +73,7 @@
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
                 
-                <div class="recipe-box mx-2 row">
+                <div class="col recipe-box mx-2">
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list left-aligned">
@@ -113,6 +114,7 @@
                 </div>
               </div>              
             </div>  
+          </div>
         </div>
     </div>
 
