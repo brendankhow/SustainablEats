@@ -4,63 +4,64 @@
     <!-- Generator -->
     <div class="gen-page text-center">
         <!-- header -->
-        <h1 class="input-header mt-5">Generate New Recipe</h1>
+        <h1 class="col gen-header mt-5">Generate New Recipe</h1>
 
         <!-- interface -->
         <div class="gen-interface mb-5 container">
 
-            <!-- Input -->
-            <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
-            <form class="gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
-                <div class="gen-form-row w-100 mx-auto px-0 row">
-                    <!-- Input field -->
+          <!-- Input -->
+          <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
+          <form class="row gen-form w-100 mt-5 mx-auto p-0" @submit.prevent action="./ModifyRecipe.vue">
+              <div class="gen-form-row w-100 mx-auto px-0 ">
+                  <!-- Input field -->
 
-                    <div class="row">
-                      <label for="creator" class="form-label">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="form-control" v-else>
-                    </div>
+                  <div class="row-md-12 mb-2">
+                    <label for="creator" class="info-labels">Creator Name:</label>
+                    <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
+                    <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
+                  </div>
 
-                    <!-- Cuisine Type Dropdown -->
-                    <div class="col-md-12 mb-2">
-                      <label for="cuisineType" class="info-labels">Cuisine Type:</label>
-                      <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
-                        <option value="Chinese">Chinese</option>
-                        <option value="Western">Western</option>
-                        <option value="Italian">Italian</option>
-                        <option value="Japanese">Japanese</option>
-                        <option value="Korean">Korean</option>
-                      </select>
-                      <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
-                    </div>
-                    <!-- Dietary Restriction Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
-                      <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                    </div>
-                    <!-- Prioritized Ingredients Text Area -->
-                    <div class="col-md-12 mb-2">
-                      <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
-                      <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
-                      <div class="text-secondary info-text">commma-separated</div>
-                      <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
-                      
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="col-md-12 submit-btn-div">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
-                    </div>
-                </div>
-            </form>
+                  <!-- Cuisine Type Dropdown -->
+                  <div class="row-md-12 mb-2">
+                    <label for="cuisineType" class="info-labels">Cuisine Type:</label>
+                    <select id="cuisineType" class="gen-form-ingredients-field" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
+                      <option value="Chinese">Chinese</option>
+                      <option value="Western">Western</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Korean">Korean</option>
+                    </select>
+                    <div v-if="!cuisineType" class="text-danger info-text">Choose one cuisine type!</div>
+                  </div>
+                  <!-- Dietary Restriction Text Area -->
+                  <div class="row-md-12 mb-2">
+                    <label for="dietaryRestrictions" class="info-labels">Dietary Restrictions:</label>
+                    <textarea id="dietaryRestrictions" class="gen-form-ingredients-field" v-model="dietaryRestrictions"></textarea>
+                    <div class="text-secondary info-text">commma-separated</div>
+                  </div>
+                  <!-- Prioritized Ingredients Text Area -->
+                  <div class="row-md-12 mb-2">
+                    <label for="prioritizedIngredients" class="info-labels">Prioritized Ingredients:</label>
+                    <textarea id="prioritizedIngredients" class="gen-form-ingredients-field" @input="checking_ingredients" v-model="prioritizedIngredients"></textarea>
+                    <div class="text-secondary info-text">commma-separated</div>
+                    <div class="text-danger" v-if="!checkingredients" >Do Not Leave This Blank</div>
+                    
+                  </div>
+                  <!-- Submit Button -->
+                  <div class="row-md-12 submit-btn-div">
+                      <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
+                  </div>
+              </div>
+          </form>
 
-            <!-- Loading animation -->
-            <div class="spinner-border" v-if="loading">{{loading}}</div>
+          <!-- Loading animation -->
+          <div class="spinner-border" v-if="loading"></div>
 
             <!-- Output Interface (Initially Hidden) style="display: none;"-->
+          <div class="row">
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
 
-                <div class="gen-out-header row">
+                <div class="gen-out-header">
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
                     <div>
                       <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
@@ -72,7 +73,7 @@
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
                 
-                <div class="recipe-box mx-2 row">
+                <div class="col recipe-box mx-2">
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list left-aligned">
@@ -113,6 +114,7 @@
                 </div>
               </div>              
             </div>  
+          </div>
         </div>
     </div>
 
@@ -144,15 +146,22 @@
         <!-- Insert more here -->
         <div class="guide-content mx-auto">
             <p>
+              <div class="guide-text-box">
                 <strong>Include your cuisine of choice.</strong>
                 Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
                 American, Mediterranean, Chinese, etc.
+              </div>
                 <br><br>
+              <div class="guide-text-box">
+                <strong>Describe your meal in detail.</strong>
                 <strong>Prioritize certain ingredients to be used.</strong>
                 Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
+              </div>
                 <br><br>
+              <div class="guide-text-box">
                 <strong>ALLERGIES</strong>
                 If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
+              </div>
             </p>
         </div>
     </div>
@@ -349,43 +358,70 @@ const router = useRouter() // get a reference to our vue router
         try{
           if (this.selectedImage) {
 
-            //setting filename to be unique + uploading the photo into storage
+            // CODE TO FORMAT AI-GENERATED RECIPE DETAILS FOR DATABASE INSERTION
+          
+          // Format ingredientsArray and instructionsArray, and rename them
+          // const formattedIngredients = this.recipe.ingredientsArray.map((item) => {
+          //   const parts = item.replace('-', '').trim().split(' ');
+          //   const quantity = parts[0];
+          //   const name = parts.slice(1).join(' ');
+          //   return { name, quantity };
+          // });
+
+          // const formattedSteps = this.recipe.instructionsArray.map((item) => {
+          //   // Remove the number and period at the beginning of each step
+          //   const description = item.replace(/^\d+\.\s/, '');
+          //   return { description };
+          // });
+
+          // // Updated recipeDetails object with renamed properties
+          // const updatedRecipeDetails = {
+          //   ...recipe,
+          //   ingredients: formattedIngredients,
+          //   steps: formattedSteps,
+          // };
+
+          // // Remove the old properties
+          // delete updatedRecipeDetails.ingredientsArray;
+          // delete updatedRecipeDetails.instructionsArray;
+
+          // console.log(updatedRecipeDetails);
+
             const timestamp = new Date().getTime();
             const randomString = Math.random().toString(36).substring(2, 8);
             const uniqueID = `${timestamp}_${randomString}`;
+
             const fileName = `${uniqueID}`;
             const storageReference = storageRef(storage, `recipeImages/${fileName}`);
+
             const snapshot = await uploadBytes(storageReference, this.selectedImage);
             imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             
-            
-            const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
-            // Use a regular expression to capture the quantity and the rest of the text as name
-              const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
+            // const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
+            // // Use a regular expression to capture the quantity and the rest of the text as name
+            //   const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
 
-              if (match) {
-                // Extract the matched quantity and name
-                const quantity = match[1].trim();
-                const name = ingredient.replace(match[0], '').trim();
+            //   if (match) {
+            //     // Extract the matched quantity and name
+            //     const quantity = match[1].trim();
+            //     const name = ingredient.replace(match[0], '').trim();
 
-                return { name, quantity };
-              } else {
-                // If no quantity is found, consider the entire ingredient as the name
-                return { name: ingredient.trim(), quantity: '' };
-              }
-            });
-            // // steps
-            const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
-              const parts = instruction.split(' ');
-              const description = parts.slice(1).join(' ');
-              return { description };
-            });
+            //     return { name, quantity };
+            //   } else {
+            //     // If no quantity is found, consider the entire ingredient as the name
+            //     return { name: ingredient.trim(), quantity: '' };
+            //   }
+            // });
+            // // // steps
+            // const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
+            //   const parts = instruction.split(' ');
+            //   const description = parts.slice(1).join(' ');
+            //   return { description };
+            // });
 
-            //checking if it is current user
             const user = auth.currentUser;
             const userUID = user ? user.uid : null;
 
-            //getting the data ready
             const recipeData = {
               name: this.recipe.recipeName,
               creator: this.creator,
@@ -398,8 +434,6 @@ const router = useRouter() // get a reference to our vue router
               likes: 0,
               reviews: []
             };
-
-            //sending data into firebase
             const recipesRef = collection(db, 'recipes');
             const docRef = await addDoc(recipesRef, recipeData);
             const autoGeneratedID = docRef.id;
@@ -408,7 +442,6 @@ const router = useRouter() // get a reference to our vue router
 
             await updateDoc(doc(db, 'recipes', autoGeneratedID), recipeData);
 
-            //adding the post id into the user db to link it together
             if (userUID) {
               const userRef = doc(db, 'Users', userUID);
               const userDoc = await getDoc(userRef);
@@ -497,20 +530,47 @@ const router = useRouter() // get a reference to our vue router
   };
 </script>
 
-<style>
+<style scoped>
+
 /* Generation */
 .gen-page{
-  background: url("../assets/background.png");
+  /* background: url("../assets/background.png"); */
+
   background-repeat: repeat;
   background-size: 400px;
+  background-color:#FFFBF4;
   padding: 40px;
   margin-top: 40px;
+}
+.gen-header{
+  font-family: Raleway;
+  text-align: center;
+  color:#FFFBF4;
+  font-weight: bold;
 
-  /* !important: https://www.w3schools.com/css/css_important.asp */
-  color:#002E23!important;
+  background-color: #000;
+
+  margin-bottom: 0px;
+
+  border-radius: 20px 20px 0 0;
+
+  padding: 1rem;
+
+}
+
+.gen-interface{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: auto;
+
+  background-color:#AEDDB3;
+  border-radius: 0 0 5% 5%;
+  border: #000 2px solid;
 }
 .gen-form-ingredients-field{
-  background-color: #AEDDB3!important;
+  background-color:#ecffee;
   padding: 12px 30px!important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -584,8 +644,19 @@ const router = useRouter() // get a reference to our vue router
 .guide-content{
   padding: 0px 15px 15px 15px;
 }
+
+.guide-text-box{
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+
+  border-radius: 5px;
+}
+.guide-text-box:hover{
+  background-color:#e0fbe3;
+  transition-delay: 0.075s;
+}
 .guide-divider {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   width: 100%;
 }
 
@@ -609,6 +680,8 @@ p{
   font-size: large;
   font-weight: bold;
   margin-bottom: 0px;
+
+  font-family: Raleway;
 }
 .info-text{
   font-size: small;
@@ -616,6 +689,8 @@ p{
   margin-top: 0px;
   padding-top: 0px;
   margin-left: 10px;
+
+  font-family: Raleway;
 }
 .left-aligned {
   text-align: left;
