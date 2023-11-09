@@ -7,7 +7,7 @@
         <label class="form-check-label" v-for="mealType in mealTypes" :key="mealType">
           <input type="checkbox" class="form-check-input" v-model="selectedMealTypes" :value="mealType" />{{ mealType }}
         </label>
-        <button class="btn btn-primary" @click="applyFilters">Apply</button>
+        <button class="btn apply" @click="applyFilters">Apply</button>
       </nav>
 
       <!-- Album Content -->
@@ -98,12 +98,6 @@ export default {
   flex-direction: column; /* Change to column layout on small screens */
 }
 
-.side-navbar {
-  width: 100%; /* Occupy full width on small screens */
-  max-width: 250px; /* Limit width on larger screens */
-  margin-bottom: 20px; /* Add some space between sidebar and album on small screens */
-}
-
 .album-container {
   flex: 1;
   padding: 20px;
@@ -132,7 +126,9 @@ export default {
   margin-right: 8px;
 }
 
-.btn-primary {
+.apply {
+  background-color: #25d366;
+  color: #fff;
   margin-top: 10px;
 }
 /* Your existing styles remain unchanged */
