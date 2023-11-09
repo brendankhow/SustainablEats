@@ -376,9 +376,7 @@ const router = useRouter() // get a reference to our vue router
                     
                     // get download URL
                     const url = await getDownloadURL(storageRef);
-                    console.log(url);
                     this.selectedImage = url;
-                    console.log(uniqueID);
                     this.imageid = fileName;
                     this.recipe.image = fileName;
                 };
@@ -431,7 +429,6 @@ const router = useRouter() // get a reference to our vue router
               likes: 0,
               reviews: []
             };
-            console.log(recipeData.uniqueID);
 
             //sending data into firebase
             const recipesRef = collection(db, 'recipes');
@@ -490,16 +487,16 @@ const router = useRouter() // get a reference to our vue router
           if (docSnap.exists) { // Correct usage
             this.creator = docSnap.data().username;
           } else {
-            console.log("No such document!");
+            console.log("");
           }
         }
         else {
-          console.log("user not logged in");
+          console.log("");
         }
       } else {
         // User is signed out
         this.user = null;
-        console.log("user sign out");
+        console.log("");
       }
     });
   }

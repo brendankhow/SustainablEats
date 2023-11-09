@@ -190,11 +190,11 @@
       const reviews = recipe.value.reviews;
       recentReviews.value = reviews; 
     } else {
-      console.error('Recipe not found.');
+      console.error('');
     }
   } 
   catch (error) {
-    console.error('Error fetching recipe data:', error);
+    console.error('');
   }
 });
 
@@ -216,7 +216,7 @@
         } 
         else 
         {
-          console.log("No such document!");
+          console.log("");
         }
         try{
           await updateDoc(recipeRef, {
@@ -229,7 +229,6 @@
               profilepic: profilepic
             }) // Add current timestamp 
           })
-          console.log("Review added!")
 
           // Update the local reviews array to reflect the newly added review
           recentReviews.value.push({
@@ -244,7 +243,7 @@
           
         } 
         catch (error){
-          console.log('Error adding review:', error);
+          console.log('');
         }
       }
   }

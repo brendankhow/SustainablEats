@@ -49,10 +49,6 @@
         .then((data) => {
             // Can retrieve user's (access token, email)
             const user = data.user;
-            
-            console.log("Successfully signed!");
-            console.log(auth.currentUser);
-            console.log(user.uid);
             router.push("/home"); //redirect to the explore page
         })
         .catch((error) => {

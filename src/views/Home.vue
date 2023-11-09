@@ -265,7 +265,6 @@
           ...doc.data()
         })
       })
-      console.log(recipes);
       
   })
   
@@ -275,7 +274,7 @@
     try {
       return await getDownloadURL(imagesRef);
     } catch (error) {
-      console.error('Error fetching image:', error);
+      console.error('');
       return null;
     }
   };

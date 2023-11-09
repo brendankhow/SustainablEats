@@ -171,7 +171,6 @@ export default{
                     
                     // get download URL
                     const url = await getDownloadURL(storageRef);
-                    console.log(url);
                     this.profilepic = url;
                 };
                 reader.readAsDataURL(file);
@@ -191,7 +190,6 @@ export default{
                         
                     // get download URL
                     const url = await getDownloadURL(storageRef);
-                    console.log(url);
                     this.bannerpic = url;
                 };
             reader.readAsDataURL(file);
@@ -262,19 +260,17 @@ export default{
                     const credential = EmailAuthProvider.credential(user.email,this.old_password);
                     reauthenticateWithCredential(user, credential)
                     .then(async (result) => {
-                        console.log(this.email);
                         //Password entered is correct
-                        console.log(result)
                         await updatePassword(user, this.new_password).then(() => {
                             // Update successful.
                             this.$router.push('/profile');
                         }).catch((error) => {
-                            console.log(error);
+                            console.log("");
                         }) 
                     })
                     .catch((error) => {
                         //Incorrect password or some other error
-                        console.log(error)
+                        console.log("")
                     });
                 }   
             }
@@ -291,17 +287,17 @@ export default{
                 
                 // // delete user database
                 deleteDoc(docRef).then(() => {
-                    console.log('Document deleted');
+                    console.log('');
                 }).catch((error) => {
-                    console.log(error);
+                    console.log("");
                 });
 
                 // delete user authentication account
                 await user.delete().then(() => {
-                    console.log('User deleted');
+                    console.log('');
                     this.$router.push('/sign-in'); // Redirect to login after account deletion
                 }).catch((error) => {
-                    console.log(error);
+                    console.log("");
                 });
             }
         }

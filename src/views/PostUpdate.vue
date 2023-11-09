@@ -155,10 +155,10 @@ const handleImageUpload = (event) => {
         updatedIngredients.value = [...recipeData.ingredients];
         updatedSteps.value = [...recipeData.steps];
       } else {
-        console.error('Recipe not found.');
+        console.error('');
       }
     } catch (error) {
-      console.error('Error fetching recipe data:', error);
+      console.error('');
     }
   });
   
@@ -195,11 +195,10 @@ const handleImageUpload = (event) => {
   // Update the recipe in the database
   updateDoc(recipeRef, updatedRecipe)
     .then(() => {
-      console.log('Recipe updated successfully');
       router.push(`/post/${recipeID}`); // Redirect to the updated recipe's page
     })
     .catch((error) => {
-      console.error('Error updating recipe:', error);
+      console.error('');
     });
 }
   </script>

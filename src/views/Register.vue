@@ -72,7 +72,6 @@ export default {
                 try {
                     const { user } = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
                     const uid = user.uid;
-                    console.log(uid);
 
                     const userDoc = doc(this.db, "Users", uid);
                     await setDoc(userDoc, {
@@ -98,7 +97,6 @@ export default {
                     }
                     else{
                         message= 'Something went wrong. Please Try Again!';
-                        console.log()
                     }
                     this.showPopup(message)
                     this.router.push('/Register');
