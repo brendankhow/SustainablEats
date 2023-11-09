@@ -26,6 +26,75 @@
       </div>
     </div>
 
+----------
+    <div class="recipe-details">
+
+      <div class="recipe-image">
+        <img :src="imageURL" alt="Recipe Image" />
+      </div>
+    </div>
+
+    <div class="container-fluid">
+    <h4 class="d-inline-block ms-2">Recipe Details</h4>
+
+    <div class="row mb-3 mt-2 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Recipe Name:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <span>{{ recipe.name }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Creator:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <span>{{ recipe.creator }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Meal Type:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <span>{{ recipe.mealType }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine Type:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <span>{{ recipe.cuisineType }}</span>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <p>{{ recipe.description }}</p>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Ingredients:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <ul>
+          <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
+            {{ ingredient.name }} - {{ ingredient.quantity }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-3 ms-1">
+      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Steps:</label>
+      <div class="col-lg-10 col-md-12 col-sm-12">
+        <ol>
+          <li v-for="(step, index) in recipe.steps" :key="index">
+            {{ step.description }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  
     <hr>
 
     <div>
