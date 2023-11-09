@@ -281,6 +281,7 @@ export default {
 .likeButton:hover,
 .bookmarkButton:hover {
   background-color: #0056b3;
+  color: white;
 }
 .red-heart {
   color: red;
