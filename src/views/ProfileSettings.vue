@@ -166,7 +166,7 @@ export default{
                     const randomString = Math.random().toString(36).substring(2, 8);
                     const uniqueID = `${timestamp}_${randomString}`;
                     const fileName = file.name + `${uniqueID}`;
-                    const storageRef = ref(storage, 'profilepictures/' + fileName);
+                    const storageRef = ref(storage, 'profilepic/' + fileName);
                     await uploadBytes(storageRef, file);
                     
                     // get download URL
@@ -186,7 +186,7 @@ export default{
                     const randomString = Math.random().toString(36).substring(2, 8);
                     const uniqueID = `${timestamp}_${randomString}`;
                     const fileName = file.name + `${uniqueID}`;
-                    const storageRef = ref(storage, 'profilebanners/' + fileName);
+                    const storageRef = ref(storage, 'banners/' + fileName);
                     await uploadBytes(storageRef, file);
                         
                     // get download URL
