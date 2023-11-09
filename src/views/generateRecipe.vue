@@ -51,11 +51,6 @@
                     <div class="col-md-12 submit-btn-div">
                         <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
                     </div>
-
-                    <!-- Edit Button -->
-                    <!-- display only after output is generated -->
-                    <button type="submit" @click="editRecipe">Edit</button>
-                    <!-- v-if="recipe.recipeName" -->
                 </div>
             </form>
 
@@ -69,6 +64,10 @@
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
                     <div>
                       <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
+                      Like this image? Download it here: 
+                      <a v-if="recipe.image" :href="recipe.image" target="_blank">
+                        <button>Download Image</button>
+                      </a>
                     </div>
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
@@ -92,19 +91,28 @@
                           </li>
                         </ol>
                     </div>
+
+                    <!-- DISCLAIMER -->
+                    <div class="text-center p-0 my-0 mx-0">
+                      <div class="disclaimer-divider"></div>
+                          <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
+                      <div class="disclaimer-divider"></div>
+                  </div>
+              </div>
+
+              <br><br>
+              <p>Like what you see? Download the image here and upload it with the recipe!</p>
+              <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="col d-flex justify-content-center" v-if="selectedImage">
+                    <img id="user_pic" :src="selectedImage" class="rounded-circle border border-5 border-black " width="150" height="150">
                 </div>
 
-                <!-- DISCLAIMER -->
-                <div class="text-center p-0 my-0 mx-0">
-                    <div class="disclaimer-divider"></div>
-                        <strong>DISCLAIMER: This recipe is AI-generated and has not verified it for accuracy or safety.</strong>
-                    <div class="disclaimer-divider"></div>
+                <div class="d-flex align-items-center mt-3" >
+                        <input class="form-control" type="file" id="userimage" @change="previewImage" accept="image/*">
+                        <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success">Upload to Profile</button>
                 </div>
-            </div>
-
-            <br><br>
-
-            <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success">Upload to Profile</button>
+              </div>              
+            </div>  
         </div>
     </div>
 
@@ -159,18 +167,15 @@
   import 'bootstrap/dist/js/bootstrap.min.js';
   import { useRouter } from "vue-router";
   import axios from 'axios';
-  // import OpenAI from 'openai';
 </script>
 
 <script>
 import { useRouter } from "vue-router";
 import axios from 'axios';
-import OpenAI from 'openai';
 import { ref } from 'vue';
 import { getFirestore, collection, addDoc, getDoc, setDoc, updateDoc, doc } from 'firebase/firestore';
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication methods
-import { tSThisType } from '@babel/types';
 
 const storage = getStorage();
 const imageUploadProgress = ref(0);
@@ -232,7 +237,7 @@ const router = useRouter() // get a reference to our vue router
       },
     },
 
-    methods: {
+    methods: {      
       async checking_ingredients(){
         if (this.prioritizedIngredients.length > 0) {
             this.checkingredients = true;
@@ -301,33 +306,22 @@ const router = useRouter() // get a reference to our vue router
             this.recipe.instructionsArray = instructionsArray;
             this.inputSubmitted = true;
             this.loading = false;
-
-            // Now, you have the ingredients and instructions in arrays
-            // console.log('Ingredients:', ingredientsArray);
-            // console.log(ingredientsArray[3]);
-            // console.log('Instructions:', instructionsArray);
           } else {
             console.log("");
-            // console.log('No ingredients and instructions found.');
           }
-          // console.log(response.data.choices[0].message); // relevant JSON data
-          // console.log(response.data.choices[0].message.content.trim()); // intended output format
 
         })
         .catch(error => {
-          alert("Something Went Wrong");
-          // console.log("");
-          // console.error('Error fetching recipe:', error);
+          console.log("");
         });
       },
-
       // fetch image
       async fetchImg(recipeName) {
         if(recipeName == ""){
           this.recipeName = this.prioritizedIngredients;
         }
-
-        try{
+        else{
+          try{
           const response = await axios.post(
             "https://api.openai.com/v1/images/generations",
             {
@@ -344,133 +338,124 @@ const router = useRouter() // get a reference to our vue router
             }
             );
             this.recipe.image = response.data.data[0].url;
+            this.selectedImage = response.data.data[0].url;
           }
           catch{
             console.log("error");
           }
-      },
-      async editRecipe() {
-  
-        // navigate to the ModifyRecipe page
-        console.log("redirecting to ModifyRecipe.vue");
-        // Pass the recipe details to the ModifyRecipe page
-        const recipeDetails = 
-        {
-          recipeName: this.recipe.recipeName,
-          image: this.recipe.image,
-          cuisineType: this.recipe.cuisineType.value,
-          dietaryRestrictions: this.recipe.dietaryRestrictions,
-          prioritizedIngredients: this.recipe.prioritizedIngredients,
-          ingredientsArray: this.recipe.ingredientsArray,
-          instructionsArray: this.recipe.instructionsArray,
-        };
-        // Navigate to the ModifyRecipe page and pass the recipe details
-        this.$router.push({ path: '/ModifyRecipe', query: { recipeDetails } });
-
-        console.log(recipeDetails);
-
+        }
       },
       async uploadImageAndCreateRecipe() {
+        try{
+          if (this.selectedImage) {
+            const timestamp = new Date().getTime();
+            const randomString = Math.random().toString(36).substring(2, 8);
+            const uniqueID = `${timestamp}_${randomString}`;
 
-      
-        const timestamp = new Date().getTime();
-        const randomString = Math.random().toString(36).substring(2, 8);
-        const uniqueID = `${timestamp}_${randomString}`;
+            const fileName = `${uniqueID}`;
+            const storageReference = storageRef(storage, `recipeImages/${fileName}`);
 
-        const fileName = `${uniqueID}`;
-        const storageReference = storageRef(storage, `recipeImages/${fileName}`);
-
-        const snapshot = await uploadBytes(storageReference, this.selectedImage);
-        imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
-        try {
-          const downloadURL = await getDownloadURL(storageReference);
-
-          const user = auth.currentUser;
-          const userUID = user ? user.uid : null;
-
-          this.recipeImageURLs.push(downloadURL);
-
-          const recipesRef = collection(db, 'recipes');
-
-          // reformat data
-          // ingredients
-          const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
+            const snapshot = await uploadBytes(storageReference, this.selectedImage);
+            imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            
+            const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
             // Use a regular expression to capture the quantity and the rest of the text as name
-            const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
+              const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
 
-            if (match) {
-              // Extract the matched quantity and name
-              const quantity = match[1].trim();
-              const name = ingredient.replace(match[0], '').trim();
+              if (match) {
+                // Extract the matched quantity and name
+                const quantity = match[1].trim();
+                const name = ingredient.replace(match[0], '').trim();
 
-              return { name, quantity };
-            } else {
-              // If no quantity is found, consider the entire ingredient as the name
-              return { name: ingredient.trim(), quantity: '' };
+                return { name, quantity };
+              } else {
+                // If no quantity is found, consider the entire ingredient as the name
+                return { name: ingredient.trim(), quantity: '' };
+              }
+            });
+            // // steps
+            const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
+              const parts = instruction.split(' ');
+              const description = parts.slice(1).join(' ');
+              return { description };
+            });
+            const user = auth.currentUser;
+            const userUID = user ? user.uid : null;
+
+            const recipeData = {
+              name: this.recipe.recipeName,
+              creator: this.creator,
+              cuisineType: this.cuisineType,
+              ingredients: formattedIngredients,
+              steps: formattedInstructions,
+              recipeImageURLs: [this.recipe.image],
+              imageId: uniqueID,
+              uid: userUID,
+              likes: 0,
+              reviews: []
+            };
+            const recipesRef = collection(db, 'recipes');
+            const docRef = await addDoc(recipesRef, recipeData);
+            const autoGeneratedID = docRef.id;
+
+            recipeData.autoGeneratedID = autoGeneratedID;
+
+            await updateDoc(doc(db, 'recipes', autoGeneratedID), recipeData);
+
+            if (userUID) {
+              const userRef = doc(db, 'Users', userUID);
+              const userDoc = await getDoc(userRef);
+              const userData = userDoc.data();
+
+              if (userData && Array.isArray(userData.posts)) {
+                userData.posts.push(autoGeneratedID);
+                await updateDoc(userRef, userData);
+              }
             }
-          });
 
-
-          // steps
-          const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
-            const parts = instruction.split(' ');
-            const description = parts.slice(1).join(' ');
-            return { description };
-          });
-
-          const recipeData = {
-            name: this.recipe.recipeName,
-            creator: this.creator,
-            // mealType: this.mealType,
-            cuisineType: '',
-            // description: this.description,
-            ingredients: formattedIngredients,
-            steps: formattedInstructions,
-            recipeImageURLs: [this.recipe.image],
-            imageId: uniqueID,
-            uid: userUID,
-            likes: 0,
-            reviews: []
-          };
-
-          console.log(recipeData);
-
-          const docRef = await addDoc(recipesRef, recipeData);
-          const autoGeneratedID = docRef.id;
-
-          recipeData.autoGeneratedID = autoGeneratedID;
-
-          await updateDoc(doc(db, 'recipes', autoGeneratedID), recipeData);
-
-          if (userUID) {
-            const userRef = doc(db, 'Users', userUID);
-            const userDoc = await getDoc(userRef);
-            const userData = userDoc.data();
-
-            if (userData && Array.isArray(userData.posts)) {
-              userData.posts.push(autoGeneratedID);
-              await updateDoc(userRef, userData);
-            }
+            this.recipeName = '';
+            this.creator = '';
+            this.mealType = '';
+            this.cuisineType = '';
+            this.description = '';
+            this.ingredients = [];
+            this.steps = [{ description: '' }];
+            this.recipeImageURLs = [];
+            imageUploadProgress.value = 0;
           }
-
-          this.recipeName = '';
-          this.creator = '';
-          this.mealType = '';
-          this.cuisineType = '';
-          this.description = '';
-          this.ingredients = [];
-          this.steps = [{ description: '' }];
-          this.recipeImageURLs = [];
-          imageUploadProgress.value = 0;
-        } catch (error) {
-          console.error('Error adding recipe:', error);
+        }catch(error){
+          console.log()
         }
-      
-      this.$router.push('/explore');
+        this.router.push('/explore');
       }
+      
     
   },
+  async previewImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+          console.log(file);
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                // upload to Firebase Storage
+                const timestamp = new Date().getTime();
+                const randomString = Math.random().toString(36).substring(2, 8);
+                const uniqueID = `${timestamp}_${randomString}`;
+                
+                const fileName = file.name + `${uniqueID}`;
+                console.log(fileName);
+                const storageRef = ref(storage, 'recipeImages/' + fileName);
+                await uploadBytes(storageRef, file);
+                
+                // get download URL
+                const url = await getDownloadURL(storageRef);
+                console.log(url);
+                this.selectedImage = url;
+                this.recipe.image = url;
+            };
+            reader.readAsDataURL(file);
+      }
+    },
   created() {
     const db = getFirestore();
     const auth = getAuth();
@@ -517,12 +502,6 @@ const router = useRouter() // get a reference to our vue router
   /* !important: https://www.w3schools.com/css/css_important.asp */
   color:#002E23!important;
 }
-/*
-.input-header{}
-.gen-interface{}
-.gen-form{}
-.gen-form-row{}
-*/
 .gen-form-ingredients-field{
   background-color: #AEDDB3!important;
   padding: 12px 30px!important;
@@ -602,56 +581,6 @@ const router = useRouter() // get a reference to our vue router
   border-bottom: 2px solid black;
   width: 100%;
 }
-
-/* Footer */
-/*
-.logo-link{
-  text-decoration: none;
-}
-.logo-a{
-  color: white; 
-  font-size: 48px; 
-  font-family: Poppins; 
-  font-weight: 700; 
-  word-wrap: break-word;
-}
-.logo-b{
-  color: #00FF47; 
-  font-size: 48px; 
-  font-family: Poppins; 
-  font-weight: 700; 
-  word-wrap: break-word;
-}
-.disclaimer-divider {
-  border-bottom: 5px solid black;
-  width: 100%;
-}
-.footer{
-  background-color: #242424;
-}
-
-.footer-text{
-  font-size: 14px;
-  color: #fff;
-}
-
-.header-text{
-  color: #fff;
-}
-.contact-card-content{
-  transition: color 150ms;
-}
-
-.footer-socials{
-  padding-top: 15px;
-}
-.socials-list-item{
-  display: inline-block;
-  margin-right: 15px;
-  margin-bottom: 0;
-
-}
-*/
 
 /* misc classes */
 
