@@ -67,7 +67,7 @@
                         <div class="card-body">
                             <div class="row pb-2">
                                 <div class="col">
-                                    <h5 class="card-title" style="text-align: left; overflow:auto">{{recipe_card.recipe_name}}</h5>
+                                    <h5 class="card-title multi-row" style="text-align: left; overflow:auto">{{recipe_card.recipe_name}}</h5>
                                 </div>
 
 
@@ -271,7 +271,13 @@ export default {
 </script>
 <style>
 
-
+.card-title.multi-row {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .buttonStyle {
     font-family: "Poppins", sans-serif;
     border-radius: 50px;
