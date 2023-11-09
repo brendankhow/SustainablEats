@@ -4,7 +4,7 @@
     <!-- Generator -->
     <div class="gen-page text-center">
         <!-- header -->
-        <h1 class="input-header mt-5">Generate New Recipe</h1>
+        <h1 class="gen-header mt-5 container">Generate New Recipe</h1>
 
         <!-- interface -->
         <div class="gen-interface mb-5 container">
@@ -54,8 +54,8 @@
                 </div>
             </form>
 
-            <!-- Loading animation -->
-            <div class="spinner-border" v-if="loading">{{loading}}</div>
+          <!-- Loading animation -->
+          <div class="row spinner-border" v-if="loading"></div>
 
             <!-- Output Interface (Initially Hidden) style="display: none;"-->
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
@@ -64,15 +64,18 @@
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
                     <div>
                       <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
-                      Like this image? Download it here: 
+                      <div>
+                        <p>Like this image? Download it here: </p>
                       <a v-if="recipe.image" :href="recipe.image" target="_blank">
-                        <button>Download Image</button>
+                        <button class="download-img-btn">Download Image</button>
                       </a>
+                      </div>
+
                     </div>
                     <p class="recipe-desc">{{ recipe.description }}</p>
                 </div>
                 
-                <div class="recipe-box mx-2 row">
+              <div class="row recipe-box mx-2">
                     <div class="ingredient-col col-md-6 col-sm-12 col-12">
                         <h3 class="ingredient-header text-center">Ingredients</h3>
                         <ul class="ingredient-list left-aligned">
@@ -102,14 +105,16 @@
 
               <br><br>
               <p>Like what you see? Download the image here and upload it with the recipe!</p>
-              <div class="col-lg-6 col-md-12 col-sm-12 mb-2">
+
+              <div class="row-lg-12 row-md-12 row-sm-12 mb-2">
                 <div class="col d-flex justify-content-center" v-if="selectedImage">
                     <img id="user_pic" :src="selectedImage" class="rounded-circle border border-5 border-black " width="150" height="150">
                 </div>
 
-                <div class="d-flex align-items-center mt-3" >
-                        <input class="form-control" type="file" id="userimage" @change="previewImage" accept="image/*">
-                        <button type="button" @click="uploadImageAndCreateRecipe" class="btn btn-success">Upload to Profile</button>
+                <div class="col d-flex align-items-center mt-3" >
+                  <input class="row form-control" type="file" id="userimage" @change="previewImage" accept="image/*">
+                  <br><br>
+                  <button type="button" @click="uploadImageAndCreateRecipe" class="row btn btn-success">Upload to Profile</button>
                 </div>
               </div>              
             </div>  
@@ -505,9 +510,36 @@ const router = useRouter() // get a reference to our vue router
   background-size: 400px;
   padding: 40px;
   margin-top: 40px;
+}
+.gen-header{
+  width: auto;
+  font-family: Raleway;
+  text-align: center;
+  color:#FFFBF4;
+  font-weight: bold;
 
-  /* !important: https://www.w3schools.com/css/css_important.asp */
-  color:#002E23!important;
+  background-color: #000;
+
+  margin-bottom: 0px;
+
+  border-radius: 20px 20px 0 0;
+
+  padding: 1rem;
+
+}
+
+.gen-interface{
+  width: auto;
+  background-color:#AEDDB3;
+  border-radius: 0 0 20px 20px;
+  border: #000 2px solid;
+}
+
+.gen-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .gen-form-ingredients-field{
   background-color: #AEDDB3!important;
@@ -528,6 +560,18 @@ const router = useRouter() // get a reference to our vue router
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+}
+.download-img-btn{
+  height: 69px;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bolder;
+
+  padding: 1rem;
 }
 .gen-form-submit-btn{
 
@@ -551,16 +595,16 @@ const router = useRouter() // get a reference to our vue router
   padding-bottom: 15px;
 }
 .ingredient-col{
-  background-color: lightgray;
-  border: 3px solid #a8a8a8;
-
+  background-color:#002E23;
+  border: 3px solid #002E23;
+  color: #FFFBF4;
 }
 .ingredient-header{
   padding: 15px;
 }
 
 .instruction-col{
-  background-color: #AEDDB3;
+  background-color:#e0fbe3;
   border: 3px solid #002E23;
 
 }
