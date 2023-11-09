@@ -15,7 +15,7 @@
         <h1>Explore Recipes</h1>
         <br>
         <div class="recipe-grid">
-          <RecipeCard
+          <RecipeCard 
             v-for="recipe in filteredRecipes"
             :key="recipe.id"
             :recipe="recipe"
