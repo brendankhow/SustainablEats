@@ -2,6 +2,8 @@
   <div class="recipe-card">
     <img :src="recipe.recipeImageURLs + '?timestamp=' + Date.now()" class="card-img-top" alt="Recipe Image">
     <div class="card-body">
+    <img :src="recipe.recipeImageURLs + '?timestamp=' + Date.now()" class="card-img-top" alt="Recipe Image">
+    <div class="card-body">
       <h5 class="card-title">{{ recipe.name }}</h5>
       <p class="card-creator">{{ recipe.creator }}</p>
       <button class = "likeButton" value = "isChecked" v-on:click= "increaseLikes">Like 
@@ -10,7 +12,18 @@
         <!--<input type = "checkbox" id = "likeCheckBox" v-model = "isChecked"  v-on:click = "increaseLikes"> -->
 
       <!-- Display the number of likes -->
+      <button class = "likeButton" value = "isChecked" v-on:click= "increaseLikes">Like 
+        <i :class="{'bi bi-heart': !isChecked, 'bi bi-heart-fill': isChecked}"></i></button>
+
+        <!--<input type = "checkbox" id = "likeCheckBox" v-model = "isChecked"  v-on:click = "increaseLikes"> -->
+
+      <!-- Display the number of likes -->
       <p class="likes-count"><strong>{{ recipeLikes }}</strong> Likes</p>
+
+      <!-- Bookmark feature-->
+      <button class = "bookmarkButton" value = "isBookmarked" v-on:click= "bookmarkRecipe">Bookmark 
+        <i :class="{'bi bi-bookmarks': !isBookmarked, 'bi bi-bookmark-fill': isBookmarked}"></i></button>
+
 
       <!-- Bookmark feature-->
       <button class = "bookmarkButton" value = "isBookmarked" v-on:click= "bookmarkRecipe">Bookmark 
@@ -233,20 +246,61 @@ export default {
   border-radius: 50px;
 }
 
+
+.likes-count{
+  margin-top: 5px;
+}
+.likeButton{
+  background-color: seagreen;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.likeButton:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.bookmarkButton:hover{
+  background-color: #003824;
+  color: white;
+}
+
+.bookmarkButton{
+  margin-bottom: 10px;
+  border-radius: 50px;
+}
+
 .recipe-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
   overflow: hidden;
+  cursor: pointer;
   cursor: pointer;
   margin: 10px;
   display: flex;
   flex-direction: column;
   height: 100%; /* Ensure the card takes the full height */
+  height: 100%; /* Ensure the card takes the full height */
 }
 
+.recipe-card:hover {
+  transform: translateY(-5px);
 .recipe-card:hover {
   transform: translateY(-5px);
 }
@@ -254,12 +308,16 @@ export default {
 .card-img-top {
   width: 100%;
   height: 200px;
+  height: 200px;
   object-fit: cover;
 }
 
 .card-body {
   padding: 20px;
+.card-body {
+  padding: 20px;
   text-align: center;
+  flex: 1; /* Make the card body expand to fill the remaining space */
   flex: 1; /* Make the card body expand to fill the remaining space */
   display: flex;
   flex-direction: column;
@@ -313,3 +371,4 @@ export default {
   background-color: #1aad19;
 }
 </style>
+
