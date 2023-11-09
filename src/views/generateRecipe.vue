@@ -61,9 +61,9 @@
 
                 <div class="gen-out-header row">
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
+                    <div class="ai-img">
+                      <img id="ai-img" v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
                     <div>
-                      <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
-                      <div>
                         <p>Like this image? Download it here: </p>
                       <a v-if="recipe.image" :href="recipe.image" target="_blank">
                         <button class="download-img-btn">Download Image</button>
@@ -530,6 +530,13 @@ const router = useRouter() // get a reference to our vue router
 </script>
 
 <style>
+/* Tags */
+img[id='ai-img']{
+    max-height:500px;
+    max-width:500px;
+    height:auto;
+    width:auto;
+}
 /* Generation */
 .gen-page{
   background: url("../assets/background.png");
