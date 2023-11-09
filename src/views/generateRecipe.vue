@@ -66,13 +66,18 @@
             <div class="ai-img">
               <div class="d-flex justify-content-center align-items-center">
                 <img id="ai-img" v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
-                <p>Like this image? Download it here: </p>
-                <a v-if="recipe.image" :href="recipe.image" target="_blank">
-                  <button class="download-img-btn">Download Image</button>
-                </a>
               </div>
             <div>
           </div>
+        </div>
+        <div class="row">
+          <p class="text-center">Like this image? Download it here: </p>
+        </div>
+
+        <div class="row">
+          <a class="text-center" v-if="recipe.image" :href="recipe.image" target="_blank">
+            <button class="download-img-btn text-center">Download Image</button>
+          </a>
         </div>
             <!-- <p class="recipe-desc">{{ recipe.description }}</p> -->
       </div>
@@ -89,7 +94,7 @@
         </div>
         
         <div class="row">
-          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-left:4px solid #25d366; border-bottom:4px solid #25d366">
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-bottom:4px solid #25d366">
             <ul class="ingredient-list left-aligned">
               <li v-for="(ingredient, index) in recipe.ingredientsArray" :key="index">
                 <span v-if="index === 0">{{ ingredient.replace('- ', '') }}</span>
@@ -98,7 +103,7 @@
             </ul>
           </div>
 
-          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-right:4px solid #c8f4d8; border-bottom:4px solid #c8f4d8">
+          <div class="col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-3" style="border-bottom:4px solid #c8f4d8">
             <ol class="instruction-list left-aligned">
               <li v-for="instruction in recipe.instructionsArray">{{ instruction.split('. ').slice(1).join('. ') }}
                 <span v-if="instruction === ''"></span>
@@ -128,7 +133,7 @@
         <br><br>
       </div>
       <div class="row">
-        <button type="button" @click="uploadImageAndCreateRecipe" class="row text-center upload_btn">Upload to Profile</button>
+        <button type="button" @click="uploadImageAndCreateRecipe" class="row text-center upload_btn">Upload Recipe</button>
       </div>
     </div>              
   </div>  
@@ -507,6 +512,19 @@ const router = useRouter() // get a reference to our vue router
 </script>
 
 <style>
+
+.notification {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+  z-index: 1000;
+}
+
 .upload_btn{
   background-color: #25d366;
   border: 0;
@@ -533,7 +551,6 @@ img[id='ai-img']{
     border-color: #D9534F;
 }
 .download-img-btn{
-  height: 69px;
   color: #000000;
   background-color: #c8f4d8;
   border: none;
@@ -541,7 +558,12 @@ img[id='ai-img']{
   text-align: center;
   cursor: pointer;
   font-weight: bolder;
+  padding: 1rem;
+}
 
+.download-img-btn:hover{
+  color: white;
+  background-color: #167e3c;
   padding: 1rem;
 }
 .gen-form-submit-btn{
