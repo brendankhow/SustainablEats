@@ -49,10 +49,6 @@ const router = createRouter({
     },
     { path: "/profilesettings", component: () => import("../views/ProfileSettings.vue")},
     { path: "/profile", name: 'Profile', component: () => import("../views/Profile.vue")},
-    {
-      path: "/ModifyRecipe", component: () => import("../views/ModifyRecipe.vue"),
-      props: (route) => ({ formData: route.params.formData }),
-  },
   ],  
 });
 
