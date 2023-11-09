@@ -48,7 +48,7 @@
               <li>This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes.</li>
             </ul>
             <div class="mt-2">
-              <a href="#trending"><span><button class="btn trending_btn">See Trending Recipes</button></span></a>
+              <a href="#trending"><span><button class="btn trending_btn">See Trending</button></span></a>
             </div>
           </div>
         </div>
@@ -678,7 +678,7 @@ color: white;
 
 @media (max-width: 575px){
   .about-image {
-    max-width: 100%;
+    max-width: 80%;
   }
 }
 /* Style for the Events Section */
