@@ -82,8 +82,8 @@ export default {
                         email: this.email,
                         coins: 30,
                         earned: 0,
-                        profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/profilepic%2Fdefault.jpg?alt=media&token=5510fd0b-cf1d-49c7-92b5-daacb3185698",
-                        profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-11dde.appspot.com/o/banners%2Fdefault_banner.jpg?alt=media&token=fe8ea8a1-3ebf-4b0b-ab13-6bb67ed532a0",
+                        profilepic: "https://firebasestorage.googleapis.com/v0/b/sustainableats-3293a.appspot.com/o/profilepic%2Fdefault.jpg?alt=media&token=ef50025c-fe34-4e36-8d71-1c66f3d5eea8",
+                        profilebanner: "https://firebasestorage.googleapis.com/v0/b/sustainableats-3293a.appspot.com/o/banners%2Fdefault_banner.jpg?alt=media&token=94437f26-425d-4c57-adc4-de3eee596dac",
                         posts: [],
                         bookmarks: []
                     });
