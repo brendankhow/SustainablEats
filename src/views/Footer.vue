@@ -1,9 +1,9 @@
 <template>
 <footer id="footer" class="footer">
 
-<div class="container">
-  <div class="row gy-3">
-    <div class="col-lg-3 col-md-6 d-flex">
+<div class="footer-container container">
+  <div class="footer-section row gy-3">
+    <div class="footer-col col-lg-3 col-md-6 col-sm-12 d-flex justify-content-center">
       <i class="bi bi-geo-alt icon"></i>
       <div>
         <h4>About Us</h4>
@@ -15,7 +15,7 @@
 
     </div>
 
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
+    <div class="footer-col col-lg-3 col-md-6 col-sm-12 footer-links d-flex justify-content-center">
       <i class="bi bi-telephone icon"></i>
       <div>
         <h4>Contact Us</h4>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 footer-links d-flex">
+    <div class="footer-col col-lg-3 col-md-6 col-sm-12 footer-links d-flex justify-content-center">
       <i class="bi bi-clock icon"></i>
       <div>
         <h4>Terms & Conditions</h4>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-md-6 footer-links">
+    <div class="footer-col col-lg-3 col-md-6 col-sm-12 footer-links">
       <h4>Follow Us</h4>
       <div class="social-links d-flex">
         <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -82,6 +82,11 @@
     background-color: #1f1f24;
     padding: 50px 0;
     color: rgba(255, 255, 255, 0.7);
+
+  }
+
+  .social-links {
+    justify-content: center;
   }
 
   .footer .icon {
@@ -111,7 +116,6 @@
   .footer .footer-links ul li {
     padding: 10px 0;
     display: flex;
-    align-items: center;
   }
 
   .footer .footer-links ul li:first-child {
@@ -186,7 +190,11 @@
   @media (max-width: 576px) {
     .footer .footer-links ul li {
       width: 100%;
-      text-align: center; /* Center-align the content on small screens */
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; /* Add this line to ensure vertical alignment */
     }
   }
   </style>
