@@ -129,7 +129,7 @@ export default {
 .apply {
   background-color: #25d366;
   color: #212529;
-  margin-top: 10px;
+  margin-top: 3px;
   font-weight: bold;
 }
 /* Your existing styles remain unchanged */
