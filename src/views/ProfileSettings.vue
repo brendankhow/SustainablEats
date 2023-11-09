@@ -120,7 +120,7 @@
                 <div class="row">
                     <div class="col d-flex flex-row-reverse pb-2">
                         <button class="btn btn-primary text-white fw-bold" @click="updateUsersecurity" :disabled="isPasswordInvalid">SUBMIT & SAVE</button>
-                        <button class="btn text-white fw-bold me-2" style="background-color: #B0B0B0;">
+                        <button class="btn text-white fw-bold me-2" style="background-color: #4f4f4f;">
                             <router-link to="/profile" class="nav-link text-white">CANCEL</router-link>
                         </button>
                     </div>

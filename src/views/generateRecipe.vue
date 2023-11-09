@@ -2,7 +2,6 @@
   <div class="container" style="margin-top: 140px">
     <div class="row mt-3 header">
         <div class="col d-flex align-items-start">
-            <img src="../assets/angle-left.png" class="d-inline-block d-flex" onclick="history.back()" width="50">
             <h1 class="d-inline-block"><b>Generate New Recipe</b></h1>
         </div>
         <hr style="border:3px solid #25d366;">
@@ -19,19 +18,18 @@
               </div>
 
               <div class="row mb-3 ms-1">
-                  <label for="cusineType" class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine:</label>
-                  <div class="col-lg-10 col-md-12 col-sm-12">
-                    <select id="cuisineType" class="form-control border-0" style="background-color:#EDF8FF;" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
-                      <option value="Chinese">Chinese</option>
-                      <option value="Western">Western</option>
-                      <option value="Italian">Italian</option>
-                      <option value="Japanese">Japanese</option>
-                      <option value="Korean">Korean</option>
-                    </select>
-                  </div>
+                <label for="cusineType" class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine:</label>
+                <div class="col-lg-10 col-md-12 col-sm-12">
+                  <select id="cuisineType" class="form-control border-0" style="background-color:#EDF8FF;" v-model="cuisineType" :class="{'is-invalid': !cuisineType}">
+                    <option value="Chinese">Chinese</option>
+                    <option value="Western">Western</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Korean">Korean</option>
+                  </select>
+                  <div v-if="!cuisineType" class="text-danger text-center">Choose one cuisine type!</div>
+                </div>
               </div>
-
-              <div v-if="!cuisineType" class="row mb-3 ms-1 text-danger text-center">Choose one cuisine type!</div>
 
               <div class="row mb-3 ms-1">
                 <label for="username" class="col-lg-2 col-md-12 col-form-label fw-bold">Dietary Restriction:</label>
@@ -54,13 +52,14 @@
                 </button>
             </div>
           </div>
-          <hr style="border:3px solid #25d366;">
+          
       </div>
       <div class="row mx-auto">
         <div class="spinner-border mx-auto text-center d-flex justify-content-center align-content-center" v-if="loading"></div>
       </div>
       <!-- Output Interface (Initially Hidden) style="display: none;"-->
       <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading"> 
+        <hr style="border:3px solid #25d366;">
         <div class="gen-out-header row">
             <h1 class="recipe-title text-center" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
             <div class="ai-img">
@@ -159,6 +158,7 @@
                 <div class="guide-divider"></div>
             </div>
         </div>
+        <hr style="border:3px solid #25d366;">
     </div>
     <div class="mx-auto">
       <!-- Content -->
@@ -302,11 +302,6 @@ const router = useRouter() // get a reference to our vue router
         .then(response => {
             this.loading = false;
             const recipeData = response.data.choices[0].message.content.split('Ingredients:\n');
-            console.log('Recipe Data:', recipeData)
-          // Extract the recipe title
-          // console.log('unproc_title:', recipeData[0].split('\n\n'));
-          // const recipeTitle = recipeData[0].split('\n\n')[1];
-          // console.log('Title:', recipeTitle);
 
           if (recipeData.length > 1) {
             const ingredientsPart = recipeData[1];
@@ -319,7 +314,6 @@ const router = useRouter() // get a reference to our vue router
             // IMPORTANT *****************************************
             // this.recipe.title = this.userInput;
             this.recipe.recipeName = recipeName;
-            console.log(recipeName);
 
             this.fetchImg(recipeName);
             this.recipe.description = recipeData[0];
