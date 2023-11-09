@@ -227,6 +227,8 @@ export default {
   margin: 10px;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-image-container {
@@ -239,23 +241,48 @@ export default {
   height: 100%;
   object-fit: cover;
 }
-
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+.card-creator {
+  color: #666;
+}
 .card-row {
   padding: 10px;
   text-align: center;
+}
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.card-creator {
+  color: #666;
 }
 
 .button-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .likeButton,
 .bookmarkButton {
+  background-color: #007bff;
+  color: #fff;
   flex: 1;
-  padding: 5px;
+  padding: 8px;
   margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+.likeButton:hover,
+.bookmarkButton:hover {
+  background-color: #0056b3;
+}
+
 .red-heart {
   color: red;
 }
@@ -265,5 +292,16 @@ export default {
 }
 /* Add more styles as needed */
 
+.view-more-button {
+  background-color: #25d366;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
 
+.view-more-button:hover {
+  background-color: #1aad19;
+}
 </style>
