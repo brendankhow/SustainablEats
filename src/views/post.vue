@@ -27,71 +27,76 @@
     </div> -->
 
     <div class="recipe-details">
-      <div class="container-fluid">
-    <h4 class="d-inline-block ms-2">Recipe Details</h4>
-
-    <div class="row mb-3 mt-2 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Recipe Name:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <span>{{ recipe.name }}</span>
+      <div class="recipe-image">
+        <img :src="imageURL" alt="Recipe Image" />
       </div>
-    </div>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Creator:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <span>{{ recipe.creator }}</span>
-      </div>
-    </div>
+      <div class="recipeInfo container-fluid">
+        <h2 class="recipeHeader d-inline-block ms-1">Recipe Details</h2>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Meal Type:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <span>{{ recipe.mealType }}</span>
-      </div>
-    </div>
+        <div class="row mb-3 mt-2 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Recipe Name:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <span class="label-value">{{ recipe.name }}</span>
+          </div>
+        </div>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine Type:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <span>{{ recipe.cuisineType }}</span>
-      </div>
-    </div>
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Creator:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <span class="label-value">{{ recipe.creator }}</span>
+          </div>
+        </div>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <p>{{ recipe.description }}</p>
-      </div>
-    </div>
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Meal Type:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <span class="label-value">{{ recipe.mealType }}</span>
+          </div>
+        </div>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Ingredients:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <ul>
-          <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
-            {{ ingredient.name }} - {{ ingredient.quantity }}
-          </li>
-        </ul>
-      </div>
-    </div>
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine Type:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <span class="label-value">{{ recipe.cuisineType }}</span>
+          </div>
+        </div>
 
-    <div class="row mb-3 ms-1">
-      <label class="col-lg-2 col-md-12 col-form-label fw-bold">Steps:</label>
-      <div class="col-lg-10 col-md-12 col-sm-12">
-        <ol>
-          <li v-for="(step, index) in recipe.steps" :key="index">
-            {{ step.description }}
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-    <div class="recipe-image">
-      <img :src="imageURL" alt="Recipe Image" />
-    </div>
-  </div>
-  
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <p class="label-value">{{ recipe.description }}</p>
+          </div>
+        </div>
+
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Ingredients:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <ol class="label-value">
+              <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
+                {{ index + 1 }}. {{ ingredient.name }} - {{ ingredient.quantity }}
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="row mb-3 ms-1">
+          <label class="col-lg-2 col-md-12 col-form-label fw-bold">Steps:</label>
+          <div class="col-lg-10 col-md-12 col-sm-12">
+            <ol class="label-value">
+              <li v-for="(step, index) in recipe.steps" :key="index">
+                {{ index + 1 }}. {{ step.description }}
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        </div>
+          <!-- <div class="recipe-image">
+            <img :src="imageURL" alt="Recipe Image" />
+          </div> -->
+        </div>
+        
     <hr>
 
     <div>
@@ -454,12 +459,72 @@ form .btn button:hover{
   padding: 20px;
 }
 
+.recipeInfo{
+  margin-left: 80px;
+}
+
+.recipeHeader{
+  margin-bottom: 10px;
+}
+
+.recipe-image {
+  width: 70%; /* Adjusted width for the image */
+  margin-right: 50px; /* Added margin for spacing */
+  margin-bottom: 50px;
+}
+
 .recipe-image img {
-  width: 800px; /* Set your desired width */
-  height: 700px; /* Set your desired height */
+  width: 100%; /* Set your desired width to 100% for responsiveness */
+  max-width: 100%; /* Updated maximum width */
+  height: auto; /* Maintain aspect ratio */
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.label-value {
+  margin-left: 50px; /* Adjust the margin-left value according to your preference */
+}
+
+@media (max-width: 1200px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 992px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .recipe-info {
+    margin-top: 20px;
+  }
+
+  .recipe-image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .label-value {
+    margin-left: 0;
+  }
 }
 
 ul, ol {
