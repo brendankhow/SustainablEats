@@ -27,7 +27,7 @@
     </ul>
     <ul class="navbar-nav mb-2 mb-lg-0" >
       <li class="nav-item d-flex align-items-center pe-3"> <!-- Once the moustache comes in, image disappear-->
-          <img src="../assets/coin.png" width="40" height="40"><span class=" align-middle ps-1">{{ userCoins }} coins</span>
+          <img src="../assets/coin.png" width="40" height="40"><span class="fw-bold align-middle ps-1">{{ userCoins }} Coins</span>
       </li>
 
       <!-- Still can put image, just that there will be a distance between the coin and number
@@ -109,6 +109,13 @@
   
   <style scoped>
   /* Your component-specific styles here */
+  .nav-link{
+    font-weight: bold;
+  }
 
+  .btn{
+    margin-left: 15px;
+    border-radius: 10px;
+  }
   </style>
   

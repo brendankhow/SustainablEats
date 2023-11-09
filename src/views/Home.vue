@@ -292,9 +292,21 @@
  .trending_btn:hover {
   background-color: #24a152;
   color:white;
+  font-family: Raleway;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
  }
  .trending_btn {
   background-color: #25D366;
+  font-family: Raleway;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
  }
 
  html {
