@@ -73,9 +73,9 @@
                                     <div class="btn-group">
                                         <div class = "row">
                                             <button class = "buttonStyle col-lg-11"><router-link :to="recipe_card.recipe_link">View more</router-link></button>
-                                            <div class = "row justify-content-center text-center">
-                                                <button v-if="content === 'post'" class = "buttonStyle col-md-6"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
-                                                <button v-if="content === 'post'" class = "buttonStyle col-md-5" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
+                                            <div class = "row button-row">
+                                                <button v-if="content === 'post'" class = "buttonStyle col-md-12"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
+                                                <button v-if="content === 'post'" class = "buttonStyle col-md-12" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
                                             </div>
                                             
                                             <div class = "row">
@@ -270,6 +270,8 @@ export default {
 }
 </script>
 <style>
+
+
 .buttonStyle {
     font-family: "Poppins", sans-serif;
     border-radius: 50px;

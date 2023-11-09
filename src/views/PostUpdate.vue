@@ -1,73 +1,94 @@
 <template>
-    <div class="recipe-details">
-      <div class="recipe-image">
-        <img :src="imageURL" alt="Recipe Image" />
-      </div>
-  
-      <div class="recipe-info">
-        <h1>Edit Recipe</h1>
-        <form @submit.prevent="updateRecipe">
-            <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="file" id="image" @change="handleImageUpload" />
-            </div>
-          <div class="form-group">
-            <label for="recipeName">Recipe Name:</label>
-            <input type="text" id="recipeName" v-model="updatedRecipeName" class="form-control" />
-          </div>
-          <div class="form-group">
-            <label for="creator">Creator:</label>
-            <input type="text" id="creator" v-model="updatedCreator" class="form-control" disabled />
-          </div>
-          <div class="form-group">
-            <label for="mealType">Meal Type:</label>
-            <select id="mealType" v-model="updatedMealType" class="form-select">
-              <option value="Breakfast">Breakfast</option>
-              <option value="Brunch">Brunch</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Supper">Supper</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cuisineType">Cuisine Type:</label>
-            <select id="cuisineType" v-model="updatedCuisineType" class="form-select">
-              <option value="Chinese">Chinese</option>
-              <option value="Western">Western</option>
-              <option value="Italian">Italian</option>
-              <option value="Japanese">Japanese</option>
-              <option value="Korean">Korean</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" v-model="updatedDescription" class="form-control"></textarea>
-          </div>
-          <h2>Ingredients:</h2>
-          <ul>
-            <li v-for="(ingredient, index) in updatedIngredients" :key="index">
-                <input type="text" v-model="ingredient.name" class="form-control" />
-                <input type="number" v-model="ingredient.quantity" class="form-control" min="0" />
-                <button type="button" @click="removeIngredient(index)" v-if="updatedIngredients.length > 1">Remove</button>
-            </li>
-          </ul>
-          <button type="button" @click="addIngredient">Add Ingredient</button>
-          <h2>Steps:</h2>
-          <ol>
-            <li v-for="(step, index) in updatedSteps" :key="index">
-                <textarea v-model="step.description" class="form-control"></textarea>
-                <button type="button" @click="removeStep(index)" v-if="updatedSteps.length > 1">Remove</button>
-            </li>
-          </ol>
-          <button type="button" @click="addStep">Add Step</button>
+<div class="recipe-details">
+  <div class="recipe-image">
+    <img :src="imageURL" alt="Recipe Image" />
+  </div>
 
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Update Recipe</button>
-          </div>
+  <div class="recipeInfo container-fluid">
+    <h1 class="recipeHeader d-inline-block ms-1">Edit Recipe</h1>
+    <form @submit.prevent="updateRecipe">
 
-        </form>
+      <div class="row mb-3 mt-2 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Image:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <input class="form-control" type="file" id="image" @change="handleImageUpload" />
+        </div>
       </div>
-    </div>
+
+      <div class="row mb-3 mt-2 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Recipe Name:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <input type="text" id="recipeName" v-model="updatedRecipeName" class="form-control" />
+        </div>
+      </div>
+
+      <div class="row mb-3 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Creator:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <input type="text" id="creator" v-model="updatedCreator" class="form-control" disabled />
+        </div>
+      </div>
+
+      <div class="row mb-3 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Meal Type:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <select id="mealType" v-model="updatedMealType" class="form-select">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Brunch">Brunch</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Supper">Supper</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Cuisine Type:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <select id="cuisineType" v-model="updatedCuisineType" class="form-select">
+            <option value="Chinese">Chinese</option>
+            <option value="Western">Western</option>
+            <option value="Italian">Italian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Korean">Korean</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3 ms-1">
+        <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          <textarea id="description" v-model="updatedDescription" class="form-control"></textarea>
+        </div>
+      </div>
+
+      <h2 class="ms-1">Ingredients:</h2>
+      <ul class="ms-1">
+        <li v-for="(ingredient, index) in updatedIngredients" :key="index">
+          <input type="text" v-model="ingredient.name" class="form-control" />
+          <input type="number" v-model="ingredient.quantity" class="form-control" min="0" />
+          <button type="button" @click="removeIngredient(index)" v-if="updatedIngredients.length > 1">Remove</button>
+        </li>
+      </ul>
+      <button type="button" @click="addIngredient" class="ms-1">Add Ingredient</button>
+
+      <h2 class="ms-1">Steps:</h2>
+      <ol class="ms-1">
+        <li v-for="(step, index) in updatedSteps" :key="index">
+          <textarea v-model="step.description" class="form-control"></textarea>
+          <button type="button" @click="removeStep(index)" v-if="updatedSteps.length > 1">Remove</button>
+        </li>
+      </ol>
+      <button type="button" @click="addStep" class="ms-1">Add Step</button>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary ms-1">Update Recipe</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+    
   </template>
   
   <script setup>
@@ -184,22 +205,89 @@ const handleImageUpload = (event) => {
   </script>
   
   <style scoped>
+.recipe-details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  margin-top: 120px;
+  margin-left: 50px;
+}
+  
+.recipe-info {
+  flex: 1;
+  padding: 20px;
+}
+
+.recipeInfo {
+  margin-left: 20px;
+}
+
+.recipeHeader {
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+.recipe-image {
+  width: 70%;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+.recipe-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.label-value {
+  margin-left: 50px;
+}
+
+@media (max-width: 1200px) {
   .recipe-details {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin: 20px;
+    align-items: center;
   }
-  
+}
+
+@media (max-width: 992px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .recipe-details {
+    flex-direction: column;
+    align-items: center;
+  }
   .recipe-info {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    width: 80%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
   }
-  
+
+  .recipe-image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .label-value {
+    margin-left: 0;
+  }
+}
+
+
   .form-group {
     margin-bottom: 10px;
   }
@@ -248,13 +336,6 @@ const handleImageUpload = (event) => {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-  }
-  
-  .recipe-image img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
   }
   
   h1 {
