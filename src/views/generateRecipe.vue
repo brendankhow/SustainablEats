@@ -2,6 +2,7 @@
   <div class="container" style="margin-top: 140px">
     <div class="row mt-3 header">
         <div class="col d-flex align-items-start">
+            <img src="../assets/magic-wand.png" height="50" class="d-inline-block "><h4 class="d-inline-block ms-2"></h4>
             <h1 class="d-inline-block"><b>Generate New Recipe</b></h1>
         </div>
         <hr style="border:3px solid #25d366;">
