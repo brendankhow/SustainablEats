@@ -4,10 +4,10 @@
     <!-- Generator -->
     <div class="gen-page text-center">
         <!-- header -->
-        <h1 class="input-header mt-5">Generate New Recipe</h1>
+        <h1 class="col gen-header mt-5">Generate New Recipe</h1>
 
         <!-- interface -->
-        <div class="gen-interface mb-5 container">
+        <div class="col gen-interface mb-5 container">
 
             <!-- Input -->
             <!-- @submit.prevent prevents the page from refreshing everytime submit btn pressed -->
@@ -15,10 +15,10 @@
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
 
-                    <div class="row">
-                      <label for="creator" class="form-label">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="form-control" v-else>
+                    <div class="col-md-12 mb-2">
+                      <label for="creator" class="info-labels">Creator Name:</label>
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
                     </div>
 
                     <!-- Cuisine Type Dropdown -->
@@ -55,7 +55,7 @@
             </form>
 
             <!-- Loading animation -->
-            <div class="spinner-border" v-if="loading">{{loading}}</div>
+            <div class="spinner-border" v-if="loading"></div>
 
             <!-- Output Interface (Initially Hidden) style="display: none;"-->
             <div class="gen-out box py-5 mx-0 container" v-if="inputSubmitted && !loading">
@@ -144,15 +144,22 @@
         <!-- Insert more here -->
         <div class="guide-content mx-auto">
             <p>
+              <div class="guide-text-box">
                 <strong>Include your cuisine of choice.</strong>
                 Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
                 American, Mediterranean, Chinese, etc.
+              </div>
                 <br><br>
+              <div class="guide-text-box">
+                <strong>Describe your meal in detail.</strong>
                 <strong>Prioritize certain ingredients to be used.</strong>
                 Chicken breast, lentils, or avocado for example. Remember to separate each item with a comma(',')
+              </div>
                 <br><br>
+              <div class="guide-text-box">
                 <strong>ALLERGIES</strong>
                 If you have any food allergies or dietary restrictions (like gluten), make sure to mention them.
+              </div>
             </p>
         </div>
     </div>
@@ -490,20 +497,47 @@ const router = useRouter() // get a reference to our vue router
   };
 </script>
 
-<style>
+<style scoped>
+
 /* Generation */
 .gen-page{
-  background: url("../assets/background.png");
+  /* background: url("../assets/background.png"); */
+
   background-repeat: repeat;
   background-size: 400px;
+  background-color:#FFFBF4;
   padding: 40px;
   margin-top: 40px;
+}
+.gen-header{
+  font-family: Raleway;
+  text-align: center;
+  color:#FFFBF4;
+  font-weight: bold;
 
-  /* !important: https://www.w3schools.com/css/css_important.asp */
-  color:#002E23!important;
+  background-color: #000;
+
+  margin-bottom: 0px;
+
+  border-radius: 20px 20px 0 0;
+
+  padding: 1rem;
+
+}
+
+.gen-interface{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: auto;
+
+  background-color:#AEDDB3;
+  border-radius: 0 0 5% 5%;
+  border: #000 2px solid;
 }
 .gen-form-ingredients-field{
-  background-color: #AEDDB3!important;
+  background-color:#ecffee;
   padding: 12px 30px!important;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -577,8 +611,19 @@ const router = useRouter() // get a reference to our vue router
 .guide-content{
   padding: 0px 15px 15px 15px;
 }
+
+.guide-text-box{
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+
+  border-radius: 5px;
+}
+.guide-text-box:hover{
+  background-color:#e0fbe3;
+  transition-delay: 0.075s;
+}
 .guide-divider {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   width: 100%;
 }
 
@@ -602,6 +647,8 @@ p{
   font-size: large;
   font-weight: bold;
   margin-bottom: 0px;
+
+  font-family: Raleway;
 }
 .info-text{
   font-size: small;
@@ -609,6 +656,8 @@ p{
   margin-top: 0px;
   padding-top: 0px;
   margin-left: 10px;
+
+  font-family: Raleway;
 }
 .left-aligned {
   text-align: left;
