@@ -69,21 +69,25 @@
                                 <div class="col">
                                     <h5 class="card-title" style="text-align: left; overflow:auto">{{recipe_card.recipe_name}}</h5>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <div class = "row">
-                                            <button class = "buttonStyle col-lg-11"><router-link :to="recipe_card.recipe_link">View more</router-link></button>
-                                            <div class = "row button-row">
-                                                <button v-if="content === 'post'" class = "buttonStyle col-md-12"><router-link :to="recipe_card.recipe_updateLink">Update</router-link></button>
-                                                <button v-if="content === 'post'" class = "buttonStyle col-md-12" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
-                                            </div>
-                                            
-                                            <div class = "row">
-                                                <button v-if="content === 'bookmark'" class = "buttonStyle col-md-12" @click="removeBookmark(recipe_card.recipe_id)">Remove Bookmark</button>
-                                            </div>
-                                        </div>
-                                    </div>
+
+
+                                <div class="card-row button-row">
+                                    <router-link :to="recipe_card.recipe_updateLink" class="UpdateButton" v-if="content === 'post'">Update</router-link>
+                                    <button v-if="content === 'post'" class="likeButton" @click="deleteRecipe(recipe_card.recipe_id)">Delete</button>
                                 </div>
+    
+
+                                <div class="card-row">
+                                    <router-link :to="recipe_card.recipe_link" class="view-more-button" v-if="content === 'post'">View More</router-link>
+                                </div>
+    <!-- View More button row -->
+
+
+                                <div class="card-row button-row">
+                                    <router-link :to="recipe_card.recipe_link" class="view-more-button" v-if="content === 'bookmark'">View More</router-link>
+                                    <button v-if="content === 'bookmark'" class = "likeButton" @click="removeBookmark(recipe_card.recipe_id)">Remove Bookmark</button>
+                                </div>
+    
                             </div>
 
                         </div>
@@ -321,4 +325,69 @@ export default {
 .nav-item .active{
     background-color: #AEDDB3;
 }
+
+
+.card-row {
+  padding: 10px;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.UpdateButton{
+    background-color: #e9ecec;
+  color: black;
+  flex: 1;
+  padding: 8px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.UpdateButton:hover{
+  background-color: #0056b3;
+  color: white;
+}
+
+.likeButton,
+.bookmarkButton {
+  flex: 1;
+  padding: 8px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.likeButton:hover,
+.bookmarkButton:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+.view-more-button:hover {
+  background-color: #24a152;
+  color:white;
+  padding: 10px 20px;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+ }
+ .view-more-button {
+  background-color: #25D366;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #212529;
+  border-radius: 10px;
+ }
+
 </style>
