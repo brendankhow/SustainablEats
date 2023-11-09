@@ -1,5 +1,4 @@
 <template>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- Generator -->
     <div class="gen-page text-center">
@@ -179,7 +178,7 @@ import { useRouter } from "vue-router";
 import axios from 'axios';
 import { ref } from 'vue';
 import { getFirestore, collection, addDoc, getDoc, setDoc, updateDoc, doc } from 'firebase/firestore';
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { getStorage, ref as firebaseRef, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication methods
 
 const storage = getStorage();
@@ -208,7 +207,7 @@ const router = useRouter() // get a reference to our vue router
         description: '',
         ingredients: [],
         steps: [],
-        selectedImage: null,
+        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-890e0.appspot.com/o/recipeImages%2Fdefault_large.png?alt=media&token=0138452f-d283-45f9-b32f-86bf0dd9119e",
         imageUploadProgress: 0,
         recipeImageURLs: [],
 
@@ -222,7 +221,7 @@ const router = useRouter() // get a reference to our vue router
 
         recipe: {
           recipeName: '',
-          image: '',
+          image: 'default_large.png',
           description: '',
           ingredientsArray: [],
           instructionsArray: [],
@@ -330,9 +329,9 @@ const router = useRouter() // get a reference to our vue router
           const response = await axios.post(
             "https://api.openai.com/v1/images/generations",
             {
-                prompt: 'generate an image: ' + recipeName,
+                prompt: 'generate a nice aesthetic and professional looking image for the recipe: ' + recipeName,
                 n: 1,
-                size: '256x256',
+                size: '1024x1024',
             },
             {
                 headers: {
@@ -350,6 +349,30 @@ const router = useRouter() // get a reference to our vue router
           }
         }
       },
+      async previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    // upload to Firebase Storage
+                    
+                    const timestamp = new Date().getTime();
+                    const randomString = Math.random().toString(36).substring(2, 8);
+                    const uniqueID = `${timestamp}_${randomString}`;
+                    const fileName = `${uniqueID}`;
+                    const storageRef = firebaseRef(storage, 'recipeImages/' + fileName);
+                    await uploadBytes(storageRef, file);
+                    
+                    // get download URL
+                    const url = await getDownloadURL(storageRef);
+                    console.log(url);
+                    this.selectedImage = url;
+                    this.recipe.image = uniqueID;
+                };
+                reader.readAsDataURL(file);
+            }
+        },
+        
       async uploadImageAndCreateRecipe() {
         try{
           if (this.selectedImage) {
@@ -379,6 +402,11 @@ const router = useRouter() // get a reference to our vue router
                 return { name: ingredient.trim(), quantity: '' };
               }
             });
+
+            //checking if it is current user
+            const user = auth.currentUser;
+            const userUID = user ? user.uid : null;
+
             // // steps
             const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
               const parts = instruction.split(' ');
@@ -386,19 +414,18 @@ const router = useRouter() // get a reference to our vue router
               return { description };
             });
 
-            //checking if it is current user
-            const user = auth.currentUser;
-            const userUID = user ? user.uid : null;
+            
 
             //getting the data ready
             const recipeData = {
               name: this.recipe.recipeName,
+              mealType: "Breakfast",
               creator: this.creator,
               cuisineType: this.cuisineType,
               ingredients: formattedIngredients,
               steps: formattedInstructions,
-              recipeImageURLs: [this.recipe.image],
-              imageId: uniqueID,
+              recipeImageURLs: [this.selectedImage],
+              imageId: this.recipe.image,
               uid: userUID,
               likes: 0,
               reviews: []
@@ -438,7 +465,7 @@ const router = useRouter() // get a reference to our vue router
         }catch(error){
           console.log()
         }
-        this.router.push('/explore');
+        this.$router.push('/explore');
       }
       
     
