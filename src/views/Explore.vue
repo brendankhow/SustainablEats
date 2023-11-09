@@ -98,12 +98,6 @@ export default {
   flex-direction: column; /* Change to column layout on small screens */
 }
 
-.side-navbar {
-  width: 100%; /* Occupy full width on small screens */
-  max-width: 250px; /* Limit width on larger screens */
-  margin-bottom: 20px; /* Add some space between sidebar and album on small screens */
-}
-
 .album-container {
   flex: 1;
   padding: 20px;
