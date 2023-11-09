@@ -62,7 +62,7 @@
             <div class="row">
                 
                 <label for="imageUpload" class="form-label">Recipe Image:</label>
-                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control" required accept="image/*">
+                <input type="file" id="imageUpload" @change="onImageSelected" class="form-control" :class="{ 'border-danger': !fileUploaded }" required accept="image/*" ref="fileInput">
               
             </div>
 
@@ -157,6 +157,7 @@
       selectedImage: null,
       imageUploadProgress: 0,
       recipeImageURLs: [],
+      fileUploaded: false,
     };
   },
   computed:{
@@ -180,7 +181,7 @@
     },
     onImageSelected(event) {
       this.selectedImage = event.target.files[0]; 
-      console.log(this.selectedImage);
+      this.fileUploaded = true;
     },
     uploadImageAndCreateRecipe: async function () {
 
@@ -276,16 +277,16 @@
             if (docSnap.exists) { // Correct usage
               this.creator = docSnap.data().username;
             } else {
-              console.log("No such document!");
+              console.log("")
             }
           }
           else{
-            console.log("user not logged in");
+            console.log("");
           }
         } else {
           // User is signed out
           this.user = null;
-          console.log("user sign out");
+          console.log("");
         }
       });
     }
@@ -293,6 +294,9 @@
   </script>
   
   <style>
+  .border-danger {
+    border-color: red !important;
+    }
     .create_btn{
       background-color: #25d366;
     }
