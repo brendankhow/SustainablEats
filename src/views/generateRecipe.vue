@@ -582,9 +582,22 @@ img[id='ai-img']{
 }
 
 .gen-form-submit-btn:hover{
+  /* old
   box-shadow: #bde2d9 0 10px 10px 2px;
   transition-duration: .1s;
   transform: translateY(-2px);
+  */
+  /* new */
+  background-color: #24a152;
+  color:white;
+  padding: 10px 20px;
+  transition-duration: 0.5s;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  
 }
 
 .recipe-box{
@@ -592,6 +605,13 @@ img[id='ai-img']{
   padding-bottom: 15px;
 }
 
+ .view-more-button {
+  background-color: #25D366;
+  font-weight: bold;
+  padding: 10px 20px;
+  color: #212529;
+  border-radius: 10px;
+ }
 /* misc classes */
 
 a{
