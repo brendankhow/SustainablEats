@@ -196,7 +196,7 @@ const router = useRouter() // get a reference to our vue router
     data() {
       return {
         //no naughty take my api key ok: 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
-        OPENAI_API_KEY: 'sk-jC0Yl1iG  1K5ECfZcfE5yT3BlbkFJjEvTVuIcdkYOnaHMw7Nu', // will key
+        OPENAI_API_KEY: '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', // will key
 
         // for database
         creator: '',
@@ -344,7 +344,7 @@ const router = useRouter() // get a reference to our vue router
             this.recipe.image = response.data.data[0].url;
           }
           catch{
-            console.log("error");
+            console.log("");
           }
         }
       },
@@ -358,7 +358,7 @@ const router = useRouter() // get a reference to our vue router
                     const timestamp = new Date().getTime();
                     const randomString = Math.random().toString(36).substring(2, 8);
                     const uniqueID = `${timestamp}_${randomString}`;
-                    const fileName = `${uniqueID}`;
+                    const fileName = `img-${uniqueID}`;
                     const storageRef = firebaseRef(storage, 'recipeImages/' + fileName);
                     await uploadBytes(storageRef, file);
                     
