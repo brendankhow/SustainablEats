@@ -10,19 +10,19 @@
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse p-2" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse p-2" id="navbarSupportedContent" ref="navbar">
     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
       <li class="nav-item pe-3">
-        <router-link to="/home" class="nav-link">Home</router-link>
+        <router-link to="/home" class="nav-link" @click="collapseNavBar">Home</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/explore" class="nav-link">Explore</router-link>
+        <router-link to="/explore" class="nav-link" @click="collapseNavBar">Explore</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/generateRecipe" class="nav-link">AI Generation</router-link>
+        <router-link to="/generateRecipe" class="nav-link" @click="collapseNavBar">AI Generation</router-link>
       </li>
       <li class="nav-item pe-3">
-        <router-link to="/createRecipe" class="nav-link">Create Recipe</router-link>
+        <router-link to="/createRecipe" class="nav-link" @click="collapseNavBar">Create Recipe</router-link>
       </li>
     </ul>
     <ul class="navbar-nav mb-2 mb-lg-0" >
@@ -102,6 +102,9 @@
     // This component uses the passed handleSignOut function to trigger log out
     handleSignOut() {
       this.handleSignOut(); // Remove the parentheses
+    },
+    collapseNavBar() {
+      this.$refs.navbar.classList.remove('show');
     }
   },
 };
