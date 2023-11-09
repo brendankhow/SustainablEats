@@ -10,12 +10,12 @@ import {getAuth} from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqrLWmdQXxdcNlqFs7Gfc2cz1RiN0ldA8",
-  authDomain: "sustainableats-890e0.firebaseapp.com",
-  projectId: "sustainableats-890e0",
-  storageBucket: "sustainableats-890e0.appspot.com",
-  messagingSenderId: "447274079280",
-  appId: "1:447274079280:web:0329248b0323a2c85909f5"
+  apiKey: "AIzaSyARABgaDbrTWu4DhgEn4qebLmADMttcyvM",
+  authDomain: "sustainableats-11dde.firebaseapp.com",
+  projectId: "sustainableats-11dde",
+  storageBucket: "sustainableats-11dde.appspot.com",
+  messagingSenderId: "514630260415",
+  appId: "1:514630260415:web:2aa18b23aa30a83a2bd80a"
 };
 
 initializeApp(firebaseConfig);
