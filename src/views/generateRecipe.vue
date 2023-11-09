@@ -15,10 +15,10 @@
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
 
-                    <div class="row">
-                      <label for="creator" class="form-label">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="form-control" v-else>
+                    <div class="col">
+                      <label for="creator" class="info-labels">Creator Name:</label>
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
                     </div>
 
                     <!-- Cuisine Type Dropdown -->
@@ -542,7 +542,7 @@ const router = useRouter() // get a reference to our vue router
   align-items: center;
 }
 .gen-form-ingredients-field{
-  background-color: #AEDDB3!important;
+  background-color: #e0ffe3!important;
   padding: 12px 30px!important;
   margin-top: 0px;
   margin-bottom: 0px;
