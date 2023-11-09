@@ -9,6 +9,7 @@
         </label>
         <button class="btn apply" @click="applyFilters">Apply</button>
       </nav>
+      <hr style="border:3px solid #25d366;">
 
       <!-- Album Content -->
       <div class="album-container">
@@ -58,7 +59,7 @@ const getImageURL = async (imageId) => {
     const url = await getDownloadURL(imagesRef);
     return `${url}?timestamp=${Date.now()}`; // Add a cache-busting query parameter
   } catch (error) {
-    console.error('Error fetching image:', error);
+    console.log("")
     return null;
   }
 };

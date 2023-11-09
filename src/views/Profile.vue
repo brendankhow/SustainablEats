@@ -302,7 +302,7 @@ export default {
 }
 
 .profile_picture{
-    border: 7px solid #D8F6EF;
+    border: 7px solid #25d366;
     width: 250px;
 }
 
