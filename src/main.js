@@ -8,19 +8,6 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, push } from 'firebase/database';
 import {getAuth} from 'firebase/auth';
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-
-// import fontawesome icon component
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
-// import config so we can set a default style
-import { config } from "@fortawesome/fontawesome-svg-core";
-
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-
-import {faHeart} from '@fortawesome/free-regular-svg-icons'
-
-library.add(faUserSecret, faHeart);
 
 const firebaseConfig = {
   apiKey: "AIzaSyAqrLWmdQXxdcNlqFs7Gfc2cz1RiN0ldA8",
