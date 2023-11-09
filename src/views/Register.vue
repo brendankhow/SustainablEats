@@ -4,32 +4,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class="background-container">
+        <div v-if="showNotification" class="notification">
+            <p>{{message}}</p>
+        </div>
         <div class="wrapper">
             
-                <h1>Register</h1>
-                    <div class="input-box">
-                        <input type="text" v-model="email" placeholder="Email" 
-                        required>
-                        <i class="bx bxs-user"></i>
-                    </div>
+            <h1>Register</h1>
+                <div class="input-box">
+                    <input type="text" v-model="email" placeholder="Email" 
+                    required>
+                    <i class="bx bxs-user"></i>
+                </div>
 
-                    <div class="input-box">
-                        <input type="password" v-model="password" v-on:input="checkUser" placeholder="Password"  autocomplete="on" @input="checkPasswordCriteria"
-                        required>
-                    </div>
+                <div class="input-box">
+                    <input type="password" v-model="password" v-on:input="checkUser" placeholder="Password"  autocomplete="on" @input="checkPasswordCriteria"
+                    required>
+                </div>
 
-                    <div>
-                        <ul class="no-bullets text-center mb-3" id="problems" style="font-size: small">
-                            <li v-for="(problem, index) in problems" :key="index">{{ problem }}</li>
-                        </ul>
-                    </div>
+                <div>
+                    <ul class="no-bullets text-center mb-3" id="problems" style="font-size: small">
+                        <li v-for="(problem, index) in problems" :key="index">{{ problem }}</li>
+                    </ul>
+                </div>
 
-                    <button @click="insertUser" class="btn">Sign Up</button>
+                <button @click="insertUser" class="btn">Sign Up</button>
 
-                    <div class="register-link">
-                        <p>Already have an account?
-                            <a><router-link to="/sign-in">Sign In</router-link></a></p> <!-- Input sign up page reference -->
-                    </div>
+                <div class="register-link">
+                    <p>Already have an account?
+                        <a><router-link to="/sign-in">Sign In</router-link></a>
+                    </p> <!-- Input sign up page reference -->
+                </div>
         </div>
     </div>
 </template>
@@ -51,10 +55,18 @@ export default {
             provider: new GoogleAuthProvider(),
             router: useRouter(),
             problems: [],
-            isPasswordInvalid: true
+            isPasswordInvalid: true,
+            showNotification: false,
+            message: "",
         }
     },
     methods: {
+        async showPopup(message) {
+            this.message = message;
+            this.showNotification = true;
+            await new Promise(resolve => setTimeout(resolve, 3000)); // wait for 3 seconds
+            this.showNotification = false;
+        },
         async insertUser() {
             if(this.checkPasswordCriteria() && this.isPasswordInvalid == false){
                 try {
@@ -77,6 +89,18 @@ export default {
                     });
                     await this.router.push('/home');
                 } catch (error) {
+                    var message="";
+                    
+                    if (error.code === 'auth/email-already-in-use') {
+                        message = 'This email is already in use.';
+                    } else if (error.code === 'auth/invalid-email') {
+                        message='This email is invalid.';
+                    }
+                    else{
+                        message= 'Something went wrong. Please Try Again!';
+                        console.log()
+                    }
+                    this.showPopup(message)
                     this.router.push('/Register');
                 }
             }
@@ -110,6 +134,19 @@ export default {
 </script>
 
 <style scoped>
+
+.notification {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    z-index: 1000;
+  }
+
 *{
     margin: 0;
     padding: 0;
