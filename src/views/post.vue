@@ -1,5 +1,5 @@
 <template>
-    <div class="recipe-details">
+    <!-- <div class="recipe-details">
 
       <div class="recipe-image">
         <img :src="imageURL" alt="Recipe Image" />
@@ -24,17 +24,10 @@
           </li>
         </ol>
       </div>
-    </div>
+    </div> -->
 
-----------
     <div class="recipe-details">
-
-      <div class="recipe-image">
-        <img :src="imageURL" alt="Recipe Image" />
-      </div>
-    </div>
-
-    <div class="container-fluid">
+      <div class="container-fluid">
     <h4 class="d-inline-block ms-2">Recipe Details</h4>
 
     <div class="row mb-3 mt-2 ms-1">
@@ -92,6 +85,10 @@
           </li>
         </ol>
       </div>
+    </div>
+  </div>
+    <div class="recipe-image">
+      <img :src="imageURL" alt="Recipe Image" />
     </div>
   </div>
   
@@ -249,7 +246,7 @@
 
 </script>
   
-  <style scoped>
+<style scoped>
 
 *{
   margin:0px;
@@ -449,6 +446,7 @@ form .btn button:hover{
   justify-content: space-between;
   margin: 20px;
   margin-top: 120px;
+  margin-left: 50px;
 }
 
 .recipe-info {
@@ -457,7 +455,9 @@ form .btn button:hover{
 }
 
 .recipe-image img {
-  width: 100%;
+  width: 800px; /* Set your desired width */
+  height: 700px; /* Set your desired height */
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
