@@ -281,7 +281,7 @@ export default {
 }
 
 .green-bookmark {
-  color: white;
+  color: black;
 }
 
 .view-more-button:hover {

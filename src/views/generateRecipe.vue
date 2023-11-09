@@ -14,10 +14,10 @@
                 <div class="gen-form-row w-100 mx-auto px-0 row">
                     <!-- Input field -->
 
-                    <div class="row">
-                      <label for="creator" class="form-label">Creator Name:</label>
-                      <input type="text" id="creator" v-model="creator" class="form-control" disabled v-if="user" >
-                      <input type="text" id="creator" v-model="creator" class="form-control" v-else>
+                    <div class="col">
+                      <label for="creator" class="info-labels">Creator Name:</label>
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" disabled v-if="user" >
+                      <input type="text" id="creator" v-model="creator" class="gen-form-ingredients-field" v-else>
                     </div>
 
                     <!-- Cuisine Type Dropdown -->
@@ -61,9 +61,9 @@
 
                 <div class="gen-out-header row">
                     <h1 class="recipe-title" v-if="recipe.recipeName"><strong>{{ recipe.recipeName }}</strong></h1>
+                    <div class="ai-img">
+                      <img id="ai-img" v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
                     <div>
-                      <img v-if="recipe.image" :src="recipe.image" alt="Recipe Image"/>
-                      <div>
                         <p>Like this image? Download it here: </p>
                       <a v-if="recipe.image" :href="recipe.image" target="_blank">
                         <button class="download-img-btn">Download Image</button>
@@ -517,6 +517,13 @@ const router = useRouter() // get a reference to our vue router
 </script>
 
 <style>
+/* Tags */
+img[id='ai-img']{
+    max-height:500px;
+    max-width:500px;
+    height:auto;
+    width:auto;
+}
 /* Generation */
 .gen-page{
   background: url("../assets/background.png");
@@ -556,7 +563,7 @@ const router = useRouter() // get a reference to our vue router
   align-items: center;
 }
 .gen-form-ingredients-field{
-  background-color: #AEDDB3!important;
+  background-color: #e0ffe3!important;
   padding: 12px 30px!important;
   margin-top: 0px;
   margin-bottom: 0px;
