@@ -357,6 +357,36 @@ const router = useRouter() // get a reference to our vue router
       async uploadImageAndCreateRecipe() {
         try{
           if (this.selectedImage) {
+
+            // CODE TO FORMAT AI-GENERATED RECIPE DETAILS FOR DATABASE INSERTION
+          
+          // Format ingredientsArray and instructionsArray, and rename them
+          // const formattedIngredients = this.recipe.ingredientsArray.map((item) => {
+          //   const parts = item.replace('-', '').trim().split(' ');
+          //   const quantity = parts[0];
+          //   const name = parts.slice(1).join(' ');
+          //   return { name, quantity };
+          // });
+
+          // const formattedSteps = this.recipe.instructionsArray.map((item) => {
+          //   // Remove the number and period at the beginning of each step
+          //   const description = item.replace(/^\d+\.\s/, '');
+          //   return { description };
+          // });
+
+          // // Updated recipeDetails object with renamed properties
+          // const updatedRecipeDetails = {
+          //   ...recipe,
+          //   ingredients: formattedIngredients,
+          //   steps: formattedSteps,
+          // };
+
+          // // Remove the old properties
+          // delete updatedRecipeDetails.ingredientsArray;
+          // delete updatedRecipeDetails.instructionsArray;
+
+          // console.log(updatedRecipeDetails);
+
             const timestamp = new Date().getTime();
             const randomString = Math.random().toString(36).substring(2, 8);
             const uniqueID = `${timestamp}_${randomString}`;
@@ -367,27 +397,28 @@ const router = useRouter() // get a reference to our vue router
             const snapshot = await uploadBytes(storageReference, this.selectedImage);
             imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             
-            const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
-            // Use a regular expression to capture the quantity and the rest of the text as name
-              const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
+            // const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
+            // // Use a regular expression to capture the quantity and the rest of the text as name
+            //   const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
 
-              if (match) {
-                // Extract the matched quantity and name
-                const quantity = match[1].trim();
-                const name = ingredient.replace(match[0], '').trim();
+            //   if (match) {
+            //     // Extract the matched quantity and name
+            //     const quantity = match[1].trim();
+            //     const name = ingredient.replace(match[0], '').trim();
 
-                return { name, quantity };
-              } else {
-                // If no quantity is found, consider the entire ingredient as the name
-                return { name: ingredient.trim(), quantity: '' };
-              }
-            });
-            // // steps
-            const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
-              const parts = instruction.split(' ');
-              const description = parts.slice(1).join(' ');
-              return { description };
-            });
+            //     return { name, quantity };
+            //   } else {
+            //     // If no quantity is found, consider the entire ingredient as the name
+            //     return { name: ingredient.trim(), quantity: '' };
+            //   }
+            // });
+            // // // steps
+            // const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
+            //   const parts = instruction.split(' ');
+            //   const description = parts.slice(1).join(' ');
+            //   return { description };
+            // });
+
             const user = auth.currentUser;
             const userUID = user ? user.uid : null;
 
