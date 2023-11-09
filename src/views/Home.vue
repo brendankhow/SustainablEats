@@ -69,7 +69,7 @@
     <div>
       <h1 style="text-align:center; color:black;">Trending Recipes</h1>
     </div>
-    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <!-- recipe is an object that has the attributes as the one we created in database-->
         <div v-for="(recipe, index) in recipes" :key="recipe.id" :class="['carousel-item', { active: index === 0 }]">
