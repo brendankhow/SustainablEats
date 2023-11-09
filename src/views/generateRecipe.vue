@@ -48,7 +48,9 @@
                     </div>
                     <!-- Submit Button -->
                     <div class="col-md-12 submit-btn-div">
-                        <input class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" type="button" value="Generate" @click="fetchRecipe();fetchImg()">
+                        <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" role="button" @click="fetchRecipe();fetchImg()">
+                          <span class="info-labels">Generate</span>
+                        </button>
                     </div>
                 </div>
             </form>
@@ -196,7 +198,7 @@ const router = useRouter() // get a reference to our vue router
     data() {
       return {
         //no naughty take my api key ok: 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
-        OPENAI_API_KEY: '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', // will key
+        OPENAI_API_KEY: 'sk-jC0Yl1iG  1K5ECfZcfE5yT3BlbkFJjEvTVuIcdkYOnaHMw7Nu', // will key
 
         // for database
         creator: '',
@@ -342,7 +344,6 @@ const router = useRouter() // get a reference to our vue router
             }
             );
             this.recipe.image = response.data.data[0].url;
-            this.selectedImage = response.data.data[0].url;
           }
           catch{
             console.log("error");
@@ -376,17 +377,11 @@ const router = useRouter() // get a reference to our vue router
       async uploadImageAndCreateRecipe() {
         try{
           if (this.selectedImage) {
+            //checking if it is current user
+            const user = auth.currentUser;
+            const userUID = user ? user.uid : null;
 
             //setting filename to be unique + uploading the photo into storage
-            const timestamp = new Date().getTime();
-            const randomString = Math.random().toString(36).substring(2, 8);
-            const uniqueID = `${timestamp}_${randomString}`;
-            const fileName = `${uniqueID}`;
-            const storageReference = storageRef(storage, `recipeImages/${fileName}`);
-            const snapshot = await uploadBytes(storageReference, this.selectedImage);
-            imageUploadProgress.value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            
-            
             const formattedIngredients = this.recipe.ingredientsArray.map((ingredient) => {
             // Use a regular expression to capture the quantity and the rest of the text as name
               const match = ingredient.match(/^(-?\s*\d.*?)(?=\s*-|$)/);
@@ -403,18 +398,12 @@ const router = useRouter() // get a reference to our vue router
               }
             });
 
-            //checking if it is current user
-            const user = auth.currentUser;
-            const userUID = user ? user.uid : null;
-
             // // steps
             const formattedInstructions = this.recipe.instructionsArray.map(instruction => {
               const parts = instruction.split(' ');
               const description = parts.slice(1).join(' ');
               return { description };
             });
-
-            
 
             //getting the data ready
             const recipeData = {
@@ -617,11 +606,32 @@ img[id='ai-img']{
   text-align: center;
   cursor: pointer;
   font-weight: bolder;
-  
+
+  background-image: linear-gradient(144deg,#8de997, #002E23 50%,rgb(255, 177, 81));
+  color: #FFFFFF;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 3px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
 }
+
 .gen-form-submit-btn:hover{
-    opacity: 0.7;
-    background-color: #003e30;
+  box-shadow: #075442 0 10px 10px 2px;
+  transition-duration: .1s;
+  transform: translateY(-2px);
+}
+
+.gen-form-submit-btn:focus {
+  box-shadow: #002e23 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #002e23 0 -3px 0 inset;
+}
+
+.gen-form-submit-btn:active {
+  box-shadow: #002E23 0 3px 7px inset;
+  transform: translateY(2px);
 }
 
 .recipe-box{
