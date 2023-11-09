@@ -377,24 +377,28 @@ form .btn button:hover{
 
 .recipe-details {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  margin-top: 80px;
-}
-
-.recipe-image {
-  flex: 1;
-  margin-right: 20px;
+  margin: 20px;
+  margin-top: 120px;
 }
 
 .recipe-info {
-  flex: 2;
+  flex: 1;
+  padding: 20px;
 }
 
 .recipe-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
 }
 </style>
