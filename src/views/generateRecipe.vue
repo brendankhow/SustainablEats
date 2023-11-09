@@ -554,6 +554,8 @@ img[id='ai-img']{
   cursor: pointer;
   font-weight: bolder;
   padding: 1rem;
+
+  transition: background-color 0.3s;
 }
 
 .download-img-btn:hover{
@@ -605,12 +607,8 @@ img[id='ai-img']{
   padding-bottom: 15px;
 }
 
- .view-more-button {
-  background-color: #25D366;
-  font-weight: bold;
-  padding: 10px 20px;
-  color: #212529;
-  border-radius: 10px;
+ .upload_btn{
+  transition: background-color 0.3s;
  }
 /* misc classes */
 
@@ -644,16 +642,7 @@ p{
   text-align: left;
 }
 
-/* 
-color scheme:
-- cream
-FFFBF4
-- light green
-AEDDB3
-- dark green
-002E23
-- black
-002E23
+/*
+#25D366;
 */
-
 </style>
