@@ -69,15 +69,15 @@
     <div>
       <h1 style="text-align:center; color:black;">Trending Recipes</h1>
     </div>
-    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="false">
+    <div id="carouselExampleCaptions" class="carousel slide mt-5" data-bs-ride="carousel">
       <div class="carousel-inner">
         <!-- recipe is an object that has the attributes as the one we created in database-->
         <div v-for="(recipe, index) in recipes" :key="recipe.id" :class="['carousel-item', { active: index === 0 }]">
-          <div class="card" style="border-left: 25px solid #25d366">
+          <div class="card">
             <img
             :src="recipe.recipeImageURLs"
-            class="d-block carousel-image"
-            alt="Recipe Image" height="500" style="width: 100%; object-fit: cover;"/>
+            class="d-block carousel-image w-100"
+            alt="Recipe Image" height="400" style="object-fit: cover;"/>
             <div class="card-body">
               <h3>Recipe Name: {{recipe.name}}</h3>
               <h5>Created by: {{ recipe.creator }}</h5>
@@ -107,7 +107,7 @@
   </div>
 </section>
 
-  <hr style="border: 3px solid #25D366">
+  <hr class = "hr-styling" style="border: 3px solid #25D366">
   
     <!-- Leaderboard Ranking Pange-->
     <section id="leaderboard" style="background-color: #e0f0e1">
@@ -288,6 +288,11 @@
  </script>
  
  <style>
+
+
+
+ /* HR styling */
+ 
  /* CSS template */
  .trending_btn:hover {
   background-color: #24a152;
