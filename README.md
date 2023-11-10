@@ -1,7 +1,7 @@
 # wad2_g6t08_2 WAD2 Project :wave: SustainablEats
-* ./src/assets/sustainablEats.png 
-* Access our website through this [link] (https://sustainableats-sg.web.app/)
-* [Youtube] https://youtu.be/-8ciSRxvlqI
+* ![./src/assets/sustainablEats.png]
+* Access our website through this link (https://sustainableats-sg.web.app/)
+* Youtube Demo Link: https://youtu.be/-8ciSRxvlqI
 
 ## Table of Contents
 * <a href="#group-member">Group Members</a>
