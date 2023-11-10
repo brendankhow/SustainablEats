@@ -1,5 +1,9 @@
 # wad2_g6t08_2 WAD2 Project :wave: SustainablEats
-* ![SustainablEats logo](/src/assets/sustainablEats.png)
+
+<div align="center">
+  ![SustainablEats logo](/src/assets/sustainablEats.png)
+</div>
+
 * Access our website through this link (https://sustainableats-sg.web.app/)
 * Youtube Demo Link: https://youtu.be/-8ciSRxvlqI
 
