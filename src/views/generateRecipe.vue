@@ -1,5 +1,9 @@
 <template>
   <div class="container" style="margin-top: 140px">
+    <div v-if="showNotification" class="notification">
+      <p>{{message}}</p>
+    </div>
+
     <div class="row mt-3 header">
         <div class="col d-flex align-items-start">
             <img src="../assets/magic-wand.png" height="50" class="d-inline-block "><h4 class="d-inline-block ms-2"></h4>
@@ -223,6 +227,7 @@ const router = useRouter() // get a reference to our vue router
         user: null,
         recipeName: '',
         mealType: '',
+        showNotification: false,
 
         description: '',
         ingredients: [],
@@ -262,7 +267,13 @@ const router = useRouter() // get a reference to our vue router
       },
     },
 
-    methods: {      
+    methods: { 
+      async showPopup(message) {
+        this.message = message;
+        this.showNotification = true;
+        await new Promise(resolve => setTimeout(resolve, 3000)); // wait for 3 seconds
+        this.showNotification = false;
+        },     
       async checking_ingredients(){
         if (this.prioritizedIngredients.length > 0) {
             this.checkingredients = true;
@@ -275,7 +286,7 @@ const router = useRouter() // get a reference to our vue router
       },
       async fetchRecipe() {
         if(this.checkingredients == false || !this.cuisineType || this.cuisineType.trim() === ''){
-          alert("Enter something please");
+          this.showPopup("Please enter something in both the cuisine and the ingredients");
           return;
         }
         this.loading = true;
@@ -507,11 +518,15 @@ const router = useRouter() // get a reference to our vue router
 </script>
 
 <style>
-
 .notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   right: 0;
+  bottom: 0;
+  left: 0;
   background-color: red;
   color: white;
   padding: 10px;
