@@ -345,7 +345,7 @@ const router = useRouter() // get a reference to our vue router
             {
                 prompt: 'generate a nice aesthetic and professional looking image for the recipe: ' + recipeName,
                 n: 1,
-                size: '1024x1024',
+                size: '256x256',
             },
             {
                 headers: {
