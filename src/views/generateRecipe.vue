@@ -78,7 +78,7 @@
         </div>
 
         <div class="row">
-          <h4 class="text-center text-warning"> PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h4>
+          <h5 class="text-center text-danger fw-bold"> PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h5>
           <p class="text-center">Like this image? Download it here: </p>
         </div>
 
@@ -128,7 +128,7 @@
     </div>
 
     <div class="row">
-      <h4 class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h4>
+      <h5 class="text-center text-danger fw-bold">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h5>
       <p class="text-center">Like what you see? Download the image here and upload it with the recipe!</p>
     </div>
 
