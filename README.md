@@ -2,6 +2,7 @@
 
 ## Table of Contents
 * [Group Members]
+* [IMPORTANT NOTES]
 * [Project Overview]
 * [Installation Guide]
     * [Project Set up]
