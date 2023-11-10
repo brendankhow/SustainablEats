@@ -77,6 +77,9 @@
           </div>
         </div>
         <div class="row">
+          <p class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</p>
+        </div>
+        <div class="row">
           <p class="text-center">Like this image? Download it here: </p>
         </div>
 
@@ -124,7 +127,9 @@
           <div class="disclaimer-divider"></div>
       </div>
     </div>
-
+    <div class="row">
+      <p class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</p>
+    </div>
     <div class="row">
       <p class="text-center">Like what you see? Download the image here and upload it with the recipe!</p>
     </div>
@@ -232,7 +237,7 @@ const router = useRouter() // get a reference to our vue router
         description: '',
         ingredients: [],
         steps: [],
-        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-sg.appspot.com/o/recipeImages%2Fdefault.png?alt=media&token=8dccdce8-564e-4083-a0f1-42743290b6f3",
+        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-sg.appspot.com/o/recipeImages%2Fdefault.png?alt=media&token=c5cc11be-1d3d-4d92-a695-8a8f57276f49",
         imageUploadProgress: 0,
         recipeImageURLs: [],
 
