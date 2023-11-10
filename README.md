@@ -44,13 +44,9 @@
    - [Figma](#figma)
    - [API](#apis)
 - [Proposal](#proposal)
-   - [Report](#proposal-report-document)
+   - [Report](#report)
    - [Demo Slides](#demo-slides)
    - [Demo Video](#demo-video)
-   * [Proposal](#proposal)
-   * [Report](#proposal-report-document)
-   * [Demo Slides](#demo-slides)
-   * [Demo Video](#demo-video)
 - [Customize Configuration](#customize-configuration)
 - [Additional Images / Default Images](#additional-images--default-images)
 
@@ -295,7 +291,7 @@ npm install -g @vue/cli
 
 
 
-## Other Project Resources
+<!-- ## Other Project Resources
 ### Figma
 <a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
 
@@ -310,7 +306,22 @@ npm install -g @vue/cli
 
 2. <a href="https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117">Demo Slides</a>
 
-3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a>
+3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a> -->
+
+## Other Project Resources
+### Figma
+- [Figma Prototype](https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1)
+
+### APIs
+1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
+## Proposal
+1. [Proposal Report Document](https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing)
+
+2. [Demo Slides](https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117)
+
+3. [Demo Video](https://youtu.be/-8ciSRxvlqI)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
