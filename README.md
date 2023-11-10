@@ -43,7 +43,7 @@
 - [Other Project Resources](#other-project-resources)
    - [Figma](#figma)
    - [API](#apis)
-   - [Firebase](#google-firebase-setup)
+   - [Firebase](#firebase)
 - [Proposal](#proposal)
    - [Report](#report)
    - [Demo Slides](#demo-slides)
@@ -318,7 +318,7 @@ npm install -g @vue/cli
 1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
 
-### Google Firebase
+### Firebase
 1. [Firebase Database](https://console.firebase.google.com/project/sustainableats-sg/overview)
 
 ## Proposal
