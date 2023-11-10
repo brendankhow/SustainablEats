@@ -57,7 +57,7 @@
 <div class="user_chosen_content">
     <div class="album py-5">
         <div class="container" id="chosencontent">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3" id="albumCards">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-auto g-3 d-flex justify-content-center align-items-center" id="albumCards">
                 <div class="col" style="max-width: 300px;" v-for="recipe_card of recipe_cards" v-if="recipe_cards && recipe_cards.length">
                     <div class="card">
                         <!-- Set the max-height for the image container -->
