@@ -566,7 +566,7 @@ img[id='ai-img']{
 
   height: 69px;
   color: #000000;
-  background-color: #c8f4d8;
+  background-color: #24a152;
   border: none;
   border-radius: 32px;
   text-align: center;
