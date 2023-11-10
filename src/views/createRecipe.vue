@@ -67,7 +67,8 @@
             </div>
 
         </div>
-      
+        
+
         
         <div class="form-group mt-4">
           <h3>Ingredients</h3>
@@ -318,15 +319,8 @@
       background-color: #25d366;
     }
     .create_btn:hover{
-      background-color: #24a152;
+      background-color: #00ad40;
       color:white;
-      transition-duration: 0.5s;
-      box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
-      -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-      -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-      -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-      animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
-      
     }
     /* Card styles */
     .card {
@@ -391,7 +385,7 @@
     }
   
     .btn-danger {
-      background-color: #dc3545;
+      background-color: #D9534F;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -400,7 +394,7 @@
     }
   
     .btn-primary {
-      background-color: #0056b3;
+      background-color: #337ab7;
       color: white;
       border: none;
       padding: 10px 20px;

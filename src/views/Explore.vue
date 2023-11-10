@@ -133,11 +133,6 @@ export default {
   margin-top: 3px;
   font-weight: bold;
 }
-
-.apply:hover{
-  background-color: #25d366;
-  color: white;
-}
 /* Your existing styles remain unchanged */
 
 @media (max-width: 1200px) {
