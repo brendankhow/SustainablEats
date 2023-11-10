@@ -112,8 +112,9 @@
             <form v-on:submit.prevent>
               <header style = "color:seagreen;"><strong>Leave a Review!</strong></header>
               <div class = "textarea">
-                <textarea cols = "30" v-model = "userReview" placeholder = "Describe your experience.."></textarea>
+                <textarea cols="30" v-model="userReview" placeholder="Describe your experience.." maxlength="40"></textarea>
               </div>
+              <p class="d-flex align-items-center justify-content-center text-center text-muted">Limit 40 characters per review</p>
 
               <div class = "btn">
                 <button type = "submit" v-on:click="AddReview">Post</button>
