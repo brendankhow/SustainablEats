@@ -1,4 +1,22 @@
-# wad2_g6t08_2
+# wad2_g6t08_2 WAD2 Project :wave: SustainablEats 
+
+## Table of Contents
+* [Group Members]
+* [Project Overview]
+* [Installation Guide]
+    * [Project Set up]
+    * [Local set up]
+    * [Firebase set up]
+    * [Online Hosting]
+* [Project resources]
+    * [Figma] (#figma)
+    * [database diagram] (#database)
+    * [Creative Content] (#creative_content)
+    * [Proposal]
+    * [Demo Slides]
+* [Demo Video]
+* API References
+
 
 ## Project setup
 ```
