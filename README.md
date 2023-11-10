@@ -1,22 +1,22 @@
 # wad2_g6t08_2 WAD2 Project :wave: SustainablEats 
 
 ## Table of Contents
-* [Group Members]
-* [IMPORTANT NOTES]
-* [Project Overview]
-* [Installation Guide]
-    * [Project Set up]
-    * [Local set up]
-    * [Firebase set up]
-    * [Online Hosting]
-* [Project resources]
-    * <a href="#figma"></a>
-    * <a href="#database"></a>
-    * <a href="#creative_content"></a>
-    * <a href="#Proposal"></a>
-    * <a href="#Demo_Slides"></a>
-* <a href="#Demo_Video">Demo Video</a>
-* <a href="#API_References">API References</a>
+* <a href="#group-member">Group Members</a>
+* <a href="#important-notes">IMPORTANT NOTES</a>
+* <a href="#project-overview">Project Overview</a>
+* <a href="#installation-guide">Installation Guide</a>
+    * <a href="#project">Project</a>
+    * <a href="#local">Local</a>
+    * <a href="#firebase">Firebase</a>
+    * <a href="#online">Online</a>
+* <a href="#project-resource">Project Resources</a>
+    * <a href="#figma">Figma</a>
+    * <a href="#database">Database</a>
+    * <a href="#creative_content">Creative Content</a>
+    * <a href="#proposal">Proposal</a>
+    * <a href="#demo-Slides">Demo Slides</a>
+* <a href="#demo-video">Demo Video</a>
+* <a href="#api">API</a>
 
 
 ## Project setup
@@ -34,12 +34,12 @@ Note that since we are using ChatGPT API for recipe generation and image generat
 
 ```
 
-### Compiles and hot-reloads for development
+## Compiles and hot-reloads for development
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+## Compiles and minifies for production
 ```
 npm run build
 ```
@@ -47,6 +47,6 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### API_References
+## API
 * See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 * See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
