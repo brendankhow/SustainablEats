@@ -70,7 +70,7 @@
           <button type="button" @click="removeIngredient(index)" v-if="updatedIngredients.length > 1">Remove</button>
         </li>
       </ul>
-      <button type="button" @click="addIngredient" class="ms-1 btn-danger">Add Ingredient</button>
+      <button type="button" @click="addIngredient" class="ms-1">Add Ingredient</button>
 
       <h2 class="ms-1">Steps:</h2>
       <ol class="ms-1">
@@ -82,7 +82,7 @@
       <button type="button" @click="addStep" class="ms-1">Add Step</button>
 
       <div class="form-group">
-        <button type="submit" class="btn ms-1">Update Recipe</button>
+        <button type="submit" class="btn btn-primary ms-1">Update Recipe</button>
       </div>
 
       <!-- loading spinner -->
@@ -261,9 +261,6 @@ const handleImageUpload = (event) => {
   margin-left: 50px;
 }
 
-.btn{
-  background-color:#0056b3;
-}
 @media (max-width: 1200px) {
   .recipe-details {
     flex-direction: column;
@@ -426,7 +423,7 @@ const handleImageUpload = (event) => {
   }
   
   button[type="button"] {
-    background-color: #dc3545;
+    background-color: #ff6347;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -436,6 +433,7 @@ const handleImageUpload = (event) => {
   }
   
   button[type="submit"] {
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -443,8 +441,6 @@ const handleImageUpload = (event) => {
     cursor: pointer;
     margin-top: 20px;
   }
-
-  
   
   h1 {
     font-size: 24px;
