@@ -58,7 +58,7 @@
       <div class="row mb-3 ms-1">
         <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
         <div class="col-lg-10 col-md-12 col-sm-12">
-          <textarea id="description" v-model="updatedDescription" class="form-control"></textarea>
+          <textarea id="description" v-model="updatedDescription" class="form-control" :class="{ 'border-red': !step.description} " required></textarea>
         </div>
       </div>
 
@@ -75,7 +75,7 @@
       <h2 class="ms-1">Steps:</h2>
       <ol class="ms-1">
         <li v-for="(step, index) in updatedSteps" :key="index">
-          <textarea v-model="step.description" class="form-control" :class="{ 'border-red': !step.description} " required></textarea>
+          <textarea v-model="step.description" class="form-control"></textarea>
           <button type="button" @click="removeStep(index)" v-if="updatedSteps.length > 1">Remove</button>
         </li>
       </ol>
