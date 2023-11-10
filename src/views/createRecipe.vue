@@ -118,13 +118,12 @@
           <button type="button" @click="addStep" class="btn btn-primary mt-3">Add Step</button>
         </div>
       
-      <!-- Loading Spinner -->
-      <div v-if="loading" class="text-center mt-4">
-        <div class="spinner-border text-primary" role="status">
-          <span class="visually-hidden">Loading...</span>
+        <!-- Loading SPinner -->
+        <div class="loading-row mx-auto">
+          <div class="loading-content" v-if="loading">
+            <div class="loader"></div>
+          </div>
         </div>
-        <p>Loading...</p>
-      </div>
 
       <!-- Create Recipe Button -->
       <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn" :disabled="loading">Create Recipe</button>
@@ -166,6 +165,8 @@
       imageUploadProgress: 0,
       recipeImageURLs: [],
       fileUploaded: false,
+
+      loading: false,
     };
   },
   computed:{
@@ -197,6 +198,7 @@
         alert('Please fill in all required fields!');
         return;
       }
+      console.log("Loading spinner");
       this.loading = true;
 
     if (this.selectedImage) {
