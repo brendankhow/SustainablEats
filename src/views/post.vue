@@ -1,31 +1,4 @@
 <template>
-    <!-- <div class="recipe-details">
-
-      <div class="recipe-image">
-        <img :src="imageURL" alt="Recipe Image" />
-      </div>
-
-      <div class="recipe-info">
-        <h1>{{ recipe.name }}</h1>
-        <p>Creator: {{ recipe.creator }}</p>
-        <p>Meal Type: {{ recipe.mealType }}</p>
-        <p>Cuisine Type: {{ recipe.cuisineType }}</p>
-        <p>Description: {{ recipe.description }}</p>
-        <h2>Ingredients:</h2>
-        <ul>
-          <li v-for="(ingredient, index) in recipe.ingredients" :key="index">
-            {{ ingredient.name }} - {{ ingredient.quantity }}
-          </li>
-        </ul>
-        <h2>Steps:</h2>
-        <ol>
-          <li v-for="(step, index) in recipe.steps" :key="index">
-            {{ step.description }}
-          </li>
-        </ol>
-      </div>
-    </div> -->
-
     <div class="recipe-details">
       <div class="recipe-image">
         <img :src="imageURL" alt="Recipe Image" />
