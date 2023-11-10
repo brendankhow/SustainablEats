@@ -43,6 +43,7 @@
 - [Other Project Resources](#other-project-resources)
    - [Figma](#figma)
    - [API](#apis)
+   - [Firebase](#firebase)
 - [Proposal](#proposal)
    - [Report](#report)
    - [Demo Slides](#demo-slides)
@@ -309,12 +310,16 @@ npm install -g @vue/cli
 3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a> -->
 
 ## Other Project Resources
+
 ### Figma
-- [Figma Prototype](https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1)
+1. [Figma Prototype](https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1)
 
 ### APIs
 1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
+### Google Firebase
+1. [Firebase Database](https://console.firebase.google.com/project/sustainableats-sg/overview)
 
 ## Proposal
 1. [Proposal Report Document](https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing)
