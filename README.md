@@ -27,13 +27,14 @@
 
 
 ## Group Members
---------------------------------------------------------------------------
-| Name                | Student ID | Email                               |
-|---------------------|------------|-------------------------------------|
-| Cheryl Toh Wen Qi   | 01460616   | cheryl.toh.2022@scis.smu.edu.sg     |
-| Brendan Khow Bo Ren | 01415987   | brendankhow.2022@scis.smu.edu.sg    |
-| Yeo Jun Wei         | 01422582   | junwei.yeo.2022@scis.smu.edu.sg     |
---------------------------------------------------------------------------
+------------------------------------------------------------------------------
+| Name                  | Student ID | Email                                 |
+|-----------------------|------------|---------------------------------------|
+| Cheryl Toh Wen Qi     | 01460616   | cheryl.toh.2022@scis.smu.edu.sg       |
+| Brendan Khow Bo Ren   | 01415987   | brendankhow.2022@scis.smu.edu.sg      |
+| Yeo Jun Wei           | 01422582   | junwei.yeo.2022@scis.smu.edu.sg       |
+| William Tan Juin Wei  | 01384208   | william.tan.2022@scis.smu.edu.sg      |
+------------------------------------------------------------------------------
 
 ## Contributions
 
@@ -57,6 +58,8 @@ With Singapore’s rising focus on tackling sustainability problems, the primary
 
 This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes. We aim to achieve this through the following key components:
 
+### Features 
+* 
 ### Recipe Generator
 
 SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
