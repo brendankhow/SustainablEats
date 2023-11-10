@@ -180,7 +180,7 @@
 });
 
   async function AddReview() {
-    this.loading = true;
+  
     iShowMessage = true;
     const auth = getAuth();
     const user = auth.currentUser;
@@ -222,25 +222,15 @@
           });          
           
           userReview.value = "";
-          this.loading = false;
+          
         } 
         catch (error) {
-          this.loading = false;
+          
           console.log('');
         }
       }
   }
 
-</script>
-
-<script>
-export default {
-  data() {
-    return {
-      loading: false,
-    };
-  }
-}; 
 </script>
 
 <style scoped>
