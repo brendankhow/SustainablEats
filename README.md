@@ -16,7 +16,7 @@
     * [Proposal]
     * [Demo Slides]
 * [Demo Video]
-* <a href="#acknowledgments">API References</a></li>
+* <a href="#API References">API References</a></li>
 
 
 ## Project setup
