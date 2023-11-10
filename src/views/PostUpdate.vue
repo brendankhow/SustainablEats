@@ -104,9 +104,7 @@ import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref as storageRef, getDownloadURL, uploadBytesResumable, deleteObject } from 'firebase/storage';
 import { getAuth } from "firebase/auth";
   
-
   const newImageFile = ref(null);
-
 // ...
 
 const handleImageUpload = (event) => {
