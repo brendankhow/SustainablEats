@@ -9,12 +9,12 @@
     * <a href="#local">Local</a>
     * <a href="#firebase">Firebase</a>
     * <a href="#online">Online</a>
-* <a href="#project-resource">Project Resources</a>
+* <a href="#project-resources">Project Resources</a>
     * <a href="#figma">Figma</a>
     * <a href="#database">Database</a>
     * <a href="#creative_content">Creative Content</a>
     * <a href="#proposal">Proposal</a>
-    * <a href="#demo-Slides">Demo Slides</a>
+    * <a href="#demo-slides">Demo Slides</a>
 * <a href="#demo-video">Demo Video</a>
 * <a href="#api">API</a>
 
@@ -33,6 +33,18 @@ Else, contact one of the team members.
 Note that since we are using ChatGPT API for recipe generation and image generation, there will be latency and events where the bandwidth for firebase has run out.
 
 ```
+### Project Resources
+## Figma
+<a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
+
+## Database
+## Creative Content
+## Proposal
+<a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Figma Proposal Document</a>
+
+## Demo Slides
+
+### Demo Video
 
 ## Compiles and hot-reloads for development
 ```
