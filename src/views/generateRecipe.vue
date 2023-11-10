@@ -226,7 +226,7 @@ const router = useRouter() // get a reference to our vue router
         description: '',
         ingredients: [],
         steps: [],
-        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-3293a.appspot.com/o/recipeImages%2Fdefault.png?alt=media&token=4254d684-565f-47f1-9222-b183d600e44c",
+        selectedImage: "https://firebasestorage.googleapis.com/v0/b/sustainableats-sg.appspot.com/o/recipeImages%2Fdefault.png?alt=media&token=8dccdce8-564e-4083-a0f1-42743290b6f3",
         imageUploadProgress: 0,
         recipeImageURLs: [],
 
