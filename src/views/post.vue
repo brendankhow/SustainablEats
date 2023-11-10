@@ -320,10 +320,16 @@ form .btn button{
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 15px;
+  background-color: #25D366
 }
 
 form .btn button:hover{
-  background: seagreen;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  background-color: #24a152;
 }
 
 #testimonials{

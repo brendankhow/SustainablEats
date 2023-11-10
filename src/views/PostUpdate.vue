@@ -424,7 +424,7 @@ export default {
   }
   
   button[type="button"] {
-    background-color: #ff6347;
+    background-color: #dc3545;
     color: #fff;
     border: none;
     padding: 5px 10px;
@@ -434,13 +434,25 @@ export default {
   }
   
   button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #25d366;
+    color: black;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    font-weight: bold;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #00ad40;
+      color:white;
+      box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+      -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      background-color: #24a152;
   }
   
   h1 {
