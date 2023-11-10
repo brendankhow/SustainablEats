@@ -26,7 +26,7 @@
    - [Figma](#figma)
    - [API](#apis)
    - [Firebase](#firebase)
-- [Project Demo](#demo)
+- [Project Demo](#project-demo)
 - [Customize Configuration](#customize-configuration)
 - [Additional Images / Default Images](#additional-images--default-images)
 
@@ -279,7 +279,7 @@ npm install -g @vue/cli
 ### Firebase
 1. [Firebase Database](https://console.firebase.google.com/project/sustainableats-sg/overview)
 
-## Demo
+## Project Demo
 1. [Demo Slides](https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit?usp=sharing)
 
 2. [Demo Video](https://youtu.be/-8ciSRxvlqI)
