@@ -313,7 +313,7 @@ export default {
 }
 
 .user_settings{
-    background-color: #AEDDB3;
+    background-color: #25d366;
 }
 
 .user_settings_button{
@@ -325,7 +325,7 @@ export default {
 }
 
 .nav-item .active{
-    background-color: #AEDDB3;
+    background-color: #25d366;
 }
 
 
