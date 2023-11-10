@@ -81,10 +81,12 @@
       </ol>
       <button type="button" @click="addStep" class="ms-1">Add Step</button>
 
-      <div class="form-group">
+      <div v-if="updatedDescription" class="form-group">
         <button type="submit" class="btn btn-primary ms-1">Update Recipe</button>
       </div>
-
+      <div v-else class="form-group">
+        <button type="submit" class="btn btn-primary ms-1" disabled>Update Recipe</button>
+      </div>
       <!-- loading spinner -->
       <div class="loading-row mx-auto">
         <div class="loading-content" v-if="loading">
