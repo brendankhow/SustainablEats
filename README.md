@@ -45,3 +45,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### API References
+* See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+* See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
