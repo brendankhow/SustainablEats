@@ -6,7 +6,7 @@
 
 * Access our website through this link (https://sustainableats-sg.web.app/)
 * Youtube Demo Link: https://youtu.be/-8ciSRxvlqI
-
+<!-- 
 ## Table of Contents
 * <a href="#group-member">Group Members</a>
 * <a href="#important-notes">IMPORTANT NOTES</a>
@@ -23,7 +23,7 @@
     * <a href="#proposal">Proposal</a>
     * <a href="#demo-slides">Demo Slides</a>
 * <a href="#demo-video">Demo Video</a>
-* <a href="#api">API</a>
+* <a href="#api">API</a> -->
 
 ## Table of Contents
 - [Group Members](#group-members)
@@ -42,7 +42,8 @@
 - [Test-Users Account](#test-users-account)
 - [Other Project Resources](#other-project-resources)
    - [Figma](#figma)
-   - [API](#api)
+   - [API](#apis)
+   - [Firebase](#firebase)
 - [Proposal](#proposal)
    - [Report](#report)
    - [Demo Slides](#demo-slides)
@@ -289,7 +290,7 @@ npm install -g @vue/cli
 
 
 
-## Other Project Resources
+<!-- ## Other Project Resources
 ### Figma
 <a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
 
@@ -304,7 +305,26 @@ npm install -g @vue/cli
 
 2. <a href="https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117">Demo Slides</a>
 
-3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a>
+3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a> -->
+
+## Other Project Resources
+
+### Figma
+1. [Figma Prototype](https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1)
+
+### APIs
+1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
+### Firebase
+1. [Firebase Database](https://console.firebase.google.com/project/sustainableats-sg/overview)
+
+## Proposal
+1. [Proposal Report Document](https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing)
+
+2. [Demo Slides](https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117)
+
+3. [Demo Video](https://youtu.be/-8ciSRxvlqI)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
