@@ -117,9 +117,17 @@
           </div>
           <button type="button" @click="addStep" class="btn btn-primary mt-3">Add Step</button>
         </div>
-  
+      
+      <!-- Loading Spinner -->
+      <div v-if="loading" class="text-center mt-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading...</p>
+      </div>
+
       <!-- Create Recipe Button -->
-      <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn">Create Recipe</button>
+      <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn" :disabled="loading">Create Recipe</button>
       </div>
     </div>
   </div>
@@ -189,6 +197,8 @@
         alert('Please fill in all required fields!');
         return;
       }
+      this.loading = true;
+
     if (this.selectedImage) {
       const timestamp = new Date().getTime();
       const randomString = Math.random().toString(36).substring(2, 8);
@@ -251,11 +261,15 @@
         this.steps = [{ description: '' }];
         this.recipeImageURLs = [];
         imageUploadProgress.value = 0;
+
+        this.loading = false; // Reset loading state on success
+        this.router.push('/explore');
       } catch (error) {
         console.error('Error adding recipe:', error);
       }
-      }
-      this.router.push('/explore');
+    } else {
+          this.loading = false; // Reset loading state if no image selected
+    }
     }
 
     },
