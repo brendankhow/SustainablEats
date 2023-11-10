@@ -1,4 +1,7 @@
-# wad2_g6t08_2 WAD2 Project :wave: SustainablEats 
+# wad2_g6t08_2 WAD2 Project :wave: SustainablEats
+* ./src/assets/sustainablEats.png 
+* Access our website through this [link] (https://sustainableats-sg.web.app/)
+* [Youtube] https://youtu.be/-8ciSRxvlqI
 
 ## Table of Contents
 * <a href="#group-member">Group Members</a>
@@ -201,7 +204,7 @@ npm install -g @vue/cli
 * Else, contact one of the team members. 
 
 
-# United Nations Sustainable Development Goals
+## United Nations Sustainable Development Goals
 
 | SDG     | Goal Title                                 | Description                                                                                                      |
 |---------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|
@@ -212,23 +215,25 @@ npm install -g @vue/cli
 
 
 
+## Test-Users Account
 
-## Project Resources
-## Figma
+| User  | Username            | Password          |
+|-------|---------------------|-------------------|
+| User #1 | mokkie@gmail.com    | 111111Qq          |
+| User #2 | jason@gmail.com     | 111111Qq          |
+
+
+
+## Other Project Resources
+### Figma
 <a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
 
-## Database
-## Creative Content
 ## Proposal
 <a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Figma Proposal Document</a>
-
-## Demo Slides
-
-### Demo Video
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## API
+## APIs
 * See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 * See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
