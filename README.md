@@ -27,9 +27,6 @@
    - [API](#apis)
    - [Firebase](#firebase)
 - [Proposal](#proposal)
-   - [Report](#report)
-   - [Demo Slides](#demo-slides)
-   - [Demo Video](#demo-video)
 - [Customize Configuration](#customize-configuration)
 - [Additional Images / Default Images](#additional-images--default-images)
 
