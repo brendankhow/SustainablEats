@@ -343,7 +343,7 @@ const router = useRouter() // get a reference to our vue router
           const response = await axios.post(
             "https://api.openai.com/v1/images/generations",
             {
-                prompt: 'generate a nice aesthetic and professional looking image for the recipe: ' + recipeName,
+                prompt: 'generate a nice professional restaurant quality looking image for the recipe: ' + recipeName,
                 n: 1,
                 size: '256x256',
             },
@@ -610,7 +610,6 @@ img[id='ai-img']{
   transition: background-color 0.3s;
  }
 
- /* loading spinner */
 .loading-row,
 .loading-content{
   height: 100%;
