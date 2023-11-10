@@ -27,6 +27,7 @@
 
 
 ## Group Members
+
 ------------------------------------------------------------------------------
 | Name                  | Student ID | Email                                 |
 |-----------------------|------------|---------------------------------------|
@@ -46,6 +47,7 @@
 | William         | Loading Buffer Animation, AI Response Formatting, Figma |
 
 ## Important Notes
+
 * Due to the current limitations with the chatgpt API, users would have to upload photo themselves (for the recipe generation). 
 * Additionally, due to the nature of large amount of bandwidth the API uses and the limitations of free firebase plan, the websites have limited bandwidth = images not loading. 
 * When this occur, please kindly wait for 24 hours such that the bandwidth resets. We seek your understanding and cooperation. Thank You!
@@ -59,20 +61,26 @@ With Singapore’s rising focus on tackling sustainability problems, the primary
 This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes. We aim to achieve this through the following key components:
 
 ### Features 
-* Recipe Generator - 
+
+1. **Recipe Generator:**
+   - SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
+
+2. **Social Platform:**
+   - Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews.
+<!-- 
 ### Recipe Generator
 
 SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
 
 ### Social Platform
 
-Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews.
+Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews. -->
 
 ---
 
 ## Installation Guide
 
-### Project Set up
+### Project Setup
 
 1. **Install Node.js:**
    - Visit [http://node.js.org/en](http://node.js.org/en) and install the recommended version of Node.js for most users onto your computer.
@@ -102,7 +110,7 @@ Our web application will also have a social space that allows users to share rec
      npm run serve
      ```
 
-### Local Set Up
+### Local SetUp
 
 1. **Clone the Repository:**
    - Replicate the web application source files locally by cloning the GitHub repository.
@@ -263,7 +271,12 @@ npm install -g @vue/cli
 <a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
 
 ## Proposal
-<a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Figma Proposal Document</a>
+
+1. <a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Proposal Report Document</a>
+
+2. <a href="https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117">Demo Slides</a>
+
+3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a>
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
@@ -275,6 +288,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     <img src="/src/assets/pp_default.jpg">
     <img src="/src/assets/default_banner.jpg">
 </div>
-## APIs
-* See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
-* See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
+### APIs
+1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
