@@ -283,11 +283,9 @@ npm install -g @vue/cli
 1. [Firebase Database](https://console.firebase.google.com/project/sustainableats-sg/overview)
 
 ## Proposal
-1. [Proposal Report Document](https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing)
+1. [Demo Slides](https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit?usp=sharing)
 
-2. [Demo Slides](https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117)
-
-3. [Demo Video](https://youtu.be/-8ciSRxvlqI)
+2. [Demo Video](https://youtu.be/-8ciSRxvlqI)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
