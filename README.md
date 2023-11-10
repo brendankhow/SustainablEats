@@ -10,13 +10,13 @@
     * [Firebase set up]
     * [Online Hosting]
 * [Project resources]
-    * [Figma] (#figma)
-    * [database diagram] (#database)
-    * [Creative Content] (#creative_content)
-    * [Proposal]
-    * [Demo Slides]
-* [Demo Video]
-* <a href="#API References">API References</a></li>
+    * <a href="#figma"></a>
+    * <a href="#database"></a>
+    * <a href="#creative_content"></a>
+    * <a href="#Proposal"></a>
+    * <a href="#Demo_Slides"></a>
+* <a href="#Demo_Video">Demo Video</a>
+* <a href="#API_References">API References</a>
 
 
 ## Project setup
@@ -47,6 +47,6 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### API References
+### API_References
 * See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 * See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
