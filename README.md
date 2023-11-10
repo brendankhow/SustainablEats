@@ -1,8 +1,8 @@
 # wad2_g6t08_2
 
 ## Project setup
+<h5>Dependencies </h5>
 ```
-<h5>Dependencies</h5>
 npm install openai
 npm install axios
 npm install bootstrap-icons
