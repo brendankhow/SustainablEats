@@ -49,6 +49,24 @@
 * Additionally, due to the nature of large amount of bandwidth the API uses and the limitations of free firebase plan, the websites have limited bandwidth = images not loading. 
 * When this occur, please kindly wait for 24 hours such that the bandwidth resets. We seek your understanding and cooperation. Thank You!
 
+## Project Overview
+
+According to the National Environment Agency (NEA), the amount of food waste generated in 2022 was an astonishing 813,000 tonnes (NEA, 2023).
+
+With Singapore’s rising focus on tackling sustainability problems, the primary goal of SustainablEats is to empower individuals and build a positive community to make sustainable food choices and reduce wastage.
+
+This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes. We aim to achieve this through the following key components:
+
+### Recipe Generator
+
+SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
+
+### Social Platform
+
+Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews.
+
+---
+
 ## Installation Guide
 
 ### Project Set up
