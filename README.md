@@ -30,7 +30,8 @@
 
 ## Important Notes
 * Due to the current limitations with the chatgpt API, users would have to upload photo themselves (for the recipe generation). 
-* Additionally, due to the nature of large amount of bandwidth the API uses and the limitations of free firebase plan, the websites have limited bandwidth = images not loading. When this occur, please kindly wait for 24 hours such that the bandwidth resets. We seek your understanding and cooperation. Thank You!
+* Additionally, due to the nature of large amount of bandwidth the API uses and the limitations of free firebase plan, the websites have limited bandwidth = images not loading. 
+* When this occur, please kindly wait for 24 hours such that the bandwidth resets. We seek your understanding and cooperation. Thank You!
 
 ## Installation Guide
 
@@ -80,7 +81,7 @@
 
 Now, you should be able to access and interact with the website locally.
 
-# Google Firebase Setup
+### Google Firebase Setup
 
 1. **Login to [Google Firebase Console](https://console.firebase.google.com/) with your Google account.**
    
@@ -125,7 +126,7 @@ Now, your project is set up with Google Firebase. You can utilize the Firestore 
 ### Online Hosting
 
 1. **Install Firebase Tools:**
-   - Under Terminal in Visual Studio Code, run the following command to install Firebase Tools globally:
+   - Open the Terminal in Visual Studio Code and run the following command to install Firebase Tools globally:
      ```bash
      npm install -g firebase-tools
      ```
@@ -136,7 +137,7 @@ Now, your project is set up with Google Firebase. You can utilize the Firestore 
      npm run build
      ```
 
-3. **Create Firebase Configuration File:**
+3. **Create Firebase Configuration Files:**
    - Within the root folder, create a new file called `.firebaserc` with the following content:
      ```json
      {
@@ -147,10 +148,68 @@ Now, your project is set up with Google Firebase. You can utilize the Firestore 
      ```
      (Replace "your-firebase-project-id" with your project ID value)
 
-4. **Include Firebase Configuration Image:**
-   - [Include an image here that visually represents the Firebase configuration process]
+   - Create another file called `firebase.json` within the root folder with the following content:
 
-Now, your project is configured for online hosting with Firebase. The `dist` folder contains everything necessary for deployment, and the `.firebaserc` file ensures your project is associated with the correct Firebase project.
+     ```json
+     {
+       "hosting": {
+         "public": "dist",
+         "ignore": [
+           "firebase.json",
+           "**/.*",
+           "**/node_modules/**"
+         ],
+         "rewrites": [
+           {
+             "source": "**",
+             "destination": "/index.html"
+           }
+         ]
+       }
+     }
+     ```
+
+4. **Deploy Your Application:**
+   - Connect to your local machine by running the following command:
+     ```bash
+     firebase login
+     ```
+   
+   - Once you are successfully logged in, run the following command to deploy your project:
+     ```bash
+     firebase deploy
+     ```
+
+Now, your application should be successfully deployed. Access the provided URL to view your hosted project.
+
+### Dependencies & Libraries Installation
+
+To set up the necessary dependencies and libraries for your project, run the following commands:
+
+```bash
+npm install openai
+npm install axios
+npm install bootstrap-icons
+npm install canvas-confetti
+npm install -g firebase-tools
+npm install -g @vue/cli
+```
+
+### OpenAI Set Up
+* In order for the website chatgpt AI work, you would need to go to the OpenAI website to create a key for it to work. 
+* Please go to the GenerateRecipe.vue file and replace the value for OPENAI_API_KEY
+* Else, contact one of the team members. 
+
+
+# United Nations Sustainable Development Goals
+
+| SDG     | Goal Title                                 | Description                                                                                                      |
+|---------|--------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| SDG 2   | Zero Hunger                               | SustainablEats aims to encourage users to share and try out sustainable recipes in their daily lives. Utilizing sustainable recipes with soon-to-expire ingredients reduces food wastage, providing more food for those in need. |
+| SDG 11  | Sustainable Cities and Communities         | Sustainable recipes emphasize using all parts of ingredients, minimizing waste. This practice reduces food waste in cities, conserving resources and making cities more sustainable.           |
+| SDG 12  | Responsible Consumption and Production      | Sustainable recipes promote the use of environmentally friendly ingredients, such as organic and locally sourced produce. This encourages responsible sourcing and production, reducing negative environmental impacts. |
+| SDG 13  | Climate Action                            | Food waste is a significant contributor to greenhouse gas emissions. By sharing sustainable recipes, SustainablEats helps reduce food waste, lowering methane emissions in landfills and supporting climate action.      |
+
 
 
 
