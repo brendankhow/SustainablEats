@@ -59,7 +59,7 @@ With Singapore’s rising focus on tackling sustainability problems, the primary
 This application serves as a platform to facilitate the exchange of recipes and ideas among users while promoting sustainable food choices through AI-generated food recipes. We aim to achieve this through the following key components:
 
 ### Features 
-* 
+* Recipe Generator - 
 ### Recipe Generator
 
 SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
@@ -268,6 +268,13 @@ npm install -g @vue/cli
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Additional Images / Default images
+<div align="center">
+    <img src="/src/assets/sustainablEats.png" alt="SustainablEats logo">
+    <img src="/src/assets/default.png">
+    <img src="/src/assets/pp_default.jpg">
+    <img src="/src/assets/default_banner.jpg">
+</div>
 ## APIs
 * See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
 * See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
