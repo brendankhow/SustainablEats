@@ -43,7 +43,7 @@
         </router-link>
       </li>
       <li class="nav-item d-flex align-items-center">
-        <button @click="handleSignOut" class="btn" style="background-color:#25d366; font-weight: bold" v-if="isLoggedIn">Log Out</button>
+        <button @click="handleSignOut" class="btn logout_btn" style="background-color:#25d366; font-weight: bold" v-if="isLoggedIn">Log Out</button>
       </li>
     </ul>
   </div>
@@ -119,6 +119,10 @@
   .btn{
     margin-left: 15px;
     border-radius: 10px;
+  }
+
+  .logout_btn:hover{
+    color:white;
   }
   </style>
   
