@@ -85,6 +85,12 @@
         <button type="submit" class="btn btn-primary ms-1">Update Recipe</button>
       </div>
 
+      <!-- loading spinner -->
+      <div class="loading-row mx-auto">
+        <div class="loading-content" v-if="loading">
+          <div class="loader"></div>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -171,6 +177,7 @@ const handleImageUpload = (event) => {
 }
   
   async function updateRecipe() {
+    this.loading = true;
   let updatedRecipe = {
     name: updatedRecipeName.value,
     creator: updatedCreator.value,
@@ -195,14 +202,25 @@ const handleImageUpload = (event) => {
   // Update the recipe in the database
   updateDoc(recipeRef, updatedRecipe)
     .then(() => {
+      this.loading = false;
       router.push(`/post/${recipeID}`); // Redirect to the updated recipe's page
     })
     .catch((error) => {
-      console.error('');
+      this.loading = false;
+      console.log('error: ', error);
     });
 }
   </script>
   
+  <script>
+  export default {
+    data() {
+        return {
+            loading: false,
+        }
+      }
+    }
+  </script>
   <style scoped>
 .recipe-details {
   display: flex;
