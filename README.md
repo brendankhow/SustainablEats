@@ -25,6 +25,23 @@
 * <a href="#demo-video">Demo Video</a>
 * <a href="#api">API</a>
 
+## Table of Contents
+* [Group Members](#group-members)
+* [IMPORTANT NOTES](#important-notes)
+* [Project Overview](#project-overview)
+  * [Installation Guide](#installation-guide)
+    * [Project](#project)
+    * [Local](#local)
+    * [Firebase](#firebase)
+    * [Online](#online)
+  * [Project Resources](#project-resources)
+    * [Figma](#figma)
+    * [Database](#database)
+    * [Creative Content](#creative_content)
+    * [Proposal](#proposal)
+    * [Demo Slides](#demo-slides)
+* [Demo Video](#demo-video)
+* [API](#api)
 
 ## Group Members
 
@@ -270,6 +287,11 @@ npm install -g @vue/cli
 ### Figma
 <a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
 
+### APIs
+1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
+
 ## Proposal
 
 1. <a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Proposal Report Document</a>
@@ -289,6 +311,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     <img src="/src/assets/default_banner.jpg">
 </div>
 
-### APIs
-1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
-2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
+
