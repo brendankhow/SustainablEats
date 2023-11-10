@@ -48,8 +48,8 @@
                 </div>
               </div>
               <div class="col-md-12 submit-btn-div">
-                <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" role="button" @click="fetchRecipe();fetchImg()">
-                  <span class="info-labels">Generate</span>
+                <button class="gen-form-submit-btn w-100 m-0 mx-auto px-5 mb-5" style = "background-color: #25d366;" role="button" @click="fetchRecipe();fetchImg()">
+                  <span class="info-labels" style = "color:black;">Generate</span>
                 </button>
             </div>
           </div>
@@ -589,7 +589,7 @@ img[id='ai-img']{
   transform: translateY(-2px);
   */
   /* new */
-  background-color: #24a152;
+  background-color: #25D366;
   color:white;
   padding: 10px 20px;
   transition-duration: 0.5s;

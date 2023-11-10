@@ -67,8 +67,7 @@
             </div>
 
         </div>
-        
-
+      
         
         <div class="form-group mt-4">
           <h3>Ingredients</h3>
@@ -119,7 +118,7 @@
         </div>
   
       <!-- Create Recipe Button -->
-      <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn">Create Recipe</button>
+      <button type="button" @click="uploadImageAndCreateRecipe" class="btn mt-4 create_btn"><strong>Create Recipe</strong></button>
       </div>
     </div>
   </div>
@@ -301,8 +300,15 @@
       background-color: #25d366;
     }
     .create_btn:hover{
-      background-color: #00ad40;
+      background-color: #24a152;
       color:white;
+      transition-duration: 0.5s;
+      box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+      -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      
     }
     /* Card styles */
     .card {
@@ -367,7 +373,7 @@
     }
   
     .btn-danger {
-      background-color: #D9534F;
+      background-color: #dc3545;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -376,7 +382,7 @@
     }
   
     .btn-primary {
-      background-color: #337ab7;
+      background-color: #0056b3;
       color: white;
       border: none;
       padding: 10px 20px;

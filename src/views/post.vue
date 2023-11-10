@@ -322,6 +322,7 @@ form .btn{
   height: 45px;
   width: 100%;
   margin: 15px 0;
+  
 }
 
 form .btn button{
@@ -337,10 +338,20 @@ form .btn button{
   cursor: pointer;
   transition: all 0.3s ease;
   border-radius: 15px;
+  background-color: #25D366;
+  color:black;
+  font-weight: bold;
 }
 
 form .btn button:hover{
-  background: seagreen;
+  background-color: #24a152;
+  color: white;
+  box-shadow: 0 0 0 0 rgba(8, 136, 8, 0.7);
+  font-weight: bold;
+  -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+  animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
 }
 
 #testimonials{
@@ -534,4 +545,6 @@ ul, ol {
 li {
   margin-bottom: 8px;
 }
+
+
 </style>
