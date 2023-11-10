@@ -1,7 +1,7 @@
 # wad2_g6t08_2 WAD2 Project :wave: SustainablEats
 
 <div align="center">
-  ![SustainablEats logo](/src/assets/sustainablEats.png)
+    <img src="/src/assets/sustainablEats.png" alt="SustainablEats logo">
 </div>
 
 * Access our website through this link (https://sustainableats-sg.web.app/)
