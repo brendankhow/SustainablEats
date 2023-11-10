@@ -35,6 +35,15 @@
 | Yeo Jun Wei         | 01422582   | junwei.yeo.2022@scis.smu.edu.sg     |
 --------------------------------------------------------------------------
 
+## Contributions
+
+| **Contributor** | **Tasks**                                             |
+|-----------------|--------------------------------------------------------|
+| Cheryl          | Register, Sign In, Update, Delete, Profile Setting, Navigation Bar, Home Page, ChatGPT API, Generate Recipe and Images, Styling and Overall UI, Figma |
+| Brendan         | Register, Sign In, Create, Retrieve, Update, Delete Recipe, Navigation Bar, Footer, Styling and Overall UI, Install And Setup Vue Js In Visual Studio Code, GitHub Setup, Firebase Deployment, Figma |
+| Jun Wei         | Register, Sign In, Trending Recipe Carousell, Review Function, Like and Bookmark Recipe Function, Coins and Leaderboard Function, Styling and Overall UI, Figma |
+| William         | Loading Buffer Animation, AI Response Formatting, Figma |
+
 ## Important Notes
 * Due to the current limitations with the chatgpt API, users would have to upload photo themselves (for the recipe generation). 
 * Additionally, due to the nature of large amount of bandwidth the API uses and the limitations of free firebase plan, the websites have limited bandwidth = images not loading. 
