@@ -88,19 +88,17 @@ This application serves as a platform to facilitate the exchange of recipes and 
 ### Features 
 
 1. **Recipe Generator:**
-   - SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
+   - SustainablEats will feature an AI-powered recipe generator with image generation capabilities that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals to help reduce wastage and responsible consumption.
 
 2. **Social Platform:**
-   - Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews.
-<!-- 
-### Recipe Generator
+   - Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews. This is to help encourage and build an wholesame community
 
-SustainablEats will feature an AI-powered recipe generator that accounts for users’ tastes and preferences based on the user’s input of ingredients. Our website aims to encourage users to make use of soon-to-be-expired food or extra food as part of their recipes and meals.
+3. **Profile Customization:**
+   - Users will be able create, read, update and delete their own profile. This includes customization such as profile picture, profile banners etc.
 
-### Social Platform
-
-Our web application will also have a social space that allows users to share recipes that they like. Other users will be able to view the recipes and give comments/reviews. -->
-
+4. **Bookmark & Likes**
+   - Users are able to bookmark their favourite recipes (which includes deleteing it) and even like other people recipes!
+   - For every 5 likes, users gain 1 coin :)
 ---
 
 ## Installation Guide
