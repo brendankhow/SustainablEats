@@ -168,6 +168,7 @@
       <!-- Insert more here -->
       <div class="mx-auto" style="">
         <p>
+          <strong class="text-warning">ONLY PRESS THE UPLOAD BUTTON ONCE THE PREVIEW IMAGE HAS CHANGED TO YOUR CURRENT IMAGE</strong><br><br>
           <strong>Include your cuisine of choice.</strong>
           Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
           American, Mediterranean, Chinese, etc.
