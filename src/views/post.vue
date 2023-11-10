@@ -118,6 +118,13 @@
               <div class = "btn">
                 <button type = "submit" v-on:click="AddReview">Post</button>
               </div>
+
+              <!-- Loading SPinner -->
+              <div class="loading-row mx-auto">
+                <div class="loading-content" v-if="loading">
+                  <div class="loader"></div>
+                </div>
+              </div>
             </form>
         </div>
       </div>
@@ -136,7 +143,7 @@
   import { getFirestore, doc, getDoc, collection, updateDoc, arrayUnion, query, orderBy, limit } from 'firebase/firestore';
   import { getStorage, ref as storageRef, getDownloadURL } from 'firebase/storage';
   import { getAuth } from "firebase/auth";
-  
+
   const route = useRoute();
   const recipe = ref({});
   const imageURL = ref('');
@@ -149,6 +156,7 @@
 
   onMounted(async () => {
   const storage = getStorage();
+
 
   try {
     const recipeSnapshot = await getDoc(recipeRef);
@@ -171,7 +179,8 @@
   }
 });
 
-  async function AddReview(){
+  async function AddReview() {
+    this.loading = true;
     iShowMessage = true;
     const auth = getAuth();
     const user = auth.currentUser;
@@ -213,16 +222,27 @@
           });          
           
           userReview.value = "";
-          
+          this.loading = false;
         } 
-        catch (error){
+        catch (error) {
+          this.loading = false;
           console.log('');
         }
       }
   }
 
 </script>
-  
+
+<script>
+export default {
+  data() {
+    return {
+      loading: false,
+    };
+  }
+}; 
+</script>
+
 <style scoped>
 
 *{
@@ -456,6 +476,43 @@ form .btn button:hover{
 
 .label-value {
   margin-left: 50px; /* Adjust the margin-left value according to your preference */
+}
+
+.loading-row,
+.loading-content{
+  height: 100%;
+}
+
+.loading-content{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.loader  {
+  animation: rotate 1s infinite;  
+  height: 50px;
+  width: 50px;
+}
+
+.loader:before,
+.loader:after {   
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 20px;  
+  width: 20px;
+}
+.loader:before {
+  animation: ball1 1s infinite;  
+  background-color: #cb2025;
+  box-shadow: 30px 0 0 #f8b334;
+  margin-bottom: 10px;
+}
+.loader:after {
+  animation: ball2 1s infinite; 
+  background-color: #00a096;
+  box-shadow: 30px 0 0 #97bf0d;
 }
 
 @media (max-width: 1200px) {

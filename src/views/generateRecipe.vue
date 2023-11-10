@@ -610,6 +610,7 @@ img[id='ai-img']{
   transition: background-color 0.3s;
  }
 
+ /* loading spinner */
 .loading-row,
 .loading-content{
   height: 100%;
