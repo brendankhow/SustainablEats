@@ -1,4 +1,22 @@
-# wad2_g6t08_2
+# wad2_g6t08_2 WAD2 Project :wave: SustainablEats 
+
+## Table of Contents
+* [Group Members]
+* [Project Overview]
+* [Installation Guide]
+    * [Project Set up]
+    * [Local set up]
+    * [Firebase set up]
+    * [Online Hosting]
+* [Project resources]
+    * [Figma] (#figma)
+    * [database diagram] (#database)
+    * [Creative Content] (#creative_content)
+    * [Proposal]
+    * [Demo Slides]
+* [Demo Video]
+* API References
+
 
 ## Project setup
 ```
@@ -27,3 +45,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### API References
+* See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
+* See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
