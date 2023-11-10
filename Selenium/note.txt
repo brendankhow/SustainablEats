@@ -1,0 +1,1 @@
+Note that selenium was used to assist us in the early days of the development hence test cases results may differ from current website. 

@@ -1,4 +1,4 @@
-# wad2_g6t08_2 WAD2 Project :wave: SustainablEats
+# :wave: WAD2 Project SustainablEats
 
 <div align="center">
     <img src="/src/assets/sustainablEats.png" alt="SustainablEats logo">
