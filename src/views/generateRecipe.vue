@@ -76,10 +76,9 @@
             <div>
           </div>
         </div>
+
         <div class="row">
-          <p class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</p>
-        </div>
-        <div class="row">
+          <h4 class="text-center text-warning"> PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h4>
           <p class="text-center">Like this image? Download it here: </p>
         </div>
 
@@ -127,10 +126,9 @@
           <div class="disclaimer-divider"></div>
       </div>
     </div>
+
     <div class="row">
-      <p class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</p>
-    </div>
-    <div class="row">
+      <h4 class="text-center text-warning">PLEASE WAIT FOR IMAGE TO UPDATE (IT SHOULD TAKE +- 5 SECONDS)</h4>
       <p class="text-center">Like what you see? Download the image here and upload it with the recipe!</p>
     </div>
 
@@ -177,7 +175,7 @@
       <!-- Insert more here -->
       <div class="mx-auto" style="">
         <p>
-          <strong class="text-warning">ONLY PRESS THE UPLOAD BUTTON ONCE THE PREVIEW IMAGE HAS CHANGED TO YOUR CURRENT IMAGE</strong><br><br>
+          <p class="text-warning">ONLY PRESS THE UPLOAD BUTTON ONCE THE PREVIEW IMAGE HAS CHANGED TO YOUR CURRENT IMAGE</p><br><br>
           <strong>Include your cuisine of choice.</strong>
           Select the cuisines you want to include in your recipe. You can choose from a variety of options, such as Italian, Indian,
           American, Mediterranean, Chinese, etc.
