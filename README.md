@@ -6,7 +6,7 @@
 
 * Access our website through this link (https://sustainableats-sg.web.app/)
 * Youtube Demo Link: https://youtu.be/-8ciSRxvlqI
-
+<!-- 
 ## Table of Contents
 * <a href="#group-member">Group Members</a>
 * <a href="#important-notes">IMPORTANT NOTES</a>
@@ -23,7 +23,7 @@
     * <a href="#proposal">Proposal</a>
     * <a href="#demo-slides">Demo Slides</a>
 * <a href="#demo-video">Demo Video</a>
-* <a href="#api">API</a>
+* <a href="#api">API</a> -->
 
 ## Table of Contents
 - [Group Members](#group-members)
@@ -42,11 +42,15 @@
 - [Test-Users Account](#test-users-account)
 - [Other Project Resources](#other-project-resources)
    - [Figma](#figma)
-   - [API](#api)
+   - [API](#apis)
 - [Proposal](#proposal)
-   - [Report](#report)
+   - [Report](#proposal-report-document)
    - [Demo Slides](#demo-slides)
    - [Demo Video](#demo-video)
+   * [Proposal](#proposal)
+   * [Report](#proposal-report-document)
+   * [Demo Slides](#demo-slides)
+   * [Demo Video](#demo-video)
 - [Customize Configuration](#customize-configuration)
 - [Additional Images / Default Images](#additional-images--default-images)
 
