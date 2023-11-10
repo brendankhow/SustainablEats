@@ -58,7 +58,7 @@
       <div class="row mb-3 ms-1">
         <label class="col-lg-2 col-md-12 col-form-label fw-bold">Description:</label>
         <div class="col-lg-10 col-md-12 col-sm-12">
-          <textarea id="description" v-model="updatedDescription" class="form-control" :class="{ 'border-red': !updatedDescription }" required></textarea>
+          <textarea id="description" v-model="updatedDescription" class="form-control" :class="{ 'border-danger': !updatedDescription}" required></textarea>
         </div>
       </div>
 
