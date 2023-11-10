@@ -43,7 +43,7 @@
 - [Other Project Resources](#other-project-resources)
    - [Figma](#figma)
    - [API](#apis)
-   - [Firebase](#googlefirebase)
+   - [Firebase](#firebase)
 - [Proposal](#proposal)
    - [Report](#report)
    - [Demo Slides](#demo-slides)
