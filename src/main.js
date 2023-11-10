@@ -10,12 +10,12 @@ import {getAuth} from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBES-p70c7BohQFgJR-orW5mfWD-E6GxMM",
-  authDomain: "sustainableats-3293a.firebaseapp.com",
-  projectId: "sustainableats-3293a",
-  storageBucket: "sustainableats-3293a.appspot.com",
-  messagingSenderId: "95939921886",
-  appId: "1:95939921886:web:28a41b9a068649311aff4f"
+  apiKey: "AIzaSyAzoP7u_p7GQ5vPiDzaWyqcsjicaVzw8gw",
+  authDomain: "sustainableats-f.firebaseapp.com",
+  projectId: "sustainableats-f",
+  storageBucket: "sustainableats-f.appspot.com",
+  messagingSenderId: "955126552293",
+  appId: "1:955126552293:web:06e5283dd923cb464ca60c"
 };
 
 initializeApp(firebaseConfig);
@@ -37,4 +37,5 @@ export {app, auth}
 // app.mount ('#app')
 
 // createApp(App).use(router).mount('#app')
+
 
