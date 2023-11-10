@@ -38,7 +38,7 @@
     onAuthStateChanged (auth, (user) => {
       if (user) {
         isLoggedIn.value = true;
-        // router.push("/home");
+        router.push("/home");
 
       } else {
         isLoggedIn.value = false;
