@@ -75,7 +75,7 @@
       <h2 class="ms-1">Steps:</h2>
       <ol class="ms-1">
         <li v-for="(step, index) in updatedSteps" :key="index">
-          <textarea v-model="step.description" class="form-control"></textarea>
+          <textarea v-model="step.description" class="form-control" :class="{ 'border-red': !step.description required }"></textarea>
           <button type="button" @click="removeStep(index)" v-if="updatedSteps.length > 1">Remove</button>
         </li>
       </ol>
