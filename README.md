@@ -6,24 +6,6 @@
 
 * Access our website through this link (https://sustainableats-sg.web.app/)
 * Youtube Demo Link: https://youtu.be/-8ciSRxvlqI
-<!-- 
-## Table of Contents
-* <a href="#group-member">Group Members</a>
-* <a href="#important-notes">IMPORTANT NOTES</a>
-* <a href="#project-overview">Project Overview</a>
-* <a href="#installation-guide">Installation Guide</a>
-    * <a href="#project">Project</a>
-    * <a href="#local">Local</a>
-    * <a href="#firebase">Firebase</a>
-    * <a href="#online">Online</a>
-* <a href="#project-resources">Project Resources</a>
-    * <a href="#figma">Figma</a>
-    * <a href="#database">Database</a>
-    * <a href="#creative_content">Creative Content</a>
-    * <a href="#proposal">Proposal</a>
-    * <a href="#demo-slides">Demo Slides</a>
-* <a href="#demo-video">Demo Video</a>
-* <a href="#api">API</a> -->
 
 ## Table of Contents
 - [Group Members](#group-members)
@@ -287,25 +269,6 @@ npm install -g @vue/cli
 |-------|---------------------|-------------------|
 | User #1 | mokkie@gmail.com    | 111111Qq          |
 | User #2 | jason@gmail.com     | 111111Qq          |
-
-
-
-<!-- ## Other Project Resources
-### Figma
-<a href="https://www.figma.com/file/lwtD6C8nPcV4P3PK1pkRwD/Lo-fi-Prototype?type=design&node-id=0%3A1&mode=design&t=3PDBj1NzA5rBTdgi-1">Figma Prototype</a>
-
-### APIs
-1. See [OpenAI Image Generation API](https://platform.openai.com/docs/api-reference/images)
-2. See [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/completions)
-
-
-## Proposal
-
-1. <a href="https://docs.google.com/document/d/1xFmi8v4FXeQ_lN7CaHvldTWBmzCTYkXLgaCHvdxvmE4/edit?usp=sharing">Proposal Report Document</a>
-
-2. <a href="https://docs.google.com/presentation/d/1cEeYnk5VX3-hQdV7k78Pezl2Yo5Rs8K7MHIO-cOuAOw/edit#slide=id.g2994d8d0b45_0_117">Demo Slides</a>
-
-3. <a href="https://youtu.be/-8ciSRxvlqI">Demo Video</a> -->
 
 ## Other Project Resources
 
