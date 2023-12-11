@@ -222,7 +222,6 @@ const router = useRouter() // get a reference to our vue router
 
     data() {
       return {
-        //no naughty take cheryl api key ok: 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
         OPENAI_API_KEY: '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', // will key
 
         // for database
